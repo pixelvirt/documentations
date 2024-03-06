@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.12">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
@@ -266,6 +266,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configure Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-secret-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate the secret key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure the env file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -275,14 +299,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Integrate with OpenStack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pull-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Docker Image
+    </span>
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#create-docker-compose-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Docker Compose File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start the Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-openstack-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure OpenStack Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#verify-integration" class="md-nav__link">
     <span class="md-ellipsis">
       Verify Integration
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -343,6 +409,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Configure Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-the-secret-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Generate the secret key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure the env file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -352,14 +442,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Integrate with OpenStack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pull-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Docker Image
+    </span>
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#create-docker-compose-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Docker Compose File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-the-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start the Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-openstack-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure OpenStack Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#verify-integration" class="md-nav__link">
     <span class="md-ellipsis">
       Verify Integration
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -389,44 +521,92 @@
 
   <h1>Monitoring</h1>
 
-<h3 id="prerequisites">Prerequisites</h3>
+<h2 id="prerequisites">Prerequisites</h2>
 <p>Before integrating the <code>PixelView</code> service with your OpenStack environment, ensure that you have the following prerequisites:</p>
 <ul>
 <li>Access to an OpenStack environment (with Keystone authentication enabled).</li>
 <li>Docker installed on your system.</li>
+<li>Python: Follow the instructions provided on <a href="https://www.python.org/downloads/">Python's website</a></li>
 </ul>
-<h3 id="configure-environment-variables">Configure Environment Variables</h3>
-<p>Create a file named <code>.env</code> in the same directory as your <code>docker-compose.yml</code> file. This file should contain environment variables required for the <code>openstack_mon</code> service. Here's an example <code>.env</code> file based on the provided information:
-<div class="language-shell highlight"><span class="filename">.env</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">ALLOWED_ORIGINS</span><span class="o">=</span><span class="s2">&quot;*&quot;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">DB_USERNAME</span><span class="o">=</span><span class="s2">&quot;[OPENSTACK_DB_USERNAME]&quot;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">DB_PASSWORD</span><span class="o">=</span><span class="s2">&quot;[OPENSTACK_DB_PASSWORD]&quot;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nv">DB_HOST</span><span class="o">=</span><span class="s2">&quot;[OPENSTACK_DB_HOST]&quot;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nv">DB_PORT</span><span class="o">=[</span>RUNNING_DB_PORT<span class="o">]</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nv">ROOT_URL</span><span class="o">=</span><span class="s2">&quot;[URL:PORT]&quot;</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nv">SECRET_KEY</span><span class="o">=</span><span class="s2">&quot;[SECRET_KEY]&quot;</span>
+<h2 id="configure-environment-variables">Configure Environment Variables</h2>
+<h3 id="generate-the-secret-key">Generate the secret key</h3>
+<ol>
+<li>Open a new terminal</li>
+<li>
+<p>Copy and paste the following command to run the Python interpreter in the terminal
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3
 </span></code></pre></div></p>
-<h3 id="integrate-with-openstack">Integrate with OpenStack</h3>
-<p><strong>Pull Docker Image</strong>: Pull the latest version of the <code>monitoring_openstack</code> Docker image by running the following command:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker pull ghcr.io/pixelvirt/monitoring_openstack:latest
+</li>
+<li>
+<p>In the terminal write the following script to generate a secure key
+  <div class="language-python3 highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">secrets</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">secrets</span><span class="o">.</span><span class="n">token_urlsafe</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p>You should get a key that looks similar to this
+  <div class="language-text highlight"><span class="filename">Generated secret</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&#39;sSlwF4DCqKTVtNIrp6DixVHblKWgqjYkSpVnvvjM1i8&#39;
 </span></code></pre></div>
-<strong>Create Docker Compose File</strong>: Create a <code>docker-compose.yml</code> file with the following content:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>version: &#39;3&#39;
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>services:
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  openstack_mon:
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    restart: always
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    image: ghcr.io/pixelvirt/monitoring_openstack:latest
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    env_file:
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>      - .env
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    ports:
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>      - &quot;5000:5000&quot;    
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    container_name: openstack_mon
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    command: &quot;gunicorn main:app -b 0.0.0.0:5000 --reload --log-level=debug --log-file=api.log&quot;
-</span></code></pre></div>
-<strong>Start the Service</strong>:
-Run the following command to start the <code>monitoring_openstack</code> service:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker compose up -d
-</span></code></pre></div>
-<strong>Configure OpenStack Integration</strong>: In your monitoring application or system, configure the OpenStack integration using the API endpoint provided by <code>openstack_mon</code>. Provide the necessary authentication details and endpoints to enable monitoring of your OpenStack environment.</p>
+    Copy and store it somewhere safe as it will be used later on.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Generating secret key using the provided method is not the only way or mandatory by any means. You can use your own combination of string, but make sure that it is strong enough so that it cannot be generated easily</p>
+</div>
+</li>
+</ol>
+<h3 id="configure-the-env-file">Configure the env file</h3>
+<p>Create a file named <code>.env</code> in the same directory as your <code>docker-compose.yml</code> file. This file should contain environment variables required for the <code>openstack_mon</code> service.</p>
+<p>Here's an example <code>.env</code> file based on the provided information:
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">.env</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nv">ALLOWED_ORIGINS</span><span class="o">=</span><span class="s2">&quot;*&quot;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nv">DB_USERNAME</span><span class="o">=</span><span class="s2">&quot;[OPENSTACK_DB_USERNAME]&quot;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="nv">DB_PASSWORD</span><span class="o">=</span><span class="s2">&quot;[OPENSTACK_DB_PASSWORD]&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="nv">DB_HOST</span><span class="o">=</span><span class="s2">&quot;[OPENSTACK_DB_HOST]&quot;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="nv">DB_PORT</span><span class="o">=[</span>RUNNING_DB_PORT<span class="o">]</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="nv">ROOT_URL</span><span class="o">=</span><span class="s2">&quot;[URL:PORT]&quot;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="nv">SECRET_KEY</span><span class="o">=</span><span class="s2">&quot;[SECRET_KEY]&quot;</span><span class="w"> </span><span class="c1"># Paste the generated key here</span>
+</span></code></pre></div></td></tr></table></div>
+Replace the <code>[SECRET_KEY]</code> with the key generated in <a href="#generate-the-secret-key">Step 1</a></p>
+<h2 id="integrate-with-openstack">Integrate with OpenStack</h2>
+<h3 id="pull-docker-image">Pull Docker Image</h3>
+<p>Pull the latest version of the <code>monitoring_openstack</code> docker image by running the following command:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/pixelvirt/monitoring_openstack:latest
+</span></code></pre></div></p>
+<h3 id="create-docker-compose-file">Create Docker Compose File</h3>
+<p>Create a <code>docker-compose.yml</code> file with the following content:
+<div class="language-yaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">docker-compose.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">  </span><span class="nt">openstack_mon</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/monitoring_openstack:latest</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5000:5000&quot;</span><span class="w">    </span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack_mon</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gunicorn</span><span class="nv"> </span><span class="s">main:app</span><span class="nv"> </span><span class="s">-b</span><span class="nv"> </span><span class="s">0.0.0.0:5000</span><span class="nv"> </span><span class="s">--reload</span><span class="nv"> </span><span class="s">--log-level=debug</span><span class="nv"> </span><span class="s">--log-file=api.log&quot;</span>
+</span></code></pre></div></td></tr></table></div></p>
+<h3 id="start-the-service">Start the Service</h3>
+<p>Run the following command to start the <code>monitoring_openstack</code> service:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div></p>
+<h3 id="configure-openstack-integration">Configure OpenStack Integration</h3>
+<p>In your monitoring application or system, configure the OpenStack integration using the API endpoint provided by <code>openstack_mon</code>. Provide the necessary authentication details and endpoints to enable monitoring of your OpenStack environment.</p>
 <h3 id="verify-integration">Verify Integration</h3>
 <p>Once the integration is configured, verify that your monitoring system can successfully retrieve metrics and monitor your OpenStack environment using the provided API.</p>
 <h2 id="conclusion">Conclusion</h2>
