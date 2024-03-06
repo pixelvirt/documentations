@@ -8,7 +8,7 @@ Before proceeding with the installation, ensure that you have Docker and Docker 
 ### 1. Copy  Docker Compose File
 Create a directory for your project and create a file named `docker-compose.yml`. Copy the provided service configurations into this file.
 
-  ```docker title="docker-compose.yaml" linenums="1"
+  ```yaml title="docker-compose.yaml" linenums="1"
   version: "3.9"
 
   services:
