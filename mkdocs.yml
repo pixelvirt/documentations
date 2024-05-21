@@ -59,7 +59,15 @@ nav:
     - registration: pixelview/registration.md
     - login: pixelview/login.md
     - dashboard: pixelview/dashboard.md
-
+  - openstack:
+    - 'Image Creation': openstack/image-creation.md
+    - 'Accessing an OpenStack instance': openstack/instance-access.md
+    - 'Openstack Networks': openstack/network-creation.md
+    - 'key pair': openstack/key-pair.md
+    - 'Launching an Instance ': openstack/lunch-instance.md
+    - ' quota and organization request': openstack/quota-org-request.md
+    - 'Organization Registration': openstack/org-registration.md
+    - 'Initial setup': openstack/quick-guide.md
 
 
 markdown_extensions:
