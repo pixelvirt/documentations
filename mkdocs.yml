@@ -52,7 +52,8 @@ extra_css:
 nav:
   - Welcome: index.md
   - Pixelview:
-    - Installation: pixelview/installation.md
+    - 'Docker Installation': pixelview/installation.md
+    - 'Kubetnetes Installation': pixelview/kube-installation.md
     - Monitoring: pixelview/monitoring.md
     - cases: pixelview/cases.md
     - Services: pixelview/services.md
