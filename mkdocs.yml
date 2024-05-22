@@ -58,6 +58,7 @@ nav:
     - Monitoring: pixelview/monitoring.md
     - cases: pixelview/cases.md
     - Services: pixelview/services.md
+    - Esclation: pixelview/esclation.md
     - registration: pixelview/registration.md
     - login: pixelview/login.md
     - dashboard: pixelview/dashboard.md
