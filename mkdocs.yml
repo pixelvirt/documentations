@@ -59,6 +59,7 @@ nav:
     - cases: pixelview/cases.md
     - Services: pixelview/services.md
     - Esclation: pixelview/esclation.md
+    - 'On-Call Schedule': pixelview/on-call.md
     - registration: pixelview/registration.md
     - login: pixelview/login.md
     - dashboard: pixelview/dashboard.md
