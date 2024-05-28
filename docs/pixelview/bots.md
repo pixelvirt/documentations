@@ -56,12 +56,6 @@ Once bots are added, you can manage them from the main "Bots" interface. This se
 - Regularly update the authentication tokens to prevent unauthorized access.
 - Limit access to the bots' configuration settings to authorized personnel only.
 
-### Best Practices
-
-- Use descriptive names for bots to easily identify their purpose.
-- Regularly review and update the bots to ensure they are functioning as intended.
-- Monitor the activity of bots to detect any unusual behavior promptly.
-
 ### Troubleshooting
 
 - If a bot is not functioning correctly, check the following:
