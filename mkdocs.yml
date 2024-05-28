@@ -60,6 +60,7 @@ nav:
     - Services: pixelview/services.md
     - Esclation: pixelview/esclation.md
     - 'On-Call Schedule': pixelview/on-call.md
+    - 'Automation Bots': pixelview/bots.md
     - registration: pixelview/registration.md
     - login: pixelview/login.md
     - dashboard: pixelview/dashboard.md
