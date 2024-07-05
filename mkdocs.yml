@@ -52,8 +52,9 @@ extra_css:
 nav:
   - Welcome: index.md
   - Pixelview:
-    - 'Docker Installation': pixelview/installation.md
-    - 'Kubetnetes Installation': pixelview/kube-installation.md
+    - Dashboard: pixelview/dashboard.md
+    - 'Install on Docker': pixelview/installation.md
+    - 'Install on Kubetnetes': pixelview/kube-installation.md
     - 'Prometheus Integration': pixelview/prometheus-integration.md
     - 'Kubernetes cluster Monitoring': pixelview/k8s-monitoring.md
     - Monitoring: pixelview/monitoring.md
@@ -64,7 +65,7 @@ nav:
     - 'Automation Bots': pixelview/bots.md
     - registration: pixelview/registration.md
     - login: pixelview/login.md
-    - dashboard: pixelview/dashboard.md
+    
   - openstack:
     - 'Initial setup': openstack/quick-guide.md
     - 'Launching an Instance ': openstack/lunch-instance.md
