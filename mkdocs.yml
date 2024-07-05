@@ -55,6 +55,7 @@ nav:
     - 'Docker Installation': pixelview/installation.md
     - 'Kubetnetes Installation': pixelview/kube-installation.md
     - 'Prometheus Integration': pixelview/prometheus-integration.md
+    - 'Kubernetes cluster Monitoring': pixelview/k8s-monitoring.md
     - Monitoring: pixelview/monitoring.md
     - cases: pixelview/cases.md
     - Services: pixelview/services.md
