@@ -66,15 +66,15 @@ nav:
     - registration: pixelview/registration.md
     - login: pixelview/login.md
     
-  - openstack:
-    - 'Initial setup': openstack/quick-guide.md
-    - 'Launching an Instance ': openstack/lunch-instance.md
-    - 'key pair': openstack/key-pair.md
-    - 'Accessing an OpenStack instance': openstack/instance-access.md
-    - 'Image Creation': openstack/image-creation.md
-    - 'Openstack Networks': openstack/network-creation.md
-    - ' quota and organization request': openstack/quota-org-request.md
-    - 'Organization Registration': openstack/org-registration.md
+#  - openstack:
+#    - 'Initial setup': openstack/quick-guide.md
+#    - 'Launching an Instance ': openstack/lunch-instance.md
+#    - 'key pair': openstack/key-pair.md
+#    - 'Accessing an OpenStack instance': openstack/instance-access.md
+#    - 'Image Creation': openstack/image-creation.md
+#    - 'Openstack Networks': openstack/network-creation.md
+#    - ' quota and organization request': openstack/quota-org-request.md
+#    - 'Organization Registration': openstack/org-registration.md
 
 
 markdown_extensions:
