@@ -52,18 +52,30 @@ extra_css:
 nav:
   - Welcome: index.md
   - Pixelview:
-    - 'Install on Docker': pixelview/installation.md
+    - 'Install on Docker': pixelview/install-on-docker.md
     - 'Install on Kubetnetes': pixelview/kube-installation.md
-    - 'Prometheus Integration': pixelview/prometheus-integration.md
-    - 'Kubernetes cluster Monitoring': pixelview/k8s-monitoring.md
-    - Dashboard: pixelview/dashboard.md
+    - Dashboard:
+      - 'Overview': pixelview/dashboard.md
+      - Dashboard Integrations:
+        - 'Kubernetes Integration': pixelview/k8s-integration.md
+        - 'Prometheus Integration': pixelview/prometheus-integration.md
+        - 'Openstack Integration': pixelview/openstack-k8s-dashoabrd.md
+      - Customize:
+        - 'Customize Your Dashboard': ''
+
+    
     - Monitoring: pixelview/monitoring.md
-    - cases: pixelview/cases.md
+    - Cases: pixelview/cases.md
     - Services: pixelview/services.md
     - Esclation: pixelview/esclation.md
     - 'On-Call Schedule': pixelview/on-call.md
     - 'Automation Bots': pixelview/bots.md
-    - registration: pixelview/registration.md
+    - OnCall Scheduling: pixelview/registration.md
+    - Automation: ''
+    - Automation Workflows: ''
+    - Inventory: ''
+    - Management: ''
+    - Settings: ''
     - login: pixelview/login.md
     
 #  - openstack:
