@@ -29,23 +29,52 @@ metadata:
   namespace: pixelview
 type: Opaque
 stringData:
-  DATA_IP: "http://103.130.188.133"
-  DATA_PORT: "5000"
-  OS_PROJECT_DOMAIN_NAME: 'Default'
-  OS_PROJECT_ID: 'e6c6162d59ad4c468ce157e029d18ff8'
-  OS_USER_DOMAIN_NAME: 'Default'
-  OS_PROJECT_NAME: 'admin'
-  OS_TENANT_NAME: 'admin'
-  OS_USERNAME: 'admin'
-  OS_PASSWORD: '0S1vhFh5MCnEJ1B5YVYYYEbld57AigiJUPsPQthd'
-  OS_AUTH_URL: 'http://103.130.188.149:5000'
-  OS_INTERFACE: 'internal'
-  OS_ENDPOINT_TYPE: 'internalURL'
-  OS_IDENTITY_API_VERSION: '3'
-  OS_REGION_NAME: 'RegionOne'
-  OS_AUTH_PLUGIN: 'password'
-  OS_CLOUD: 'openstack'
-  OS_DOMAIN_ID: 'default'
+  DATA_IP: "http://10.0.0.1" # Replace with the IP address of the host machine where the application is deployed
+  DATA_PORT: "5000" # Replace with the port number on which the application is running
+  # The domain name for the OpenStack project (set to 'Default')
+  OS_PROJECT_DOMAIN_NAME: "Default"  # Found in OpenStack project configuration
+
+  # The unique identifier for the OpenStack project
+  OS_PROJECT_ID: "7c65161dd910483fac5e34ca53c5af07"  # Obtainable from the OpenStack dashboard
+
+  # The domain name for the user in OpenStack (set to 'Default')
+  OS_USER_DOMAIN_NAME: "Default"  # Found in OpenStack user configuration
+
+  # The name of the OpenStack project
+  OS_PROJECT_NAME: "admin"  # Available in the OpenStack dashboard under Projects
+
+  # The tenant name associated with the OpenStack project (set to 'admin')
+  OS_TENANT_NAME: "admin"  # Typically found in the OpenStack dashboard
+
+  # The username for authenticating with OpenStack
+  OS_USERNAME: "admin"  # Find in OpenStack user settings
+
+  # The password associated with the OpenStack user account
+  OS_PASSWORD: "VE67QUSy4G4oY2WqPL7zxy2VLL9eK98OrzE2ZZ5y"  # Set during user creation in OpenStack
+
+  # The authentication URL for OpenStack
+  OS_AUTH_URL: "http://10.0.0.16:5000"  # This is the Keystone service endpoint URL
+
+  # The interface type for the OpenStack API (set to 'internal')
+  OS_INTERFACE: "internal"  # Found in the OpenStack network configuration
+
+  # The type of endpoint being used for the OpenStack API
+  OS_ENDPOINT_TYPE: "internalURL"  # Obtainable from OpenStack service configurations
+
+  # The API version of the OpenStack identity service
+  OS_IDENTITY_API_VERSION: "3"  # Documentation available in OpenStack API references
+
+  # The name of the OpenStack region (set to 'RegionOne')
+  OS_REGION_NAME: "RegionOne"  # Configured in OpenStack deployment settings
+
+  # The authentication plugin to use (set to 'password')
+  OS_AUTH_PLUGIN: "password"  # Available in OpenStack authentication documentation
+
+  # The name of the cloud environment (set to 'openstack')
+  OS_CLOUD: "openstack"  # Typically defined in cloud configuration files
+
+  # The unique identifier for the domain in OpenStack
+  OS_DOMAIN_ID: "default"  # Found in OpenStack domain settings
 
 ```
 Apply the secret to the `pixelview` namespace:
@@ -199,7 +228,7 @@ spec:
       port: 5000
       targetPort: 5000
   externalIPs:
-    - 10.0.0.34
+    - 10.0.0.1
 ```
 Apply the service:
 ``` bash
@@ -218,23 +247,54 @@ kubectl apply -f openstack_service.yml
 
 Create the following `.env` file manually:
 ``` bash
-DATA_IP="http://192.168.101.100"
-DATA_PORT="4001"
-OS_PROJECT_DOMAIN_NAME='Default'
-OS_PROJECT_ID='7c65161dd910483fac5e34ca53c5af07'
-OS_USER_DOMAIN_NAME='Default'
-OS_PROJECT_NAME='admin'
-OS_TENANT_NAME='admin'
-OS_USERNAME='admin'
-OS_PASSWORD='VE67QUSy4G4oY2WqPL7zxy2VLL9eK98OrzE2ZZ5y'
-OS_AUTH_URL='http://10.18.1.216:5000'
-OS_INTERFACE='internal'
-OS_ENDPOINT_TYPE='internalURL'
-OS_IDENTITY_API_VERSION='3'
-OS_REGION_NAME='RegionOne'
-OS_AUTH_PLUGIN='password'
-OS_CLOUD=openstack
-OS_DOMAIN_ID='default'
+DATA_IP="http://10.0.0.1"  # Replace with the IP address of the host machine where the application is deployed
+DATA_PORT="4001"  # Replace with the port number on which the application is running
+
+# The domain name for the OpenStack project (set to 'Default')
+OS_PROJECT_DOMAIN_NAME="Default"  # Found in OpenStack project configuration
+
+# The unique identifier for the OpenStack project
+OS_PROJECT_ID="7c65161dd910483fac5e34ca53c5af07"  # Obtainable from the OpenStack dashboard
+
+# The domain name for the user in OpenStack (set to 'Default')
+OS_USER_DOMAIN_NAME="Default"  # Found in OpenStack user configuration
+
+# The name of the OpenStack project
+OS_PROJECT_NAME="admin"  # Available in the OpenStack dashboard under Projects
+
+# The tenant name associated with the OpenStack project (set to 'admin')
+OS_TENANT_NAME="admin"  # Typically found in the OpenStack dashboard
+
+# The username for authenticating with OpenStack
+OS_USERNAME="admin"  # Find in OpenStack user settings
+
+# The password associated with the OpenStack user account
+OS_PASSWORD="VE67QUSy4G4oY2WqPL7zxy2VLL9eK98OrzE2ZZ5y"  # Set during user creation in OpenStack
+
+# The authentication URL for OpenStack
+OS_AUTH_URL="http://10.18.1.216:5000"  # This is the Keystone service endpoint URL
+
+# The interface type for the OpenStack API (set to 'internal')
+OS_INTERFACE="internal"  # Found in the OpenStack network configuration
+
+# The type of endpoint being used for the OpenStack API
+OS_ENDPOINT_TYPE="internalURL"  # Obtainable from OpenStack service configurations
+
+# The API version of the OpenStack identity service
+OS_IDENTITY_API_VERSION="3"  # Documentation available in OpenStack API references
+
+# The name of the OpenStack region (set to 'RegionOne')
+OS_REGION_NAME="RegionOne"  # Configured in OpenStack deployment settings
+
+# The authentication plugin to use (set to 'password')
+OS_AUTH_PLUGIN="password"  # Available in OpenStack authentication documentation
+
+# The name of the cloud environment (set to 'openstack')
+OS_CLOUD="openstack"  # Typically defined in cloud configuration files
+
+# The unique identifier for the domain in OpenStack
+OS_DOMAIN_ID="default"  # Found in OpenStack domain settings
+
 ```
 ### Step 2: Create the Docker Compose File
 
@@ -293,8 +353,8 @@ docker-compose up -d
     
 - **Set the Endpoint URL**: In the URL field, enter the following format:
     
-	``` bash
-	http://<DATA_IP>:<DATA_PORT>/kubernetes/api/get-charts
+``` bash
+	http://<DATA_IP>:<DATA_PORT>/openstack/api/get-charts
 ```
 - Replace the placeholder values:
     
