@@ -7,8 +7,9 @@ Prometheus is an open-source monitoring and alerting toolkit widely used for col
 
 ## Deployment Methods
 
-1. Kubernetes [K8s-manifest-files](git@github.com:pixelvirt/k8s-pixelview.git).
-2. Docker [DockerFile](git@github.com:pixelvirt/pixelview-docker.git).
+1. Kubernetes [k8s-pixelview repository](https://github.com/pixelvirt/k8s-pixelview.git)
+2. Docker [pixelview-docker repository](https://github.com/pixelvirt/pixelview-docker.git)
+
 
 **1. Kubernetes Deployment Files:**
 
