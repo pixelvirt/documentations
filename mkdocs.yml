@@ -62,8 +62,6 @@ nav:
         - 'Openstack Integration': pixelview/openstack-integration.md
       - Customize:
         - 'Customize Your Dashboard': ''
-
-    
     - Monitoring: pixelview/monitoring.md
     - Cases: pixelview/cases.md
     - Services: pixelview/services.md
