@@ -59,7 +59,7 @@ nav:
       - Dashboard Integrations:
         - 'Kubernetes Integration': pixelview/k8s-integration.md
         - 'Prometheus Integration': pixelview/prometheus-integration.md
-        - 'Openstack Integration': pixelview/openstack-k8s-dashoabrd.md
+        - 'Openstack Integration': pixelview/openstack-integration.md
       - Customize:
         - 'Customize Your Dashboard': ''
 
