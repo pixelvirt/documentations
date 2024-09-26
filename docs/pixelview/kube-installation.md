@@ -265,7 +265,7 @@ You should see a list of deployments and services along with their statuses.
 
 If you prefer not to create deployment files manually, you can clone the repository containing the Kubernetes manifests:
 ``` bash
-git clone https://github.com/your-repo-path/k8s-pixelview 
+git clone https://github.com/pixelvirt/k8s-pixelview.git
 cd k8s-pixelview
 kubectl apply -f installation
 ```
