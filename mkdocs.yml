@@ -43,7 +43,7 @@ theme:
     - search.suggest
     - toc.follow
   
-  copyright: Copyright &copy; 2024 RACKSPACE TECHNOLOGY
+  copyright: Copyright &copy; 2024 Pixelvirt Technology Pvt Ltd
 
 extra_css:
   - stylesheets/extra.css
@@ -64,20 +64,33 @@ nav:
         - 'Customize Your Dashboard': ''
 
     
-    - Monitoring: pixelview/monitoring.md
-    - Cases: pixelview/cases.md
-    - Services: pixelview/services.md
-    - Esclation: pixelview/esclation.md
-    - 'On-Call Schedule': pixelview/on-call.md
-    - 'Automation Bots': pixelview/bots.md
-    - OnCall Scheduling: pixelview/registration.md
-    - Automation: ''
-    - Automation Workflows: ''
-    - Inventory: ''
-    - Management: ''
-    - Settings: ''
-    - login: pixelview/login.md
-    
+    - Monitoring:
+      - 'Overview': pixelview/monitoring.md
+      - 'Cases': pixelview/cases.md
+      - 'Services': pixelview/services.md
+      - 'Esclation': pixelview/esclation.md
+      - 'On-Call Schedule': pixelview/on-call.md
+      - OnCall Scheduling: pixelview/registration.md
+
+    - Automation:
+      - 'Overview': ''
+      - 'Automation Bots': pixelview/bots.md
+      - 'Automation Rules': ''
+      - 'Automation Workflows': ''
+
+    - Inventory:
+      - 'Cloud Inventory': ''
+
+    - Management and Settings:
+      - Management: ''
+      - Settings: ''
+      - Login: pixelview/login.md
+      - SSO Integration: ''
+
+  - Pixelview API:
+    - 'API Examples': pixelview/api.md
+    - 'Python Example': pixelview/create-alerts.md
+
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
 #    - 'Launching an Instance ': openstack/lunch-instance.md
