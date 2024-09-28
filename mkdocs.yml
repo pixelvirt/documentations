@@ -62,7 +62,6 @@ nav:
         - 'Openstack Integration': pixelview/openstack-integration.md
       - Customize:
         - 'Customize Your Dashboard': ''
-
     
     - Monitoring:
       - 'Overview': pixelview/monitoring.md
