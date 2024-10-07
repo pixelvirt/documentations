@@ -766,7 +766,8 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="2.1 Docker Compose Configuration">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#22-deploy-the-application-with-docker" class="md-nav__link">
@@ -775,13 +776,12 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.2 Deploy the Application with Docker">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#23-clone-git-repository-alternative-to-manually-creating-deployment-files" class="md-nav__link">
     <span class="md-ellipsis">
-      2.3 Clone Git Repository (Alternative to Manually Creating Deployment Files)::
+      2.3 Clone Git Repository (Alternative to Manually Creating Deployment Files)
     </span>
   </a>
   
@@ -1423,7 +1423,8 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="2.1 Docker Compose Configuration">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#22-deploy-the-application-with-docker" class="md-nav__link">
@@ -1432,13 +1433,12 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.2 Deploy the Application with Docker">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#23-clone-git-repository-alternative-to-manually-creating-deployment-files" class="md-nav__link">
     <span class="md-ellipsis">
-      2.3 Clone Git Repository (Alternative to Manually Creating Deployment Files)::
+      2.3 Clone Git Repository (Alternative to Manually Creating Deployment Files)
     </span>
   </a>
   
@@ -1511,8 +1511,8 @@
 <p>This guide outlines how to integrate Kubernetes with the PixelView application, allowing it to utilize Kubernetes resources effectively. You will learn how to deploy the application using Kubernetes with appropriate configurations.</p>
 <h2 id="deployment-methods">Deployment Methods</h2>
 <ol>
-<li>Kubernetes <a href="git@github.com:pixelvirt/k8s-pixelview.git">K8s-manifest-files</a>.</li>
-<li>Docker <a href="git@github.com:pixelvirt/pixelview-docker.git">DockerFile</a>.</li>
+<li>Kubernetes <a href="https://github.com/pixelvirt/k8s-pixelview.git">K8s-manifest-files</a>.</li>
+<li>Docker <a href="https://github.com/pixelvirt/pixelview-docker.git">DockerFile</a>.</li>
 </ol>
 <h3 id="1-deploy-on-kubernetes">1. Deploy on Kubernetes</h3>
 <h3 id="prerequisites">Prerequisites</h3>
@@ -1686,8 +1686,8 @@ Deploy the application:
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k8s-info</span>
 </span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
 </span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9090</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9090</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9091</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9091</span>
 </span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="w">  </span><span class="nt">externalIPs</span><span class="p">:</span>
 </span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;EXTERNAL_IP&gt;</span><span class="w"> </span><span class="c1"># Replace with your desired external IP</span>
 </span></code></pre></div></td></tr></table></div></p>
@@ -1767,9 +1767,9 @@ Apply the ClusterRoleBinding:
 </span></code></pre></div></p>
 <h4 id="16-clone-repository-alternative-to-manually-creating-deployment-files">1.6 <strong>Clone Repository (Alternative to Manually Creating Deployment Files):</strong></h4>
 <p>If you prefer not to create deployment files manually, you can clone the repository containing the Kubernetes manifests:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>git clone https://github.com/your-repo-path/k8s-pixelview 
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>cd k8s-pixelview
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>kubectl apply -f k8s-integration
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-repo-path/k8s-pixelview<span class="w"> </span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">cd</span><span class="w"> </span>k8s-pixelview
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>k8s-integration
 </span></code></pre></div></p>
 <h2 id="verify-deployment">Verify Deployment</h2>
 <h3 id="check-pods">Check Pods</h3>
@@ -1786,29 +1786,42 @@ Apply the ClusterRoleBinding:
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">services</span><span class="p">:</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">k8s-monitoring</span><span class="p">:</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/kubernetes-go:latest</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9090:9090&quot;</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">      </span><span class="nt">GET_CONFIG_FROM</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;in-cluster&quot;</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">      </span><span class="nt">KUBECONFIG_FILE</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/usr/src/app/kube-config&quot;</span>
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">      </span><span class="nt">DATA_IP</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;DATA_IP&gt;&quot;</span><span class="w">  </span><span class="c1"># Replace with the IP address of the host machine where the application is deployed</span>
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">      </span><span class="nt">DATA_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;DATA_PORT&gt;&quot;</span><span class="w">  </span><span class="c1"># Replace with the port number on which the application is running</span>
-</span></code></pre></div></p>
-<h3 id="22-deploy-the-application-with-docker">2.2 Deploy the Application with Docker</h3>
-<p>Run the following command in the directory with the <code>docker-compose.yml</code> file:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker-compose up -d
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/kubernetes-go:latest</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9091:9091&quot;</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k8s-monitoring</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/src/app/:/usr/src/app/</span>
 </span></code></pre></div>
-<h4 id="23-clone-git-repository-alternative-to-manually-creating-deployment-files">2.3 <strong>Clone Git Repository (Alternative to Manually Creating Deployment Files)::</strong></h4>
-<p>Clone the repository containing the Docker manifests for kubernetes integrations:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>git clone  git@github.com:pixelvirt/pixelview-docker.git
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>cd pixelview-docker/prometheus-integration
+Additionally, create a <code>.env</code> file with the following content:
+<div class="language-makefile highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">GET_CONFIG_FROM</span><span class="o">=</span>out-of-cluster
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nv">KUBECONFIG_FILE</span><span class="o">=</span>/usr/src/app/kube-config
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nv">DATA_IP</span><span class="o">=</span>http://10.0.0.15<span class="w"> </span><span class="c1"># Replace with the IP address of the host machine where the application is deployed</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nv">DATA_PORT</span><span class="o">=</span><span class="m">9091</span><span class="w">   </span><span class="c1"># Replace with the port number on which the application is running</span>
+</span></code></pre></div></p>
+<p>The <code>.env</code> file stores the environment variables that the Docker service will use during deployment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To integrate Kubernetes on PixelView using Docker, you need a valid <code>kubeconfig</code> file. Save this file at the following location on the host machine: <code>/usr/src/app/kube-config</code>.This file is essential for connecting to the Kubernetes cluster.</p>
+</div>
+<h4 id="22-deploy-the-application-with-docker"><strong>2.2 Deploy the Application with Docker</strong></h4>
+<p>Once the <code>docker-compose.yml</code>, <code>.env</code>, and <code>kubeconfig</code> files are ready, navigate to the directory where these files are located and run the following command to deploy the application:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div>
+This command will start the service in the background.</p>
+<h4 id="23-clone-git-repository-alternative-to-manually-creating-deployment-files"><strong>2.3 Clone Git Repository (Alternative to Manually Creating Deployment Files)</strong></h4>
+<p>If you'd rather not manually create the <code>docker-compose.yml</code> and <code>.env</code> files, you can clone the repository that contains the Docker manifests for Kubernetes integrations:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pixelvirt/pixelview-docker.git
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nb">cd</span><span class="w"> </span>pixelview-docker/k8s-integration
 </span></code></pre></div>
 <h3 id="24-verification">2.4 Verification</h3>
 <p>To verify the application is running:</p>
 <ol>
 <li>Check the logs:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker-compose logs k8s-monitoring
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker-compose logs k8s-monitoring
 </span></code></pre></div></li>
 </ol>
 <hr />
@@ -1854,8 +1867,8 @@ Apply the ClusterRoleBinding:
 <h3 id="example-configuration">Example Configuration</h3>
 </li>
 </ol>
-<p>If your application is running at <code>http://192.168.101.100:9090</code>, the URL you would enter in the dashboard configuration would be:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>http://192.168.101.100:9090/kubernetes/api/get-charts
+<p>If your application is running at <code>http://10.0.0.15:9091</code>, the URL you would enter in the dashboard configuration would be:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>http://10.0.0.15:9091/kubernetes/api/get-charts
 </span></code></pre></div></p>
 <h3 id="tips">Tips</h3>
 <ul>
