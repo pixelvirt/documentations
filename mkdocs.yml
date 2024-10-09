@@ -61,7 +61,7 @@ nav:
         - 'Prometheus Integration': pixelview/prometheus-integration.md
         - 'Openstack Integration': pixelview/openstack-integration.md
       - Customize:
-        - 'Customize Your Dashboard': ''
+        - 'Customize Your Dashboard': pixelview/custom-dashboard.md
     
     - Monitoring:
       - 'Overview': pixelview/monitoring.md
@@ -89,6 +89,7 @@ nav:
   - Pixelview API:
     - 'API Examples': pixelview/api.md
     - 'Python Example': pixelview/create-alerts.md
+    - 'Custom Bot Example': pixelview/custom-bot.md
 
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
