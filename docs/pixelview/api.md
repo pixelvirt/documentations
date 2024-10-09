@@ -50,12 +50,12 @@ curl "https://pixelview.pixelvirt.com/api/alerts/52183169-9472-4afe-97e7-e6fa670
 
 ### Comments
 ``` shell title="Type Comment"
-    type Comment struct {
+type Comment struct {
         Body         string    `json:"body" bson:"body"`
         TaskUUID     string    `json:"task_uuid" bson:"task_uuid"`
         CaseUUID     string    `json:"case_uuid" bson:"case_uuid"`
         IncidentKey  string    `json:"incident_key" bson:"incident_key"`
-    }
+}
 ```
 
 !!! note
@@ -67,4 +67,121 @@ curl "https://pixelview.pixelvirt.com/api/comment_create"  -H "X-Username: user@
 
 ``` shell title="Delete a Comment"
 curl "https://pixelview.pixelvirt.com/api/comment_delete"  -H "X-Username: user@pixelvirt.com" -H "X-Auth-Key: a3b0d9445r-21e4-4c89-123-89e7cd8a3bfe" -H "X-API-Key: 99b0d943-21e4-4c89-abcx-o9e7cd8a3bf1" -X POST -d '{"incident_key": "52183169-9472-4afe-97e7-e6fa670c86f1"}'
+```
+
+### Inventory
+
+``` shell title="Type Inventory Cloud"
+type Cloud struct {
+        UUID        string                 `json:"uuid" bson:"uuid"`
+	Name        string                 `json:"name" bson:"name"`
+	Description string                 `json:"description" bson:"description"`
+	Labels      []Label                `json:"labels" bson:"labels"`
+	VaultData   VaultData              `json:"vault_data" bson:"vault_data"`
+	Data        map[string]interface{} `json:"data" bson:"data"`
+}
+```
+
+``` shell title="Create Inventory Cloud"
+curl "https://pixelview.pixelvirt.com/api/inventory/cloud"  -H "X-Username: user@pixelvirt.com" -H "X-Auth-Key: a3b0d9445r-21e4-4c89-123-89e7cd8a3bfe" -H "X-API-Key: 99b0d943-21e4-4c89-abcx-o9e7cd8a3bf1" -X POST -d '{"name" "Cloud1", "description": "this is my cloud", "labels": ['abcd'], "data": {'a':'b'}}'
+```
+
+``` shell title="Update Inventory Cloud"
+curl "https://pixelview.pixelvirt.com/api/inventory/cloud"  -H "X-Username: user@pixelvirt.com" -H "X-Auth-Key: a3b0d9445r-21e4-4c89-123-89e7cd8a3bfe" -H "X-API-Key: 99b0d943-21e4-4c89-abcx-o9e7cd8a3bf1" -X POST -d '{"name" "Cloud1", "description": "this is my cloud", "labels": ['abcd'], "data": {'a':'c'}}'
+```
+
+``` shell title="Delete Inventory Cloud"
+curl "https://pixelview.pixelvirt.com/api/inventory/cloud"  -H "X-Username: user@pixelvirt.com" -H "X-Auth-Key: a3b0d9445r-21e4-4c89-123-89e7cd8a3bfe" -H "X-API-Key: 99b0d943-21e4-4c89-abcx-o9e7cd8a3bf1" -X POST -d '{"uuid": "f74b4df7-f3f4-4777-9562-796355555faf"}'
+```
+
+``` shell title="Type Inventory Region"
+type Region struct {
+	UUID        string                 `json:"uuid" bson:"uuid"`
+	Name        string                 `json:"name" bson:"name"`
+	Description string                 `json:"description" bson:"description"`
+	Labels      []Label                `json:"labels" bson:"labels"`
+	CloudUUID   string                 `json:"cloud_uuid" bson:"cloud_uuid"`
+	Data        map[string]interface{} `json:"data" bson:"data"`
+}
+```
+
+``` shell title="Create Inventory Region"
+curl "https://pixelview.pixelvirt.com/api/inventory/cloud"  -H "X-Username: user@pixelvirt.com" -H "X-Auth-Key: a3b0d9445r-21e4-4c89-123-89e7cd8a3bfe" -H "X-API-Key: 99b0d943-21e4-4c89-abcx-o9e7cd8a3bf1" -X POST -d '{"name" "Region1", "description": "this is region1 in cloud 1", "cloud_uuid": "f74b4df7-f3f4-4777-9562-796355555faf", "labels": ['abcd'], "data": {'one':'two'}}'
+```
+
+``` shell title="Update Inventory Region"
+curl "https://pixelview.pixelvirt.com/api/inventory/cloud"  -H "X-Username: user@pixelvirt.com" -H "X-Auth-Key: a3b0d9445r-21e4-4c89-123-89e7cd8a3bfe" -H "X-API-Key: 99b0d943-21e4-4c89-abcx-o9e7cd8a3bf1" -X PUT -d '{"name" "Region1", "description": "this is region1 in cloud 1", "cloud_uuid": "f74b4df7-f3f4-4777-9562-796355555faf", "labels": ['abcd'], "data": {'one':'three'}}'
+```
+
+``` shell title="Delete Inventory Region"
+curl "https://pixelview.pixelvirt.com/api/inventory/cloud"  -H "X-Username: user@pixelvirt.com" -H "X-Auth-Key: a3b0d9445r-21e4-4c89-123-89e7cd8a3bfe" -H "X-API-Key: 99b0d943-21e4-4c89-abcx-o9e7cd8a3bf1" -X DELETE -d '{"uuid": "ec44b4df7-a3f4-3777-cc62-796355555fca"}'
+```
+
+``` shell title="Type Inventory Zone"
+type Zone struct {
+	UUID        string                 `json:"uuid" bson:"uuid"`
+	Name        string                 `json:"name" bson:"name"`
+	Description string                 `json:"description" bson:"description"`
+	Labels      []Label                `json:"labels" bson:"labels"`
+	RegionUUID  string                 `json:"region_uuid" bson:"region_uuid"`
+	CloudUUID   string                 `json:"cloud_uuid" bson:"cloud_uuid"`
+	Data        map[string]interface{} `json:"data" bson:"data"`
+}
+```
+
+``` shell title="Type Inventory Server"
+type Server struct {
+	UUID       string                 `json:"uuid" bson:"uuid"`
+	Name       string                 `json:"name" bson:"name"`
+	Type       string                 `json:"type" bson:"type"`
+	CloudID    int                    `json:"cloud_id" bson:"cloud_id"`
+	RegionID   int                    `json:"region_id" bson:"region_id"`
+	ParentID   int                    `json:"parent_id" bson:"parent_id"`
+	IPAddress  string                 `json:"ip_address" bson:"ip_address"`
+	DeviceType string                 `json:"device_type" bson:"device_type"`
+	Active     bool                   `json:"active" bson:"active"`
+	Note       string                 `json:"note" bson:"note"`
+	Labels     []Label                `json:"labels" bson:"labels"`
+	RegionUUID string                 `json:"region_uuid" bson:"region_uuid"`
+	ZoneUUID   string                 `json:"zone_uuid" bson:"zone_uuid"`
+	CloudUUID  string                 `json:"cloud_uuid" bson:"cloud_uuid"`
+	Data       map[string]interface{} `json:"data" bson:"data"`
+}
+```
+
+``` shell title="Type Inventory App"
+type App struct {
+	UUID        string                 `json:"uuid" bson:"uuid"`
+	Name        string                 `json:"name" bson:"name"`
+	Type        string                 `json:"type" bson:"type"`
+	Description string                 `json:"description" bson:"description"`
+	Labels      []Label                `json:"labels" bson:"labels"`
+	RegionUUID  string                 `json:"region_uuid" bson:"region_uuid"`
+	ZoneUUID    string                 `json:"zone_uuid" bson:"zone_uuid"`
+	CloudUUID   string                 `json:"cloud_uuid" bson:"cloud_uuid"`
+	Data        map[string]interface{} `json:"data" bson:"data"`
+}
+```
+
+``` shell title="Type Inventory Netowrk Device"
+type NetworkDevice struct {
+	UUID       string                 `json:"uuid" bson:"uuid"`
+	Name       string                 `json:"name" bson:"name"`
+	Type       string                 `json:"type" bson:"type"`
+	CloudID    int                    `json:"cloud_id" bson:"cloud_id"`
+	RegionID   int                    `json:"region_id" bson:"region_id"`
+	ParentID   int                    `json:"parent_id" bson:"parent_id"`
+	IPAddress  string                 `json:"ip_address" bson:"ip_address"`
+	DeviceType string                 `json:"device_type" bson:"device_type"`
+	Active     bool                   `json:"active" bson:"active"`
+	ModelName  string                 `json:"model_name" bson:"model_name"`
+	OSVersion  string                 `json:"os_version" bson:"os_version"`
+	VLANS      []int                  `json:"vlans" bson:"vlans"`
+	Note       string                 `json:"note" bson:"note"`
+	Labels     []Label                `json:"labels" bson:"labels"`
+	RegionUUID string                 `json:"region_uuid" bson:"region_uuid"`
+	ZoneUUID   string                 `json:"zone_uuid" bson:"zone_uuid"`
+	CloudUUID  string                 `json:"cloud_uuid" bson:"cloud_uuid"`
+	Data       map[string]interface{} `json:"data" bson:"data"`
+}
 ```
