@@ -10,6 +10,8 @@ The **Cases** section is where you can view and manage all of your alerts. This 
 
 In the **Open Cases** section, you can view all newly triggered alerts from various monitoring platforms such as Zabbix, Prometheus, Nagios, etc. This section also allows you to create new cases to ensure all alerts are addressed promptly.
 
+![Open Cases](pix-images/open-cases.png)
+
 ## Creating a New Case
 
 To create a new case, follow these steps:
@@ -20,6 +22,8 @@ To create a new case, follow these steps:
 2. **Initiate Case Creation**
     
     - Click on the **+ icon** located in the upper right corner of the Open Cases section. This action will open a popup window for creating a new case.
+    ![Create New Cases](pix-images/Create-Case.jpg)
+
 3. **Fill in Case Details**
     
     - In the popup window, provide the following details for the new case:
@@ -37,6 +41,9 @@ To create a new case, follow these steps:
 
 By following these steps, you can ensure that all alerts are promptly addressed and managed effectively within the Cases section.
 
+![New Cases](pix-images/new-case.jpg)
+
+
 ### Managing Alerts
 
 In the **Open Cases** section, you can manage your alerts according to your preferences. The available options include:
@@ -45,7 +52,7 @@ In the **Open Cases** section, you can manage your alerts according to your pref
 - **Acknowledge Alerts**: Mark alerts as acknowledged to indicate that you are aware of them.
 - **Manually Resolve Alerts**: Resolve alerts manually if you have addressed the issue.
 
-**Viewing Alert Details**
+## **Viewing Alert Details**
 
 By clicking on any alert, you can access a detailed view of that alert. This detailed view offers multiple management options:
 
@@ -53,10 +60,13 @@ By clicking on any alert, you can access a detailed view of that alert. This det
 - **Add Observables**: Include relevant observables to the alert for further analysis.
 - **Add or View Comments**: Add new comments or view existing comments for context and updates.
 - **View Alert History**: Review the history of the alert to track its progression and any actions taken.
+![New Cases](pix-images/manage-alerts.png)
 
 ### My Cases
 
 In the **My Cases** section, you can find alerts that are specifically assigned to you. Here, you have the ability to:
+![My Cases](pix-images/my-cases.png)
+
 
 - **Acknowledge Cases or Alerts**: This section lists all the cases or alerts assigned to you, allowing you to acknowledge them.
 - **View Detailed Information**: By clicking on any alert, you can view comprehensive details about it. This helps you understand the nature and specifics of the alert for better management and resolution.
@@ -78,7 +88,9 @@ The **Tasks** section enables you to create, manage, and assign tasks to other u
 
 ### Resolved Cases
 In the **Resolved Case** section, you can find alerts related to problems that have been fixed or resolved. If you determine that an issue is not actually resolved, you can reopen the case by following these steps:
-
+![Resolved Cases](pix-images/resolved-cases.png)
 1. Click on the **'...'** icon located in the last column of the alert.
+![Re-Open Cases](pix-images/r-case.png)
 2. Select **'Re-open'**.
+![Re-Open Cases](pix-images/re-open.png)
 3. The alert will be reopened for further investigation and resolution.

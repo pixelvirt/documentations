@@ -3,8 +3,8 @@
 This guide outlines how to integrate Kubernetes with the PixelView application, allowing it to utilize Kubernetes resources effectively. You will learn how to deploy the application using Kubernetes with appropriate configurations.
 
 ## Deployment Methods
-1. Kubernetes [K8s-manifest-files](git@github.com:pixelvirt/k8s-pixelview.git).
-2. Docker [DockerFile](git@github.com:pixelvirt/pixelview-docker.git).
+1. Kubernetes [K8s-manifest-files](https://github.com/pixelvirt/k8s-pixelview.git).
+2. Docker [DockerFile](https://github.com/pixelvirt/pixelview-docker.git).
 
 ### 1. Deploy on Kubernetes
 ### Prerequisites
@@ -125,8 +125,8 @@ spec:
     app: k8s-info
   ports:
     - protocol: TCP
-      port: 9090
-      targetPort: 9090
+      port: 9091
+      targetPort: 9091
   externalIPs:
     - <EXTERNAL_IP> # Replace with your desired external IP
 ```
@@ -192,7 +192,7 @@ kubectl apply -f clusterrolebinding.yaml
 #### 1.6 **Clone Repository (Alternative to Manually Creating Deployment Files):**
 
 If you prefer not to create deployment files manually, you can clone the repository containing the Kubernetes manifests:
-```
+``` bash 
 git clone https://github.com/your-repo-path/k8s-pixelview 
 cd k8s-pixelview
 kubectl apply -f k8s-integration
@@ -224,35 +224,47 @@ Create a `docker-compose.yml` file with the following content:
 version: '3'
 services:
   k8s-monitoring:
+    restart: always
     image: ghcr.io/pixelvirt/kubernetes-go:latest
+    env_file:
+      - .env
     ports:
-      - "9090:9090"
-    environment:
-      GET_CONFIG_FROM: "in-cluster"
-      KUBECONFIG_FILE: "/usr/src/app/kube-config"
-      DATA_IP: "<DATA_IP>"  # Replace with the IP address of the host machine where the application is deployed
-      DATA_PORT: "<DATA_PORT>"  # Replace with the port number on which the application is running
-
+      - "9091:9091"
+    container_name: k8s-monitoring
+    volumes:
+      - /usr/src/app/:/usr/src/app/
 
 ```
-
-### 2.2 Deploy the Application with Docker
-
-Run the following command in the directory with the `docker-compose.yml` file:
-
-
+Additionally, create a `.env` file with the following content:
+``` makefile 
+GET_CONFIG_FROM=out-of-cluster
+KUBECONFIG_FILE=/usr/src/app/kube-config
+DATA_IP=http://10.0.0.15 # Replace with the IP address of the host machine where the application is deployed
+DATA_PORT=9091   # Replace with the port number on which the application is running
 ```
+
+The `.env` file stores the environment variables that the Docker service will use during deployment.
+
+
+!!! note
+    To integrate Kubernetes on PixelView using Docker, you need a valid `kubeconfig` file. Save this file at the following location on the host machine: `/usr/src/app/kube-config`.This file is essential for connecting to the Kubernetes cluster.
+      
+#### **2.2 Deploy the Application with Docker**
+
+Once the `docker-compose.yml`, `.env`, and `kubeconfig` files are ready, navigate to the directory where these files are located and run the following command to deploy the application:
+``` bash
 docker-compose up -d
 ```
+This command will start the service in the background.
+#### **2.3 Clone Git Repository (Alternative to Manually Creating Deployment Files)**
 
-#### 2.3 **Clone Git Repository (Alternative to Manually Creating Deployment Files)::**
+If you'd rather not manually create the `docker-compose.yml` and `.env` files, you can clone the repository that contains the Docker manifests for Kubernetes integrations:
 
-Clone the repository containing the Docker manifests for kubernetes integrations:
-
+``` bash
+git clone https://github.com/pixelvirt/pixelview-docker.git
+cd pixelview-docker/k8s-integration
 ```
-git clone  git@github.com:pixelvirt/pixelview-docker.git
-cd pixelview-docker/prometheus-integration
-```
+
 ### 2.4 Verification
 
 To verify the application is running:
@@ -289,9 +301,9 @@ To verify or check metrics on the PixelView dashboard after deployment, follow t
     - The dashboard should now fetch metrics from the specified endpoint and display them in the new chart.
 ### Example Configuration
 
-If your application is running at `http://192.168.101.100:9090`, the URL you would enter in the dashboard configuration would be:
+If your application is running at `http://10.0.0.15:9091`, the URL you would enter in the dashboard configuration would be:
 ```
-http://192.168.101.100:9090/kubernetes/api/get-charts
+http://10.0.0.15:9091/kubernetes/api/get-charts
 ```
 
 
