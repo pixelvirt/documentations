@@ -1,4 +1,5 @@
 **Services** in Pixelview allow you to connect your Pixelview account to various monitoring systems. This integration enables seamless data flow and better management of your monitoring tools.
+![Services](pix-images/service.png)
 
 #### Creating a New Service
 
@@ -10,18 +11,21 @@ To create a new service in Pixelview, follow these steps:
 2. **Add a New Service**
     
     - Select **'Add Services'**. This will take you to the **'Add Service'** section.
+    ![Add Service](pix-images/add-service.png)
 3. **Provide Service Details**
     
     - In the **'Add Service'** section, you need to fill out the following information:
         - **Service Name**: Enter a name for your new service.
         - **Integration Type**: Select the type of integration. This refers to the specific monitoring tool you want to connect with Pixelview.
+    ![Create Template](pix-images/Create-template.png)
 4. **Create Service Template**
-    
     - After providing the required details, click on the **'Create Template'** button. This action will open the **Edit Service** window.
+    ![Edit Service](pix-images/edit-service.png)
 5. **Save the Service Settings**
     
     - In the **Edit Service** window, review the settings and make any necessary adjustments.
     - Click on **'Save Settings'** to finalize the creation of your new service.
+    ![Seve Service](pix-images/save-service.png)
 
 #### Managing Services
 
