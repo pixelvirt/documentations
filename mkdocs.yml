@@ -82,7 +82,7 @@ nav:
 
     - Management and Settings:
       - Management: ''
-      - Settings: ''
+      - Settings: 'pixelview/settings.md'
       - Login: pixelview/login.md
       - SSO Integration: ''
 

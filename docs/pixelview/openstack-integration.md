@@ -301,7 +301,7 @@ docker-compose up -d
 - **Click on "Add New Source"**: This option allows you to link a new data source to the chart.
 
 #### 4.3. Configure the Data Source: 
-- By following these steps, you can integrate OpenStack monitoring into the PixelView environment using either Kubernetes or Docker. You can use the manual method or the provided GitHub repositories for quicker setup.
+- terBy following these steps, you can integrate OpenStack monitoring into the PixelView environment using either Kubernetes or Docker. You can use the manual method or the provided GitHub repositories for quicker setup.
 
 - **Name the Data Source**: Provide a relevant name for your data source.
     
