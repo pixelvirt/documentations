@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../settings/">
+        <link rel="prev" href="../bots/">
       
       
-        <link rel="next" href="../api/">
+        <link rel="next" href="../settings/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Login - Pixelvirt Docs</title>
+        <title>Management - Pixelvirt Docs</title>
       
     
     
@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#management" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -103,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Login
+              Management
             
           </span>
         </div>
@@ -1080,10 +1085,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../managements/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Management
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1092,6 +1115,159 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#management" class="md-nav__link">
+    <span class="md-ellipsis">
+      management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Users
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a New User
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Groups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a New Group
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-a-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editing a Group
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bots" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Bots
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Bots">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-bots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Bots
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-bot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a New Bot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-bots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Bots
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-you-can-edit-or-delete-bots-using-the-action-buttons-in-the-actions-column" class="md-nav__link">
+    <span class="md-ellipsis">
+      - You can edit or delete bots using the action buttons in the Actions column.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1122,17 +1298,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../login/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1141,7 +1310,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1253,6 +1421,149 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#management" class="md-nav__link">
+    <span class="md-ellipsis">
+      management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Users
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a New User
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Groups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a New Group
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-a-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editing a Group
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bots" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Bots
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Bots">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-bots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing Bots
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-bot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding a New Bot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-bots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing Bots
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-you-can-edit-or-delete-bots-using-the-action-buttons-in-the-actions-column" class="md-nav__link">
+    <span class="md-ellipsis">
+      - You can edit or delete bots using the action buttons in the Actions column.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1266,59 +1577,94 @@
                   
 
 
-  <h1>Login</h1>
+  <h1>Management</h1>
 
-<p><strong>Default Login Credentials:</strong></p>
-<p>The default login credentials for accessing PixelView are as follows:</p>
-<ul>
-<li><strong>Username:</strong> admin@localhost</li>
-<li><strong>Password:</strong> password</li>
+<h2 id="management">management</h2>
+<p>The <strong>Management</strong> section in PixelView is the hub for administering users, groups, and automation bots. Below is a detailed guide on the various subsections within <strong>Management</strong>.
+<img alt="Managements" src="../pix-images/Management.png" /></p>
+<h2 id="1-users">1. <strong>Users</strong></h2>
+<p>The <strong>Users</strong> section allows you to manage user accounts. Follow the steps below to view, add, and manage users.</p>
+<h3 id="viewing-users"><strong>Viewing Users</strong></h3>
+<ol>
+<li>Click on <strong>Users</strong> from the side menu under the <strong>Management</strong> section.
+<img alt="User List" src="../pix-images/user-list.png" /></li>
+<li>A list of all registered users will be displayed, showing details like name, email, and role.</li>
+</ol>
+<h3 id="adding-a-new-user"><strong>Adding a New User</strong></h3>
+<ol>
+<li>To invite a new user, click on the <strong>"+"</strong> icon at the top-right corner.
+<img alt="Add User" src="../pix-images/adduser.png" /></li>
+<li>A popup labeled <strong>Invite User</strong> will appear. Fill out the following fields:
+<img alt="Invite Users" src="../pix-images/invite-user.png" /><ul>
+<li><strong>First Name</strong>: Enter the first name of the user.</li>
+<li><strong>Last Name</strong>: Enter the last name of the user.</li>
+<li><strong>Email</strong>: Enter a valid email address. This email will be used for sending the invitation.</li>
+<li><strong>Role</strong>: Select the user's role from the dropdown. Available options are:<ul>
+<li><strong>Admin</strong></li>
+<li><strong>User</strong></li>
 </ul>
-<p><strong>Important Note:</strong> It is highly recommended to change your default password immediately after your first login to enhance the security of your account.</p>
-<p><strong>Steps to Change Password:</strong></p>
+</li>
+</ul>
+</li>
+<li>After filling in the details, click the <strong>Send Invite</strong> button.</li>
+<li>The user will receive an invitation email with their username and password to log into the platform.</li>
+</ol>
+<hr />
+<h2 id="2-groups">2. <strong>Groups</strong></h2>
+<p>The <strong>Groups</strong> section is designed to manage user groups for access control and permissions.</p>
+<h3 id="viewing-groups"><strong>Viewing Groups</strong></h3>
 <ol>
 <li>
-<p><strong>Login to PixelView:</strong> Use the default credentials (admin@localhost and password) to log in to your PixelView account.</p>
+<p>Click on <strong>Groups</strong> from the side menu under <strong>Management</strong>.
+<img alt="Groups" src="../pix-images/groups.png" /></p>
 </li>
 <li>
-<p><strong>Access Settings:</strong></p>
-<ul>
-<li>After logging in, navigate to the bottom-left corner of the interface.</li>
-<li>Click on the settings icon to access the settings menu.
-<img alt="Settings" src="../pix-images/settings.png" /></li>
-<li>
-<p><strong>Locate Change Password Option:</strong></p>
+<p>You will see a list of existing groups, including details about group members and roles.</p>
 </li>
-<li>
-<p>Within the settings menu, locate the "Change Password" option.</p>
-</li>
-<li>Click on this option to proceed with changing your password.
-<img alt="Change Password" src="../pix-images/chpasswd.png" /></li>
-<li>
-<p><strong>Submit New Password:</strong></p>
-</li>
-<li>
-<p>After selecting the "Change Password" option, you will be directed to a page where you can input your new password.</p>
-</li>
-<li>Enter your desired new password in the provided field.</li>
-<li>
-<p><strong>Confirm New Password:</strong></p>
-</li>
-<li>
-<p>Re-enter the new password in the confirmation field to ensure accuracy.</p>
-</li>
-<li>
-<p><strong>Finalize Password Change:</strong></p>
-</li>
-<li>
-<p>Once you have entered and confirmed your new password, click on the "Change Password" button to finalize the process.</p>
-</li>
+</ol>
+<h3 id="creating-a-new-group"><strong>Creating a New Group</strong></h3>
+<ol>
+<li>To create a new group, click on the <strong>"+"</strong> icon at the top-right corner.
+<img alt="Add Groups" src="../pix-images/add-groups.png" /></li>
+<li>A popup will appear prompting you to name the group and select members to add.</li>
+<li>After assigning members, click <strong>Create</strong> to finalize the new group.</li>
+</ol>
+<h3 id="editing-a-group"><strong>Editing a Group</strong></h3>
+<ol>
+<li>Click on the group name from the list.</li>
+<li>You can add/remove members or change group permissions.</li>
+<li>Click <strong>Save</strong> to apply the changes.</li>
+</ol>
+<hr />
+<h2 id="3-bots">3. <strong>Bots</strong></h2>
+<p>The <strong>Bots</strong> section allows you to manage automation bots within the system.</p>
+<h3 id="viewing-bots"><strong>Viewing Bots</strong></h3>
+<ol>
+<li>Click on <strong>Bots</strong> from the side menu under <strong>Management</strong>.</li>
+<li>You will see a list of existing bots with columns for:<ul>
+<li><strong>Name</strong>: The name of the bot.</li>
+<li><strong>URL</strong>: The bot’s endpoint URL.</li>
+<li><strong>Auth Token</strong>: The authentication token for accessing the bot.</li>
+<li><strong>API Key</strong>: The API key associated with the bot.</li>
+<li><strong>Type</strong>: The type of bot (e.g., automation, alerting, etc.).</li>
 </ul>
 </li>
 </ol>
-<p><strong>Confirmation:</strong> Upon successful completion of the above steps, your login password for PixelView will be updated to the new one you specified.
-<img alt="Finalize Password Change" src="../pix-images/update-passwd.png" /></p>
-<p><strong>Note:</strong> For security purposes, it is advisable to choose a strong, unique password that is not easily guessable and to periodically update your password.</p>
+<h3 id="adding-a-new-bot"><strong>Adding a New Bot</strong></h3>
+<ol>
+<li>To create a new bot, click on the <strong>"+"</strong> icon at the top-right corner.</li>
+<li>A form will appear, prompting you to fill in details such as:<ul>
+<li><strong>Name</strong>: Name of the bot.</li>
+<li><strong>URL</strong>: The endpoint URL for the bot.</li>
+<li><strong>Auth Token</strong>: Provide the token for authentication.</li>
+<li><strong>API Key</strong>: If required, enter the bot’s API key.</li>
+</ul>
+</li>
+<li>Once completed, click <strong>Create Bot</strong> to add it to the list.</li>
+</ol>
+<h3 id="managing-bots"><strong>Managing Bots</strong></h3>
+<h2 id="-you-can-edit-or-delete-bots-using-the-action-buttons-in-the-actions-column">- You can edit or delete bots using the action buttons in the <strong>Actions</strong> column.</h2>
+<p>This documentation provides a structured process for managing <strong>Users</strong>, <strong>Groups</strong>, and <strong>Bots</strong> in the PixelView platform, as illustrated in the interface.</p>
 
 
 
@@ -1354,7 +1700,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../settings/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Settings">
+          <a href="../bots/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Automation Bots">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1364,20 +1710,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Settings
+                Automation Bots
               </div>
             </div>
           </a>
         
         
           
-          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: API Examples">
+          <a href="../settings/" class="md-footer__link md-footer__link--next" aria-label="Next: Settings">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                API Examples
+                Settings
               </div>
             </div>
             <div class="md-footer__button md-icon">
