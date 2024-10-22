@@ -15,10 +15,12 @@ The default login credentials for accessing PixelView are as follows:
     
     - After logging in, navigate to the bottom-left corner of the interface.
     - Click on the settings icon to access the settings menu.
+    ![Settings](pix-images/settings.png)
 3. **Locate Change Password Option:**
     
     - Within the settings menu, locate the "Change Password" option.
     - Click on this option to proceed with changing your password.
+    ![Change Password](pix-images/chpasswd.png)
 4. **Submit New Password:**
     
     - After selecting the "Change Password" option, you will be directed to a page where you can input your new password.
@@ -31,5 +33,6 @@ The default login credentials for accessing PixelView are as follows:
     - Once you have entered and confirmed your new password, click on the "Change Password" button to finalize the process.
 
 **Confirmation:** Upon successful completion of the above steps, your login password for PixelView will be updated to the new one you specified.
+![Finalize Password Change](pix-images/update-passwd.png)
 
 **Note:** For security purposes, it is advisable to choose a strong, unique password that is not easily guessable and to periodically update your password.
