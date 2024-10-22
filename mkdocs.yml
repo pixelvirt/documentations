@@ -81,7 +81,7 @@ nav:
       - 'Cloud Inventory': ''
 
     - Management and Settings:
-      - Management: ''
+      - Management: 'pixelview/managements.md'
       - Settings: 'pixelview/settings.md'
       - Login: pixelview/login.md
       - SSO Integration: ''
