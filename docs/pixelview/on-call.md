@@ -4,6 +4,7 @@ This guide will help you get started with creating and managing on-call schedule
 **What is the On-Call Schedule Management System?**
 
 This system allows you to easily create and manage rotating on-call schedules for your team. You can assign staff members to be on-call for specific days and times, ensuring there's always someone available to handle urgent issues.
+![On-Call Schedule](pix-images/oncall.png)
 
     
 **Building Your On-Call Schedule**
