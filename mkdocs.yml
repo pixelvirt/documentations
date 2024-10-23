@@ -72,7 +72,7 @@ nav:
       - OnCall Scheduling: pixelview/registration.md
 
     - Automation:
-      - 'Overview': ''
+      - 'Overview': 'pixelview/automation-overview'
       - 'Automation Bots': pixelview/bots.md
       - 'Automation Rules': ''
       - 'Automation Workflows': ''

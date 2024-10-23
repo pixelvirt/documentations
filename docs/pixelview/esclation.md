@@ -9,21 +9,26 @@ To create a new Escalation Policy, follow these steps:
 
     - Click on the 'Add Policy' option.
     - You will be redirected to the New Escalation Policy creation page.
+    ![Add Policy](pix-images/add-policy.png)
 
 2. **Naming the Policy:**
     
     - Provide a name for the new policy.
     - Click on the "Create Template" button.
+    ![Create Template](pix-images/create-template.png)
 
 3. **Editing the Policy:**
     
     - You will be redirected to the policy edit page.
     - Here, you can add different levels to the policy.
+    ![edit-policy](pix-images/edit-policy.png)
 
 4. **Adding Escalation Levels:**
     
     - To add a new level of escalation, click on the '+' icon.
+    ![Add Esclation](pix-images/add-esclations.png)
     - You will see three drop-down options:
+    ![Escalation Levels](pix-images/assign-bots.png)
         - **Assign to Automations:** Select this option if you want to assign the alert to an automation bot. You must select a bot that has been previously created. If no bots are available, refer to the management section for detailed instructions on creating one.
         - **Assign to User:** Select this option to assign the alert to a specific user.
         - **Assign to On-call:** Select this option to assign the alert to an on-call schedule. The on-call team members will handle the alert based on the schedule.
@@ -31,6 +36,7 @@ To create a new Escalation Policy, follow these steps:
 5. **Configuring Escalation Timing:**
     
     - Adjust the value for "Escalate to next level" to specify the time (in minutes) after which the alert should escalate if unresolved. The default is set to 10 minutes.
+    [Escalation Timing](pix-images/Escalation-Timing.png)
     - Add additional levels of escalation as required.
 
 6. **Saving the Policy:**
@@ -45,6 +51,7 @@ In this section, you will find information about how to manage policies within t
 
 To access the Policies section:
 1. Navigate to the main menu and select "Policies."
+![Accessing Policies](pix-images/policy.png)
 2. Here, you will see a list of all the policies that you have created.
 
 ### Viewing Policies
@@ -58,6 +65,8 @@ To access the Policies section:
 
 - In the first column of the policy list, there is a 'V' button for each policy.
 - Click the 'V' button to expand the view and see which services are currently using that escalation policy.
+![Expand-policy](pix-images/Expand-policy.png)
+
 #### Managing Policies:    
 - The **Action Menu (...)** in the last column provides options for editing and deleting policies.
         - **Edit:** Clicking "Edit" allows you to modify the existing policy configuration.
