@@ -66,7 +66,7 @@ To access the Policies section:
 - In the first column of the policy list, there is a 'V' button for each policy.
 - Click the 'V' button to expand the view and see which services are currently using that escalation policy.
 ![Expand-policy](pix-images/Expand-policy.png)
-
+s
 #### Managing Policies:    
 - The **Action Menu (...)** in the last column provides options for editing and deleting policies.
         - **Edit:** Clicking "Edit" allows you to modify the existing policy configuration.

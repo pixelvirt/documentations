@@ -72,9 +72,9 @@ nav:
       - OnCall Scheduling: pixelview/registration.md
 
     - Automation:
-      - 'Overview': 'pixelview/automation-overview'
+      - 'Overview': 'pixelview/automation-overview.md'
       - 'Automation Bots': pixelview/bots.md
-      - 'Automation Rules': ''
+      - 'Automation Rules': 'pixelview/automations-rules.md'
       - 'Automation Workflows': ''
 
     - Inventory:
