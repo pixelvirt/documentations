@@ -64,7 +64,6 @@ nav:
         - 'Customize Your Dashboard': pixelview/custom-dashboard.md
     
     - Monitoring:
-      - 'Overview': pixelview/monitoring.md
       - 'Cases': pixelview/cases.md
       - 'Incident Case Documentation': pixelview/incident_documentation.md
       - 'Services': pixelview/services.md
