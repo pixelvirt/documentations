@@ -69,8 +69,8 @@ nav:
       - 'Incident Case Documentation': pixelview/incident_documentation.md
       - 'Services': pixelview/services.md
       - 'Esclation': pixelview/esclation.md
-      - 'On-Call Schedule': pixelview/on-call.md
-      - OnCall Scheduling: pixelview/registration.md
+      - 'Schedules': pixelview/schedules.md
+      - 'ADD Schedule ': pixelview/on-call.md
 
     - Automation:
       - 'Overview': 'pixelview/automation-overview.md'
