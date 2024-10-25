@@ -57,7 +57,7 @@ To view the on-call schedule details for a particular schedule:
 
 - The calendar view will present the current month and highlight the dates where users or teams are assigned to be on call.
 - Assigned individuals will be clearly marked on their respective dates.
-![Calendar View](pix-images/view-schedule.png)
+![Calendar View](pix-images/calender-view.png)
 
 
 ### Adding Users to the Schedule
