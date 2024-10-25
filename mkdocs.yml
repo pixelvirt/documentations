@@ -66,6 +66,7 @@ nav:
     - Monitoring:
       - 'Overview': pixelview/monitoring.md
       - 'Cases': pixelview/cases.md
+      - 'Incident Case Documentation': pixelview/incident_documentation.md
       - 'Services': pixelview/services.md
       - 'Esclation': pixelview/esclation.md
       - 'On-Call Schedule': pixelview/on-call.md
