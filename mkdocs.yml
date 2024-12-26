@@ -48,7 +48,6 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
-
 nav:
   - Welcome: index.md
   - Pixelview:
@@ -79,6 +78,7 @@ nav:
 
     - Inventory:
       - 'Cloud Inventory': ''
+    
 
     - Management and Settings:
       - Management: 'pixelview/managements.md'
@@ -90,6 +90,9 @@ nav:
     - 'API Examples': pixelview/api.md
     - 'Python Example': pixelview/create-alerts.md
     - 'Custom Bot Example': pixelview/custom-bot.md
+  
+  - Blogs:
+    - 'Blog': 'pixelview/blog'
 
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
@@ -112,3 +115,6 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+plugins:
+  - blog
