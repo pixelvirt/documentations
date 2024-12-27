@@ -1,5 +1,7 @@
 site_name: Pixelvirt Docs
 theme:
+  logo: images/logo.png
+  favicon: images/favicon.ico
   name: material
   palette:
     # Palette toggle for light mode
@@ -17,7 +19,6 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-      
 
   features:
     - announce.dismiss
@@ -42,7 +43,7 @@ theme:
     - search.share
     - search.suggest
     - toc.follow
-  
+
   copyright: Copyright &copy; 2024 Pixelvirt Technology Pvt Ltd
 
 extra_css:
@@ -51,48 +52,47 @@ extra_css:
 nav:
   - Welcome: index.md
   - Pixelview:
-    - 'Install on Docker': pixelview/install-on-docker.md
-    - 'Install on Kubetnetes': pixelview/kube-installation.md
-    - Dashboard:
-      - 'Overview': pixelview/dashboard.md
-      - Dashboard Integrations:
-        - 'Kubernetes Integration': pixelview/k8s-integration.md
-        - 'Prometheus Integration': pixelview/prometheus-integration.md
-        - 'Openstack Integration': pixelview/openstack-integration.md
-      - Customize:
-        - 'Customize Your Dashboard': pixelview/custom-dashboard.md
-    
-    - Monitoring:
-      - 'Cases': pixelview/cases.md
-      - 'Incident Case Documentation': pixelview/incident_documentation.md
-      - 'Services': pixelview/services.md
-      - 'Esclation': pixelview/esclation.md
-      - 'Schedules': pixelview/schedules.md
-      - 'ADD Schedule ': pixelview/on-call.md
+      - "Install on Docker": pixelview/install-on-docker.md
+      - "Install on Kubetnetes": pixelview/kube-installation.md
+      - Dashboard:
+          - "Overview": pixelview/dashboard.md
+          - Dashboard Integrations:
+              - "Kubernetes Integration": pixelview/k8s-integration.md
+              - "Prometheus Integration": pixelview/prometheus-integration.md
+              - "Openstack Integration": pixelview/openstack-integration.md
+          - Customize:
+              - "Customize Your Dashboard": pixelview/custom-dashboard.md
 
-    - Automation:
-      - 'Overview': 'pixelview/automation-overview.md'
-      - 'Automation Bots': pixelview/bots.md
-      - 'Automation Rules': 'pixelview/automations-rules.md'
-      - 'Automation Workflows': ''
+      - Monitoring:
+          - "Cases": pixelview/cases.md
+          - "Incident Case Documentation": pixelview/incident_documentation.md
+          - "Services": pixelview/services.md
+          - "Esclation": pixelview/esclation.md
+          - "Schedules": pixelview/schedules.md
+          - "ADD Schedule ": pixelview/on-call.md
 
-    - Inventory:
-      - 'Cloud Inventory': ''
-    
+      - Automation:
+          - "Overview": "pixelview/automation-overview.md"
+          - "Automation Bots": pixelview/bots.md
+          - "Automation Rules": "pixelview/automations-rules.md"
+          - "Automation Workflows": ""
 
-    - Management and Settings:
-      - Management: 'pixelview/managements.md'
-      - Settings: 'pixelview/settings.md'
-      - Login: pixelview/login.md
-      - SSO Integration: ''
+      - Inventory:
+          - "Cloud Inventory": ""
+
+      - Management and Settings:
+          - Management: "pixelview/managements.md"
+          - Settings: "pixelview/settings.md"
+          - Login: pixelview/login.md
+          - SSO Integration: ""
 
   - Pixelview API:
-    - 'API Examples': pixelview/api.md
-    - 'Python Example': pixelview/create-alerts.md
-    - 'Custom Bot Example': pixelview/custom-bot.md
-  
+      - "API Examples": pixelview/api.md
+      - "Python Example": pixelview/create-alerts.md
+      - "Custom Bot Example": pixelview/custom-bot.md
+
   - Blogs:
-    - 'Blog': 'pixelview/blog'
+      - "Blog": blog/
 
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
@@ -103,7 +103,6 @@ nav:
 #    - 'Openstack Networks': openstack/network-creation.md
 #    - ' quota and organization request': openstack/quota-org-request.md
 #    - 'Organization Registration': openstack/org-registration.md
-
 
 markdown_extensions:
   - admonition
@@ -117,4 +116,7 @@ markdown_extensions:
   - pymdownx.superfences
 
 plugins:
-  - blog
+  - blog:
+      blog_dir: posts
+      post_template: blog.html
+      use_directory_urls: true
