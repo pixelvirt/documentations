@@ -1,4 +1,4 @@
-site_name: Pixelvirt Docs
+site_name: ''
 theme:
   logo: images/logo.png
   favicon: images/favicon.ico
@@ -92,7 +92,9 @@ nav:
       - "Custom Bot Example": pixelview/custom-bot.md
 
   - Blogs:
-      - "Blog": blog/
+      - "Blog": 
+          - blog/index.md
+      - "News": news/
 
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
@@ -117,6 +119,10 @@ markdown_extensions:
 
 plugins:
   - blog:
-      blog_dir: posts
-      post_template: blog.html
-      use_directory_urls: true
+      post_slugify_separator: _
+      categories_name: Categories
+      categories_url_format: "category/{slug}"
+      # authors_profiles_pagination: false
+      # authors_profiles: true
+      categories: true
+      categories_toc: true
