@@ -94,8 +94,6 @@ nav:
   - Blogs:
       - "Blog": 
           - blog/index.md
-      - "News": news/
-
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
 #    - 'Launching an Instance ': openstack/lunch-instance.md
@@ -116,6 +114,9 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
 
 plugins:
   - blog:
