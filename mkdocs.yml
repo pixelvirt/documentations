@@ -92,7 +92,7 @@ nav:
       - "Custom Bot Example": pixelview/custom-bot.md
 
   - Blogs:
-      - "Blog": 
+      - Blog: 
           - blog/index.md
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
