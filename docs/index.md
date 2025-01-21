@@ -5,12 +5,12 @@ hide:
 ---
 
 
-# 🌟 Pixelvirt Technology - Product Overview 🌟
+# Pixelvirt Technology - Product Overview 
 
 Welcome to **Pixelvirt Technology**! We offer cutting-edge cloud solutions designed to enhance your business operations. 🌐
 
 ---
-## 📡 Our Services:  
+##  Our Services:  
 ---
 
 #### 1. **Cloud Monitoring and Incident Management** 📡  
