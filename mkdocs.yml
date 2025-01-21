@@ -1,4 +1,5 @@
 site_name: ''
+site_url: https://docs.pixelvirt.com
 theme:
   logo: images/logo.png
   favicon: images/favicon.ico
