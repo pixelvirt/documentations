@@ -93,7 +93,7 @@ nav:
 
   - Blogs:
       - Blog: 
-          - blog/index.md
+          - https://blog.pixelvirt.com
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
 #    - 'Launching an Instance ': openstack/lunch-instance.md
