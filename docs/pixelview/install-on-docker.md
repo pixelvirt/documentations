@@ -94,7 +94,7 @@ services:
 Clone the repository containing the Docker manifests:
 
 ```
-git clone  git@github.com:pixelvirt/pixelview-docker.git
+git clone  https://github.com/pixelvirt/pixelview-docker.git
 cd pixelview-docker/installation
 ```
 
