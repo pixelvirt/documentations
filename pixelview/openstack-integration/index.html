@@ -630,6 +630,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#kubernetes-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       Prerequisites
@@ -639,37 +648,79 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-kubernetes-deployment" class="md-nav__link">
+  <a href="#steps-to-create-and-use-secrets" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Kubernetes Deployment
+      Steps to Create and Use Secrets
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Kubernetes Deployment">
+    <nav class="md-nav" aria-label="Steps to Create and Use Secrets">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-create-a-secret-for-openstack-credentials" class="md-nav__link">
+  <a href="#1-prepare-the-cloudsyaml-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Create a Secret for OpenStack Credentials
+      1. Prepare the clouds.yaml File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-deploy-openstack-monitoring-application" class="md-nav__link">
+  <a href="#2-encode-the-cloudsyaml-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Deploy OpenStack Monitoring Application
+      2. Encode the clouds.yaml File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-expose-the-openstack-monitoring-service" class="md-nav__link">
+  <a href="#3-create-a-kubernetes-secret" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3: Expose the OpenStack Monitoring Service
+      3. Create a Kubernetes Secret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-a-secret-for-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Create a Secret for Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-deploy-mongodb-and-openstack-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Deploy MongoDB and OpenStack Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Deploy MongoDB and OpenStack Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combined-deployment-for-mongodb-and-openstack-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combined Deployment for MongoDB and OpenStack Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-downloading-and-modifying-manifests-from-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Downloading and Modifying Manifests from GitHub
     </span>
   </a>
   
@@ -681,37 +732,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-docker-deployment" class="md-nav__link">
+  <a href="#docker-deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Docker Deployment
+      Docker Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Docker Deployment">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-create-the-env-file" class="md-nav__link">
+  <a href="#docker-compose-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Create the .env File
+      Docker Compose File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-create-the-docker-compose-file" class="md-nav__link">
+  <a href="#environment-variables-file-env" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Create the Docker Compose File
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-deploy-the-docker-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 3: Deploy the Docker Container
+      Environment Variables File (.env)
     </span>
   </a>
   
@@ -723,56 +783,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#steps-to-verify-metrics-on-the-pixelview-dashboard" class="md-nav__link">
+  <a href="#steps-to-set-up-and-run" class="md-nav__link">
     <span class="md-ellipsis">
-      Steps to Verify Metrics on the PixelView Dashboard
+      Steps to Set Up and Run
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Steps to Verify Metrics on the PixelView Dashboard">
+    <nav class="md-nav" aria-label="Steps to Set Up and Run">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#4-access-dashboard-edit-mode" class="md-nav__link">
+  <a href="#1-clone-or-prepare-the-files" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Access Dashboard Edit Mode:
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Access Dashboard Edit Mode:">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-add-a-new-chart" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.1. Add a New Chart:
+      1. Clone or Prepare the Files
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-add-a-new-data-source" class="md-nav__link">
+  <a href="#2-mount-the-openstack-configuration-file" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2. Add a New Data Source:
+      2. Mount the OpenStack Configuration File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-configure-the-data-source" class="md-nav__link">
+  <a href="#3-start-the-services" class="md-nav__link">
     <span class="md-ellipsis">
-      4.3. Configure the Data Source:
+      3. Start the Services
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#44-save-and-display-the-metrics" class="md-nav__link">
+  <a href="#4-verify-the-services" class="md-nav__link">
     <span class="md-ellipsis">
-      4.4. Save and Display the Metrics:
+      4. Verify the Services
     </span>
   </a>
   
@@ -782,9 +832,64 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-openstack-on-pixelview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring OpenStack on PixelView
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues-and-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues and Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-containers-failing-to-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Containers Failing to Start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-connection-issues-with-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Connection Issues with MongoDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-authentication-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Authentication Errors
+    </span>
+  </a>
+  
+</li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintenance
+    </span>
+  </a>
   
 </li>
       
@@ -1566,6 +1671,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#kubernetes-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubernetes Deployment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       Prerequisites
@@ -1575,37 +1689,79 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-kubernetes-deployment" class="md-nav__link">
+  <a href="#steps-to-create-and-use-secrets" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Kubernetes Deployment
+      Steps to Create and Use Secrets
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. Kubernetes Deployment">
+    <nav class="md-nav" aria-label="Steps to Create and Use Secrets">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-create-a-secret-for-openstack-credentials" class="md-nav__link">
+  <a href="#1-prepare-the-cloudsyaml-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Create a Secret for OpenStack Credentials
+      1. Prepare the clouds.yaml File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-deploy-openstack-monitoring-application" class="md-nav__link">
+  <a href="#2-encode-the-cloudsyaml-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Deploy OpenStack Monitoring Application
+      2. Encode the clouds.yaml File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-expose-the-openstack-monitoring-service" class="md-nav__link">
+  <a href="#3-create-a-kubernetes-secret" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3: Expose the OpenStack Monitoring Service
+      3. Create a Kubernetes Secret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-a-secret-for-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Create a Secret for Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-deploy-mongodb-and-openstack-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Deploy MongoDB and OpenStack Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Deploy MongoDB and OpenStack Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combined-deployment-for-mongodb-and-openstack-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combined Deployment for MongoDB and OpenStack Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-downloading-and-modifying-manifests-from-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Downloading and Modifying Manifests from GitHub
     </span>
   </a>
   
@@ -1617,37 +1773,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-docker-deployment" class="md-nav__link">
+  <a href="#docker-deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Docker Deployment
+      Docker Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Docker Deployment">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Compose Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step-1-create-the-env-file" class="md-nav__link">
+  <a href="#docker-compose-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Create the .env File
+      Docker Compose File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-create-the-docker-compose-file" class="md-nav__link">
+  <a href="#environment-variables-file-env" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2: Create the Docker Compose File
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step-3-deploy-the-docker-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 3: Deploy the Docker Container
+      Environment Variables File (.env)
     </span>
   </a>
   
@@ -1659,56 +1824,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#steps-to-verify-metrics-on-the-pixelview-dashboard" class="md-nav__link">
+  <a href="#steps-to-set-up-and-run" class="md-nav__link">
     <span class="md-ellipsis">
-      Steps to Verify Metrics on the PixelView Dashboard
+      Steps to Set Up and Run
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Steps to Verify Metrics on the PixelView Dashboard">
+    <nav class="md-nav" aria-label="Steps to Set Up and Run">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#4-access-dashboard-edit-mode" class="md-nav__link">
+  <a href="#1-clone-or-prepare-the-files" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Access Dashboard Edit Mode:
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Access Dashboard Edit Mode:">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-add-a-new-chart" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.1. Add a New Chart:
+      1. Clone or Prepare the Files
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-add-a-new-data-source" class="md-nav__link">
+  <a href="#2-mount-the-openstack-configuration-file" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2. Add a New Data Source:
+      2. Mount the OpenStack Configuration File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-configure-the-data-source" class="md-nav__link">
+  <a href="#3-start-the-services" class="md-nav__link">
     <span class="md-ellipsis">
-      4.3. Configure the Data Source:
+      3. Start the Services
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#44-save-and-display-the-metrics" class="md-nav__link">
+  <a href="#4-verify-the-services" class="md-nav__link">
     <span class="md-ellipsis">
-      4.4. Save and Display the Metrics:
+      4. Verify the Services
     </span>
   </a>
   
@@ -1718,9 +1873,64 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-openstack-on-pixelview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring OpenStack on PixelView
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues-and-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues and Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-containers-failing-to-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Containers Failing to Start
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-connection-issues-with-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Connection Issues with MongoDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-authentication-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Authentication Errors
+    </span>
+  </a>
+  
+</li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintenance
+    </span>
+  </a>
   
 </li>
       
@@ -1741,297 +1951,349 @@
 
 <h1 id="openstack-integration-into-pixelview-environment">OpenStack Integration into PixelView Environment</h1>
 <p>This documentation provides a step-by-step guide to integrate OpenStack monitoring into the PixelView environment using both Kubernetes and Docker deployment methods. Choose the appropriate method based on your infrastructure setup.</p>
+<h2 id="kubernetes-deployment">Kubernetes Deployment</h2>
 <h2 id="prerequisites">Prerequisites</h2>
-<ul>
-<li><strong>Kubernetes cluster</strong>: Ensure you have a Kubernetes cluster running with proper access to namespaces and deployment capabilities.</li>
-<li><strong>Docker setup</strong>: Ensure Docker is installed on the server for Docker-based deployments.</li>
-<li><strong>OpenStack</strong>: Set up your OpenStack environment with the necessary credentials and configurations.</li>
-<li><strong>Access to manifest files</strong> and <strong>Docker Compose files</strong>.</li>
-</ul>
-<p>Both the Kubernetes manifests and Docker files can be found in the following GitHub repositories:</p>
-<ul>
-<li><strong>Kubernetes Repository</strong>: <a href="https://github.com/pixelvirt/k8s-pixelview.git">k8s-pixelview repository</a></li>
-<li><strong>Docker Repository</strong>: <a href="https://github.com/pixelvirt/pixelview-docker.git">pixelview-docker repository</a></li>
-</ul>
+<ol>
+<li>
+<p><strong>Kubernetes Cluster</strong>: Ensure you have access to a running Kubernetes cluster with <code>kubectl</code> configured.</p>
+</li>
+<li>
+<p><strong>clouds.yaml File</strong>: Verify that your <code>clouds.yaml</code> file is available locally. This file contains OpenStack configuration details.</p>
+</li>
+<li>
+<p><strong>Base64 Encoding Tool</strong>: Ensure you have <code>base64</code> installed for encoding the <code>clouds.yaml</code> file.</p>
+</li>
+</ol>
 <hr />
-<h2 id="1-kubernetes-deployment">1. Kubernetes Deployment</h2>
-<h3 id="step-1-create-a-secret-for-openstack-credentials">Step 1: Create a Secret for OpenStack Credentials</h3>
-<p>Create a Kubernetes Secret to store sensitive environment variables such as the OpenStack authentication details. Save the following manifest as <code>openstack-secrets.yaml</code>:
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelview</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">stringData</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">DATA_IP</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://10.0.0.12&quot;</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">DATA_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5000&quot;</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">OS_PROJECT_DOMAIN_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Default&#39;</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">OS_PROJECT_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;e6c6162d59ad4c468ce157e029d18ff8&#39;</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">OS_USER_DOMAIN_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Default&#39;</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">OS_PROJECT_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;admin&#39;</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">OS_TENANT_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;admin&#39;</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">OS_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;admin&#39;</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">OS_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;0S1vhFh5MCnEJ1B5YVYYYEbld57AigiJUPsPQthd&#39;</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">OS_AUTH_URL</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;http://10.0.0.149:5000&#39;</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">OS_INTERFACE</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;internal&#39;</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">OS_ENDPOINT_TYPE</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;internalURL&#39;</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nt">OS_IDENTITY_API_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="nt">OS_REGION_NAME</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;RegionOne&#39;</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="nt">OS_AUTH_PLUGIN</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;password&#39;</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">  </span><span class="nt">OS_CLOUD</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;openstack&#39;</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="nt">OS_DOMAIN_ID</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;default&#39;</span>
-</span></code></pre></div></p>
+<h2 id="steps-to-create-and-use-secrets">Steps to Create and Use Secrets</h2>
+<h3 id="1-prepare-the-cloudsyaml-file">1. Prepare the <code>clouds.yaml</code> File</h3>
+<p>Ensure the <code>clouds.yaml</code> file is complete and correct. It should be located in a directory accessible to your machine, e.g., <code>/etc/openstack/clouds.yaml</code>.</p>
+<h3 id="2-encode-the-cloudsyaml-file">2. Encode the <code>clouds.yaml</code> File</h3>
+<p>Run the following command to encode the <code>clouds.yaml</code> file in base64 format:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>cat<span class="w"> </span>/etc/openstack/clouds.yaml<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-w<span class="w"> </span><span class="m">0</span><span class="k">)</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<p>Copy the output of this command for use in the next step.</p>
+<h3 id="3-create-a-kubernetes-secret">3. Create a Kubernetes Secret</h3>
+<p>Use the following YAML template to create a secret in your Kubernetes cluster. Replace <code>&lt;base64_encoded_clouds.yaml&gt;</code> with the base64-encoded content from the previous step.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-clouds</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Secret</span><span class="nv"> </span><span class="s">containing</span><span class="nv"> </span><span class="s">OpenStack</span><span class="nv"> </span><span class="s">clouds.yaml</span><span class="nv"> </span><span class="s">configuration.&quot;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nt">clouds.yaml</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;base64_encoded_clouds.yaml&gt;</span>
+</span></code></pre></div>
+<p>Save this file as <code>openstack-secret.yaml</code> and apply it to your cluster:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>openstack-secret.yaml
+</span></code></pre></div>
+<h3 id="4-create-a-secret-for-environment-variables">4. Create a Secret for Environment Variables</h3>
+<p>To centralize and manage configuration securely, create a secret with the necessary environment variables for both applications:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># env-secret.yaml</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-secret</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelview</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nt">data</span><span class="p">:</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nt">DATA_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aHR0cDovLzE5Mi4xNjguMTAxLjEwMTo1MDAw</span><span class="w">  </span><span class="c1"># http://192.168.101.101:5000</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">MONGO_URI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bW9uZ29kYjovL3Jvb3Q6cGFzc3dvcmRAbW9uZ29kYjoyNzAxNw==</span><span class="w">  </span><span class="c1"># mongodb://root:password@mongodb:27017</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">MONGO_DBNAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b3BlbnN0YWNr</span><span class="w">  </span><span class="c1"># openstack</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nt">AUTH_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aHR0cDovLzE5Mi4xNjguMTAxLjEwMTozMDk5MC9hcGkvY2hlY2tfdXNlcl9pbmZv</span><span class="w">  </span><span class="c1"># http://192.168.101.101:30990/api/check_user_info</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="nt">AUTH_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NmM2NzNmNTEtNjA0NS00N2IwLTg3NDUtZWVmOWQxNjVhMzEw</span><span class="w">  </span><span class="c1"># 6c673f51-6045-47b0-8745-eef9d165a310</span>
+</span></code></pre></div>
+<p>Save this file as <code>env-secret.yaml</code> and apply it to your cluster:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>env-secret.yaml
+</span></code></pre></div>
+<h3 id="5-deploy-mongodb-and-openstack-integration">5. Deploy MongoDB and OpenStack Integration</h3>
+<h4 id="combined-deployment-for-mongodb-and-openstack-integration">Combined Deployment for MongoDB and OpenStack Integration</h4>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># combined-deployment.yaml</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelview</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongo:latest</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">27017</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">          </span><span class="nt">env</span><span class="p">:</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MONGOURL</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mongodb:27017&quot;</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MONGO_INITDB_ROOT_USERNAME</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">              </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">                </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-secret</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">                  </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongo-root-username</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MONGO_INITDB_ROOT_PASSWORD</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">              </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">                </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-secret</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">                  </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongo-root-password</span>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MONGO_INITDB_DATABASE</span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">              </span><span class="nt">valueFrom</span><span class="p">:</span>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="w">                </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-secret</span>
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="w">                  </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongo-database</span>
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span>
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-data</span>
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/db</span>
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-data</span>
+</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="w">          </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+</span><span id="__span-5-46"><a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="w">            </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb-pvc</span><span class="w">  </span><span class="c1"># Ensure you have created this PVC before deploying</span>
+</span><span id="__span-5-47"><a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>
+</span><span id="__span-5-48"><a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="nn">---</span>
+</span><span id="__span-5-49"><a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+</span><span id="__span-5-50"><a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+</span><span id="__span-5-51"><a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-5-52"><a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-integration</span>
+</span><span id="__span-5-53"><a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelview</span>
+</span><span id="__span-5-54"><a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-5-55"><a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-5-56"><a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-5-57"><a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+</span><span id="__span-5-58"><a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-integration</span>
+</span><span id="__span-5-59"><a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+</span><span id="__span-5-60"><a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-5-61"><a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-5-62"><a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-integration</span>
+</span><span id="__span-5-63"><a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-5-64"><a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-5-65"><a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-integration</span>
+</span><span id="__span-5-66"><a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/openstack-go:openstack-test</span>
+</span><span id="__span-5-67"><a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a><span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span><span class="w"> </span>
+</span><span id="__span-5-68"><a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a><span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-5-69"><a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8005</span>
+</span><span id="__span-5-70"><a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a><span class="w">        </span><span class="nt">envFrom</span><span class="p">:</span><span class="w">  </span><span class="c1"># Use envFrom to load all key-value pairs from the secret</span>
+</span><span id="__span-5-71"><a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretRef</span><span class="p">:</span>
+</span><span id="__span-5-72"><a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-secret</span><span class="w">  </span><span class="c1"># Reference the env-secret</span>
+</span><span id="__span-5-73"><a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+</span><span id="__span-5-74"><a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-config</span>
+</span><span id="__span-5-75"><a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a><span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/openstack</span>
+</span><span id="__span-5-76"><a id="__codelineno-5-76" name="__codelineno-5-76" href="#__codelineno-5-76"></a><span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-5-77"><a id="__codelineno-5-77" name="__codelineno-5-77" href="#__codelineno-5-77"></a><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-5-78"><a id="__codelineno-5-78" name="__codelineno-5-78" href="#__codelineno-5-78"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-config</span>
+</span><span id="__span-5-79"><a id="__codelineno-5-79" name="__codelineno-5-79" href="#__codelineno-5-79"></a><span class="w">        </span><span class="nt">secret</span><span class="p">:</span>
+</span><span id="__span-5-80"><a id="__codelineno-5-80" name="__codelineno-5-80" href="#__codelineno-5-80"></a><span class="w">          </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clouds-secret</span>
+</span><span id="__span-5-81"><a id="__codelineno-5-81" name="__codelineno-5-81" href="#__codelineno-5-81"></a><span class="w">          </span><span class="nt">items</span><span class="p">:</span>
+</span><span id="__span-5-82"><a id="__codelineno-5-82" name="__codelineno-5-82" href="#__codelineno-5-82"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clouds.yaml</span>
+</span><span id="__span-5-83"><a id="__codelineno-5-83" name="__codelineno-5-83" href="#__codelineno-5-83"></a><span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clouds.yaml</span>
+</span></code></pre></div>
 <div style="border-left: 5px solid #0c2d7a; padding: 10px; border-radius: 5px;">
   <span style="font-size: 1.2em;">&#128161;</span> <strong>Note:</strong> 
-  You can find the environment variables in the following files:
-    admin-openrc.sh  or clouds.yaml This file typically contains the authentication credentials and settings for accessing the OpenStack environment.
-    This configuration file defines the cloud settings, including connection parameters and project information for OpenStack.<br>
-    <br>
-    <b>DATA_IP: </b> Replace with the IP address of the host machine where the application is deployed
-  <br>
-  <b>DATA_PORT:</b> Replace with an available port number on the machine where the application is running
-</div>
+ If your cluster does not have Persistent Volumes (PV) and Persistent Volume Claims (PVC), you need to create them first. If you already have them, you can specify your existing PV configuration.
+   ></div>
 
-<p>Apply the secret to the <code>pixelview</code> namespace: 
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl apply -f openstack-secret.yaml
-</span></code></pre></div></p>
-<p>Alternatively, you can clone the Kubernetes repository and apply the secret directly:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git clone https://github.com/pixelvirt/k8s-pixelview.git
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cd k8s-pixelview/openstack-integration
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>kubectl apply -f openstack-secret.yaml
-</span></code></pre></div></p>
-<h3 id="step-2-deploy-openstack-monitoring-application">Step 2: Deploy OpenStack Monitoring Application</h3>
-<p>Create a Kubernetes Deployment that pulls the OpenStack monitoring container and sets up the necessary environment variables from the previously created secret. Save the following manifest as <code>openstack_deployment.yml</code>:
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-monitoring</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelview</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-mon</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-mon</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-monitoring-pixelview</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/openstack-go:latest</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">        </span><span class="nt">env</span><span class="p">:</span>
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATA_IP</span>
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATA_IP</span>
-</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATA_PORT</span>
-</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATA_PORT</span>
-</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_PROJECT_DOMAIN_NAME</span>
-</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_PROJECT_DOMAIN_NAME</span>
-</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_PROJECT_ID</span>
-</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_PROJECT_ID</span>
-</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_USER_DOMAIN_NAME</span>
-</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_USER_DOMAIN_NAME</span>
-</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_PROJECT_NAME</span>
-</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_PROJECT_NAME</span>
-</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_TENANT_NAME</span>
-</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_TENANT_NAME</span>
-</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_USERNAME</span>
-</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_USERNAME</span>
-</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_PASSWORD</span>
-</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_PASSWORD</span>
-</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_AUTH_URL</span>
-</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_AUTH_URL</span>
-</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_INTERFACE</span>
-</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_INTERFACE</span>
-</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_ENDPOINT_TYPE</span>
-</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_ENDPOINT_TYPE</span>
-</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_IDENTITY_API_VERSION</span>
-</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_IDENTITY_API_VERSION</span>
-</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_REGION_NAME</span>
-</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_REGION_NAME</span>
-</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_AUTH_PLUGIN</span>
-</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-95"><a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-96"><a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_AUTH_PLUGIN</span>
-</span><span id="__span-3-97"><a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_CLOUD</span>
-</span><span id="__span-3-98"><a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-99"><a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-100"><a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-101"><a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_CLOUD</span>
-</span><span id="__span-3-102"><a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_DOMAIN_ID</span>
-</span><span id="__span-3-103"><a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span>
-</span><span id="__span-3-104"><a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-</span><span id="__span-3-105"><a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env-openstack-secret</span>
-</span><span id="__span-3-106"><a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OS_DOMAIN_ID</span>
-</span></code></pre></div></p>
-<p>Apply the deployment:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>openstack_deployment.yml
+<p><strong>Note:</strong> If your cluster does not have Persistent Volumes (PV) and Persistent Volume Claims (PVC), you need to create them first. If you already have them, you can specify your existing PV configuration.</p>
+<h3 id="6-downloading-and-modifying-manifests-from-github">6. Downloading and Modifying Manifests from GitHub</h3>
+<p>To download the manifests from a GitHub repository, follow these steps:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-repository/k8s-manifests.git
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">cd</span><span class="w"> </span>k8s-manifests
 </span></code></pre></div>
-Alternatively, use the GitHub repo for the deployment:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cd k8s-pixelview/openstack-integration
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl apply -f openstack_deployment.yml
-</span></code></pre></div></p>
-<h3 id="step-3-expose-the-openstack-monitoring-service">Step 3: Expose the OpenStack Monitoring Service</h3>
-<p>To make the monitoring service externally accessible, create a service with the following manifest and save it as <code>openstack_service.yml</code>:
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-mon-service</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelview</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-mon</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span><span class="nt">externalIPs</span><span class="p">:</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.12</span>
+<p>Modify the necessary environment variables in <code>env-secret.yaml</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>nano<span class="w"> </span>env-secret.yaml
 </span></code></pre></div>
-Apply the service:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>openstack_service.yml
+<p>After modifying the file, apply the manifests:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>env-secret.yaml
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>combined-deployment.yaml
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>combined-services.yaml
 </span></code></pre></div>
-Alternatively, use the GitHub repo for the deployment:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cd k8s-pixelview/openstack-integration
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>kubectl apply -f openstack_service.yml
-</span></code></pre></div></p>
-<h2 id="2-docker-deployment">2. Docker Deployment</h2>
-<h3 id="step-1-create-the-env-file">Step 1: Create the <code>.env</code> File</h3>
-<p>Create the following <code>.env</code> file manually:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">DATA_IP</span><span class="o">=</span><span class="s2">&quot;http://10.0.0.12&quot;</span><span class="w"> </span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">DATA_PORT</span><span class="o">=</span><span class="s2">&quot;4001&quot;</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">OS_PROJECT_DOMAIN_NAME</span><span class="o">=</span><span class="s1">&#39;Default&#39;</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nv">OS_PROJECT_ID</span><span class="o">=</span><span class="s1">&#39;7c65161dd910483fac5e34ca53c5af07&#39;</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nv">OS_USER_DOMAIN_NAME</span><span class="o">=</span><span class="s1">&#39;Default&#39;</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nv">OS_PROJECT_NAME</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nv">OS_TENANT_NAME</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nv">OS_USERNAME</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nv">OS_PASSWORD</span><span class="o">=</span><span class="s1">&#39;VE67QUSy4G4oY2WqPL7zxy2VLL9eK98OrzE2ZZ5y&#39;</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nv">OS_AUTH_URL</span><span class="o">=</span><span class="s1">&#39;http://10.0.0.16:5000&#39;</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nv">OS_INTERFACE</span><span class="o">=</span><span class="s1">&#39;internal&#39;</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="nv">OS_ENDPOINT_TYPE</span><span class="o">=</span><span class="s1">&#39;internalURL&#39;</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="nv">OS_IDENTITY_API_VERSION</span><span class="o">=</span><span class="s1">&#39;3&#39;</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="nv">OS_REGION_NAME</span><span class="o">=</span><span class="s1">&#39;RegionOne&#39;</span>
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="nv">OS_AUTH_PLUGIN</span><span class="o">=</span><span class="s1">&#39;password&#39;</span>
-</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="nv">OS_CLOUD</span><span class="o">=</span>openstack
-</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="nv">OS_DOMAIN_ID</span><span class="o">=</span><span class="s1">&#39;default&#39;</span>
-</span></code></pre></div></p>
-<h3 id="step-2-create-the-docker-compose-file">Step 2: Create the Docker Compose File</h3>
-<p>Manually create the <code>docker-compose.yml</code> file:
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">services</span><span class="p">:</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">openstack-integration</span><span class="p">:</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/openstack-go:latest</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5000:5000&quot;</span>
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-integrations</span>
-</span></code></pre></div></p>
-<p>Alternatively, clone the GitHub repository and use the provided Docker Compose file:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pixelvirt/pixelview-docker.git
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">cd</span><span class="w"> </span>pixelview-docker/openstack-integration
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
-</span></code></pre></div></p>
-<h3 id="step-3-deploy-the-docker-container">Step 3: Deploy the Docker Container</h3>
-<p>To deploy the container manually:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker-compose up -d
-</span></code></pre></div>
-Alternatively, use the GitHub repository:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cd pixelview-docker/openstack-integration
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>docker-compose up -d
-</span></code></pre></div></p>
+<h2 id="docker-deployment">Docker Deployment</h2>
+<h2 id="prerequisites_1">Prerequisites</h2>
+<ol>
+<li>
+<p><strong>Docker and Docker Compose</strong>:
+   Ensure Docker and Docker Compose are installed and running on the host system.</p>
+</li>
+<li>
+<p><strong>OpenStack Configuration</strong>:
+   Verify that OpenStack is configured correctly, and the <code>clouds.yaml</code> file exists under <code>/etc/openstack/clouds.yaml</code> on the host system.</p>
+</li>
+<li>
+<p><strong>Environment Variables</strong>:
+   Prepare the necessary environment variables as described below.</p>
+</li>
+</ol>
 <hr />
-<h2 id="steps-to-verify-metrics-on-the-pixelview-dashboard">Steps to Verify Metrics on the PixelView Dashboard</h2>
-<h3 id="4-access-dashboard-edit-mode">4. Access Dashboard Edit Mode:</h3>
+<h2 id="docker-compose-configuration">Docker Compose Configuration</h2>
+<h3 id="docker-compose-file">Docker Compose File</h3>
+<p>The provided <code>docker-compose.yml</code> file includes two services:</p>
 <ul>
-<li><strong>Navigate to PixelView Dashboard</strong>: Go to the PixelView dashboard URL where the metrics are visualized.</li>
-<li><strong>Click on "Edit Dashboard"</strong>: This will allow you to customize and add new charts to visualize the metrics.</li>
+<li><strong>openstack-integration</strong>: Integrates OpenStack with PixelView.</li>
+<li><strong>mongodb</strong>:A MongoDB database for storing custom OpenStack quota details.</li>
 </ul>
-<h4 id="41-add-a-new-chart">4.1. Add a New Chart:</h4>
-<ul>
-<li><strong>Locate "Add New Chart" Button</strong>: Click on the option to create a new chart or widget on the dashboard.</li>
-</ul>
-<h4 id="42-add-a-new-data-source">4.2. Add a New Data Source:</h4>
-<ul>
-<li><strong>Look for "Add New Source"</strong>: You will need to add a data source to fetch metrics from the monitoring service.</li>
-<li><strong>Click on "Add New Source"</strong>: This option allows you to link a new data source to the chart.</li>
-</ul>
-<h4 id="43-configure-the-data-source">4.3. Configure the Data Source:</h4>
-<ul>
-<li>
-<p>terBy following these steps, you can integrate OpenStack monitoring into the PixelView environment using either Kubernetes or Docker. You can use the manual method or the provided GitHub repositories for quicker setup.</p>
-</li>
-<li>
-<p><strong>Name the Data Source</strong>: Provide a relevant name for your data source.</p>
-</li>
-<li>
-<p><strong>Set the Endpoint URL</strong>: In the URL field, enter the following format:</p>
-</li>
-</ul>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="w">    </span>http://&lt;DATA_IP&gt;:&lt;DATA_PORT&gt;/openstack/api/get-charts
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">openstack-integration</span><span class="p">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/openstack-go:openstack-test</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5000:8005&quot;</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack-integrations</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/openstack/clouds.yaml:/etc/openstack/clouds.yaml</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">  </span><span class="nt">mongodb</span><span class="p">:</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongo:latest</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data:/data/db</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">      </span><span class="nt">MONGO_INITDB_ROOT_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">      </span><span class="nt">MONGO_INITDB_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">      </span><span class="nt">MONGO_INITDB_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openstack</span>
 </span></code></pre></div>
-- Replace the placeholder values:</p>
+<h3 id="environment-variables-file-env">Environment Variables File (.env)</h3>
+<p>Create a <code>.env</code> file in the same directory as your <code>docker-compose.yml</code> file. Populate it with the following environment variables:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>DATA_URL=&quot;http://10.0.0.1:5000&quot;
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>MONGO_URI=&quot;mongodb://root:password@mongodb:27017&quot;
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>MONGO_DBNAME=&quot;openstack&quot;
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>AUTH_URL=&quot;http://10.0.0.1:9090/api/check_user_info&quot;
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>AUTH_KEY=&quot;6c673f51-6045-47b0-8745-eef9d165a310&quot;
+</span></code></pre></div>
 <ul>
+<li><strong>DATA_URL</strong>: The URL where the OpenStack integration service will be accessible.</li>
+<li><strong>MONGO_URI</strong>: Connection URI for MongoDB, including username, password, and database.</li>
+<li><strong>MONGO_DBNAME</strong>: Name of the database used for monitoring.</li>
+<li><strong>AUTH_URL</strong>: URL of the API used for authentication.</li>
+<li><strong>AUTH_KEY</strong>: Authentication key used to validate API access.</li>
+</ul>
+<hr />
+<h2 id="steps-to-set-up-and-run">Steps to Set Up and Run</h2>
+<h3 id="1-clone-or-prepare-the-files">1. Clone or Prepare the Files</h3>
+<p>Ensure the <code>docker-compose.yml</code> file and <code>.env</code> file are present in the working directory.</p>
+<h3 id="2-mount-the-openstack-configuration-file">2. Mount the OpenStack Configuration File</h3>
+<p>Ensure the <code>clouds.yaml</code> file is available at <code>/etc/openstack/clouds.yaml</code> on the host machine.</p>
+<h3 id="3-start-the-services">3. Start the Services</h3>
+<p>Run the following command to start the services:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div>
+<p>This will:
+- Start the OpenStack integration service on port 5000.
+- Start a MongoDB instance for storing monitoring data.</p>
+<h3 id="4-verify-the-services">4. Verify the Services</h3>
+<ul>
+<li>Check if the containers are running:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div>
+<ul>
+<li>Access the OpenStack integration service at <code>http://&lt;DATA_URL&gt;/openstack/api/get-charts</code>.</li>
+</ul>
+<hr />
+<h2 id="monitoring-openstack-on-pixelview">Monitoring OpenStack on PixelView</h2>
+<ol>
+<li><strong>Authenticate API Requests</strong>:</li>
 <li>
-<p><strong><DATA_IP></strong>: Enter the actual IP address where your service is running.</p>
+<p>Ensure that the <code>AUTH_URL</code> and <code>AUTH_KEY</code> are properly set up for authentication.</p>
 </li>
 <li>
-<p><strong><DATA_PORT></strong>: Use the port number configured for your application.</p>
+<p><strong>Check Data in MongoDB</strong>:</p>
 </li>
-</ul>
-<h4 id="44-save-and-display-the-metrics">4.4. Save and Display the Metrics:</h4>
+<li>Access the MongoDB container:
+     <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongodb<span class="w"> </span>mongo<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>password
+</span></code></pre></div></li>
+<li>Switch to the <code>openstack</code> database:
+     <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>use openstack
+</span></code></pre></div></li>
+<li>
+<p>Run queries to verify monitoring data.</p>
+</li>
+<li>
+<p><strong>View Logs</strong>:</p>
+</li>
+<li>
+<p>To debug or monitor logs from the OpenStack integration service, use:
+     <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>openstack-integrations
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>PixelView Monitoring</strong>:</p>
+</li>
+<li>Navigate to the PixelView dashboard.</li>
+<li>
+<p>To view OpenStack metrics, follow these steps:</p>
+<ol>
+<li>Click on <strong>ADD New Charts</strong>.</li>
+<li>Select <strong>Add Source</strong>.</li>
+<li>Provide an appropriate name and insert the following URL:
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>&lt;DATA_URL&gt;/openstack/api/get-charts
+</span></code></pre></div></li>
+<li>Click on <strong>Submit</strong>.</li>
+<li>After submission, locate the <strong>Regions</strong> option in the chart list and select it.</li>
+<li>Click on <strong>Submit</strong> again.</li>
+<li>Once completed, you will see your OpenStack clouds displayed.</li>
+</ol>
+</li>
+<li>
+<p>Click on any OpenStack cloud to view detailed information, including:</p>
 <ul>
-<li><strong>Save the Data Source Configuration</strong>: After entering the URL and configuring the data source, click on "Save" to apply the changes.</li>
-<li><strong>View the Chart</strong>: The PixelView dashboard should now fetch the metrics from the monitoring service and display them in the new chart.</li>
+<li>OpenStack hypervisors</li>
+<li>Instance networks</li>
+<li>Volumes</li>
+<li>OpenStack projects</li>
+<li>Quota classes</li>
 </ul>
+</li>
+</ol>
+<hr />
+<h2 id="common-issues-and-troubleshooting">Common Issues and Troubleshooting</h2>
+<h3 id="1-containers-failing-to-start">1. <strong>Containers Failing to Start</strong></h3>
+<ul>
+<li>Check the logs:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>&lt;container_name&gt;
+</span></code></pre></div></li>
+<li>Verify the <code>.env</code> file for correct values.</li>
+</ul>
+<h3 id="2-connection-issues-with-mongodb">2. <strong>Connection Issues with MongoDB</strong></h3>
+<ul>
+<li>Ensure the <code>MONGO_URI</code> in the <code>.env</code> file matches the MongoDB container settings.</li>
+<li>Verify MongoDB container status with:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div></li>
+</ul>
+<h3 id="3-authentication-errors">3. <strong>Authentication Errors</strong></h3>
+<ul>
+<li>Double-check the <code>AUTH_URL</code> and <code>AUTH_KEY</code> values in the <code>.env</code> file.</li>
+</ul>
+<hr />
+<h2 id="maintenance">Maintenance</h2>
+<ol>
+<li>
+<p><strong>Backup MongoDB Data</strong>:
+   Regularly back up the <code>./data</code> directory used by MongoDB.</p>
+</li>
+<li>
+<p><strong>Update Images</strong>:
+   To update the Docker images, run:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker-compose<span class="w"> </span>pull
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Monitor Logs</strong>:
+   Regularly check logs for errors or unusual activity.</p>
+</li>
+</ol>
 <hr />
 <p>By following these steps, you can integrate OpenStack monitoring into the PixelView environment using either Kubernetes or Docker. You can use the manual method or the provided GitHub repositories for quicker setup.</p>
 
