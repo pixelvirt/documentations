@@ -230,5 +230,6 @@ mysql -h <mysql_host> -u <mysql_user> -p
 - Restrict access to Redis and the API using firewall rules.
 
 - Use ClusterIP for internal services to limit exposure.
+
 ---
 This guide ensures a complete Kubernetes deployment for fetching and visualizing Zabbix metrics in PixelView.
