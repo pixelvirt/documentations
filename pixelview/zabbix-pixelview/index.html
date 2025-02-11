@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/dashboard/">
+        <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/zabbix-pixelview/">
       
       
-        <link rel="prev" href="../kube-installation/">
+        <link rel="prev" href="../openstack-integration/">
       
       
-        <link rel="next" href="../k8s-integration/">
+        <link rel="next" href="../zabbix-k8s/">
       
       
       <link rel="icon" href="../../images/favicon.ico">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Overview - </title>
+        <title>Setup on Docker - </title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#resizing-and-repositioning-widgets-on-your-dashboard" class="md-skip">
+        <a href="#pixelview-zabbix-metrics-setup-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Setup on Docker
             
           </span>
         </div>
@@ -468,28 +468,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Overview
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../dashboard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -498,33 +480,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#resizing-and-repositioning-widgets-on-your-dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      Resizing and Repositioning Widgets on Your Dashboard
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -587,47 +542,265 @@
                 
   
   
+    
   
   
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-        
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
   
-  
-    <a href="../zabbix-pixelview/" class="md-nav__link">
+    
+    
       
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Zabbix Metrics with PixelView
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Zabbix Metrics with PixelView
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
-        <span class="md-nav__icon md-icon"></span>
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
-    </a>
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup on Docker
+  </span>
   
 
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Setup on Docker
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-docker-compose-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Docker Compose File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing Metrics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizing-metrics-in-pixelview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualizing Metrics in PixelView
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-api-not-responding" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. API Not Responding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-redis-connection-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Redis Connection Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mysql-connection-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. MySQL Connection Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zabbix-k8s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup On Kubernetes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1385,6 +1558,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1393,9 +1568,129 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#resizing-and-repositioning-widgets-on-your-dashboard" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Resizing and Repositioning Widgets on Your Dashboard
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-docker-compose-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Docker Compose File
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing Metrics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizing-metrics-in-pixelview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualizing Metrics in PixelView
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-api-not-responding" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. API Not Responding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-redis-connection-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Redis Connection Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mysql-connection-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. MySQL Connection Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
     </span>
   </a>
   
@@ -1416,92 +1711,125 @@
                   
 
 
-  <h1>Overview</h1>
-
-<p>This document guides you through creating a personalized dashboard experience within the application. The default login page transitions into a fully customizable dashboard where you can add widgets tailored to your preferences.</p>
-<p><strong>Adding Widgets</strong></p>
+<h1 id="pixelview-zabbix-metrics-setup-guide"><strong>PixelView Zabbix Metrics Setup Guide</strong></h1>
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>This guide provides a step-by-step process to deploy PixelView to fetch and expose metrics from Zabbix using Docker and visualize them on the PixelView dashboard.</p>
+<h2 id="prerequisites"><strong>Prerequisites</strong></h2>
+<ul>
+<li>A running Zabbix instance with MySQL/MariaDB as the backend.</li>
+<li>Docker and Docker Compose installed.</li>
+<li>Redis for caching.</li>
+<li>Network access between PixelView, Zabbix, MySQL, and Redis.</li>
+</ul>
+<hr />
+<h2 id="deployment-configuration"><strong>Deployment Configuration</strong></h2>
+<h3 id="1-docker-compose-file"><strong>1. Docker Compose File</strong></h3>
+<p>Create a <code>docker-compose.yml</code> file:
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/zabbix-test:latest</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./env</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zabbix-backend</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">redis</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis:7.0</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span>
+</span></code></pre></div></p>
+<h3 id="2-environment-variables"><strong>2. Environment Variables</strong></h3>
+<p>Create a <code>.env</code> file (excluding sensitive details):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>FLASK_ZABBIX_ROOT_URL=http://&lt;your-domain-or-ip&gt;:8000/metrics
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>FLASK_ZABBIX_MYSQL_HOST=&lt;mysql_host&gt;
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>FLASK_ZABBIX_MYSQL_PORT=3306
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>FLASK_ZABBIX_MYSQL_USER=&lt;mysql_user&gt;
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>FLASK_ZABBIX_MYSQL_PASSWORD=&lt;mysql_password&gt;
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>FLASK_ZABBIX_MYSQL_DATABASE=zabbix
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>CACHE_TYPE=RedisCache
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>CACHE_REDIS_URL=redis://localhost:6379/0
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>CACHE_DEFAULT_TIMEOUT=500
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>ALLOWED_HOSTS=*
+</span></code></pre></div></p>
+<p>Replace <code>&lt;your-domain-or-ip&gt;</code>, <code>&lt;mysql_host&gt;</code>, <code>&lt;mysql_user&gt;</code>, and <code>&lt;mysql_password&gt;</code> with actual values.</p>
+<hr />
+<h2 id="installation-steps"><strong>Installation Steps</strong></h2>
 <ol>
 <li>
-<p><strong>Access the Add New Charts Option:</strong> Locate and click the "Add New Charts" button within the dashboard interface. This action triggers a pop-up window.
-<img alt="Add New Charts" src="../pix-images/addNewCharts.png" /></p>
+<p><strong>Ensure Docker and Docker Compose are installed:</strong>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>--version
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker-compose<span class="w"> </span>--version
+</span></code></pre></div></p>
 </li>
 <li>
-<p><strong>Add a New Data Source:</strong> Within the pop-up window, select the "Add Source" option. A new window titled "Add Chart Source" will appear.
-<img alt="Add Source" src="../pix-images/add-source.png" /></p>
+<p><strong>Start the services:</strong>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div></p>
 </li>
 <li>
-<p><strong>Define Your Data Source:</strong></p>
-<ul>
-<li><strong>Click the Plus Icon (+):</strong> In the upper right corner of the "Add Chart Source" window, click the plus icon (+) to initiate the data source creation process.
-<img alt="New Data Source" src="../pix-images/New-Data-Source.png" /></li>
-<li><strong>Provide a Source Name:</strong> Assign a descriptive and meaningful name to your data source for easy identification later.</li>
-<li><strong>Enter the Metric URL:</strong> In the designated URL section, meticulously paste the exact URL that points to the data metrics you want to visualize on your dashboard.</li>
-<li><strong>Token Inclusion (Optional):</strong> If the data source necessitates an access token for authentication, enter the valid token in the provided field. Tokens are often used to secure access to restricted data.</li>
-<li><strong>Click Submit:</strong> Once you've entered the necessary details, click the "Submit" button to confirm the creation of your data source.
-<img alt=" Submit Charts Details" src="../pix-images/verify-charts.png" /></li>
-</ul>
-</li>
-<li>
-<p><strong>Select Visualization Options:</strong> Upon successful data source creation, you'll be presented with various widget options suitable for displaying the data effectively on your dashboard. Common options include:</p>
-<ul>
-<li>Bar Charts: Ideal for depicting comparisons between different categories.</li>
-<li>Line Charts: Well-suited for showcasing trends over time.</li>
-<li>Pie Charts: Effective for illustrating the relative proportions of components within a whole.</li>
-<li>Tables: Provide a structured view of your data, especially when dealing with numerous data points.</li>
-</ul>
-<p>Carefully consider the nature of your data and the insights you aim to glean when selecting the most appropriate visualization type.
-<img alt="Visualization Options" src="../pix-images/VisualizationOptions.png" /></p>
-</li>
-<li>
-<p><strong>Finalize Your Dashboard:</strong> Once you've selected the desired widget type(s), click the "Submit" button to confirm your selections. Your personalized dashboard will now reflect the chosen widgets, displaying the data from your defined data sources.
-<img alt="Finalize Dashboard" src="../pix-images/FinalizeDashboard.png" /></p>
+<p><strong>Verify the containers are running:</strong>
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div></p>
 </li>
 </ol>
-<h2 id="resizing-and-repositioning-widgets-on-your-dashboard">Resizing and Repositioning Widgets on Your Dashboard</h2>
-<p>This guide will show you how to customize your dashboard by resizing and repositioning your widgets.</p>
-<p><strong>Prerequisites:</strong></p>
+<hr />
+<h2 id="accessing-metrics"><strong>Accessing Metrics</strong></h2>
+<p>Once deployed, access metrics at:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>http://&lt;your-domain-or-ip&gt;:8000/metrics
+</span></code></pre></div></p>
+<p>To test the API:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://&lt;your-domain-or-ip&gt;:8000/metrics
+</span></code></pre></div></p>
+<hr />
+<h2 id="visualizing-metrics-in-pixelview"><strong>Visualizing Metrics in PixelView</strong></h2>
+<ol>
+<li><strong>Log in to the PixelView dashboard.</strong></li>
+<li><strong>Click on</strong> "Add New Chart."</li>
+<li><strong>Click on</strong> "Add Source."</li>
+<li><strong>Provide an appropriate name</strong> in the "Name" section.</li>
+<li><strong>In the URL section, insert:</strong>
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>http://&lt;your-domain-or-ip&gt;:8000/metrics
+</span></code></pre></div></li>
+<li><strong>Click on Submit.</strong></li>
+<li>After submitting, multiple metric options will appear.</li>
+<li><strong>Select the desired items</strong> to visualize them on the PixelView dashboard.</li>
+</ol>
+<hr />
+<h2 id="troubleshooting"><strong>Troubleshooting</strong></h2>
+<h3 id="1-api-not-responding"><strong>1. API Not Responding</strong></h3>
 <ul>
-<li>
-<p>You must be in view mode for your dashboard. To edit your dashboard, locate the "Edit Dashboard" button (usually next to "Add New Chart").</p>
-</li>
-<li>
-<p><strong>Access Dashboard Editing Mode:</strong></p>
+<li>Check logs:<br />
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>zabbix-backend
+</span></code></pre></div></li>
+<li>Ensure MySQL and Redis are accessible.</li>
+<li>Verify <code>.env</code> configurations.</li>
+</ul>
+<h3 id="2-redis-connection-issues"><strong>2. Redis Connection Issues</strong></h3>
 <ul>
-<li>Begin by navigating to your dashboard interface.</li>
-<li>Locate the "Edit Dashboard" option. This is typically found next to the "Add New Chart" button. Click on "Edit Dashboard" to enter editing mode.
-<img alt="Edit Dashboard" src="../pix-images/edit-dashboard.png" /></li>
+<li>Test Redis connectivity:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>redis-cli<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-p<span class="w"> </span><span class="m">6379</span><span class="w"> </span>ping
+</span></code></pre></div></li>
+<li>If not running, restart:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>restart<span class="w"> </span>redis
+</span></code></pre></div></li>
 </ul>
-</li>
-<li>
-<p><strong>Select Widget for Resizing or Repositioning:</strong></p>
+<h3 id="3-mysql-connection-issues"><strong>3. MySQL Connection Issues</strong></h3>
 <ul>
-<li>Once in editing mode, you'll see all the widgets available on your dashboard.</li>
-<li>Choose the widget you wish to resize or reposition by clicking on it.</li>
+<li>Check if MySQL is reachable:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>mysql<span class="w"> </span>-h<span class="w"> </span>&lt;mysql_host&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;mysql_user&gt;<span class="w"> </span>-p
+</span></code></pre></div></li>
 </ul>
-</li>
-<li><strong>Repositioning a Widget:</strong><ul>
-<li>To reposition a widget, click and hold on the widget you've selected.</li>
-<li>Drag the widget to the desired location on the dashboard.</li>
-<li>Release the mouse button to drop the widget into place.</li>
+<hr />
+<h2 id="security-considerations"><strong>Security Considerations</strong></h2>
+<ul>
+<li>Do <strong>not</strong> expose MySQL credentials publicly.</li>
+<li>Use a secure network mode instead of <code>host</code> for production.</li>
+<li>Restrict access to Redis and the API using firewall rules.</li>
 </ul>
-</li>
-<li><strong>Resizing a Widget:</strong><ul>
-<li>To resize a widget, locate the bottom-right corner of the widget.
-<img alt="Resizing or Repositioning" src="../pix-images/resize-dash.png" /></li>
-<li>Click and hold on the resizing handle (usually indicated by a small triangle or square).</li>
-<li>Drag the handle diagonally to adjust the size of the widget.</li>
-<li>Release the mouse button when you're satisfied with the new size.</li>
-</ul>
-</li>
-<li><strong>Save Changes:</strong><ul>
-<li>After resizing or repositioning the widget(s) to your liking, it's important to save your changes.</li>
-<li>Look for the "Save Changes" button located next to the "Add New Chart" option.</li>
-<li>Click on "Save Changes" to apply the modifications to your dashboard.
-<img alt="Confirmation" src="../pix-images/save-resize.png" /></li>
-</ul>
-</li>
-</ul>
-<p>By following these simple steps, you can easily resize and reposition widgets on your dashboard, allowing you to create a layout that best suits your workflow and preferences. Take advantage of these customization options to optimize your dashboard for efficiency and usability</p>
+<hr />
+<p>This documentation should help you deploy and visualize Zabbix metrics on PixelView efficiently. Let me know if you need any modifications! 🚀</p>
 
 
 
@@ -1537,7 +1865,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../kube-installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Install on Kubetnetes">
+          <a href="../openstack-integration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Openstack Integration">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1547,20 +1875,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Install on Kubetnetes
+                Openstack Integration
               </div>
             </div>
           </a>
         
         
           
-          <a href="../k8s-integration/" class="md-footer__link md-footer__link--next" aria-label="Next: Kubernetes Integration">
+          <a href="../zabbix-k8s/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup On Kubernetes">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Kubernetes Integration
+                Setup On Kubernetes
               </div>
             </div>
             <div class="md-footer__button md-icon">
