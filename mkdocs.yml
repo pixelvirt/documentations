@@ -58,9 +58,14 @@ nav:
       - Dashboard:
           - "Overview": pixelview/dashboard.md
           - Dashboard Integrations:
+
               - "Kubernetes Integration": pixelview/k8s-integration.md
               - "Prometheus Integration": pixelview/prometheus-integration.md
               - "Openstack Integration": pixelview/openstack-integration.md
+          - Zabbix Metrics with PixelView:
+              - "Setup on Docker": pixelview/zabbix-pixelview.md
+              - "Setup On Kubernetes": pixelview/zabbix-k8s.md
+            
           - Customize:
               - "Customize Your Dashboard": pixelview/custom-dashboard.md
 
