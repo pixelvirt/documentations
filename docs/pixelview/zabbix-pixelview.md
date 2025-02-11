@@ -133,4 +133,4 @@ curl -X GET http://<your-domain-or-ip>:8000/metrics
 
 ---
 
-This documentation should help you deploy and visualize Zabbix metrics on PixelView efficiently. Let me know if you need any modifications! 🚀
+This documentation should help you deploy and visualize Zabbix metrics on PixelView efficiently.
