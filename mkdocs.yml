@@ -52,14 +52,13 @@ extra_css:
 
 nav:
   - Welcome: index.md
-  - Pixelview:
-      - "Install on Docker": pixelview/install-on-docker.md
-      - "Install on Kubetnetes": pixelview/kube-installation.md
-      - "Zabbix Pixelview Integration": pixelview/pixelview-zabbix.md
+  - Pixeview Documentations:
+      - PixelView:
+          - "introduction": pixelview/info.md
 
-      - Dashboard:
-          - "Overview": pixelview/dashboard.md
-
+          - Installations:
+                 - "Install on Docker": pixelview/install-on-docker.md
+                 - "Install on Kubetnetes": pixelview/kube-installation.md
           - Dashboard Integrations:
               - "Kubernetes Integration": pixelview/k8s-integration.md
               - "Prometheus Integration": pixelview/prometheus-integration.md
@@ -67,10 +66,14 @@ nav:
           - Zabbix Metrics with PixelView:
               - "Setup on Docker": pixelview/zabbix-pixelview.md
               - "Setup On Kubernetes": pixelview/zabbix-k8s.md
-            
+   
           - Customize:
               - "Customize Your Dashboard": pixelview/custom-dashboard.md
+      - Dashboard:
+          - "Overview": pixelview/dashboard.md
+
       - Monitoring:
+          - "Alerts From Zabbix": pixelview/pixelview-zabbix.md
           - "Cases": pixelview/cases.md
           - "Incident Case Documentation": pixelview/incident_documentation.md
           - "Services": pixelview/services.md
