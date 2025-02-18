@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/install-on-docker/">
+        <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/pixelview-zabbix/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../kube-installation/">
       
       
-        <link rel="next" href="../kube-installation/">
+        <link rel="next" href="../dashboard/">
       
       
       <link rel="icon" href="../../images/favicon.ico">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Install on Docker - </title>
+        <title>Zabbix Pixelview Integration - </title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation" class="md-skip">
+        <a href="#zabbix-and-pixelview-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install on Docker
+              Zabbix Pixelview Integration
             
           </span>
         </div>
@@ -188,7 +188,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../install-on-docker/" class="md-tabs__link">
           
   
     
@@ -371,30 +371,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Install on Docker
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../install-on-docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -403,119 +383,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#host-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Host Requirements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#steps-to-install" class="md-nav__link">
-    <span class="md-ellipsis">
-      Steps to Install
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Steps to Install">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-copy-docker-compose-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Copy Docker Compose File
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Copy Docker Compose File">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-clone-git-repository-alternative-to-manually-creating-manifests-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.1 Clone Git Repository (Alternative to Manually Creating manifests Files)::
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-start-the-containers" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. start the containers
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-verify-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Verify Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-accessing-the-application" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Accessing the Application
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-stopping-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Stopping Services
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -546,10 +413,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../pixelview-zabbix/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Zabbix Pixelview Integration
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -558,6 +445,227 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-custom-alert-script-in-zabbix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Create a Custom Alert Script in Zabbix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create a Custom Alert Script in Zabbix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-the-alert-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Create the Alert Script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-insert-the-following-python-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Insert the Following Python Script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-modify-the-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Modify the Script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-set-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Set File Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-restart-zabbix-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 Restart Zabbix Server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-generate-a-pixelview-service-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Generate a PixelView Service Key
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Generate a PixelView Service Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-login-to-pixelview-and-create-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Login to PixelView and Create a Service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-configure-zabbix-media-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Configure Zabbix Media Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Configure Zabbix Media Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-add-a-new-media-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Add a New Media Type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-create-message-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Create Message Templates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-zabbix-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Configure Zabbix Actions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Configure Zabbix Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-create-an-action-in-zabbix" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Create an Action in Zabbix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-set-up-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Set Up Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-creating-zabbix-user-with-admin-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Creating Zabbix User with Admin Permission
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Creating Zabbix User with Admin Permission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-create-a-new-user-in-zabbix" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Create a New User in Zabbix
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1504,79 +1612,73 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#host-requirements" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Host Requirements
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#steps-to-install" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Steps to Install
+      Prerequisites
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Steps to Install">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-custom-alert-script-in-zabbix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Create a Custom Alert Script in Zabbix
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Create a Custom Alert Script in Zabbix">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-copy-docker-compose-file" class="md-nav__link">
+  <a href="#11-create-the-alert-script" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Copy Docker Compose File
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Copy Docker Compose File">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-clone-git-repository-alternative-to-manually-creating-manifests-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.1 Clone Git Repository (Alternative to Manually Creating manifests Files)::
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-start-the-containers" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. start the containers
+      1.1 Create the Alert Script
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-verify-installation" class="md-nav__link">
+  <a href="#12-insert-the-following-python-script" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Verify Installation
+      1.2 Insert the Following Python Script
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-accessing-the-application" class="md-nav__link">
+  <a href="#13-modify-the-script" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Accessing the Application
+      1.3 Modify the Script
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-stopping-services" class="md-nav__link">
+  <a href="#14-set-file-permissions" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Stopping Services
+      1.4 Set File Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-restart-zabbix-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 Restart Zabbix Server
     </span>
   </a>
   
@@ -1588,9 +1690,123 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
+  <a href="#step-2-generate-a-pixelview-service-key" class="md-nav__link">
     <span class="md-ellipsis">
-      Notes
+      Step 2: Generate a PixelView Service Key
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Generate a PixelView Service Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-login-to-pixelview-and-create-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Login to PixelView and Create a Service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-configure-zabbix-media-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Configure Zabbix Media Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Configure Zabbix Media Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-add-a-new-media-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Add a New Media Type
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-create-message-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Create Message Templates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-configure-zabbix-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Configure Zabbix Actions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Configure Zabbix Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-create-an-action-in-zabbix" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Create an Action in Zabbix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-set-up-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Set Up Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-creating-zabbix-user-with-admin-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Creating Zabbix User with Admin Permission
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Creating Zabbix User with Admin Permission">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-create-a-new-user-in-zabbix" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Create a New User in Zabbix
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
     </span>
   </a>
   
@@ -1611,196 +1827,175 @@
                   
 
 
-<h1 id="installation">Installation</h1>
-<p>Like Docker? So do we!</p>
-<p>One of the quickest ways to get pixelview running is using Docker. This page will show you the basics of how to use pixelview  with Docker.</p>
-<h2 id="host-requirements">Host Requirements</h2>
-<p>Before proceeding with the installation, ensure that you have Docker and Docker Compose installed on your system. To do so you can follow the instructions provided on the <a href="https://docs.docker.com/get-docker/">docker's website</a>.</p>
-<h2 id="steps-to-install">Steps to Install</h2>
-<h3 id="1-copy-docker-compose-file">1. Copy Docker Compose File</h3>
-<p>Create a directory for your project and create a file named <code>docker-compose.yml</code>. Copy the provided service configurations into this file.</p>
-<div class="language-yaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">docker-compose.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span>
-<span class="normal"><a href="#__codelineno-0-11">11</a></span>
-<span class="normal"><a href="#__codelineno-0-12">12</a></span>
-<span class="normal"><a href="#__codelineno-0-13">13</a></span>
-<span class="normal"><a href="#__codelineno-0-14">14</a></span>
-<span class="normal"><a href="#__codelineno-0-15">15</a></span>
-<span class="normal"><a href="#__codelineno-0-16">16</a></span>
-<span class="normal"><a href="#__codelineno-0-17">17</a></span>
-<span class="normal"><a href="#__codelineno-0-18">18</a></span>
-<span class="normal"><a href="#__codelineno-0-19">19</a></span>
-<span class="normal"><a href="#__codelineno-0-20">20</a></span>
-<span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
-<span class="normal"><a href="#__codelineno-0-26">26</a></span>
-<span class="normal"><a href="#__codelineno-0-27">27</a></span>
-<span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span>
-<span class="normal"><a href="#__codelineno-0-36">36</a></span>
-<span class="normal"><a href="#__codelineno-0-37">37</a></span>
-<span class="normal"><a href="#__codelineno-0-38">38</a></span>
-<span class="normal"><a href="#__codelineno-0-39">39</a></span>
-<span class="normal"><a href="#__codelineno-0-40">40</a></span>
-<span class="normal"><a href="#__codelineno-0-41">41</a></span>
-<span class="normal"><a href="#__codelineno-0-42">42</a></span>
-<span class="normal"><a href="#__codelineno-0-43">43</a></span>
-<span class="normal"><a href="#__codelineno-0-44">44</a></span>
-<span class="normal"><a href="#__codelineno-0-45">45</a></span>
-<span class="normal"><a href="#__codelineno-0-46">46</a></span>
-<span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span>
-<span class="normal"><a href="#__codelineno-0-49">49</a></span>
-<span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.9&quot;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nt">services</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="nt">escalation</span><span class="p">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/escalation:latest</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rabbitmq</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="nt">extra_hosts</span><span class="p">:</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;mongoservice:172.17.0.1&quot;</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;rabbitmqservice:172.17.0.1&quot;</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">      </span><span class="nt">MONGOURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mongoservice:27018&quot;</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">      </span><span class="nt">RABBITURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;amqp://alertagility:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility&quot;</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">  </span><span class="nt">finEscalation</span><span class="p">:</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/findescalation:latest</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rabbitmq</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">    </span><span class="nt">extra_hosts</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;mongoservice:172.17.0.1&quot;</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;rabbitmqservice:172.17.0.1&quot;</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">      </span><span class="nt">MONGOURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mongoservice:27018&quot;</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">      </span><span class="nt">RABBITURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;amqp://alertagility:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility&quot;</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">  </span><span class="nt">alertagility</span><span class="p">:</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/alertagility:latest</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9090:9090&quot;</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rabbitmq</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="nt">extra_hosts</span><span class="p">:</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;mongoservice:172.17.0.1&quot;</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;rabbitmqservice:172.17.0.1&quot;</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">      </span><span class="nt">MONGOURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mongoservice:27018&quot;</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="w">      </span><span class="nt">DOMAIN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;demo.pixelvirt.com&quot;</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">      </span><span class="nt">RABBITURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;amqp://alertagility:wq:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility&quot;</span>
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42"></a>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/inithive-rabbitmq:latest</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5673:5672&quot;</span>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RABBITMQ_PASSWORD=vcW41MPUlM54uw</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RABBITMQ_USER=alertagility</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">  </span><span class="nt">mongodb</span><span class="p">:</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongo:5</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;27018:27017&quot;</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data:/data/db</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="w">  </span><span class="nt">alert-frontend</span><span class="p">:</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/alertagility-frontend:v2</span>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alertagility</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BACKEND_URL=alertagility:9090</span>
-</span></code></pre></div></td></tr></table></div>
-<h4 id="11-clone-git-repository-alternative-to-manually-creating-manifests-files">1.1 <strong>Clone Git Repository (Alternative to Manually Creating manifests Files)::</strong></h4>
-<p>Clone the repository containing the Docker manifests:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git clone  https://github.com/pixelvirt/pixelview-docker.git
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cd pixelview-docker/installation
+<h1 id="zabbix-and-pixelview-integration"><strong>Zabbix and PixelView Integration</strong></h1>
+<h2 id="overview"><strong>Overview</strong></h2>
+<p>This documentation outlines the step-by-step process of integrating <strong>Zabbix</strong> with <strong>PixelView</strong> to enable seamless alert forwarding and enhanced visualization of monitoring data.</p>
+<h2 id="prerequisites"><strong>Prerequisites</strong></h2>
+<p>Before proceeding, ensure you have the following:</p>
+<ul>
+<li>A running <strong>Zabbix Server</strong></li>
+<li><strong>PixelView</strong> account with appropriate permissions</li>
+<li>Access to the <strong>Zabbix alert scripts directory</strong></li>
+<li>Python3 installed on the Zabbix server</li>
+</ul>
+<h2 id="step-1-create-a-custom-alert-script-in-zabbix"><strong>Step 1: Create a Custom Alert Script in Zabbix</strong></h2>
+<p>To send alerts from Zabbix to PixelView, a custom script must be created.</p>
+<h3 id="11-create-the-alert-script"><strong>1.1 Create the Alert Script</strong></h3>
+<p>Log in to your Zabbix server and create the alert script in the appropriate directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>vim<span class="w"> </span>/usr/lib/zabbix/alertscripts/alertAgility.py
 </span></code></pre></div>
-<div style="border-left: 5px solid #0c2d7a; padding: 10px; border-radius: 5px;">
-  <span style="font-size: 1.2em;">&#128161;</span> <strong>Note:</strong> Find DOMAIN and replace it with your actual domain name and adjust environments according to your system.
-</div>
-
-<h3 id="2-start-the-containers">2. start the containers</h3>
-<p>Open a terminal window, navigate to the directory where the <code>docker-compose.yml</code> file is located, and run the following command:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker compose up -d
+<h3 id="12-insert-the-following-python-script"><strong>1.2 Insert the Following Python Script</strong></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/usr/bin/python3</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span> <span class="nn">requests</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">import</span> <span class="nn">sys</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kn">import</span> <span class="nn">json</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kn">import</span> <span class="nn">logging.handlers</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">URL</span> <span class="o">=</span> <span class="s2">&quot;http://&lt;alertagility_server&gt;:&lt;port&gt;/api/new_event&quot;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">SysLogHandler</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="s1">&#39;/dev/log&#39;</span><span class="p">)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%(module)s</span><span class="s1">.</span><span class="si">%(funcName)s</span><span class="s1">: </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">log</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">askey</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="n">reqbody</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="n">itemLists</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itemLists</span><span class="p">:</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="n">reqbody</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;X-Auth-Key&#39;</span><span class="p">:</span> <span class="n">key</span><span class="p">}</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">reqbody</span><span class="p">))</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    <span class="n">to</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    <span class="n">subject</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>    <span class="n">body</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    <span class="n">key</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="n">main</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 </span></code></pre></div>
-<p>This command will start all the services in detached mode, meaning they will run in the background.</p>
-<h3 id="3-verify-installation">3. Verify Installation</h3>
-<p>After running the <code>docker-compose up -d</code> command, you can verify that the services are running by executing:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker compose ps
+<h3 id="13-modify-the-script"><strong>1.3 Modify the Script</strong></h3>
+<p>Replace <code>&lt;alertagility_server&gt;:&lt;port&gt;</code> with the IP and port where your <strong>AlertAgility service</strong> is running.</p>
+<h3 id="14-set-file-permissions"><strong>1.4 Set File Permissions</strong></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/lib/zabbix/alertscripts/alertAgility.py
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>chown<span class="w"> </span>zabbix:zabbix<span class="w"> </span>/usr/lib/zabbix/alertscripts/alertAgility.py
 </span></code></pre></div>
-<p>This command will display the status of all the services defined in the <code>docker-compose.yml</code> file.</p>
-<h3 id="4-accessing-the-application">4. Accessing the Application</h3>
-<p>Once the services are up and running, you can access the frontend application by opening a web browser and navigating to <a href="http://localhost"><code>http://localhost</code></a>.</p>
-<h3 id="5-stopping-services">5. Stopping Services</h3>
-<p>To stop the running services, execute the following command:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker compose down
+<h3 id="15-restart-zabbix-server"><strong>1.5 Restart Zabbix Server</strong></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>zabbix-server
 </span></code></pre></div>
-<p>This will stop and remove all containers defined in the <code>docker-compose.yml</code> file.</p>
-<h2 id="notes">Notes</h2>
+<hr />
+<h2 id="step-2-generate-a-pixelview-service-key"><strong>Step 2: Generate a PixelView Service Key</strong></h2>
+<p>To authenticate alerts from Zabbix, you need a service key from PixelView.</p>
+<h3 id="21-login-to-pixelview-and-create-a-service"><strong>2.1 Login to PixelView and Create a Service</strong></h3>
+<ol>
+<li>Go to <strong>Services &gt; Add Service</strong></li>
+<li>Enter a <strong>Service Name</strong> (e.g., "Zabbix Alerts")</li>
+<li>Select <strong>Zabbix</strong> from the integration dropdown</li>
+<li>Click <strong>Create Template</strong></li>
+<li>Copy the <strong>Service Key</strong></li>
+<li>Click <strong>Save Template</strong></li>
+</ol>
+<hr />
+<h2 id="step-3-configure-zabbix-media-types"><strong>Step 3: Configure Zabbix Media Types</strong></h2>
+<p>Zabbix needs to use the custom script for alert notifications.</p>
+<h3 id="31-add-a-new-media-type"><strong>3.1 Add a New Media Type</strong></h3>
+<ol>
+<li><strong>Go to</strong> <code>Alerts &gt; Media Types &gt; Create Media Type</code></li>
+<li><strong>Enter the following details:</strong></li>
+<li><strong>Name:</strong> PixelView_alerts</li>
+<li><strong>Type:</strong> Script</li>
+<li><strong>Script Name:</strong> alertAgility.py</li>
+<li><strong>Script Parameters:</strong><ul>
+<li><code>{ALERT.SENDTO}</code></li>
+<li><code>{ALERT.SUBJECT}</code></li>
+<li><code>{ALERT.MESSAGE}</code></li>
+<li><strong>Key</strong> (Paste the <strong>Service Key</strong> from PixelView)</li>
+</ul>
+</li>
+</ol>
+<h3 id="32-create-message-templates"><strong>3.2 Create Message Templates</strong></h3>
 <ul>
 <li>
-<p>The default username to access the frontend is <code>admin@localhost</code></p>
+<p><strong>For Problems:</strong></p>
 </li>
 <li>
-<p>The default password is <code>password</code></p>
+<p><strong>Subject:</strong> <code>Problem: {EVENT.NAME}</code></p>
 </li>
 <li>
-<p>The services are configured to automatically restart (<code>restart: always</code>) in case of failures or system reboots.</p>
+<p><strong>Message:</strong>
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>status:{EVENT.STATUS}
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>service_name:{EVENT.NAME}
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>hostname:{HOST.NAME}
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>host_id:{HOST.ID}
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>severity:{EVENT.SEVERITY}
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>event_id:{EVENT.ID}
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>event_opsdata:{EVENT.OPDATA}
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>event_tags:{EVENT.TAGS}
+</span></code></pre></div></p>
 </li>
 <li>
-<p>The <code>depends_on</code> directive is used to define service dependencies, ensuring that dependent services are started before the dependent ones.</p>
+<p><strong>For Problem Recovery:</strong></p>
 </li>
 <li>
-<p>Ensure that your system meets the resource requirements for running the services, especially for memory and CPU.</p>
+<p><strong>Subject:</strong> <code>Resolved in {EVENT.DURATION}: {EVENT.NAME}</code></p>
 </li>
 <li>
-<p>You can customize environment variables and port mappings in the <code>docker-compose.yml</code> file as needed.</p>
+<p><strong>Message:</strong>
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>status:OK
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>service_name:{EVENT.NAME}
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>hostname:{HOST.NAME}
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>host_id:{HOST.ID}
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>severity:{EVENT.SEVERITY}
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>event_id:{EVENT.ID}
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>event_opsdata:{EVENT.OPDATA}
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Click <strong>Update</strong> to save.</p>
 </li>
 </ul>
-<p>With these instructions, you should be able to successfully download and install the PixelView Services on your system. If you encounter any issues or have questions, refer to the Docker and Docker Compose documentation or feel free to ask for assistance.</p>
+<hr />
+<h2 id="step-4-configure-zabbix-actions"><strong>Step 4: Configure Zabbix Actions</strong></h2>
+<p>This step ensures alerts are sent to the right recipients.</p>
+<h3 id="41-create-an-action-in-zabbix"><strong>4.1 Create an Action in Zabbix</strong></h3>
+<ol>
+<li><strong>Go to</strong> <code>Action &gt; Trigger Action &gt; Create Action</code></li>
+<li><strong>Set an Action Name</strong> (e.g., "Send Alerts to PixelView")</li>
+<li><strong>Define Conditions</strong> to determine which alerts should be sent</li>
+<li><strong>Select Host Groups</strong> for which alerts will be triggered</li>
+</ol>
+<h3 id="42-set-up-operations"><strong>4.2 Set Up Operations</strong></h3>
+<ol>
+<li><strong>In Operations, click Add:</strong></li>
+<li>Select <strong>Users/User Groups</strong></li>
+<li>In <strong>Send Only To</strong>, select <strong>PixelView_alerts</strong></li>
+<li>Define any additional conditions</li>
+<li>Click <strong>Update</strong></li>
+<li><strong>For Recovery Operations:</strong> Choose <strong>Notify all involved</strong> or select specific users</li>
+<li><strong>Click Update</strong> to save</li>
+</ol>
+<hr />
+<h2 id="step-5-creating-zabbix-user-with-admin-permission"><strong>Step 5: Creating Zabbix User with Admin Permission</strong></h2>
+<p>Before creating Trigger actions, you need a user with admin permission.</p>
+<h3 id="51-create-a-new-user-in-zabbix"><strong>5.1 Create a New User in Zabbix</strong></h3>
+<ol>
+<li><strong>Go to</strong> <code>Users &gt; Users &gt; Create User</code></li>
+<li><strong>Enter User Details</strong></li>
+<li>Click <strong>Media</strong>, then <strong>Add</strong></li>
+<li>Select <strong>PixelView_alerts</strong> as Media Type</li>
+<li>Enter the username in <strong>Send to</strong></li>
+<li>Configure other options as needed</li>
+<li>Click <strong>Save</strong></li>
+</ol>
+<hr />
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<p>By integrating <strong>Zabbix</strong> with <strong>PixelView</strong>, you gain a robust alerting solution that enhances monitoring efficiency, reduces downtime, and improves overall system reliability. This integration ensures real-time alerts are sent to the right users, enabling prompt action on critical events.</p>
 
 
 
@@ -1836,7 +2031,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Welcome">
+          <a href="../kube-installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Install on Kubetnetes">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1846,20 +2041,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Welcome
+                Install on Kubetnetes
               </div>
             </div>
           </a>
         
         
           
-          <a href="../kube-installation/" class="md-footer__link md-footer__link--next" aria-label="Next: Install on Kubetnetes">
+          <a href="../dashboard/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Install on Kubetnetes
+                Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">
