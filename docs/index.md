@@ -81,5 +81,5 @@ Customized private cloud environments with real-time monitoring to ensure high p
 At **Pixelvirt Technology**, we empower businesses with **reliable**, **efficient**, and **secure** cloud solutions. 💼  
 
 Visit our website for more details:  
-🌐 [Pixelvirt Technology Website](https://www.pixelvirttechnology.com)
+🌐 [Pixelvirt Technology Website](https://pixelvirt.com/)
 
