@@ -75,11 +75,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#resizing-and-repositioning-widgets-on-your-dashboard" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -442,7 +437,7 @@
         
   
   <span class="md-ellipsis">
-    introduction
+    Introduction
   </span>
   
 
@@ -701,7 +696,7 @@
             
   
   <span class="md-ellipsis">
-    Dashboard
+    Cloud Dashboard
   </span>
   
 
@@ -711,7 +706,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            Dashboard
+            Cloud Dashboard
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -729,17 +724,6 @@
       
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Overview
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -749,32 +733,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#resizing-and-repositioning-widgets-on-your-dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      Resizing and Repositioning Widgets on Your Dashboard
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1507,23 +1465,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#resizing-and-repositioning-widgets-on-your-dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      Resizing and Repositioning Widgets on Your Dashboard
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1539,90 +1480,40 @@
 
   <h1>Overview</h1>
 
-<p>This document guides you through creating a personalized dashboard experience within the application. The default login page transitions into a fully customizable dashboard where you can add widgets tailored to your preferences.</p>
-<p><strong>Adding Widgets</strong></p>
+<p>PixelView allows users to consolidate multiple cloud platforms into one palce.</p>
+<p>Currently we support: Openstack and Kubernetes
+Coming Soon: VMWare Integration</p>
+<p><strong>Adding Openstack Cloud(s)</strong></p>
 <ol>
 <li>
-<p><strong>Access the Add New Charts Option:</strong> Locate and click the "Add New Charts" button within the dashboard interface. This action triggers a pop-up window.
-<img alt="Add New Charts" src="../pix-images/addNewCharts.png" /></p>
+<p>Go to your Settings and click on Config -&gt; Openstack Settings
+<img alt="Add OpenStack Cloud" src="../pix-images/PixelViewOpenstackSettings.png" /></p>
 </li>
 <li>
-<p><strong>Add a New Data Source:</strong> Within the pop-up window, select the "Add Source" option. A new window titled "Add Chart Source" will appear.
-<img alt="Add Source" src="../pix-images/add-source.png" /></p>
+<p>Put your cloud.yaml data (single or multiple cloud)</p>
 </li>
 <li>
-<p><strong>Define Your Data Source:</strong></p>
-<ul>
-<li><strong>Click the Plus Icon (+):</strong> In the upper right corner of the "Add Chart Source" window, click the plus icon (+) to initiate the data source creation process.
-<img alt="New Data Source" src="../pix-images/New-Data-Source.png" /></li>
-<li><strong>Provide a Source Name:</strong> Assign a descriptive and meaningful name to your data source for easy identification later.</li>
-<li><strong>Enter the Metric URL:</strong> In the designated URL section, meticulously paste the exact URL that points to the data metrics you want to visualize on your dashboard.</li>
-<li><strong>Token Inclusion (Optional):</strong> If the data source necessitates an access token for authentication, enter the valid token in the provided field. Tokens are often used to secure access to restricted data.</li>
-<li><strong>Click Submit:</strong> Once you've entered the necessary details, click the "Submit" button to confirm the creation of your data source.
-<img alt=" Submit Charts Details" src="../pix-images/verify-charts.png" /></li>
-</ul>
+<p>Save the settings</p>
 </li>
 <li>
-<p><strong>Select Visualization Options:</strong> Upon successful data source creation, you'll be presented with various widget options suitable for displaying the data effectively on your dashboard. Common options include:</p>
-<ul>
-<li>Bar Charts: Ideal for depicting comparisons between different categories.</li>
-<li>Line Charts: Well-suited for showcasing trends over time.</li>
-<li>Pie Charts: Effective for illustrating the relative proportions of components within a whole.</li>
-<li>Tables: Provide a structured view of your data, especially when dealing with numerous data points.</li>
-</ul>
-<p>Carefully consider the nature of your data and the insights you aim to glean when selecting the most appropriate visualization type.
-<img alt="Visualization Options" src="../pix-images/VisualizationOptions.png" /></p>
-</li>
-<li>
-<p><strong>Finalize Your Dashboard:</strong> Once you've selected the desired widget type(s), click the "Submit" button to confirm your selections. Your personalized dashboard will now reflect the chosen widgets, displaying the data from your defined data sources.
-<img alt="Finalize Dashboard" src="../pix-images/FinalizeDashboard.png" /></p>
+<p>Under Cloud Dashboard, you will now see your OpenStack cloud(s) appear</p>
 </li>
 </ol>
-<h2 id="resizing-and-repositioning-widgets-on-your-dashboard">Resizing and Repositioning Widgets on Your Dashboard</h2>
-<p>This guide will show you how to customize your dashboard by resizing and repositioning your widgets.</p>
-<p><strong>Prerequisites:</strong></p>
-<ul>
+<p><strong>Adding Kubernetes Clusters</strong></p>
+<ol>
 <li>
-<p>You must be in view mode for your dashboard. To edit your dashboard, locate the "Edit Dashboard" button (usually next to "Add New Chart").</p>
+<p>Go to your Settings and click on Config -&gt; Kubernetes Settings</p>
 </li>
 <li>
-<p><strong>Access Dashboard Editing Mode:</strong></p>
-<ul>
-<li>Begin by navigating to your dashboard interface.</li>
-<li>Locate the "Edit Dashboard" option. This is typically found next to the "Add New Chart" button. Click on "Edit Dashboard" to enter editing mode.
-<img alt="Edit Dashboard" src="../pix-images/edit-dashboard.png" /></li>
-</ul>
+<p>Put your kubeconfig.yaml data (single or multiple cluster)</p>
 </li>
 <li>
-<p><strong>Select Widget for Resizing or Repositioning:</strong></p>
-<ul>
-<li>Once in editing mode, you'll see all the widgets available on your dashboard.</li>
-<li>Choose the widget you wish to resize or reposition by clicking on it.</li>
-</ul>
+<p>Save the settings</p>
 </li>
-<li><strong>Repositioning a Widget:</strong><ul>
-<li>To reposition a widget, click and hold on the widget you've selected.</li>
-<li>Drag the widget to the desired location on the dashboard.</li>
-<li>Release the mouse button to drop the widget into place.</li>
-</ul>
+<li>
+<p>Under Cloud Dashboard, you will now see your Kubernetes cluster(s) appear</p>
 </li>
-<li><strong>Resizing a Widget:</strong><ul>
-<li>To resize a widget, locate the bottom-right corner of the widget.
-<img alt="Resizing or Repositioning" src="../pix-images/resize-dash.png" /></li>
-<li>Click and hold on the resizing handle (usually indicated by a small triangle or square).</li>
-<li>Drag the handle diagonally to adjust the size of the widget.</li>
-<li>Release the mouse button when you're satisfied with the new size.</li>
-</ul>
-</li>
-<li><strong>Save Changes:</strong><ul>
-<li>After resizing or repositioning the widget(s) to your liking, it's important to save your changes.</li>
-<li>Look for the "Save Changes" button located next to the "Add New Chart" option.</li>
-<li>Click on "Save Changes" to apply the modifications to your dashboard.
-<img alt="Confirmation" src="../pix-images/save-resize.png" /></li>
-</ul>
-</li>
-</ul>
-<p>By following these simple steps, you can easily resize and reposition widgets on your dashboard, allowing you to create a layout that best suits your workflow and preferences. Take advantage of these customization options to optimize your dashboard for efficiency and usability</p>
+</ol>
 
 
 
