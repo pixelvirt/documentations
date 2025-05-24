@@ -1,7 +1,9 @@
-# PixelView: Comprehensive Incident Management System
+# PixelView: Comprehensive Multi Cloud Management Application
 
 ## Overview
-PixelView is a robust and versatile incident management system designed to streamline the process of monitoring, managing, and resolving incidents across multiple platforms. It acts as a centralized hub where users can view alerts from various monitoring tools like Zabbix, Prometheus, Nagios, and more. PixelView not only aggregates alerts but also provides advanced features such as alert assignment, escalation policies, on-call management, cloud inventory tracking, OpenStack monitoring, Kubernetes (k8s) monitoring, and automation capabilities powered by StackStorm.
+PixelView is a robust and versatile multi cloud management system designed to streamline the process of monitoring, managing, and resolving issues across multiple cloud platforms. Our primary focus is on providing private cloud users using OpenStack, Kubernetes and VMware solutions a single management platform. It acts as a centralized hub where users can manage all their cloud resources from one place, consolidate monitoring into one place, and leverage our automation integration with StackStorm to automate remediation and workflows. PixelView not only aggregates alerts but also provides advanced features such as alert assignment, escalation policies, on-call management, cloud inventory tracking.
+
+AI Focus: We aim to build a PixelView Agentic AI system, which acts like an AI SRE Engineer to help you on every step of cloud management process. Our AI Agents will itegrate OpenStack, monitoring and alerting with Kubernetes to form a overall view of things. It will help you troubleshoot issues as it happens with the aim of cutting troubleshooting time from hours and days to mins.
 
 ---
 

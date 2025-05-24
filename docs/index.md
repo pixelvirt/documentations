@@ -13,8 +13,8 @@ Welcome to **Pixelvirt Technology**! We offer cutting-edge cloud solutions desig
 ##  Our Services:  
 ---
 
-#### 1. **Cloud Monitoring and Incident Management** 📡  
-**Ensure your cloud environment runs smoothly with our robust cloud monitoring and incident management solutions.**  
+#### 1. **Multi Cloud and Infrastructure Management** 📡  
+**Ensure your multi cloud environment runs smoothly with our robust cloud management solutions.**  
 
 - 📈 **Real-time Monitoring & Alerts**:  
   Monitor your cloud infrastructure in real time, tracking key metrics like CPU, RAM, storage, uptime, and latency. Receive customizable alerts via email, SMS, or messaging platforms (e.g., Slack) when anomalies or performance issues are detected, ensuring you are always informed.
@@ -22,7 +22,7 @@ Welcome to **Pixelvirt Technology**! We offer cutting-edge cloud solutions desig
 - 🛑 **Incident Detection & Automated Responses**:  
   Automatically detect performance degradation, security threats, or configuration issues. With advanced anomaly detection, our system identifies problems early and triggers automated responses or alerts to prevent larger issues from escalating.
 
-- ⚙️ **Incident Resolution & Collaboration**:  
+- ⚙️  **Incident Resolution & Collaboration**:  
   Manage the entire incident lifecycle with our streamlined resolution workflow. Teams can collaborate in real time, working together to quickly diagnose and resolve issues. Integrated communication tools and task automation ensure that incidents are handled efficiently, minimizing downtime.
 
 - 🔄 **Post-Incident Analysis & Reporting**:  
