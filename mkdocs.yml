@@ -54,7 +54,7 @@ nav:
   - Welcome: index.md
   - Pixeview Documentations:
       - PixelView:
-          - "introduction": pixelview/info.md
+          - "Introduction": pixelview/info.md
 
           - Installations:
                  - "Install on Docker": pixelview/install-on-docker.md
@@ -66,10 +66,9 @@ nav:
           - Zabbix Metrics with PixelView:
               - "Setup on Docker": pixelview/zabbix-pixelview.md
               - "Setup On Kubernetes": pixelview/zabbix-k8s.md
-   
           - Customize:
               - "Customize Your Dashboard": pixelview/custom-dashboard.md
-      - Dashboard:
+      - Cloud Dashboard:
           - "Overview": pixelview/dashboard.md
 
       - Monitoring:
