@@ -58,7 +58,7 @@ services:
     environment:
       MONGOURL: "mongoservice:27018"
       DOMAIN: "demo.pixelvirt.com"
-      RABBITURL: "amqp://alertagility:wq:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility"
+      RABBITURL: "amqp://alertagility:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility"
 
   rabbitmq:
     image: ghcr.io/pixelvirt/inithive-rabbitmq:latest
@@ -76,8 +76,20 @@ services:
     volumes:
       - ./data:/data/db
 
+  mongodb-utils:
+    image: mongo:7.0
+    container_name: mongodb-utils
+    restart: always
+    ports:
+      - "27019:27017"
+    volumes:
+      - ./data-utils:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Password123
+
   alert-frontend:
-    image: ghcr.io/pixelvirt/alertagility-frontend:v2
+    image: ghcr.io/pixelvirt/alertagility-frontend:latest
     restart: always
     depends_on:
       - alertagility
@@ -86,6 +98,33 @@ services:
     environment:
       - BACKEND_URL=alertagility:9090
 
+  openstack-go:
+    image: ghcr.io/pixelvirt/openstack-go:latest
+    restart: always
+    ports:
+      - "8005:8005"
+    environment:
+      - DATA_URL=https://example.com # MAKE SURE THIS IS THE URL YOUR INSTALLATION IS AVAILABLE ON
+      - MONGO_URI=mongodb://dashboard:password123@mongodb-utils:27017/dashboard_db?authSource=dashboard_db
+      - MONGO_DBNAME=dashboard_db
+      - GOPHER_CLOUD_DEBUG=true
+      - ALERTAGILITY_URL="http://alertagility:9090"
+    volumes:
+      - ./clouds.yaml:/etc/openstack/clouds.yaml
+
+  k8s-dashboard:
+    restart: always
+    image: ghcr.io/pixelvirt/kubernetes-go:latest
+    env_file:
+      - .env
+    ports:
+      - "9091:9091"
+    container_name: k8s-dashboard
+    environment:
+      - KUBECONFIG_FILE=/usr/src/app/kubeconfig
+      - GET_CONFIG_FROM=out-of-cluster
+    volumes:
+      - ./k8s-config/:/usr/src/app/
 
 ```
 
@@ -102,7 +141,9 @@ cd pixelview-docker/installation
   <span style="font-size: 1.2em;">&#128161;</span> <strong>Note:</strong> Find DOMAIN and replace it with your actual domain name and adjust environments according to your system.
 </div>
 
-
+<div style="border-left: 5px solid #0c2d7a; padding: 10px; border-radius: 5px;">
+  <span style="font-size: 1.2em;">&#128161;</span> <strong>Note:</strong> KUBECONFIG_FILE is picked up from ./k8s-config directory, make sure your kubeconfig is available there (this will be deprecated next release to use config fomr UI). Also, ensure that, DATA_URL, in openstack-go is the url you just installed pixelview on.
+</div>
 
 ### 2. start the containers
 
