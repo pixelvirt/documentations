@@ -2,167 +2,167 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.pixelvirt.com/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/blog/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/api/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/automation-overview/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/blogs/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/bots/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/cases/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/create-alerts/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/custom-bot/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/custom-dashboard/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/dashboard/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/esclation/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/incident_documentation/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/info/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/install-on-docker/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/k8s-integration/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/k8s-monitoring/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/kube-installation/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/login/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/managements/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/monitoring/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/on-call/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/openstack-integration/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/pixelview-zabbix/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/prometheus-integration/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/registration/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/schedules/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/services/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/settings/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/workflow/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/zabbix-k8s/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/zabbix-pixelview/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/posts/</loc>
-         <lastmod>2025-05-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
