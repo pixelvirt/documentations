@@ -119,36 +119,44 @@ services:
     command: python3 app/main.py
 ```
 
+The chatbot requires a chatbot backend and it expect communication to happen on wss (web socket secure).
+As such the main site needs to have ssl setup in order for the bot to work. We suggest that a nginx
+proxy is setup to terminate ssl (with letsencrypt here) then proxy to backend as so:
+
 !!! tip "Setting nginx to proxy (with SSL) to chatbot"
 
     ```shell
+
        server {
-    listen 443 ssl;
-    server_name pixelview.pixelvirt.com;
+         listen 443 ssl;
+         server_name pixelview.pixelvirt.com;
 
-    ssl_certificate /etc/letsencrypt/live/pixelview.pixelvirt.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/pixelview.pixelvirt.com/privkey.pem;
+         ssl_certificate /etc/letsencrypt/live/pixelview.pixelvirt.com/fullchain.pem;
+         ssl_certificate_key /etc/letsencrypt/live/pixelview.pixelvirt.com/privkey.pem;
 
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
+         ssl_protocols TLSv1.2 TLSv1.3;
+         ssl_ciphers HIGH:!aNULL:!MD5;
 
-    location / {
-        proxy_pass http://localhost:80;
+         location / {
+           proxy_pass http://localhost:80;
 
-        # WebSocket headers
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
+           # WebSocket headers
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
 
-        # Standard proxy headers
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
+           # Standard proxy headers
+           proxy_set_header Host $host;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_set_header X-Forwarded-Proto $scheme;
+        }
+      }
+
     ```
 
+The chatbot UI tries to connect to wss://<your domain running pixelview>, and this ensures that gets
+handled correctly.
 
 #### 1.1 **Clone Git Repository (Alternative to Manually Creating manifests Files)::**
 
