@@ -1968,37 +1968,44 @@
 </span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8765:8765&quot;</span>
 </span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3 app/main.py</span>
 </span></code></pre></div></td></tr></table></div>
+<p>The chatbot requires a chatbot backend and it expect communication to happen on wss (web socket secure).
+As such the main site needs to have ssl setup in order for the bot to work. We suggest that a nginx
+proxy is setup to terminate ssl (with letsencrypt here) then proxy to backend as so:</p>
 <div class="admonition tip">
 <p class="admonition-title">Setting nginx to proxy (with SSL) to chatbot</p>
-<p>```shell
-   server {
-listen 443 ssl;
-server_name pixelview.pixelvirt.com;</p>
-<p>ssl_certificate /etc/letsencrypt/live/pixelview.pixelvirt.com/fullchain.pem;
-ssl_certificate_key /etc/letsencrypt/live/pixelview.pixelvirt.com/privkey.pem;</p>
-<p>ssl_protocols TLSv1.2 TLSv1.3;
-ssl_ciphers HIGH:!aNULL:!MD5;</p>
-<p>location / {
-    proxy_pass http://localhost:80;</p>
-<div class="language-text highlight"><pre><span></span><code># WebSocket headers
-proxy_http_version 1.1;
-proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection &quot;upgrade&quot;;
-
-# Standard proxy headers
-proxy_set_header Host $host;
-proxy_set_header X-Real-IP $remote_addr;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-proxy_set_header X-Forwarded-Proto $scheme;
-</code></pre></div>
-<p>}</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">   </span>server<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">     </span>listen<span class="w"> </span><span class="m">443</span><span class="w"> </span>ssl<span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">     </span>server_name<span class="w"> </span>pixelview.pixelvirt.com<span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">     </span>ssl_certificate<span class="w"> </span>/etc/letsencrypt/live/pixelview.pixelvirt.com/fullchain.pem<span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">     </span>ssl_certificate_key<span class="w"> </span>/etc/letsencrypt/live/pixelview.pixelvirt.com/privkey.pem<span class="p">;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">     </span>ssl_protocols<span class="w"> </span>TLSv1.2<span class="w"> </span>TLSv1.3<span class="p">;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">     </span>ssl_ciphers<span class="w"> </span>HIGH:!aNULL:!MD5<span class="p">;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">     </span>location<span class="w"> </span>/<span class="w"> </span><span class="o">{</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">       </span>proxy_pass<span class="w"> </span>http://localhost:80<span class="p">;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">       </span><span class="c1"># WebSocket headers</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">       </span>proxy_http_version<span class="w"> </span><span class="m">1</span>.1<span class="p">;</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">       </span>proxy_set_header<span class="w"> </span>Upgrade<span class="w"> </span><span class="nv">$http_upgrade</span><span class="p">;</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">       </span>proxy_set_header<span class="w"> </span>Connection<span class="w"> </span><span class="s2">&quot;upgrade&quot;</span><span class="p">;</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">       </span><span class="c1"># Standard proxy headers</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">       </span>proxy_set_header<span class="w"> </span>Host<span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">       </span>proxy_set_header<span class="w"> </span>X-Real-IP<span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">       </span>proxy_set_header<span class="w"> </span>X-Forwarded-For<span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">       </span>proxy_set_header<span class="w"> </span>X-Forwarded-Proto<span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="o">}</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">  </span><span class="o">}</span>
+</span></code></pre></div>
 </div>
-<p>}
-    ```</p>
+<p>The chatbot UI tries to connect to wss://<your domain running pixelview>, and this ensures that gets
+handled correctly.</p>
 <h4 id="11-clone-git-repository-alternative-to-manually-creating-manifests-files">1.1 <strong>Clone Git Repository (Alternative to Manually Creating manifests Files)::</strong></h4>
 <p>Clone the repository containing the Docker manifests:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git clone  https://github.com/pixelvirt/pixelview-docker.git
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cd pixelview-docker/installation
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git clone  https://github.com/pixelvirt/pixelview-docker.git
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cd pixelview-docker/installation
 </span></code></pre></div>
 <div style="border-left: 5px solid #0c2d7a; padding: 10px; border-radius: 5px;">
   <span style="font-size: 1.2em;">&#128161;</span> <strong>Note:</strong> Find DOMAIN and replace it with your actual domain name and adjust environments according to your system.
@@ -2010,7 +2017,7 @@ proxy_set_header X-Forwarded-Proto $scheme;
 
 <h3 id="2-start-the-containers">2. start the containers</h3>
 <p>Open a terminal window, navigate to the directory where the <code>docker-compose.yml</code> file is located, and run the following command:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker compose up -d
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker compose up -d
 </span></code></pre></div>
 <p>This command will start all the services in detached mode, meaning they will run in the background.</p>
 <h3 id="3-verify-installation">3. Verify Installation</h3>
@@ -2018,14 +2025,14 @@ proxy_set_header X-Forwarded-Proto $scheme;
 <p>The chatbot only work with https backend. As such we suggest  to use letsencrypt or similar to quickly setup
 your installation with certificate. Once that is done, run nginx to proxy calls to the application backend.
 You can use the nginx config snippet from above to get this done.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker compose ps
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker compose ps
 </span></code></pre></div>
 <p>This command will display the status of all the services defined in the <code>docker-compose.yml</code> file.</p>
 <h3 id="4-accessing-the-application">4. Accessing the Application</h3>
 <p>Once the services are up and running, you can access the frontend application by opening a web browser and navigating to <a href="http://localhost"><code>http://localhost</code></a>.</p>
 <h3 id="5-stopping-services">5. Stopping Services</h3>
 <p>To stop the running services, execute the following command:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker compose down
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker compose down
 </span></code></pre></div>
 <p>This will stop and remove all containers defined in the <code>docker-compose.yml</code> file.</p>
 <h2 id="notes">Notes</h2>
