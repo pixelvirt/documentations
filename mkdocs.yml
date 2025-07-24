@@ -58,7 +58,7 @@ nav:
 
           - Installations:
                  - "Install on Docker": pixelview/install-on-docker.md
-                 - "Install on Kubetnetes": pixelview/kube-installation.md
+                 - "Install on Kubernetes": pixelview/kube-installation.md
           - Dashboard Integrations:
               - "Kubernetes Integration": pixelview/k8s-integration.md
               - "Prometheus Integration": pixelview/prometheus-integration.md

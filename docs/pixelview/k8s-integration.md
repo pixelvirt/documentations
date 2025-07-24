@@ -53,8 +53,7 @@ metadata:
   namespace: pixelview
 
 ```
- **Apply Service Account**
- Apply the ServiceAccount to create it in your Kubernetes cluster:
+Apply the ServiceAccount to create it in your Kubernetes cluster :
 ``` bash
 kubectl apply -f serviceaccount.yaml
 ```
@@ -217,7 +216,7 @@ kubectl logs <pod-name> -n pixelview
 
 ## Section 2: Docker Deployment for PixelView Integration
 
-### 2.1 Docker Compose Configuration
+#### 2.1 Docker Compose Configuration
 
 Create a `docker-compose.yml` file with the following content:
 ``` yaml
@@ -265,7 +264,7 @@ git clone https://github.com/pixelvirt/pixelview-docker.git
 cd pixelview-docker/k8s-integration
 ```
 
-### 2.4 Verification
+#### 2.4 Verification
 
 To verify the application is running:
 
@@ -280,23 +279,18 @@ docker-compose logs k8s-monitoring
 To verify or check metrics on the PixelView dashboard after deployment, follow these steps to configure a new chart:
 
 1. **Access Dashboard Edit Mode:**
-    
     - Navigate to your PixelView dashboard.
     - Click on "Edit Dashboard" to enter edit mode.
 2. **Add New Chart:**
-    
     - Locate the option to "Add New Chart" and click on it to create a new visualization.
 3. **Add New Source:**
-    
     - Look for an option to "Add New Source" and click on it to configure a new data source.
 4. **Configure Data Source:**
-    
     - Provide an appropriate name for the data source.
     - In the URL section, enter the endpoint URL: `http://<DATA_IP>:<DATA_PORT>/kubernetes/api/get-charts`.
         - Replace `<DATA_IP>` with the actual IP address of the host machine where your application is deployed.
         - Replace `<DATA_PORT>` with the port number configured for your application.
 5. **Save and Display Metrics:**
-    
     - After configuring the data source, save your changes.
     - The dashboard should now fetch metrics from the specified endpoint and display them in the new chart.
 ### Example Configuration
