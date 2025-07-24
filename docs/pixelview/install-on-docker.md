@@ -17,20 +17,15 @@ Create a directory for your project and create a file named `docker-compose.yml`
 
   
 ```yaml title="docker-compose.yaml" linenums="1"
-
-version: "3.9"
-
 services:
   finEscalation:
     image: ghcr.io/pixelvirt/findescalation:latest
     restart: always
     depends_on:
-      - rabbitmq
-    extra_hosts:
-      - "mongoservice:172.17.0.1"
-      - "rabbitmqservice:172.17.0.1"
+      - mongoservice
+      - rabbitmqservice
     environment:
-      MONGOURL: "mongoservice:27018"
+      MONGOURL: mongoservice
       RABBITURL: "amqp://alertagility:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility"
 
   alertagility:
@@ -39,16 +34,19 @@ services:
     ports:
       - "9090:9090"
     depends_on:
-      - rabbitmq
-    extra_hosts:
-      - "mongoservice:172.17.0.1"
-      - "rabbitmqservice:172.17.0.1"
+      - mongoservice
+      - rabbitmqservice
     environment:
-      MONGOURL: "mongoservice:27018"
-      DOMAIN: "demo.pixelvirt.com"
+      DEX_ISSUER_URL: "https://dex.pixelvirt.com/dex"
+      DEX_REDIRECT_URI: "https://pixelvirt.com/api/auth/callback"
+      OPENSTACK_MIDDLEWARE_URL: "http://openstack:8005"
+      MONGOURL: mongoservice
+      DOMAIN: "flex.ohthree.com"
+      SUBDOMAIN: "alertagility"
       RABBITURL: "amqp://alertagility:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility"
 
-  rabbitmq:
+
+  rabbitmqservice:
     image: ghcr.io/pixelvirt/inithive-rabbitmq:latest
     restart: always
     ports:
@@ -57,24 +55,10 @@ services:
       - RABBITMQ_PASSWORD=vcW41MPUlM54uw
       - RABBITMQ_USER=alertagility
 
-  mongodb:
+  mongoservice:
     image: mongo:5
-    ports:
-      - "27018:27017"
     volumes:
-      - ./data:/data/db
-
-  mongodb-utils:
-    image: mongo:7.0
-    container_name: mongodb-utils
-    restart: always
-    ports:
-      - "27019:27017"
-    volumes:
-      - ./data-utils:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: Password123
+      - ./pixelview-data:/data/db
 
   alert-frontend:
     image: ghcr.io/pixelvirt/alertagility-frontend:latest
@@ -85,36 +69,84 @@ services:
       - "80:80"
     environment:
       - BACKEND_URL=alertagility:9090
+      - OPENSTACK_BACKEND_URL=openstack:8005
+      - KUBERNETES_BACKEND_URL=kubernetes:4000
+      - CHAT_BACKEND_URL=chatbot:8765
 
-  openstack-go:
+  openstack:
     image: ghcr.io/pixelvirt/openstack-go:latest
     restart: always
     ports:
       - "8005:8005"
     environment:
-      - DATA_URL=https://example.com # MAKE SURE THIS IS THE URL YOUR INSTALLATION IS AVAILABLE ON
-      - MONGO_URI=mongodb://dashboard:password123@mongodb-utils:27017/dashboard_db?authSource=dashboard_db
+      - MONGO_URI=mongodb://mongoservice
       - MONGO_DBNAME=dashboard_db
       - GOPHER_CLOUD_DEBUG=true
-      - ALERTAGILITY_URL="http://alertagility:9090"
-    volumes:
-      - ./clouds.yaml:/etc/openstack/clouds.yaml
+      - PIXELVIEW_URL=http://alertagility:9090
+#    Include common cloud config. This will be visible to all users.
+#    volumes:
+#      - ./clouds.yaml:/etc/openstack/clouds.yaml
 
-  k8s-dashboard:
+  kubernetes:
     restart: always
     image: ghcr.io/pixelvirt/kubernetes-go:latest
-    env_file:
-      - .env
     ports:
-      - "9091:9091"
+      - "4000:4000"
     container_name: k8s-dashboard
     environment:
       - KUBECONFIG_FILE=/usr/src/app/kubeconfig
-      - GET_CONFIG_FROM=out-of-cluster
-    volumes:
-      - ./k8s-config/:/usr/src/app/
+      - GET_CONFIG_FROM=bla
+      - PIXELVIEW_URL=http://alertagility:9090
+#    Include common kube config. This will be visible to all users.
+#    volumes:
+#      - ./k8s-config/:/usr/src/app/
 
+  chatbot:
+    restart: always
+    image: ghcr.io/pixelvirt/chatbot-dummy:latest
+    ports:
+      - "8765:8765"
+    command: python3 app/main.py
 ```
+
+The chatbot requires a chatbot backend and it expect communication to happen on wss (web socket secure).
+As such the main site needs to have ssl setup in order for the bot to work. We suggest that a nginx
+proxy is setup to terminate ssl (with letsencrypt here) then proxy to backend as so:
+
+!!! tip "Setting nginx to proxy (with SSL) to chatbot"
+
+    ```shell
+
+       server {
+         listen 443 ssl;
+         server_name pixelview.pixelvirt.com;
+
+         ssl_certificate /etc/letsencrypt/live/pixelview.pixelvirt.com/fullchain.pem;
+         ssl_certificate_key /etc/letsencrypt/live/pixelview.pixelvirt.com/privkey.pem;
+
+         ssl_protocols TLSv1.2 TLSv1.3;
+         ssl_ciphers HIGH:!aNULL:!MD5;
+
+         location / {
+           proxy_pass http://localhost:80;
+
+           # WebSocket headers
+           proxy_http_version 1.1;
+           proxy_set_header Upgrade $http_upgrade;
+           proxy_set_header Connection "upgrade";
+
+           # Standard proxy headers
+           proxy_set_header Host $host;
+           proxy_set_header X-Real-IP $remote_addr;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_set_header X-Forwarded-Proto $scheme;
+        }
+      }
+
+    ```
+
+The chatbot UI tries to connect to wss://<your domain running pixelview>, and this ensures that gets
+handled correctly.
 
 #### 1.1 **Clone Git Repository (Alternative to Manually Creating manifests Files)::**
 
@@ -149,7 +181,10 @@ This command will start all the services in detached mode, meaning they will run
 
 After running the `docker-compose up -d` command, you can verify that the services are running by executing:
 
-  
+The chatbot only work with https backend. As such we suggest  to use letsencrypt or similar to quickly setup
+your installation with certificate. Once that is done, run nginx to proxy calls to the application backend.
+You can use the nginx config snippet from above to get this done.
+ 
 
 ```
 
