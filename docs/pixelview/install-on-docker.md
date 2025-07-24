@@ -21,18 +21,6 @@ Create a directory for your project and create a file named `docker-compose.yml`
 version: "3.9"
 
 services:
-  escalation:
-    image: ghcr.io/pixelvirt/escalation:latest
-    restart: always
-    depends_on:
-      - rabbitmq
-    extra_hosts:
-      - "mongoservice:172.17.0.1"
-      - "rabbitmqservice:172.17.0.1"
-    environment:
-      MONGOURL: "mongoservice:27018"
-      RABBITURL: "amqp://alertagility:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility"
-
   finEscalation:
     image: ghcr.io/pixelvirt/findescalation:latest
     restart: always

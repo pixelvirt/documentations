@@ -1,4 +1,4 @@
-PixelView allows users to consolidate multiple cloud platforms into one palce.
+PixelView allows users to consolidate multiple cloud platforms into one place.
 
 Currently we support: Openstack and Kubernetes
 Coming Soon: VMWare Integration

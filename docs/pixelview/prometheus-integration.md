@@ -98,13 +98,15 @@ Before deploying the Kubernetes resources, replace the placeholder values in the
 - `[REPLACE_WITH_DATA_ADDR_URL]`: Data address URL for Prometheus (URL where your application is running).
 - `[REPLACE_WITH_PROMETHEUS_HOST]`: Prometheus Server host URL.
 
-**2.3. Apply Deployment:** Apply the deployment files using the `kubectl apply` command:
-```bash
+#### **2.3. Apply Deployment:** 
+Apply the deployment files using the `kubectl apply` command:
+
+``` bash
 kubectl apply -f prometheus-deployment.yaml
 kubectl apply -f prometheus-service.yaml
-kubectl apply -f prometheus-configmap.yaml
-
+kubectl apply -f prometheus-configmap.yaml 
 ```
+
 ---
 ### **3. Docker Deployment**
 

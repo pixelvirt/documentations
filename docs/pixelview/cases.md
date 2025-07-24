@@ -12,7 +12,7 @@ In the **Open Cases** section, you can view all newly triggered alerts from vari
 
 ![Open Cases](pix-images/open-cases.png)
 
-## Creating a New Case
+#### Creating a New Case
 
 To create a new case, follow these steps:
 
@@ -44,7 +44,7 @@ By following these steps, you can ensure that all alerts are promptly addressed 
 ![New Cases](pix-images/new-case.jpg)
 
 
-### Managing Alerts
+## Managing Alerts
 
 In the **Open Cases** section, you can manage your alerts according to your preferences. The available options include:
 

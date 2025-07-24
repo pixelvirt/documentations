@@ -1,6 +1,6 @@
-# *PixelView Zabbix Kubernetes Deployment Guide*
+# PixelView Zabbix Kubernetes Deployment Guide
 
-## *Overview*
+## **Overview**
 
 This guide provides a step-by-step process to deploy PixelView to fetch and expose metrics from Zabbix within a Kubernetes cluster using a pixelview namespace.
 
@@ -15,9 +15,9 @@ This guide provides a step-by-step process to deploy PixelView to fetch and expo
 
 - Network access between PixelView, Zabbix, MySQL, and Redis
 
-## *Kubernetes Deployment Configuration*
+## **Kubernetes Deployment Configuration**
 ---
-### *ConfigMap for Environment Variables*
+### ConfigMap for Environment Variables
 
 The following `ConfigMap` stores non-sensitive configuration values:
 ``` yaml
@@ -38,7 +38,7 @@ data:
 
 ```
 ---
-### *Secret for MySQL Credentials*
+### Secret for MySQL Credentials
 
 To securely store MySQL credentials, use a Secret:
 ``` yaml
@@ -54,7 +54,7 @@ data:
 ```
 Replace `<base64-encoded-user>` and `<base64-encoded-password>` with base64-encoded values of your MySQL username and password.
 ---
-### *Deploying the Zabbix Backend*
+### Deploying the Zabbix Backend
 
 Create a Deployment for the API backend:
 ``` yaml
@@ -85,7 +85,7 @@ spec:
         - containerPort: 8000
 ```
 ---
-### *Service for Zabbix Backend*
+### Service for Zabbix Backend
 
 Expose the backend service internally:
 ``` yaml
@@ -104,7 +104,7 @@ spec:
   type: ClusterIP
 ```
 ---
-### *Deploying Redis for Caching*
+### Deploying Redis for Caching
 ``` yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -128,7 +128,7 @@ spec:
         - containerPort: 6379
 ```
 
-### *Service for Redis*
+### Service for Redis
 
 ``` yaml
 apiVersion: v1
@@ -145,7 +145,7 @@ spec:
       targetPort: 6379
   type: ClusterIP
 ```
-### *Deployment Steps*
+### Deployment Steps
 
 *Save the manifest file as `pixelview-k8s.yaml`.*
 
