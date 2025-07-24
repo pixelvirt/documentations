@@ -243,14 +243,14 @@ spec:
       targetPort: 27017
 
 ```
-#### 2. Apply the YAML Files
+##### 2. Apply the YAML Files
 
 Apply the combined deployment and service YAML files using `kubectl apply -f` command:
 ```sh
 kubectl apply -f pixelview-deployment.yaml
 kubectl apply -f pixelview-service.yaml
 ```
-#### 3. Verify Deployments and Services
+##### 3. Verify Deployments and Services
 
 To ensure that your deployments and services are running correctly, use the following commands:
 
@@ -261,7 +261,7 @@ kubectl get services
 You should see a list of deployments and services along with their statuses.
 
 
-#### 4 **Clone Repository (Alternative to Manually Creating Deployment Files):**
+##### 4. **Clone Repository (Alternative to Manually Creating Deployment Files):**
 
 If you prefer not to create deployment files manually, you can clone the repository containing the Kubernetes manifests:
 ``` bash

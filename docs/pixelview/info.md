@@ -140,20 +140,20 @@ PixelView’s exclusive **AI Assistant** allows you to interact with your infras
 
 ## Use Cases
 
-1. **DevOps Teams:**
-   - DevOps engineers can use PixelView to monitor their CI/CD pipelines, Kubernetes clusters, and cloud infrastructure. The automation capabilities provided by StackStorm enable them to quickly respond to incidents and reduce downtime.
+1. **DevOps Teams:** <br>
+DevOps engineers can use PixelView to monitor their CI/CD pipelines, Kubernetes clusters, and cloud infrastructure. The automation capabilities provided by StackStorm enable them to quickly respond to incidents and reduce downtime.
 
-2. **IT Operations:**
-   - IT operations teams can leverage PixelView to manage alerts from various monitoring tools, assign tasks to the appropriate personnel, and ensure that incidents are resolved within SLAs.
+2. **IT Operations:** <br>
+IT operations teams can leverage PixelView to manage alerts from various monitoring tools, assign tasks to the appropriate personnel, and ensure that incidents are resolved within SLAs.
 
-3. **Cloud Administrators:**
-   - Cloud administrators can use PixelView to track the health and performance of their cloud resources, optimize costs, and automate routine maintenance tasks.
+3. **Cloud Administrators:** <br>
+Cloud administrators can use PixelView to track the health and performance of their cloud resources, optimize costs, and automate routine maintenance tasks.
 
-4. **OpenStack Administrators:**
-   - OpenStack administrators can rely on PixelView to monitor the health of their OpenStack environment, detect faults early, and automate recovery processes.
+4. **OpenStack Administrators:** <br>
+OpenStack administrators can rely on PixelView to monitor the health of their OpenStack environment, detect faults early, and automate recovery processes.
 
-5. **SREs (Site Reliability Engineers):**
-   - SREs can use PixelView to implement proactive monitoring strategies, set up escalation policies, and automate incident response workflows to improve system reliability.
+5. **SREs (Site Reliability Engineers):** <br>
+SREs can use PixelView to implement proactive monitoring strategies, set up escalation policies, and automate incident response workflows to improve system reliability.
 
 ---
 

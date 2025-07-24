@@ -11,7 +11,7 @@ Prometheus is an open-source monitoring and alerting toolkit widely used for col
 2. Docker [pixelview-docker repository](https://github.com/pixelvirt/pixelview-docker.git)
 
 
-**1. Kubernetes Deployment Files:**
+### **1. Kubernetes Deployment Files:**
 
 **1.1. Deployment:** The deployment file specifies the configuration for deploying the Prometheus service on PixelView. Below is the deployment file (`prometheus-deployment.yaml`):
 ```yamal linenums="1"
@@ -98,13 +98,15 @@ Before deploying the Kubernetes resources, replace the placeholder values in the
 - `[REPLACE_WITH_DATA_ADDR_URL]`: Data address URL for Prometheus (URL where your application is running).
 - `[REPLACE_WITH_PROMETHEUS_HOST]`: Prometheus Server host URL.
 
-**2.3. Apply Deployment:** Apply the deployment files using the `kubectl apply` command:
-```bash
+#### **2.3. Apply Deployment:** 
+Apply the deployment files using the `kubectl apply` command:
+
+``` bash
 kubectl apply -f prometheus-deployment.yaml
 kubectl apply -f prometheus-service.yaml
-kubectl apply -f prometheus-configmap.yaml
-
+kubectl apply -f prometheus-configmap.yaml 
 ```
+
 ---
 ### **3. Docker Deployment**
 
@@ -174,24 +176,19 @@ export PROMETHEUS_HOST=http://162.242.209.130:9091/  # Prometheus host URL
 
 To verify or check metrics on the PixelView dashboard after deployment, follow these steps to configure a new chart:
 
-1. **Access Dashboard Edit Mode:**
-    
+1. **Access Dashboard Edit Mode:** 
     - Navigate to your PixelView dashboard.
     - Click on "Edit Dashboard" to enter edit mode.
 2. **Add New Chart:**
-    
     - Locate the option to "Add New Chart" and click on it to create a new visualization.
 3. **Add New Source:**
-    
     - Look for an option to "Add New Source" and click on it to configure a new data source.
 4. **Configure Data Source:**
-    
     - Provide an appropriate name for the data source.
     - In the URL section, enter the endpoint URL: `http://<DATA_IP>:<DATA_PORT>/kubernetes/api/get-charts`.
         - Replace `<DATA_IP>` with the actual IP address where your application is running.
         - Replace `<DATA_PORT>` with the port number configured for your application.
 5. **Save and Display Metrics:**
-    
     - After configuring the data source, save your changes.
     - The dashboard should now fetch metrics from the specified endpoint and display them in the new chart.
 

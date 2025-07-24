@@ -2,7 +2,6 @@
 
 This documentation provides a step-by-step guide to integrate OpenStack monitoring into the PixelView environment using both Kubernetes and Docker deployment methods. Choose the appropriate method based on your infrastructure setup.
 
-
 ## Kubernetes Deployment
 ## Prerequisites
 
@@ -205,13 +204,13 @@ kubectl apply -f combined-services.yaml
 ## Prerequisites
 
 1. **Docker and Docker Compose**:
-   Ensure Docker and Docker Compose are installed and running on the host system.
+    Ensure Docker and Docker Compose are installed and running on the host system.
    
 2. **OpenStack Configuration**:
-   Verify that OpenStack is configured correctly, and the `clouds.yaml` file exists under `/etc/openstack/clouds.yaml` on the host system.
+    Verify that OpenStack is configured correctly, and the `clouds.yaml` file exists under `/etc/openstack/clouds.yaml` on the host system.
 
 3. **Environment Variables**:
-   Prepare the necessary environment variables as described below.
+    Prepare the necessary environment variables as described below.
 
 ---
 
@@ -300,45 +299,45 @@ This will:
 ## Monitoring OpenStack on PixelView
 
 2. **Authenticate API Requests**:
-   - Ensure that the `AUTH_URL` and `AUTH_KEY` are properly set up for authentication.
+    - Ensure that the `AUTH_URL` and `AUTH_KEY` are properly set up for authentication.
 
 3. **Check Data in MongoDB**:
-   - Access the MongoDB container:
-     ```bash
-     docker exec -it mongodb mongo -u root -p password
-     ```
-   - Switch to the `openstack` database:
-     ```
-     use openstack
-     ```
-   - Run queries to verify monitoring data.
+    - Access the MongoDB container:
+      ```bash
+      docker exec -it mongodb mongo -u root -p password
+      ```
+    - Switch to the `openstack` database:
+      ```
+      use openstack
+      ```
+    - Run queries to verify monitoring data.
 
 4. **View Logs**:
-   - To debug or monitor logs from the OpenStack integration service, use:
-     ```bash
-     docker logs -f openstack-integrations
-     ```
+    - To debug or monitor logs from the OpenStack integration service, use:
+      ```bash
+      docker logs -f openstack-integrations
+      ```
 
 5. **PixelView Monitoring**:
-   - Navigate to the PixelView dashboard.
-   - To view OpenStack metrics, follow these steps:
-     1. Click on **ADD New Charts**.
-     2. Select **Add Source**.
-     3. Provide an appropriate name and insert the following URL:
-        ```
-        <DATA_URL>/openstack/api/get-charts
-        ```
-     4. Click on **Submit**.
-     5. After submission, locate the **Regions** option in the chart list and select it.
-     6. Click on **Submit** again.
-     7. Once completed, you will see your OpenStack clouds displayed.
+    - Navigate to the PixelView dashboard.
+    - To view OpenStack metrics, follow these steps:
+        1. Click on **ADD New Charts**.
+        2. Select **Add Source**.
+        3. Provide an appropriate name and insert the following URL:
+           ```
+           <DATA_URL>/openstack/api/get-charts
+           ```
+        4. Click on **Submit**.
+        5. After submission, locate the **Regions** option in the chart list and select it.
+        6. Click on **Submit** again.
+        7. Once completed, you will see your OpenStack clouds displayed.
 
-   - Click on any OpenStack cloud to view detailed information, including:
-     - OpenStack hypervisors
-     - Instance networks
-     - Volumes
-     - OpenStack projects
-     - Quota classes
+    - Click on any OpenStack cloud to view detailed information, including:
+        - OpenStack hypervisors
+        - Instance networks
+        - Volumes
+        - OpenStack projects
+        - Quota classes
 
 ---
 
@@ -366,17 +365,17 @@ This will:
 ## Maintenance
 
 1. **Backup MongoDB Data**:
-   Regularly back up the `./data` directory used by MongoDB.
+    Regularly back up the `./data` directory used by MongoDB.
 
 2. **Update Images**:
-   To update the Docker images, run:
-   ```bash
-   docker-compose pull
-   docker-compose up -d
-   ```
+    To update the Docker images, run:
+    ```bash
+    docker-compose pull
+    docker-compose up -d
+    ```
 
 3. **Monitor Logs**:
-   Regularly check logs for errors or unusual activity.
+    Regularly check logs for errors or unusual activity.
 
 ---
 By following these steps, you can integrate OpenStack monitoring into the PixelView environment using either Kubernetes or Docker. You can use the manual method or the provided GitHub repositories for quicker setup.
