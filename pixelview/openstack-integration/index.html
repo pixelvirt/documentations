@@ -2294,15 +2294,15 @@
 <ol>
 <li>
 <p><strong>Docker and Docker Compose</strong>:
-   Ensure Docker and Docker Compose are installed and running on the host system.</p>
+    Ensure Docker and Docker Compose are installed and running on the host system.</p>
 </li>
 <li>
 <p><strong>OpenStack Configuration</strong>:
-   Verify that OpenStack is configured correctly, and the <code>clouds.yaml</code> file exists under <code>/etc/openstack/clouds.yaml</code> on the host system.</p>
+    Verify that OpenStack is configured correctly, and the <code>clouds.yaml</code> file exists under <code>/etc/openstack/clouds.yaml</code> on the host system.</p>
 </li>
 <li>
 <p><strong>Environment Variables</strong>:
-   Prepare the necessary environment variables as described below.</p>
+    Prepare the necessary environment variables as described below.</p>
 </li>
 </ol>
 <hr />
@@ -2376,33 +2376,35 @@
 <hr />
 <h2 id="monitoring-openstack-on-pixelview">Monitoring OpenStack on PixelView</h2>
 <ol>
-<li><strong>Authenticate API Requests</strong>:</li>
 <li>
-<p>Ensure that the <code>AUTH_URL</code> and <code>AUTH_KEY</code> are properly set up for authentication.</p>
+<p><strong>Authenticate API Requests</strong>:</p>
+<ul>
+<li>Ensure that the <code>AUTH_URL</code> and <code>AUTH_KEY</code> are properly set up for authentication.</li>
+</ul>
 </li>
 <li>
 <p><strong>Check Data in MongoDB</strong>:</p>
-</li>
+<ul>
 <li>Access the MongoDB container:
-     <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongodb<span class="w"> </span>mongo<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>password
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongodb<span class="w"> </span>mongo<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>password
 </span></code></pre></div></li>
 <li>Switch to the <code>openstack</code> database:
-     <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>use openstack
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>use openstack
 </span></code></pre></div></li>
-<li>
-<p>Run queries to verify monitoring data.</p>
+<li>Run queries to verify monitoring data.</li>
+</ul>
 </li>
 <li>
 <p><strong>View Logs</strong>:</p>
-</li>
-<li>
-<p>To debug or monitor logs from the OpenStack integration service, use:
-     <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>openstack-integrations
-</span></code></pre></div></p>
+<ul>
+<li>To debug or monitor logs from the OpenStack integration service, use:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>openstack-integrations
+</span></code></pre></div></li>
+</ul>
 </li>
 <li>
 <p><strong>PixelView Monitoring</strong>:</p>
-</li>
+<ul>
 <li>Navigate to the PixelView dashboard.</li>
 <li>
 <p>To view OpenStack metrics, follow these steps:</p>
@@ -2410,7 +2412,7 @@
 <li>Click on <strong>ADD New Charts</strong>.</li>
 <li>Select <strong>Add Source</strong>.</li>
 <li>Provide an appropriate name and insert the following URL:
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>&lt;DATA_URL&gt;/openstack/api/get-charts
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>&lt;DATA_URL&gt;/openstack/api/get-charts
 </span></code></pre></div></li>
 <li>Click on <strong>Submit</strong>.</li>
 <li>After submission, locate the <strong>Regions</strong> option in the chart list and select it.</li>
@@ -2426,6 +2428,8 @@
 <li>Volumes</li>
 <li>OpenStack projects</li>
 <li>Quota classes</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
@@ -2454,18 +2458,18 @@
 <ol>
 <li>
 <p><strong>Backup MongoDB Data</strong>:
-   Regularly back up the <code>./data</code> directory used by MongoDB.</p>
+    Regularly back up the <code>./data</code> directory used by MongoDB.</p>
 </li>
 <li>
 <p><strong>Update Images</strong>:
-   To update the Docker images, run:
-   <div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker-compose<span class="w"> </span>pull
+    To update the Docker images, run:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker-compose<span class="w"> </span>pull
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
 </span></code></pre></div></p>
 </li>
 <li>
 <p><strong>Monitor Logs</strong>:
-   Regularly check logs for errors or unusual activity.</p>
+    Regularly check logs for errors or unusual activity.</p>
 </li>
 </ol>
 <hr />

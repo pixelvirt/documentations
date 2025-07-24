@@ -1904,8 +1904,8 @@
                   
 
 
-<h1 id="pixelview-zabbix-kubernetes-deployment-guide"><em>PixelView Zabbix Kubernetes Deployment Guide</em></h1>
-<h2 id="overview"><em>Overview</em></h2>
+<h1 id="pixelview-zabbix-kubernetes-deployment-guide">PixelView Zabbix Kubernetes Deployment Guide</h1>
+<h2 id="overview"><strong>Overview</strong></h2>
 <p>This guide provides a step-by-step process to deploy PixelView to fetch and expose metrics from Zabbix within a Kubernetes cluster using a pixelview namespace.</p>
 <h2 id="prerequisites"><strong>Prerequisites</strong></h2>
 <ul>
@@ -1925,9 +1925,9 @@
 <p>Network access between PixelView, Zabbix, MySQL, and Redis</p>
 </li>
 </ul>
-<h2 id="kubernetes-deployment-configuration"><em>Kubernetes Deployment Configuration</em></h2>
+<h2 id="kubernetes-deployment-configuration"><strong>Kubernetes Deployment Configuration</strong></h2>
 <hr />
-<h3 id="configmap-for-environment-variables"><em>ConfigMap for Environment Variables</em></h3>
+<h3 id="configmap-for-environment-variables">ConfigMap for Environment Variables</h3>
 <p>The following <code>ConfigMap</code> stores non-sensitive configuration values:
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
@@ -1945,7 +1945,7 @@
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">ALLOWED_HOSTS</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;*&quot;</span>
 </span></code></pre></div></p>
 <hr />
-<h3 id="secret-for-mysql-credentials"><em>Secret for MySQL Credentials</em></h3>
+<h3 id="secret-for-mysql-credentials">Secret for MySQL Credentials</h3>
 <p>To securely store MySQL credentials, use a Secret:
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
@@ -1959,7 +1959,7 @@
 </span></code></pre></div>
 Replace <code>&lt;base64-encoded-user&gt;</code> and <code>&lt;base64-encoded-password&gt;</code> with base64-encoded values of your MySQL username and password.</p>
 <hr />
-<h3 id="deploying-the-zabbix-backend"><em>Deploying the Zabbix Backend</em></h3>
+<h3 id="deploying-the-zabbix-backend">Deploying the Zabbix Backend</h3>
 <p>Create a Deployment for the API backend:
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
@@ -1988,7 +1988,7 @@ Replace <code>&lt;base64-encoded-user&gt;</code> and <code>&lt;base64-encoded-pa
 </span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
 </span></code></pre></div></p>
 <hr />
-<h3 id="service-for-zabbix-backend"><em>Service for Zabbix Backend</em></h3>
+<h3 id="service-for-zabbix-backend">Service for Zabbix Backend</h3>
 <p>Expose the backend service internally:
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
@@ -2005,7 +2005,7 @@ Replace <code>&lt;base64-encoded-user&gt;</code> and <code>&lt;base64-encoded-pa
 </span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
 </span></code></pre></div></p>
 <hr />
-<h3 id="deploying-redis-for-caching"><em>Deploying Redis for Caching</em></h3>
+<h3 id="deploying-redis-for-caching">Deploying Redis for Caching</h3>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -2027,7 +2027,7 @@ Replace <code>&lt;base64-encoded-user&gt;</code> and <code>&lt;base64-encoded-pa
 </span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
 </span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6379</span>
 </span></code></pre></div>
-<h3 id="service-for-redis"><em>Service for Redis</em></h3>
+<h3 id="service-for-redis">Service for Redis</h3>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">metadata</span><span class="p">:</span>
@@ -2042,7 +2042,7 @@ Replace <code>&lt;base64-encoded-user&gt;</code> and <code>&lt;base64-encoded-pa
 </span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6379</span>
 </span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
 </span></code></pre></div>
-<h3 id="deployment-steps"><em>Deployment Steps</em></h3>
+<h3 id="deployment-steps">Deployment Steps</h3>
 <p><em>Save the manifest file as <code>pixelview-k8s.yaml</code>.</em></p>
 <p>Apply the manifest to Kubernetes:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pixelview-k8s.yaml

@@ -641,6 +641,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1-kubernetes-deployment-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Kubernetes Deployment Files:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#2-apply-kubernetes-deployment" class="md-nav__link">
     <span class="md-ellipsis">
       2. Apply Kubernetes Deployment
@@ -663,6 +672,15 @@
   <a href="#22-replace-placeholder-values" class="md-nav__link">
     <span class="md-ellipsis">
       2.2. Replace Placeholder Values:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-apply-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Apply Deployment:
     </span>
   </a>
   
@@ -1723,6 +1741,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#1-kubernetes-deployment-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Kubernetes Deployment Files:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#2-apply-kubernetes-deployment" class="md-nav__link">
     <span class="md-ellipsis">
       2. Apply Kubernetes Deployment
@@ -1745,6 +1772,15 @@
   <a href="#22-replace-placeholder-values" class="md-nav__link">
     <span class="md-ellipsis">
       2.2. Replace Placeholder Values:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-apply-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Apply Deployment:
     </span>
   </a>
   
@@ -1867,7 +1903,7 @@ Prometheus is an open-source monitoring and alerting toolkit widely used for col
 <li>Kubernetes <a href="https://github.com/pixelvirt/k8s-pixelview.git">k8s-pixelview repository</a></li>
 <li>Docker <a href="https://github.com/pixelvirt/pixelview-docker.git">pixelview-docker repository</a></li>
 </ol>
-<p><strong>1. Kubernetes Deployment Files:</strong></p>
+<h3 id="1-kubernetes-deployment-files"><strong>1. Kubernetes Deployment Files:</strong></h3>
 <p><strong>1.1. Deployment:</strong> The deployment file specifies the configuration for deploying the Prometheus service on PixelView. Below is the deployment file (<code>prometheus-deployment.yaml</code>):
 <div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
@@ -1987,11 +2023,12 @@ Prometheus is an open-source monitoring and alerting toolkit widely used for col
 <li><code>[REPLACE_WITH_DATA_ADDR_URL]</code>: Data address URL for Prometheus (URL where your application is running).</li>
 <li><code>[REPLACE_WITH_PROMETHEUS_HOST]</code>: Prometheus Server host URL.</li>
 </ul>
-<p><strong>2.3. Apply Deployment:</strong> Apply the deployment files using the <code>kubectl apply</code> command:
+<h4 id="23-apply-deployment"><strong>2.3. Apply Deployment:</strong></h4>
+<p>Apply the deployment files using the <code>kubectl apply</code> command:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>prometheus-deployment.yaml
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>prometheus-service.yaml
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>prometheus-configmap.yaml
-</span></code></pre></div></p>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>prometheus-configmap.yaml<span class="w"> </span>
+</span></code></pre></div>
 <hr />
 <h3 id="3-docker-deployment"><strong>3. Docker Deployment</strong></h3>
 <p>For those who prefer deploying Prometheus using Docker, here are the deployment instructions:</p>
@@ -2034,40 +2071,30 @@ This command will download the Prometheus image (if not already available locall
 <h3 id="4-verify-metrics-on-the-pixelview-dashboard">4. Verify Metrics on the PixelView Dashboard:</h3>
 <p>To verify or check metrics on the PixelView dashboard after deployment, follow these steps to configure a new chart:</p>
 <ol>
-<li>
-<p><strong>Access Dashboard Edit Mode:</strong></p>
-<ul>
+<li><strong>Access Dashboard Edit Mode:</strong> <ul>
 <li>Navigate to your PixelView dashboard.</li>
 <li>Click on "Edit Dashboard" to enter edit mode.</li>
-<li>
-<p><strong>Add New Chart:</strong></p>
+</ul>
 </li>
-<li>
-<p>Locate the option to "Add New Chart" and click on it to create a new visualization.</p>
+<li><strong>Add New Chart:</strong><ul>
+<li>Locate the option to "Add New Chart" and click on it to create a new visualization.</li>
+</ul>
 </li>
-<li>
-<p><strong>Add New Source:</strong></p>
+<li><strong>Add New Source:</strong><ul>
+<li>Look for an option to "Add New Source" and click on it to configure a new data source.</li>
+</ul>
 </li>
-<li>
-<p>Look for an option to "Add New Source" and click on it to configure a new data source.</p>
-</li>
-<li>
-<p><strong>Configure Data Source:</strong></p>
-</li>
-<li>
-<p>Provide an appropriate name for the data source.</p>
-</li>
+<li><strong>Configure Data Source:</strong><ul>
+<li>Provide an appropriate name for the data source.</li>
 <li>In the URL section, enter the endpoint URL: <code>http://&lt;DATA_IP&gt;:&lt;DATA_PORT&gt;/kubernetes/api/get-charts</code>.<ul>
 <li>Replace <code>&lt;DATA_IP&gt;</code> with the actual IP address where your application is running.</li>
 <li>Replace <code>&lt;DATA_PORT&gt;</code> with the port number configured for your application.</li>
 </ul>
 </li>
-<li>
-<p><strong>Save and Display Metrics:</strong></p>
+</ul>
 </li>
-<li>
-<p>After configuring the data source, save your changes.</p>
-</li>
+<li><strong>Save and Display Metrics:</strong><ul>
+<li>After configuring the data source, save your changes.</li>
 <li>The dashboard should now fetch metrics from the specified endpoint and display them in the new chart.</li>
 </ul>
 </li>

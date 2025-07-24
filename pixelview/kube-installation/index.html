@@ -22,7 +22,7 @@
     
     
       
-        <title>Install on Kubetnetes - </title>
+        <title>Install on Kubernetes - </title>
       
     
     
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install on Kubetnetes
+              Install on Kubernetes
             
           </span>
         </div>
@@ -543,7 +543,7 @@
           
   
   <span class="md-ellipsis">
-    Install on Kubetnetes
+    Install on Kubernetes
   </span>
   
 
@@ -554,7 +554,7 @@
         
   
   <span class="md-ellipsis">
-    Install on Kubetnetes
+    Install on Kubernetes
   </span>
   
 
@@ -611,11 +611,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
   <a href="#2-apply-the-yaml-files" class="md-nav__link">
     <span class="md-ellipsis">
@@ -637,9 +632,14 @@
           <li class="md-nav__item">
   <a href="#4-clone-repository-alternative-to-manually-creating-deployment-files" class="md-nav__link">
     <span class="md-ellipsis">
-      4 Clone Repository (Alternative to Manually Creating Deployment Files):
+      4. Clone Repository (Alternative to Manually Creating Deployment Files):
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1684,11 +1684,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-        
           <li class="md-nav__item">
   <a href="#2-apply-the-yaml-files" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1710,9 +1705,14 @@
           <li class="md-nav__item">
   <a href="#4-clone-repository-alternative-to-manually-creating-deployment-files" class="md-nav__link">
     <span class="md-ellipsis">
-      4 Clone Repository (Alternative to Manually Creating Deployment Files):
+      4. Clone Repository (Alternative to Manually Creating Deployment Files):
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1754,7 +1754,7 @@
                   
 
 
-  <h1>Install on Kubetnetes</h1>
+  <h1>Install on Kubernetes</h1>
 
 <h3 id="pixelview-kubernetes-deployment-and-service-setup-guide">PixelView Kubernetes Deployment and Service Setup Guide</h3>
 <p>This guide will walk you through deploying and configuring the PixelView application and its services using Kubernetes.</p>
@@ -2210,18 +2210,18 @@
 </span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">27017</span>
 </span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">27017</span>
 </span></code></pre></div></td></tr></table></div></p>
-<h4 id="2-apply-the-yaml-files">2. Apply the YAML Files</h4>
+<h5 id="2-apply-the-yaml-files">2. Apply the YAML Files</h5>
 <p>Apply the combined deployment and service YAML files using <code>kubectl apply -f</code> command:
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pixelview-deployment.yaml
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>pixelview-service.yaml
 </span></code></pre></div></p>
-<h4 id="3-verify-deployments-and-services">3. Verify Deployments and Services</h4>
+<h5 id="3-verify-deployments-and-services">3. Verify Deployments and Services</h5>
 <p>To ensure that your deployments and services are running correctly, use the following commands:</p>
 <p><div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>get<span class="w"> </span>deployments
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>services
 </span></code></pre></div>
 You should see a list of deployments and services along with their statuses.</p>
-<h4 id="4-clone-repository-alternative-to-manually-creating-deployment-files">4 <strong>Clone Repository (Alternative to Manually Creating Deployment Files):</strong></h4>
+<h5 id="4-clone-repository-alternative-to-manually-creating-deployment-files">4. <strong>Clone Repository (Alternative to Manually Creating Deployment Files):</strong></h5>
 <p>If you prefer not to create deployment files manually, you can clone the repository containing the Kubernetes manifests:
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/pixelvirt/k8s-pixelview.git
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>k8s-pixelview
