@@ -59,15 +59,11 @@ nav:
           - Installations:
                  - "Install on Docker": pixelview/install-on-docker.md
                  - "Install on Kubernetes": pixelview/kube-installation.md
-          - Dashboard Integrations:
-              - "Kubernetes Integration": pixelview/k8s-integration.md
-              - "Prometheus Integration": pixelview/prometheus-integration.md
-              - "Openstack Integration": pixelview/openstack-integration.md
-          - Zabbix Metrics with PixelView:
+          - Zabbix Integration with PixelView:
               - "Setup on Docker": pixelview/zabbix-pixelview.md
               - "Setup On Kubernetes": pixelview/zabbix-k8s.md
-          - Customize:
-              - "Customize Your Dashboard": pixelview/custom-dashboard.md
+          - Prometheus Integration with PixelView:
+              - "Setup AlertManager": pixelview/prometheus-alertmanager.md
       - Cloud Dashboard:
           - "Overview": pixelview/dashboard.md
 

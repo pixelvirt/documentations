@@ -10,7 +10,7 @@ AI Focus: We aim to build a PixelView Agentic AI system, which acts like an AI S
 ## **Key Features**
 ## 1. **Cloud Integrations**
 
-PixelView provides seamless integration with **OpenStack** and **VMware**, enabling you to **manage and monitor** your private cloud and virtualized environments effectively.
+PixelView provides seamless integration with **OpenStack**, **Kubernetes** and **VMware**, enabling you to **manage and monitor** your private cloud and virtualized environments effectively.
 
 ### ***OpenStack Cloud Management***
 - **End-to-End Infrastructure Management**:  
