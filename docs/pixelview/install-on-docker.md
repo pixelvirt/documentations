@@ -18,16 +18,6 @@ Create a directory for your project and create a file named `docker-compose.yml`
   
 ```yaml title="docker-compose.yaml" linenums="1"
 services:
-  finEscalation:
-    image: ghcr.io/pixelvirt/findescalation:latest
-    restart: always
-    depends_on:
-      - mongoservice
-      - rabbitmqservice
-    environment:
-      MONGOURL: mongoservice
-      RABBITURL: "amqp://alertagility:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility"
-
   alertagility:
     image: ghcr.io/pixelvirt/alertagility:latest
     restart: always
