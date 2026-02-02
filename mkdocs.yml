@@ -59,6 +59,7 @@ nav:
           - Installations:
                  - "Install on Docker": pixelview/install-on-docker.md
                  - "Install on Kubernetes": pixelview/kube-installation.md
+                 - "HA Setup": pixelview/ha-install.md
           - Zabbix Integration with PixelView:
               - "Setup on Docker": pixelview/zabbix-pixelview.md
               - "Setup On Kubernetes": pixelview/zabbix-k8s.md
