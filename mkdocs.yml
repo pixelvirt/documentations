@@ -1,8 +1,8 @@
-site_name: ''
+site_name: 'PixelVirt'
 site_url: https://docs.pixelvirt.com
 theme:
-  logo: images/logo.png
-  favicon: images/favicon.ico
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.ico
   name: material
   palette:
     # Palette toggle for light mode
@@ -33,7 +33,7 @@ theme:
     - navigation.indexes
     - navigation.instant
     - navigation.instant.progress
-    - navigation.instant.preview
+    # - navigation.instant.preview
     - navigation.prune
     - navigation.path
     - navigation.sections
@@ -48,58 +48,56 @@ theme:
   copyright: Copyright &copy; 2024 Pixelvirt Technology Pvt Ltd
 
 extra_css:
-  - stylesheets/extra.css
+  - assets/stylesheets/empty.css
+  - assets/stylesheets/glightbox.min.css
+
+extra_javascript:
+  - assets/javascripts/glightbox.min.js
+  - assets/javascripts/lightbox.js
 
 nav:
   - Welcome: index.md
-  - Pixeview Documentations:
-      - PixelView:
-          - "Introduction": pixelview/info.md
-
-          - Installations:
-                 - "Install on Docker": pixelview/install-on-docker.md
-                 - "Install on Kubernetes": pixelview/kube-installation.md
-                 - "HA Setup": pixelview/ha-install.md
-          - Zabbix Integration with PixelView:
-              - "Setup on Docker": pixelview/zabbix-pixelview.md
-              - "Setup On Kubernetes": pixelview/zabbix-k8s.md
-          - Prometheus Integration with PixelView:
-              - "Setup AlertManager": pixelview/prometheus-alertmanager.md
-      - Cloud Dashboard:
-          - "Overview": pixelview/dashboard.md
-
-      - Monitoring:
-          - "Alerts From Zabbix": pixelview/pixelview-zabbix.md
-          - "Cases": pixelview/cases.md
-          - "Incident Case Documentation": pixelview/incident_documentation.md
-          - "Services": pixelview/services.md
-          - "Esclation": pixelview/esclation.md
-          - "Schedules": pixelview/schedules.md
-          - "ADD Schedule ": pixelview/on-call.md
-
-      - Automation:
-          - "Overview": "pixelview/automation-overview.md"
-          - "Automation Bots": pixelview/bots.md
-          - "Automation Rules": "pixelview/automations-rules.md"
-          - "Automation Workflows": ""
-
-      - Inventory:
-          - "Cloud Inventory": ""
-
-      - Management and Settings:
-          - Management: "pixelview/managements.md"
-          - Settings: "pixelview/settings.md"
-          - Login: pixelview/login.md
-          - SSO Integration: ""
-
+  - Pixeview Documentation:
+    - PixelView:
+      - Introduction: pixelview/introduction.md
+    - Installations:
+      - Install on Docker: pixelview/installation/install-on-docker.md
+      - HA Setup: pixelview/installation/install-ha.md
+    - Clouds:
+      - Openstack: pixelview/clouds/openstack.md
+      - Kubernetes: pixelview/clouds/kubernetes.md
+      - VMware: pixelview/clouds/vmware.md
+    - Cases: 
+      - Cases Overview: pixelview/cases/cases.md
+    - Services/Monitoring:
+      - Services Overview: pixelview/services/services.md
+      - Zabbix Integration:
+        - Setup on Docker: pixelview/services/zabbix/integration.md
+      - Prometheus Integration:
+        - Setup AlertManager: pixelview/services/prometheus/integration.md
+    - Escalation:
+      - Escalation Overview: pixelview/escalation/esclation.md
+    - Automation:
+      - Automation Overview: pixelview/automation/automation.md
+      - Automation Bots: pixelview/management/bots.md
+      # - Automation Rules: ""
+      # - Automation Workflows: ""
+    - Inventory:
+      - Cloud Inventory: pixelview/inventory/inventory.md
+    - Host Management:
+      - Host Management Overview: pixelview/host-management/host-management.md
+    - Management and Settings:
+      - User Management: pixelview/management/user-management.md
+      - Settings: pixelview/settings/settings.md
+      - Login: pixelview/settings/login.md
+      - SSO Integration: pixelview/management/sso-integration.md
   - Pixelview API:
-      - "API Examples": pixelview/api.md
-      - "Python Example": pixelview/create-alerts.md
-      - "Custom Bot Example": pixelview/custom-bot.md
+    - "API Examples": pixelview/api/api.md
+    - "Python Example": pixelview/api/create-alerts.md
 
   - Blogs:
-      - Blog: 
-          - https://blog.pixelvirt.com
+    - Blog: 
+      - https://blog.pixelvirt.com
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
 #    - 'Launching an Instance ': openstack/lunch-instance.md
@@ -133,3 +131,9 @@ plugins:
       # authors_profiles: true
       categories: true
       categories_toc: true
+  - exclude:
+      glob:
+        - pixelview/cases/incident_documentation.md
+        - pixelview/management/custom-bot.md
+        - pixelview/management/registration.md
+        - pixelview/settings/config.md
