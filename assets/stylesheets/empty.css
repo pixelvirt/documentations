@@ -1,0 +1,30 @@
+
+.md-typeset h1 {
+    color: #fb4934;
+}
+
+.md-typeset h2 {
+    color: #fe8019;
+}
+
+.md-typeset h3 {
+    color: #fabd2f;
+}
+
+.md-typeset h4 {
+    color: #b8bb26;
+}
+
+.md-typeset h5 {
+    color: #8ec07c;
+}
+
+.md-typeset h6 {
+    color: #83a598;
+}
+
+.md-nav__list .md-nav {
+    margin-left: 1rem;
+    /* border-left: 1px solid var(--md-default-fg-color--lightest); */
+    padding-left: 1rem;
+}
