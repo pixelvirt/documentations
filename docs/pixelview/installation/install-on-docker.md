@@ -1,8 +1,6 @@
-# Install Pixelview on Docker
+# Install Pixelview (AIO Setup)
 
-Like Docker? So do we!
-
-One of the quickest ways to get pixelview running is using Docker. This page will show you the basics of how to use pixelview  with Docker.
+In non HA setup we setup all components of the PixelView app and automation services on one sigal server as All In One (AIO) setup. We use docker compose to setup the components and run all components in docker containers.
 
 ## Host Requirements
 Before proceeding with the installation, ensure that you have Docker and Docker Compose installed on your system. To do so you can follow the instructions provided on the [docker's website](https://docs.docker.com/get-docker/).
@@ -14,8 +12,19 @@ Create a directory for your project and create a file named `docker-compose.yml`
   
 ```yaml title="docker-compose.yaml" linenums="1"
 services:
-  alertagility:
-    image: ghcr.io/pixelvirt/alertagility:latest
+  escalation:
+    image: ghcr.io/pixelvirt/escalation:latest
+    restart: always
+    depends_on:
+      - rabbitmqservice
+      - mongoservice
+    environment:
+      MONGOURL: "mongodb://localhost:27017"
+      RABBITURL: "amqp://alertagility:dcW41MPUlM54uw2@localhost:5672/alertagility"
+    network_mode: host
+
+  pixelview:
+    image: ghcr.io/pixelvirt/alertagility:test
     restart: always
     ports:
       - "9090:9090"
@@ -23,14 +32,20 @@ services:
       - mongoservice
       - rabbitmqservice
     environment:
-      DEX_ISSUER_URL: "https://dex.pixelvirt.com/dex"
-      DEX_REDIRECT_URI: "https://pixelvirt.com/api/auth/callback"
+      DEX_ISSUER_URL: "https://dex.cloud.pixelvirt.com/dex"
+      DEX_REDIRECT_URI: "https://cloud.pixelvirt.com/api/auth/callback"
       OPENSTACK_MIDDLEWARE_URL: "http://openstack:8005"
-      MONGOURL: mongoservice
-      DOMAIN: "flex.ohthree.com"
+      MONGOURL: "mongodb://localhost:27017/alertagility"
+      DOMAIN: "cloud.pixelvirt.com"
       SUBDOMAIN: "alertagility"
-      RABBITURL: "amqp://alertagility:vcW41MPUlM54uw@rabbitmqservice:5673/alertagility"
-
+      RABBITURL: "amqp://alertagility:dcW41MPUlM54uw2@localhost:5672/alertagility"
+      ENVIRONMENT: "dev"
+      KAMAJI_KUBECONFIG: "/root/kubeconfig.yaml"
+    network_mode: host
+    extra_hosts:
+      - "test.pixelvirt.com:49.12.40.20"
+    volumes:
+      - ./kubeconfig.yaml:/root/kubeconfig.yaml
 
   rabbitmqservice:
     image: ghcr.io/pixelvirt/inithive-rabbitmq:latest
@@ -38,26 +53,51 @@ services:
     ports:
       - "5673:5672"
     environment:
-      - RABBITMQ_PASSWORD=vcW41MPUlM54uw
+      - RABBITMQ_PASSWORD=dcW41MPUlM54uw2
       - RABBITMQ_USER=alertagility
+    network_mode: host
 
   mongoservice:
     image: mongo:5
     volumes:
       - ./pixelview-data:/data/db
+    network_mode: host
 
-  alert-frontend:
+  pixelview-frontend:
+    #image: ghcr.io/pixelvirt/alertagility-frontend:capi
     image: ghcr.io/pixelvirt/alertagility-frontend:latest
     restart: always
     depends_on:
       - alertagility
+      - ansible-server
+      - openstack
     ports:
       - "80:80"
     environment:
-      - BACKEND_URL=alertagility:9090
-      - OPENSTACK_BACKEND_URL=openstack:8005
-      - KUBERNETES_BACKEND_URL=kubernetes:4000
-      - CHAT_BACKEND_URL=chatbot:8765
+      - BACKEND_URL=localhost:9090
+      - ANSIBLE_BACKEND_URL=localhost:8000
+      - OPENSTACK_BACKEND_URL=localhost:8005
+      - KUBERNETES_BACKEND_URL=localhost:4000
+      - CHAT_BACKEND_URL=localhost:8765
+      - PIXELVIEW_URL=localhost:9090
+      - BACKUP_BACKEND_URL=localhost:9191
+      - HOST_MANAGEMENT_BACKEND_URL=localhost:8080
+    network_mode: host
+
+  backup:
+    image: ghcr.io/pixelvirt/backup:latest
+    environment:
+      PORT: "9191"
+      DB_TYPE: mongodb
+      MONGO_URI: mongodb://localhost:27017
+      PIXELVIEW_URL: http://localhost:9090
+      AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
+      ALLOWED_ORIGINS: "*"
+    depends_on:
+      - mongoservice
+    restart: unless-stopped
+    container_name: pixelvirt_backup
+    network_mode: host
 
   openstack:
     image: ghcr.io/pixelvirt/openstack-go:latest
@@ -65,10 +105,14 @@ services:
     ports:
       - "8005:8005"
     environment:
-      - MONGO_URI=mongodb://mongoservice
+      - MONGO_URI=mongodb://localhost:27017
       - MONGO_DBNAME=dashboard_db
       - GOPHER_CLOUD_DEBUG=true
-      - PIXELVIEW_URL=http://alertagility:9090
+      - PIXELVIEW_URL=http://localhost:9090
+    container_name: openstack-go
+    network_mode: host
+    extra_hosts:
+      - "newcloud.pixelvirt.com:138.199.223.176"
 #    Include common cloud config. This will be visible to all users.
 #    volumes:
 #      - ./clouds.yaml:/etc/openstack/clouds.yaml
@@ -79,73 +123,50 @@ services:
     ports:
       - "4000:4000"
     container_name: k8s-dashboard
+    network_mode: host
     environment:
       - KUBECONFIG_FILE=/usr/src/app/kubeconfig
       - GET_CONFIG_FROM=bla
-      - PIXELVIEW_URL=http://alertagility:9090
+      - PIXELVIEW_URL=http://localhost:9090
+      - MONGO_URI=mongodb://localhost:27017
+      - AUTH_KEY=6c673f51-6045-47b0-8745-eef9d165a310
+    extra_hosts:
+      - "kubernetes.default.svc.cluster.local:119.9.94.8"
 #    Include common kube config. This will be visible to all users.
 #    volumes:
 #      - ./k8s-config/:/usr/src/app/
 
-  chatbot:
-    restart: always
-    image: ghcr.io/pixelvirt/chatbot-dummy:latest
-    ports:
-      - "8765:8765"
-    command: python3 app/main.py
+  ansible-server:
+      image: ghcr.io/pixelvirt/ansible-server:latest
+      build: .
+      container_name: ansible-server
+      ports:
+          - "8000:8000"
+      depends_on:
+          - rabbitmqservice
+      restart: unless-stopped
+      environment:
+      - SERVER_PORT=8000
+      - AUTH_KEY=6c673f51-6045-47b0-8745-eef9d165a310
+      - RABBITMQ_HOST=localhost
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=alertagility
+      - RABBITMQ_PASSWORD=dcW41MPUlM54uw2
+      - RABBITMQ_VHOST=/
+      - JOB_INPUT_QUEUE=admin-admin
+      - JOB_OUTPUT_QUEUE=ansible_output
+      - MONGODB_URI=mongodb://localhost:27017/ansible_server_db
+      - MONGODB_DBNAME=ansible_server_db
+      - PIXELVIEW_URL=http://localhost:9090
+      network_mode: host
+
+volumes:
+  data:
+  config:
+  ansible-mongo-data:
+  ansible-rabbitmq-data:
 ```
 
-The chatbot requires a chatbot backend and it expect communication to happen on wss (web socket secure).
-As such the main site needs to have ssl setup in order for the bot to work. We suggest that a nginx
-proxy is setup to terminate ssl (with letsencrypt here) then proxy to backend as so:
-
-!!! tip "Setting nginx to proxy (with SSL) to chatbot"
-
-    ```shell
-
-       server {
-         listen 443 ssl;
-         server_name pixelview.pixelvirt.com;
-
-         ssl_certificate /etc/letsencrypt/live/pixelview.pixelvirt.com/fullchain.pem;
-         ssl_certificate_key /etc/letsencrypt/live/pixelview.pixelvirt.com/privkey.pem;
-
-         ssl_protocols TLSv1.2 TLSv1.3;
-         ssl_ciphers HIGH:!aNULL:!MD5;
-
-         location / {
-           proxy_pass http://localhost:80;
-
-           # WebSocket headers
-           proxy_http_version 1.1;
-           proxy_set_header Upgrade $http_upgrade;
-           proxy_set_header Connection "upgrade";
-
-           # Standard proxy headers
-           proxy_set_header Host $host;
-           proxy_set_header X-Real-IP $remote_addr;
-           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_set_header X-Forwarded-Proto $scheme;
-        }
-      }
-
-    ```
-
-The chatbot UI tries to connect to wss://<your domain running pixelview>, and this ensures that gets
-handled correctly.
-
-Clone the repository containing the Docker manifests:
-```
-git clone  https://github.com/pixelvirt/pixelview-docker.git
-cd pixelview-docker/installation
-```
-
-<div style="border-left: 5px solid #0c2d7a; padding: 10px; border-radius: 5px;">
-  <span style="font-size: 1.2em;">&#128161;</span> <strong>Note:</strong> Find DOMAIN and replace it with your actual domain name and adjust environments according to your system.
-</div>
-<div style="border-left: 5px solid #0c2d7a; padding: 10px; border-radius: 5px;">
-  <span style="font-size: 1.2em;">&#128161;</span> <strong>Note:</strong> KUBECONFIG_FILE is picked up from ./k8s-config directory, make sure your kubeconfig is available there (this will be deprecated next release to use config fomr UI). Also, ensure that, DATA_URL, in openstack-go is the url you just installed pixelview on.
-</div>
 
 ### Start the containers
 Open a terminal window, navigate to the directory where the `docker-compose.yml` file is located, and run the following command:
@@ -181,3 +202,4 @@ This will stop and remove all containers defined in the `docker-compose.yml` fil
 - The `depends_on` directive is used to define service dependencies, ensuring that dependent services are started before the dependent ones.
 - Ensure that your system meets the resource requirements for running the services, especially for memory and CPU.
 - You can customize environment variables and port mappings in the `docker-compose.yml` file as needed.
+
