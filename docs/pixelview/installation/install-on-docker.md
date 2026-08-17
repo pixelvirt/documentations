@@ -1,9 +1,13 @@
 # Install Pixelview (AIO Setup)
 
-In non HA setup we setup all components of the PixelView app and automation services on one sigal server as All In One (AIO) setup. We use docker compose to setup the components and run all components in docker containers.
+In non HA setup, we setup all components of the PixelView app and automation services on one sigal server as All In One (AIO) setup. We use docker compose to setup the components and run all components in docker containers.
 
-## Host Requirements
-Before proceeding with the installation, ensure that you have Docker and Docker Compose installed on your system. To do so you can follow the instructions provided on the [docker's website](https://docs.docker.com/get-docker/).
+!!! note "Host Requirements"
+    Before proceeding with the installation, ensure that you have Docker and Docker Compose installed on your system. To do so, you can follow the instructions provided on the [docker's website](https://docs.docker.com/get-docker/).
+
+!!! note "System Recommendation"
+
+    8 vCPU, 16GB RAM, 1GB network
 
 ## Steps to Install
 
@@ -68,7 +72,7 @@ services:
     image: ghcr.io/pixelvirt/alertagility-frontend:latest
     restart: always
     depends_on:
-      - alertagility
+      - pixelview
       - ansible-server
       - openstack
     ports:
@@ -177,9 +181,7 @@ This command will start all the services in detached mode, meaning they will run
 
 ### Verify Installation
 After running the `docker-compose up -d` command, you can verify that the services are running by executing:
-The chatbot only work with https backend. As such we suggest  to use letsencrypt or similar to quickly setup
-your installation with certificate. Once that is done, run nginx to proxy calls to the application backend.
-You can use the nginx config snippet from above to get this done.
+
 ```
 docker compose ps
 ```
@@ -188,6 +190,11 @@ This command will display the status of all the services defined in the `docker-
 ### Accessing the Application
 Once the services are up and running, you can access the frontend application by opening a web browser and navigating to [`http://localhost`](http://localhost).
 
+!!! note "Credentials"
+
+    - The default username to access the frontend is `admin@localhost`
+    - The default password is `password`
+
 ### Stopping Services
 To stop the running services, execute the following command:
 ```
@@ -195,9 +202,24 @@ docker compose down
 ```
 This will stop and remove all containers defined in the `docker-compose.yml` file.
 
+## Add licence key
+Apart from username and password, you will also need to add a license key to be able to access the PixelView interface. Once you receive license, pelase follow these instructions.
+
+  - Goto `Settings` -> `License key`
+
+    <a href="../images/license1.jpg" class="glightbox">
+      <img src="../images/license1.jpg">
+    </a>
+    
+  - Paste your license key
+
+    <a href="../images/license2.jpg" class="glightbox">
+    <img src="../images/license2.jpg">
+  </a>
+
+  - Hit `Apply License`
+
 ## Notes
-- The default username to access the frontend is `admin@localhost`
-- The default password is `password`
 - The services are configured to automatically restart (`restart: always`) in case of failures or system reboots.
 - The `depends_on` directive is used to define service dependencies, ensuring that dependent services are started before the dependent ones.
 - Ensure that your system meets the resource requirements for running the services, especially for memory and CPU.

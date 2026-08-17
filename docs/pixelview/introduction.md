@@ -4,7 +4,7 @@
 
 PixelView unifies OpenStack, Kubernetes, and VMware into a single management platform, purpose-built to make deploying AI infrastructure on private cloud as effortless as the public cloud — without your data ever leaving your environment.
 
-PixelView cloud platform that makes private cloud the simplest place to run AI. It unifies OpenStack, Kubernetes, and VMware into one hub, and its agentic AI acts like an SRE engineer — monitoring your infrastructure, troubleshooting issues in real time, and cutting resolution time from hours to minutes. Built for teams who want to run AI workloads in their own environment.
+PixelView cloud platform makes private cloud the simplest place to run AI. It unifies OpenStack, Kubernetes, and VMware into one hub, and its agentic AI acts like an SRE engineer — monitoring your infrastructure, troubleshooting issues in real time, and cutting resolution time from hours to minutes. Built for teams who want to run AI workloads in their own environment.
 
 
 ### Why PixelView
@@ -31,7 +31,7 @@ Stop juggling consoles. PixelView brings your entire private cloud estate into a
 
 From Bare Metal to Running Models — in Minutes
 
-Deploying AI infrastructure is notoriously complex: GPU scheduling, Kubernetes configuration, storage, networking, monitoring. PixelView abstracts the complexity so your team can focus on the workloads, not the plumbing.
+Deploying AI infrastructure is notoriously complex: GPU scheduling, Kubernetes configuration, storage, networking, monitoring. PixelView abstracts these complexity so your team can focus on the workloads, not the plumbing.
 
 - Simplest path to AI on private cloud — Deploy AI workloads on top of your existing infrastructure with a few clicks
 - Efficient by design — Maximize GPU utilization and resource efficiency across clusters
@@ -60,4 +60,5 @@ Platform teams standardizing AI infrastructure across departments
 
 The Best Way to Run AI on Your Own Cloud
 
-Stop stitching tools together. Start deploying AI workloads where your data lives. Contact: info@pixelvirt.com
+Stop stitching tools together. Start deploying AI workloads where your data lives. <br>
+Contact: `info@pixelvirt.com`
