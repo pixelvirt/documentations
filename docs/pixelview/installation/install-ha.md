@@ -52,37 +52,16 @@ $ cat /etc/hosts
 
 NOTE: Make sure to match the name and IP of the server to your actual server.
 
-Next, on all 3 nodes pull all the relevant docker images
-
-``` sh
-docker pull ghcr.io/pixelvirt/inithive-rabbitmq:latest
-docker pull ghcr.io/pixelvirt/findescalation:latest
-docker pull ghcr.io/pixelvirt/escalation:latest
-docker pull mongo:5
-docker pull rabbitmq:4.2.2-management
-docker pull ghcr.io/pixelvirt/ansible-server:latest
-docker pull ghcr.io/pixelvirt/ospc-openstack-go:latest
-docker pull ghcr.io/pixelvirt/openstack-go:latest
-docker pull ghcr.io/pixelvirt/alertagility:v2.0
-docker pull ghcr.io/pixelvirt/alertagility-frontend:latest
-```
-
----
-
 ## MongoDB Replica Set (3 Separate Nodes)
-
 Each MongoDB node runs **one MongoDB container**, all configured with the same replica set name.
 
 ### Assumptions
-
 - All MongoDB nodes can reach each other over the network
 - Hostnames or IPs:
     - `mongo-node-1`
     - `mongo-node-2`
     - `mongo-node-3`
 - Port `27017` is open between MongoDB nodes
-
----
 
 ### MongoDB Docker Compose (Run on *each* MongoDB node)
 Create the following `docker-compose.yml` on **each node**.
@@ -216,19 +195,16 @@ volumes:
 ```
 
 Start MongoDB:
-
 ``` sh
 $ export HOSTNAME=$(hostname)
 $ docker compose up -d
 ```
 
 ### Initialize the MongoDB Replica Set (One-Time)
-
 This step initializes the MongoDB replica set and must be executed **only once** after all three MongoDB nodes are running.
 
 > Run this from **mongo-node-1** (or whichever node you want to become the initial primary).
 
----
 
 #### Connect to MongoDB
 ```bash
@@ -252,19 +228,15 @@ rs.initiate({
 docker exec mongo-node-1 mongosh --quiet --eval 'rs.status().members.map(m => ({host:m.name,state:m.stateStr,health:m.health}))'
 ```
 
----
 !!! Note
     mongo-node-1, mongo-node-2 and mongo-node-3 node hostname and adjust according to the node hostname for your setup.
 
 !!! Info
     At this point for a clean install restart the services by running:
-
     ``` sh
         $ docker compose restart
     ```
-
 If everything has gone correctly, you have 3 nodes with PixelView services running on each node.
-
 
 ### DNS / LB
 At this point you will need to setup a round robin DNS entry or external load balancer that points to your nodes.
@@ -280,7 +252,6 @@ testing.pixelvirt.com.	300	IN	A	174.143.59.131
 
 Now, on your browser open https://your-domain-name.com and login with the default login:
 ```
-admin@localhost
-
-password
+username: admin@localhost
+password: password
 ```
