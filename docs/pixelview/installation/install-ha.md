@@ -7,12 +7,9 @@ This document describes a **production-grade High Availability (HA) deployment**
 - MongoDB provides durable state
 - PixelView services remain stateless and horizontally scalable
 
----
-
 ## HA Architecture Overview
 
 ### Node Layout
-
 | Node | Role |
 | ----- | ------ |
 | Node-1 | MongoDB (Primary / Secondary) |
@@ -23,7 +20,6 @@ This document describes a **production-grade High Availability (HA) deployment**
 > **Important:** MongoDB nodes **must run on separate hosts** (VMs or physical machines). Running multiple MongoDB containers on the same host does **not** provide real HA.
 
 ### Host Requirements
-
 Before proceeding with the installation, ensure that you have Docker and Docker Compose installed on your system. To do so, you can follow the instructions provided on the [docker's website](https://docs.docker.com/get-docker/).
 
 !!! note "System Recommendation"
