@@ -48,7 +48,7 @@ $ cat /etc/hosts
 
 NOTE: Make sure to match the name and IP of the server to your actual server.
 
-## MongoDB Replica Set (3 Separate Nodes)
+## MongoDB Replica Set
 Each MongoDB node runs **one MongoDB container**, all configured with the same replica set name.
 
 ### Assumptions
@@ -72,10 +72,8 @@ $ echo $HOSTNAME
 
 Then make sure to replace node names on `MONGODB_URI` environment variables on your docker-compose.yml file
 
-### MongoDB Docker Compose (Run on *each* MongoDB node)
+## MongoDB Docker Compose
 Create the following `docker-compose.yml` on **each node**.
-
-> The file is identical on all three nodes.
 
 ```yaml
 services:
@@ -234,23 +232,27 @@ volumes:
   data:
 ```
 
+### Add `SERVICE_IP`
+Add the `SERVICE_IP` to the environment variable of `pixelview-backend` service. This is the ip of the host that your `pixelview-backend` container is running on.
+
+### Start containers
 Once you set up the hostname, you can start the conatainers
 ``` sh
 $ docker compose up -d
 ```
 
-### Initialize the MongoDB Replica Set (One-Time)
-This step initializes the MongoDB replica set and must be executed **only once** after all three MongoDB nodes are running.
+## Initialize the MongoDB Replica Set
+This step initializes the MongoDB replica set and must be executed **only once** after all MongoDB nodes are up and running.
 
-> Run this from **mongo-node-1** (or whichever node you want to become the initial primary).
+> Run this from only one of the mongodb containers
 
 
-#### Connect to MongoDB
+### Connect to MongoDB
 ```bash
 docker exec -it mongo-node-1 mongosh
 ```
 
-#### Initialize Replica Set
+### Initialize Replica Set
 ```mongodb
 rs.initiate({
   _id: "rs0",
@@ -262,7 +264,7 @@ rs.initiate({
 })
 ```
 
-#### Verify Replica Set Status
+### Verify Replica Set Status
 ```mongodb
 rs.status().members.map(m => ({host:m.name,state:m.stateStr,health:m.health}))
 ```
@@ -277,7 +279,7 @@ rs.status().members.map(m => ({host:m.name,state:m.stateStr,health:m.health}))
     ```
 If everything has gone correctly, you have 3 nodes with PixelView services running on each node.
 
-### DNS / LB
+## DNS / LB
 At this point you will need to setup a round robin DNS entry or external load balancer that points to your nodes.
 
 Assuming DNS: testing.pixelvirt.com when you dig on the fqdn you see:

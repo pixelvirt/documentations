@@ -174,6 +174,9 @@ volumes:
 
 
 ### Start the containers
+!!! Info
+    Make sure to add the `SERVICE_IP` to the environment variable of `pixelview-backend` service. This is the ip of the host that your `pixelview-backend` container is running on.
+
 Open a terminal window, navigate to the directory where the `docker-compose.yml` file is located, and run the following command:
 ```
 docker compose up -d
@@ -189,7 +192,7 @@ docker compose ps
 This command will display the status of all the services defined in the `docker-compose.yml` file.
 
 ### Accessing the Application
-Once the services are up and running, you can access the frontend application by opening a web browser and navigating to [`http://localhost`](http://localhost).
+Once the services are up and running, you can access the frontend application at [`http://localhost`](http://localhost)
 
 !!! note "Credentials"
 
