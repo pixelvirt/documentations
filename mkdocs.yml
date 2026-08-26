@@ -71,8 +71,8 @@ nav:
       - Cases Overview: pixelview/cases/cases.md
     - Services/Monitoring:
       - Services Overview: pixelview/services/services.md
-      - Zabbix Integration:
-        - Setup on Docker: pixelview/services/zabbix/integration.md
+      # - Zabbix Integration:
+      #   - Setup on Docker: pixelview/services/zabbix/integration.md
       - Prometheus Integration:
         - Setup AlertManager: pixelview/services/prometheus/integration.md
     - Escalation:

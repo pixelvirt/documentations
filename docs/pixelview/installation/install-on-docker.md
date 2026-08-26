@@ -16,159 +16,160 @@ Create a directory for your project and create a file named `docker-compose.yml`
   
 ```yaml title="docker-compose.yaml" linenums="1"
 services:
-  escalation:
-    image: ghcr.io/pixelvirt/escalation:latest
+  mongodb:
+    image: mongo:8.3.8
+    container_name: mongodb
     restart: always
-    depends_on:
-      - rabbitmqservice
-      - mongoservice
-    environment:
-      MONGOURL: "mongodb://localhost:27017"
-      RABBITURL: "amqp://alertagility:dcW41MPUlM54uw2@localhost:5672/alertagility"
-    network_mode: host
-
-  pixelview:
-    image: ghcr.io/pixelvirt/alertagility:test
-    restart: always
-    ports:
-      - "9090:9090"
-    depends_on:
-      - mongoservice
-      - rabbitmqservice
-    environment:
-      DEX_ISSUER_URL: "https://dex.cloud.pixelvirt.com/dex"
-      DEX_REDIRECT_URI: "https://cloud.pixelvirt.com/api/auth/callback"
-      OPENSTACK_MIDDLEWARE_URL: "http://openstack:8005"
-      MONGOURL: "mongodb://localhost:27017/alertagility"
-      DOMAIN: "cloud.pixelvirt.com"
-      SUBDOMAIN: "alertagility"
-      RABBITURL: "amqp://alertagility:dcW41MPUlM54uw2@localhost:5672/alertagility"
-      ENVIRONMENT: "dev"
-      KAMAJI_KUBECONFIG: "/root/kubeconfig.yaml"
-    network_mode: host
-    extra_hosts:
-      - "test.pixelvirt.com:49.12.40.20"
-    volumes:
-      - ./kubeconfig.yaml:/root/kubeconfig.yaml
-
-  rabbitmqservice:
-    image: ghcr.io/pixelvirt/inithive-rabbitmq:latest
-    restart: always
-    ports:
-      - "5673:5672"
-    environment:
-      - RABBITMQ_PASSWORD=dcW41MPUlM54uw2
-      - RABBITMQ_USER=alertagility
-    network_mode: host
-
-  mongoservice:
-    image: mongo:5
+    # this version of mongo db has issue with linux kernel 6.19 and above
+    # if it doesn't start or keeps restarting, uncomment this.
+    # environment:
+    #   GLIBC_TUNABLES: glibc.pthread.rseq=1
     volumes:
       - ./pixelview-data:/data/db
     network_mode: host
 
+  rabbitmq:
+    image: ghcr.io/pixelvirt/inithive-rabbitmq:latest
+    container_name: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_PASSWORD: dcW41MPUlM54uw2
+      RABBITMQ_USER: alertagility
+    network_mode: host
+
+
   pixelview-frontend:
-    #image: ghcr.io/pixelvirt/alertagility-frontend:capi
-    image: ghcr.io/pixelvirt/alertagility-frontend:latest
+    image: ghcr.io/pixelvirt/pixelview-frontend:v0.0.1
+    container_name: pixelview-frontend
     restart: always
-    depends_on:
-      - pixelview
-      - ansible-server
-      - openstack
-    ports:
-      - "80:80"
     environment:
-      - BACKEND_URL=localhost:9090
-      - ANSIBLE_BACKEND_URL=localhost:8000
-      - OPENSTACK_BACKEND_URL=localhost:8005
-      - KUBERNETES_BACKEND_URL=localhost:4000
-      - CHAT_BACKEND_URL=localhost:8765
-      - PIXELVIEW_URL=localhost:9090
-      - BACKUP_BACKEND_URL=localhost:9191
-      - HOST_MANAGEMENT_BACKEND_URL=localhost:8080
+      ANSIBLE_BACKEND_URL: localhost:8000
+      BACKEND_URL: localhost:9090
+      BACKUP_BACKEND_URL: localhost:9191
+      CHAT_BACKEND_URL: localhost:8765
+      HOST_MANAGEMENT_BACKEND_URL: localhost:8080
+      KUBERNETES_BACKEND_URL: localhost:4000
+      OPENSTACK_BACKEND_URL: localhost:8005
+      PIXELVIEW_URL: localhost:9090
     network_mode: host
 
-  backup:
-    image: ghcr.io/pixelvirt/backup:latest
+  pixelview-backend:
+    image: ghcr.io/pixelvirt/pixelview-backend:v0.0.1
+    container_name: pixelview-backend
+    restart: always
     environment:
-      PORT: "9191"
-      DB_TYPE: mongodb
-      MONGO_URI: mongodb://localhost:27017
-      PIXELVIEW_URL: http://localhost:9090
       AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
-      ALLOWED_ORIGINS: "*"
-    depends_on:
-      - mongoservice
-    restart: unless-stopped
-    container_name: pixelvirt_backup
+      DEX_ISSUER_URL: https://dex.pixelvirt.com/dex
+      DEX_REDIRECT_URI: https://cloud.pixelvirt.com/api/auth/callback
+      OPENSTACK_MIDDLEWARE_URL: http://localhost:8005
+      MONGO_URI: mongodb://localhost:27017/alertagility
+      DOMAIN: pixelvirt.com
+      SUBDOMAIN: alertagility
+      RABBITURL: amqp://alertagility:dcW41MPUlM54uw2@localhost:5672/alertagility
+      ENVIRONMENT: dev
+      KAMAJI_KUBECONFIG: /root/kubeconfig.yaml
+      SERVICE_IP: 
+    network_mode: host
+    volumes:
+      - ./kubeconfig.yaml:/root/kubeconfig.yaml
+
+  pixelview-escalation:
+    image: ghcr.io/pixelvirt/pixelview-escalation:v0.0.1
+    container_name: pixelview-escalation
+    restart: always
+    environment:
+      AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
+      MONGO_URI: mongodb://localhost:27017
+      RABBITURL: amqp://alertagility:dcW41MPUlM54uw2@localhost:5672/alertagility
     network_mode: host
 
-  openstack:
-    image: ghcr.io/pixelvirt/openstack-go:latest
+  pixelview-openstack:
+    image: ghcr.io/pixelvirt/pixelview-openstack:v0.0.1
+    container_name: pixelview-openstack
     restart: always
-    ports:
-      - "8005:8005"
     environment:
-      - MONGO_URI=mongodb://localhost:27017
-      - MONGO_DBNAME=dashboard_db
-      - GOPHER_CLOUD_DEBUG=true
-      - PIXELVIEW_URL=http://localhost:9090
-    container_name: openstack-go
-    network_mode: host
+      AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
+      GOPHER_CLOUD_DEBUG: true
+      MONGO_URI: mongodb://localhost:27017
+      MONGO_DBNAME: dashboard_db
+      PIXELVIEW_URL: http://localhost:9090
     extra_hosts:
       - "newcloud.pixelvirt.com:138.199.223.176"
-#    Include common cloud config. This will be visible to all users.
-#    volumes:
-#      - ./clouds.yaml:/etc/openstack/clouds.yaml
-
-  kubernetes:
-    restart: always
-    image: ghcr.io/pixelvirt/kubernetes-go:latest
-    ports:
-      - "4000:4000"
-    container_name: k8s-dashboard
     network_mode: host
-    environment:
-      - KUBECONFIG_FILE=/usr/src/app/kubeconfig
-      - GET_CONFIG_FROM=bla
-      - PIXELVIEW_URL=http://localhost:9090
-      - MONGO_URI=mongodb://localhost:27017
-      - AUTH_KEY=6c673f51-6045-47b0-8745-eef9d165a310
-    extra_hosts:
-      - "kubernetes.default.svc.cluster.local:119.9.94.8"
-#    Include common kube config. This will be visible to all users.
-#    volumes:
-#      - ./k8s-config/:/usr/src/app/
 
-  ansible-server:
-      image: ghcr.io/pixelvirt/ansible-server:latest
-      build: .
-      container_name: ansible-server
-      ports:
-          - "8000:8000"
-      depends_on:
-          - rabbitmqservice
-      restart: unless-stopped
-      environment:
-      - SERVER_PORT=8000
-      - AUTH_KEY=6c673f51-6045-47b0-8745-eef9d165a310
-      - RABBITMQ_HOST=localhost
-      - RABBITMQ_PORT=5672
-      - RABBITMQ_USERNAME=alertagility
-      - RABBITMQ_PASSWORD=dcW41MPUlM54uw2
-      - RABBITMQ_VHOST=/
-      - JOB_INPUT_QUEUE=admin-admin
-      - JOB_OUTPUT_QUEUE=ansible_output
-      - MONGODB_URI=mongodb://localhost:27017/ansible_server_db
-      - MONGODB_DBNAME=ansible_server_db
-      - PIXELVIEW_URL=http://localhost:9090
-      network_mode: host
+  pixelview-kubernetes:
+    image: ghcr.io/pixelvirt/pixelview-kubernetes:v0.0.1
+    container_name: pixelview-kubernetes
+    restart: always
+    environment:
+      AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
+      GET_CONFIG_FROM: bla
+      KUBECONFIG_FILE: /usr/src/app/kubeconfig
+      MONGO_URI: mongodb://localhost:27017
+      PIXELVIEW_URL: http://localhost:9090
+    network_mode: host
+
+  pixelview-ansible-server:
+    image: ghcr.io/pixelvirt/pixelview-ansible-server:v0.0.1
+    build: .
+    container_name: pixelview-ansible-server
+    restart: unless-stopped
+    environment:
+      AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
+      JOB_INPUT_QUEUE: admin-admin
+      JOB_OUTPUT_QUEUE: ansible_output
+      MONGODB_URI: mongodb://localhost:27017
+      MONGODB_DBNAME: ansible_server_db
+      PIXELVIEW_URL: http://localhost:9090
+      RABBITMQ_HOST: localhost
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: alertagility
+      RABBITMQ_PASSWORD: dcW41MPUlM54uw2
+      RABBITMQ_VHOST: /
+      SERVER_PORT: 8000
+    network_mode: host
+
+  pixelview-patch-management:
+    image: ghcr.io/pixelvirt/pixelview-patch-management:v0.0.1
+    container_name: pixelview-patch-management
+    restart: always
+    environment:
+      AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
+      SERVER_PORT: 8080
+      LOG_LEVEL: info
+      PIXELVIEW_URL: http://localhost:9090
+      STATIC_API_KEY: dev-key
+      MONGODB_URI: mongodb://localhost:27017
+      MONGODB_DBNAME: pixelview
+      ANSIBLE_SERVER_DBNAME: ansible_server_db
+      ANSIBLE_SERVER_URL: localhost:8000
+      LEASE_TTL_SECONDS: 30
+      HEARTBEAT_INTERVAL_SECONDS: 10
+      CLAIM_POLL_INTERVAL_SECONDS: 5
+      REAPER_INTERVAL_SECONDS: 60
+      ANSIBLE_WATCH_INTERVAL_SECONDS: 5
+      BLOCKED_REQUEUE_SECONDS: 15
+      WORKER_COUNT: 4
+      RECONCILE_INTERVAL_SECONDS: 30
+      RECONCILE_STALE_AFTER_SECONDS: 120
+    network_mode: host
+
+  # pixelview-backup:
+  #   image: ghcr.io/pixelvirt/backup:latest
+  #   container_name: pixelview-backup
+  #   restart: unless-stopped
+  #   environment:
+  #     AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
+  #     ALLOWED_ORIGINS: "*"
+  #     DB_TYPE: mongodb
+  #     MONGO_URI: mongodb://localhost:27017
+  #     PIXELVIEW_URL: http://localhost:9090
+  #     PORT: 9191
+  #   network_mode: host
+
 
 volumes:
   data:
-  config:
-  ansible-mongo-data:
-  ansible-rabbitmq-data:
 ```
 
 
