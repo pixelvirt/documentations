@@ -2462,6 +2462,10 @@
 </span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155"></a><span class="w">  </span><span class="nt">data</span><span class="p">:</span>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="start-the-containers">Start the containers</h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Make sure to add the <code>SERVICE_IP</code> to the environment variable of <code>pixelview-backend</code> service. This is the ip of the host that your <code>pixelview-backend</code> container is running on.</p>
+</div>
 <p>Open a terminal window, navigate to the directory where the <code>docker-compose.yml</code> file is located, and run the following command:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker compose up -d
 </span></code></pre></div>
@@ -2472,7 +2476,7 @@ This command will start all the services in detached mode, meaning they will run
 </span></code></pre></div>
 This command will display the status of all the services defined in the <code>docker-compose.yml</code> file.</p>
 <h3 id="accessing-the-application">Accessing the Application</h3>
-<p>Once the services are up and running, you can access the frontend application by opening a web browser and navigating to <a href="http://localhost"><code>http://localhost</code></a>.</p>
+<p>Once the services are up and running, you can access the frontend application at <a href="http://localhost"><code>http://localhost</code></a></p>
 <div class="admonition note">
 <p class="admonition-title">Credentials</p>
 <ul>
