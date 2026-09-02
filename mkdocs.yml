@@ -84,8 +84,8 @@ nav:
       # - Automation Workflows: ""
     - Inventory:
       - Cloud Inventory: pixelview/inventory/inventory.md
-    - Host Management:
-      - Host Management Overview: pixelview/host-management/host-management.md
+    - Patch Management:
+      - Patch Management Overview: pixelview/patch-management/patch-management.md
     - Management and Settings:
       - User Management: pixelview/management/user-management.md
       - Settings: pixelview/settings/settings.md
