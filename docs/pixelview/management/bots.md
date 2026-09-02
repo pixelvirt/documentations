@@ -1,67 +1,73 @@
-## Automation Bots in PixelView
+# Automation Bots
 
-### Overview
+The **Bots** section (`/bots`) in PixelView manages automation bots and automated webhook endpoints. These bots execute automated remediation workflows, trigger external actions, and handle alert escalation levels without requiring human intervention.
 
-PixelView provides a user-friendly interface for managing automation bots. These bots help automate various tasks and integrate with other systems. This documentation will guide you through the process of adding and managing bots within PixelView.
+---
 
-### Prerequisites
+## 1. Viewing Automation Bots
 
-Before you begin, ensure you have the following:
+Navigate to **Management** > **Bots** from the left navigation sidebar:
 
-- Access to the PixelView interface.
-- Necessary permissions to add and manage bots.
-- Bot URL and authentication token for the bot you intend to add.
+![Bots Navigation Sidebar](../images/bots.png)
 
-### Adding a New Bot
+The bots table provides an inventory of all configured automation bots:
 
-To add a new bot, follow these steps:
+| Column | Description |
+| :--- | :--- |
+| **Name** | Display name identifying the bot. |
+| **URL** | Fully qualified endpoint URL where the bot service listens for events and payloads. |
+| **Auth Token** | Authentication token used by PixelView to authenticate outgoing requests to the bot endpoint. Masked with confidential toggle & copy controls. |
+| **API Key** | System-generated API key assigned to the bot. Masked with confidential toggle & copy controls. |
+| **Type** | Bot execution engine type: <br> • `StackStorm` — Connects to a StackStorm automation action runner. <br> • `Custom` — Custom webhook handler or script integration. |
+| **Actions** | Context menu (`...`) allowing administrators to **Delete** the bot. |
 
-1. **Navigate to the Bots Section:**
-    
-    - From the PixelView dashboard, click on the "Bots" section in the left-hand menu.
-    ![Re-Open Cases](../images/bots.png)
+#### Table Toolbar Controls
+* **Search / Global Filter**: Search across bot names, types, and URLs.
+* **Toggle Column Filters**: Filter specific columns.
+* **Show/Hide Columns**: Customize visible headers in the table.
+* **Density Toggle**: Toggle between compact and relaxed row height.
+* **Refresh**: Fetch the latest bot list from the server.
+* **Add Bot (`+`)**: Open the bot creation modal.
 
-2. **Open Add Bot Dialog:**
-    - Click on the "+" icon or button to open the "Add Bot" dialog.
-    ![add bots](../images/add-bot.png)
-3. **Fill in Bot Details:**
-    - **Name**: Enter a unique name for your bot.
-    - **Bot URL**: Provide the URL where your bot can be reached. This should be a fully qualified domain name or IP address with the appropriate port number if necessary.
-    - **Bot Auth Token**: Enter the authentication token that your bot uses to verify its identity.
-    - **Bot Type**: Select the type of bot from the dropdown menu. Currently, "StackStorm" is a supported bot type.
-4. **Create Bot:**
-    - Click the "CREATE" button to add the bot. If you wish to cancel the operation, click the "CANCEL" button.
-    ![Create bots](../images/create-bot.png)
+---
 
-### Managing Existing Bots
+## 2. Adding a New Bot
 
-Once bots are added, you can manage them from the main "Bots" interface. This section describes how to view and edit bot details.
+To register a new automation bot in PixelView:
 
-1. **View Bots:**
-    
-    - In the "Bots" section, you will see a list of all the bots you have added. Each bot entry will display:
-        - **Name**: The name of the bot.
-        - **URL**: The bot’s URL (partially masked for security).
-        - **Auth Token**: The authentication token (fully masked).
-        - **API Key**: The API key associated with the bot (fully masked).
-        - **Type**: The type of bot, such as "StackStorm".
-2. **Bot Actions:**
-    
-    - **View Details**: Click the eye icon to view the full details of the bot.
-    - **Copy API Key**: Click the copy icon next to the API key to copy it to the clipboard.
-    - **Delete Bot**: Click the three dots under the "Actions" column to delete the bot. This will bring up an option to remove it from the system.
-    ![Delete Bots](../images/delete-bots.png)
+1. Click the **`+`** (Add Bot) button in the top-right corner of the table toolbar:
+   ![Add Bot Button](../images/add-bot.png)
+2. The **Add Bot** modal dialog will open:
+   ![Add Bot Modal](../images/create-bot.png)
+3. Fill in the required parameters:
+   * **Name** *(Required)*: A unique name for your bot (e.g., `StackStorm Runner`, `Disk Cleanup Bot`).
+   * **Bot URL** *(Required)*: The fully qualified URL or IP endpoint where the bot can be reached.
+   * **Bot Auth Token** *(Required)*: The secret token used for payload verification.
+   * **Bot Type** *(Required)*: Select the bot engine from the dropdown:
+     * **StackStorm**: Standard StackStorm automation integration.
+     * **Custom**: Custom webhook endpoint or custom automation bot.
+4. Click **Create** (shows *Creating...* while registering).
 
+---
 
-### Security Considerations
+## 3. Managing Bot Secrets & Actions
 
-- Ensure the bot URL and authentication tokens are kept secure.
-- Regularly update the authentication tokens to prevent unauthorized access.
-- Limit access to the bots' configuration settings to authorized personnel only.
+### Viewing and Copying Tokens
+Both the **Auth Token** and **API Key** columns use security masking by default (`••••••••`):
+* Click the **Eye Icon** to temporarily reveal the plaintext token.
+* Click the **Copy Icon** to copy the token directly to your clipboard.
 
-### Troubleshooting
+### Deleting a Bot
+1. In the Bots table, click the **`...`** icon under the **Actions** column for the target bot.
+2. Select **Delete** (Trash Icon):
+   ![Delete Bot](../images/delete-bots.png)
+3. Confirm the deletion prompt (`Are you sure you want to delete <Bot Name>?`).
+4. The bot will be permanently detached and removed from the system.
 
-- If a bot is not functioning correctly, check the following:
-    - Ensure the bot URL is correct and reachable.
-    - Verify that the authentication token is valid.
-    - Check the bot's logs for any error messages or issues.
+---
+
+## 4. Using Bots in Escalation Policies
+
+Once registered, bots can be automatically assigned to alert escalation workflows:
+* In **Escalations** > **Policies**, you can add an escalation level and choose **Assign to Automations**.
+* Select the desired bot from the dropdown. When an unresolved incident reaches this escalation tier, PixelView automatically dispatches the alert payload to the bot's configured endpoint.
