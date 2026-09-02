@@ -86,6 +86,7 @@ nav:
       - Cloud Inventory: pixelview/inventory/inventory.md
     - Patch Management:
       - Patch Management Overview: pixelview/patch-management/patch-management.md
+      - Patchset Management: pixelview/patch-management/patchset.md
     - Management and Settings:
       - User Management: pixelview/management/user-management.md
       - Settings: pixelview/settings/settings.md

@@ -45,7 +45,7 @@ The **Needs Attention** card at the top left immediately alerts administrators t
 * **Decision States**: Flags paused runs waiting for operator approval before proceeding to the next deployment phase.
 * **Direct Remediation**: Click any flagged item to jump directly into the host diagnostics and execution logs.
 
-### Recent Runs Stream
+### Recent Runs Stream (Planner Redirection)
 
 The **Recent Runs** stream across the bottom provides a live audit trail of planner executions:
 
@@ -53,9 +53,11 @@ The **Recent Runs** stream across the bottom provides a live audit trail of plan
   <img src="../../images/patch-recent-runs.png" alt="Recent Runs Stream">
 </a>
 
-* **Status Badges**: Real-time status indicators showing run outcomes (`Completed`, `Cancelled`, `Running`, `Failed`).
-* **Run Metadata**: Displays the run title, associated patchset, target host group (e.g., `InstallKubectl — ha-host-gtoup`), timestamp, and the user who triggered the run (`admin@localhost`).
-* **Detailed Logs**: Click on any run to inspect per-host execution progress and step-by-step output logs.
+* **Status Badges**: Real-time status indicators showing planner run outcomes (`Completed`, `Cancelled`, `Running`, `Failed`).
+* **Run Metadata**: Displays the run title, associated patchset, target host group (e.g., `InstallKubectl — ha-host-gtoup`), timestamp, and the triggering user (`admin@localhost`).
+* **Planner Redirection**:
+  * **View All Link**: Click **View all** in the top-right corner of the card to navigate directly to the full **Planner** (`/planner`) schedule and batch management dashboard.
+  * **Individual Run Tracking**: Click on any specific run in the list (e.g., `real-test`) to be redirected into the **Planner Run Execution** view, where you can monitor live per-host and per-workflow progress, inspect output logs, and review stage transitions.
 
 ### Top Patchsets Card
 
