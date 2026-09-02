@@ -210,7 +210,7 @@
   
     
   
-  Pixeview Documentation
+  PixelView Documentation
 
         </a>
       </li>
@@ -235,7 +235,7 @@
   
     
   
-  Pixelview API
+  PixelView API
 
         </a>
       </li>
@@ -393,7 +393,7 @@
   <span class="md-ellipsis">
     
   
-    Pixeview Documentation
+    PixelView Documentation
   
 
     
@@ -409,7 +409,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Pixeview Documentation
+    PixelView Documentation
   
 
           </label>
@@ -1918,7 +1918,7 @@
   <span class="md-ellipsis">
     
   
-    Pixelview API
+    PixelView API
   
 
     
@@ -2244,7 +2244,7 @@
         <a href="../../introduction/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Pixeview Documentation
+    PixelView Documentation
   </span>
 
         </a>
@@ -2284,7 +2284,7 @@
 
 
 
-<h1 id="pixelview-high-availability-ha-installation-on-docker">PixelView High Availability (HA) Installation on Docker</h1>
+<h1 id="pixelview-high-availability-ha-installation-on-docker">PixelView High Availability (HA) Installation on Docker<a class="headerlink" href="#pixelview-high-availability-ha-installation-on-docker" title="Permanent link">&para;</a></h1>
 <p>This document describes a <strong>production-grade High Availability (HA) deployment</strong> of PixelView using Docker, where:</p>
 <ul>
 <li>MongoDB runs as a <strong>3-node replica set on three separate machines</strong></li>
@@ -2292,8 +2292,8 @@
 <li>MongoDB provides durable state</li>
 <li>PixelView services remain stateless and horizontally scalable</li>
 </ul>
-<h2 id="ha-architecture-overview">HA Architecture Overview</h2>
-<h3 id="node-layout">Node Layout</h3>
+<h2 id="ha-architecture-overview">HA Architecture Overview<a class="headerlink" href="#ha-architecture-overview" title="Permanent link">&para;</a></h2>
+<h3 id="node-layout">Node Layout<a class="headerlink" href="#node-layout" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -2323,7 +2323,7 @@
 <blockquote>
 <p><strong>Important:</strong> MongoDB nodes <strong>must run on separate hosts</strong> (VMs or physical machines). Running multiple MongoDB containers on the same host does <strong>not</strong> provide real HA.</p>
 </blockquote>
-<h3 id="host-requirements">Host Requirements</h3>
+<h3 id="host-requirements">Host Requirements<a class="headerlink" href="#host-requirements" title="Permanent link">&para;</a></h3>
 <p>Before proceeding with the installation, ensure that you have Docker and Docker Compose installed on your system. To do so, you can follow the instructions provided on the <a href="https://docs.docker.com/get-docker/">docker's website</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">System Recommendation</p>
@@ -2346,9 +2346,9 @@
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="m">192</span>.168.5.3<span class="w"> </span>mongo-node-3
 </span></code></pre></div>
 <p>NOTE: Make sure to match the name and IP of the server to your actual server.</p>
-<h2 id="mongodb-replica-set">MongoDB Replica Set</h2>
+<h2 id="mongodb-replica-set">MongoDB Replica Set<a class="headerlink" href="#mongodb-replica-set" title="Permanent link">&para;</a></h2>
 <p>Each MongoDB node runs <strong>one MongoDB container</strong>, all configured with the same replica set name.</p>
-<h3 id="assumptions">Assumptions</h3>
+<h3 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h3>
 <ul>
 <li>All MongoDB nodes can reach each other over the network</li>
 <li>Hostnames or IPs:<ul>
@@ -2367,7 +2367,7 @@ Set up the <code>HOSTNAME</code> variable on all your nodes before you start the
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$HOSTNAME</span>
 </span></code></pre></div></p>
 <p>Then make sure to replace node names on <code>MONGODB_URI</code> environment variables on your docker-compose.yml file</p>
-<h2 id="mongodb-docker-compose">MongoDB Docker Compose</h2>
+<h2 id="mongodb-docker-compose">MongoDB Docker Compose<a class="headerlink" href="#mongodb-docker-compose" title="Permanent link">&para;</a></h2>
 <p>Create the following <code>docker-compose.yml</code> on <strong>each node</strong>.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">services</span><span class="p">:</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">mongodb</span><span class="p">:</span>
@@ -2524,21 +2524,21 @@ Set up the <code>HOSTNAME</code> variable on all your nodes before you start the
 </span><span id="__span-3-153"><a id="__codelineno-3-153" name="__codelineno-3-153" href="#__codelineno-3-153"></a><span class="nt">volumes</span><span class="p">:</span>
 </span><span id="__span-3-154"><a id="__codelineno-3-154" name="__codelineno-3-154" href="#__codelineno-3-154"></a><span class="w">  </span><span class="nt">data</span><span class="p">:</span>
 </span></code></pre></div>
-<h3 id="add-service_ip">Add <code>SERVICE_IP</code></h3>
+<h3 id="add-service_ip">Add <code>SERVICE_IP</code><a class="headerlink" href="#add-service_ip" title="Permanent link">&para;</a></h3>
 <p>Add the <code>SERVICE_IP</code> to the environment variable of <code>pixelview-backend</code> service. This is the ip of the host that your <code>pixelview-backend</code> container is running on.</p>
-<h3 id="start-containers">Start containers</h3>
+<h3 id="start-containers">Start containers<a class="headerlink" href="#start-containers" title="Permanent link">&para;</a></h3>
 <p>Once you set up the hostname, you can start the conatainers
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </span></code></pre></div></p>
-<h2 id="initialize-the-mongodb-replica-set">Initialize the MongoDB Replica Set</h2>
+<h2 id="initialize-the-mongodb-replica-set">Initialize the MongoDB Replica Set<a class="headerlink" href="#initialize-the-mongodb-replica-set" title="Permanent link">&para;</a></h2>
 <p>This step initializes the MongoDB replica set and must be executed <strong>only once</strong> after all MongoDB nodes are up and running.</p>
 <blockquote>
 <p>Run this from only one of the mongodb containers</p>
 </blockquote>
-<h3 id="connect-to-mongodb">Connect to MongoDB</h3>
+<h3 id="connect-to-mongodb">Connect to MongoDB<a class="headerlink" href="#connect-to-mongodb" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongo-node-1<span class="w"> </span>mongosh
 </span></code></pre></div>
-<h3 id="initialize-replica-set">Initialize Replica Set</h3>
+<h3 id="initialize-replica-set">Initialize Replica Set<a class="headerlink" href="#initialize-replica-set" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>rs.initiate({
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  _id: &quot;rs0&quot;,
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  members: [
@@ -2548,7 +2548,7 @@ Set up the <code>HOSTNAME</code> variable on all your nodes before you start the
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  ]
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>})
 </span></code></pre></div>
-<h3 id="verify-replica-set-status">Verify Replica Set Status</h3>
+<h3 id="verify-replica-set-status">Verify Replica Set Status<a class="headerlink" href="#verify-replica-set-status" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>rs.status().members.map(m =&gt; ({host:m.name,state:m.stateStr,health:m.health}))
 </span></code></pre></div>
 <div class="admonition note">
@@ -2562,7 +2562,7 @@ Set up the <code>HOSTNAME</code> variable on all your nodes before you start the
 </span></code></pre></div></p>
 </div>
 <p>If everything has gone correctly, you have 3 nodes with PixelView services running on each node.</p>
-<h2 id="dns-lb">DNS / LB</h2>
+<h2 id="dns-lb">DNS / LB<a class="headerlink" href="#dns-lb" title="Permanent link">&para;</a></h2>
 <p>At this point you will need to setup a round robin DNS entry or external load balancer that points to your nodes.</p>
 <p>Assuming DNS: testing.pixelvirt.com when you dig on the fqdn you see:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>dig<span class="w"> </span>testing.pixelvirt.com<span class="w">                                                                                                                        </span>git:master*

@@ -79,6 +79,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#single-sign-on-sso-integration" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -205,7 +210,7 @@
   
     
   
-  Pixeview Documentation
+  PixelView Documentation
 
         </a>
       </li>
@@ -230,7 +235,7 @@
   
     
   
-  Pixelview API
+  PixelView API
 
         </a>
       </li>
@@ -388,7 +393,7 @@
   <span class="md-ellipsis">
     
   
-    Pixeview Documentation
+    PixelView Documentation
   
 
     
@@ -404,7 +409,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Pixeview Documentation
+    PixelView Documentation
   
 
           </label>
@@ -1629,6 +1634,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSO Integration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1646,6 +1671,119 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture &amp; Authentication Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identity-provider-idp-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity Provider (IdP) Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identity Provider (IdP) Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-an-oidc-application-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register an OIDC Application / Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-pixelview-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring PixelView Backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-provisioning-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Provisioning &amp; Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-user-login-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-User Login Experience
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1707,7 +1845,7 @@
   <span class="md-ellipsis">
     
   
-    Pixelview API
+    PixelView API
   
 
     
@@ -1806,6 +1944,110 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture &amp; Authentication Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identity-provider-idp-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity Provider (IdP) Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identity Provider (IdP) Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-an-oidc-application-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register an OIDC Application / Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-pixelview-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring PixelView Backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-provisioning-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Provisioning &amp; Permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#end-user-login-experience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-User Login Experience
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1856,7 +2098,7 @@
         <a href="../../introduction/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Pixeview Documentation
+    PixelView Documentation
   </span>
 
         </a>
@@ -1896,9 +2138,122 @@
 
 
 
-  <h1>SSO Integration</h1>
-
-
+<h1 id="single-sign-on-sso-integration">Single Sign-On (SSO) Integration<a class="headerlink" href="#single-sign-on-sso-integration" title="Permanent link">&para;</a></h1>
+<p>PixelView supports enterprise <strong>Single Sign-On (SSO)</strong> using industry-standard <strong>OpenID Connect (OIDC)</strong> and <strong>OAuth 2.0</strong> protocols. Integrating SSO allows team members to authenticate seamlessly using their existing corporate identity providers (IdP) such as <strong>Keycloak</strong>, <strong>Okta</strong>, <strong>Microsoft Entra ID (Azure AD)</strong>, and <strong>Google Workspace</strong>.</p>
+<hr />
+<h2 id="architecture-authentication-flow">Architecture &amp; Authentication Flow<a class="headerlink" href="#architecture-authentication-flow" title="Permanent link">&para;</a></h2>
+<p>PixelView leverages standard authorization code flow with PKCE:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+----------------+            Click SSO Login           +-------------------+
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|                | -----------------------------------&gt; |                   |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|                |                                      |   PixelView Web   |
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>|   End User     | &lt;----------------------------------- |     Frontend      |
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>|                |       Redirect to IdP Auth URL       +-------------------+
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>+----------------+                                                |
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        |                                                         |
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        | Authenticate with IdP Credentials                       |
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        v                                                         |
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>+-------------------+                                             |
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>|  Identity Provider|                                             |
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>| (Keycloak / Okta /|                                             |
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>|   Microsoft / ...) |                                            |
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>+-------------------+                                             |
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        |                                                         |
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        | Redirect with Auth Code to /sso-login-success           |
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        +--------------------------------------------------------&gt;+
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                                                                  |
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                                                    Exchange Code for JWT Session
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                                                                  v
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                                                        +-------------------+
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                                                        | PixelView Backend |
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>                                                        +-------------------+
+</span></code></pre></div>
+<hr />
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Before configuring SSO in PixelView, ensure you have:
+* Administrator access to your corporate Identity Provider (IdP).
+* A fully qualified domain name (FQDN) configured with HTTPS for your PixelView instance.
+* Your PixelView SSO Callback / Redirect URI:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>https://&lt;your-pixelview-domain&gt;/sso-login-success
+</span></code></pre></div></p>
+<hr />
+<h2 id="identity-provider-idp-configuration">Identity Provider (IdP) Configuration<a class="headerlink" href="#identity-provider-idp-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="register-an-oidc-application-client">Register an OIDC Application / Client<a class="headerlink" href="#register-an-oidc-application-client" title="Permanent link">&para;</a></h3>
+<p>In your IdP administration console (e.g. Keycloak or Okta):</p>
+<ul>
+<li>Create a new <strong>OpenID Connect (OIDC)</strong> client.</li>
+<li>Set the <strong>Client Type</strong> to <code>Confidential</code> (or <code>Web App</code>).</li>
+<li>Set the <strong>Valid Redirect URIs</strong> (or Allowed Callback URLs) to:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>https://&lt;your-pixelview-domain&gt;/sso-login-success
+</span></code></pre></div></li>
+<li>Set the <strong>Allowed Web Origins</strong> to your base domain:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>https://&lt;your-pixelview-domain&gt;
+</span></code></pre></div></li>
+<li>Ensure the standard OIDC scopes are granted:</li>
+<li><code>openid</code></li>
+<li><code>email</code></li>
+<li><code>profile</code></li>
+<li>Copy the generated <strong>Client ID</strong> and <strong>Client Secret</strong>.</li>
+</ul>
+<hr />
+<h2 id="configuring-pixelview-backend">Configuring PixelView Backend<a class="headerlink" href="#configuring-pixelview-backend" title="Permanent link">&para;</a></h2>
+<p>Set the following environment variables in your PixelView backend deployment configuration (<code>.env</code> or Docker Compose):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Enable SSO Authentication</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">SSO_ENABLED</span><span class="o">=</span><span class="nb">true</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># OpenID Connect Configuration</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">OIDC_ISSUER_URL</span><span class="o">=</span>https://idp.yourdomain.com/realms/pixelvirt
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nv">OIDC_CLIENT_ID</span><span class="o">=</span>pixelview-client
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nv">OIDC_CLIENT_SECRET</span><span class="o">=</span>your_super_secret_client_key_here
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nv">OIDC_REDIRECT_URI</span><span class="o">=</span>https://pixelview.yourdomain.com/sso-login-success
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Scopes (default: openid email profile)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nv">OIDC_SCOPES</span><span class="o">=</span>openid<span class="w"> </span>email<span class="w"> </span>profile
+</span></code></pre></div>
+<p>Restart the PixelView backend service to apply the new configuration:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>backend
+</span></code></pre></div></p>
+<hr />
+<h2 id="user-provisioning-permissions">User Provisioning &amp; Permissions<a class="headerlink" href="#user-provisioning-permissions" title="Permanent link">&para;</a></h2>
+<p>When a user logs in via SSO for the first time:
+* <strong>Automatic Account Creation</strong>: PixelView automatically creates a user account using the <code>email</code>, <code>given_name</code> (First Name), and <code>family_name</code> (Last Name) claims received from the identity provider.
+* <strong>Default Role Assignment</strong>: New SSO users are assigned the default <code>User</code> role with initial scoped permissions.
+* <strong>Role Elevation</strong>: Administrators can upgrade roles to <code>Admin</code> or customize the <a href="../user-management/#granular-permissions-matrix">Granular Permissions Matrix</a> at any time from the <strong>Management &gt; Users</strong> page.</p>
+<hr />
+<h2 id="end-user-login-experience">End-User Login Experience<a class="headerlink" href="#end-user-login-experience" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Navigate to the PixelView login page (<code>/login</code>).</li>
+<li>Click the <strong>Single Sign-On (SSO)</strong> button under the login form.</li>
+<li>Complete authentication on your organization's identity portal.</li>
+<li>You will be automatically redirected to <code>/sso-login-success</code> and then into your PixelView dashboard.</li>
+</ul>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Issue / Error</th>
+<th style="text-align: left;">Potential Cause</th>
+<th style="text-align: left;">Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Invalid redirect URI</code></td>
+<td style="text-align: left;">The Redirect URI in the IdP does not exactly match <code>https://&lt;domain&gt;/sso-login-success</code>.</td>
+<td style="text-align: left;">Check trailing slashes and ensure protocol is <code>https://</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Token verification failed</code></td>
+<td style="text-align: left;">Issuer URL mismatch or clock skew between servers.</td>
+<td style="text-align: left;">Ensure server system clocks are synchronized via NTP and <code>OIDC_ISSUER_URL</code> matches the IdP's <code>iss</code> claim.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Missing email claim</code></td>
+<td style="text-align: left;">The IdP client is not releasing user email attributes.</td>
+<td style="text-align: left;">Add the <code>email</code> scope to your client mapper in the IdP console.</td>
+</tr>
+</tbody>
+</table>
 
 
 

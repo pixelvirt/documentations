@@ -79,6 +79,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#authentication-login" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -205,7 +210,7 @@
   
     
   
-  Pixeview Documentation
+  PixelView Documentation
 
         </a>
       </li>
@@ -230,7 +235,7 @@
   
     
   
-  Pixelview API
+  PixelView API
 
         </a>
       </li>
@@ -388,7 +393,7 @@
   <span class="md-ellipsis">
     
   
-    Pixeview Documentation
+    PixelView Documentation
   
 
     
@@ -404,7 +409,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Pixeview Documentation
+    PixelView Documentation
   
 
           </label>
@@ -1601,6 +1606,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1618,6 +1643,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#default-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-login-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Login Procedure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-sign-on-sso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Sign-On (SSO)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#password-recovery-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password Recovery &amp; Reset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging Out
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1707,7 +1806,7 @@
   <span class="md-ellipsis">
     
   
-    Pixelview API
+    PixelView API
   
 
     
@@ -1806,6 +1905,71 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#default-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default Credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-login-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Login Procedure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-sign-on-sso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Sign-On (SSO)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#password-recovery-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password Recovery &amp; Reset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging Out
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1856,7 +2020,7 @@
         <a href="../../introduction/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Pixeview Documentation
+    PixelView Documentation
   </span>
 
         </a>
@@ -1896,59 +2060,62 @@
 
 
 
-  <h1>Login</h1>
-
-<p><strong>Default Login Credentials:</strong></p>
-<p>The default login credentials for accessing PixelView are as follows:</p>
+<h1 id="authentication-login">Authentication &amp; Login<a class="headerlink" href="#authentication-login" title="Permanent link">&para;</a></h1>
+<p>PixelView provides a secure authentication portal supporting local database credentials and Single Sign-On (SSO) enterprise identity providers.</p>
+<hr />
+<h2 id="default-credentials">Default Credentials<a class="headerlink" href="#default-credentials" title="Permanent link">&para;</a></h2>
+<p>On a newly deployed PixelView instance, use the initial administrative credentials to log in:</p>
 <ul>
-<li><strong>Username:</strong> admin@localhost</li>
-<li><strong>Password:</strong> password</li>
+<li><strong>Email / Username</strong>: <code>admin@localhost</code></li>
+<li><strong>Password</strong>: <code>password</code></li>
 </ul>
-<p><strong>Important Note:</strong> It is highly recommended to change your default password immediately after your first login to enhance the security of your account.</p>
-<p><strong>Steps to Change Password:</strong></p>
-<ol>
-<li>
-<p><strong>Login to PixelView:</strong> Use the default credentials (admin@localhost and password) to log in to your PixelView account.</p>
-</li>
-<li>
-<p><strong>Access Settings:</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Change Default Password</p>
+<p>It is critical to change the default <code>admin@localhost</code> password immediately after your first login by navigating to <strong>Settings</strong> &gt; <strong>Profile</strong> &gt; <strong>Change Password</strong>.</p>
+</div>
+<hr />
+<h2 id="standard-login-procedure">Standard Login Procedure<a class="headerlink" href="#standard-login-procedure" title="Permanent link">&para;</a></h2>
 <ul>
-<li>After logging in, navigate to the bottom-left corner of the interface.</li>
-<li>Click on the settings icon to access the settings menu.
-<img alt="Settings" src="../../images/settings.png" /></li>
-<li>
-<p><strong>Locate Change Password Option:</strong></p>
-</li>
-<li>
-<p>Within the settings menu, locate the "Change Password" option.</p>
-</li>
-<li>Click on this option to proceed with changing your password.
-<img alt="Change Password" src="../../images/chpasswd.png" /></li>
-<li>
-<p><strong>Submit New Password:</strong></p>
-</li>
-<li>
-<p>After selecting the "Change Password" option, you will be directed to a page where you can input your new password.</p>
-</li>
-<li>Enter your desired new password in the provided field.</li>
-<li>
-<p><strong>Confirm New Password:</strong></p>
-</li>
-<li>
-<p>Re-enter the new password in the confirmation field to ensure accuracy.</p>
-</li>
-<li>
-<p><strong>Finalize Password Change:</strong></p>
-</li>
-<li>
-<p>Once you have entered and confirmed your new password, click on the "Change Password" button to finalize the process.</p>
-</li>
+<li>Open your browser and navigate to your PixelView host URL (e.g., <code>https://pixelview.yourdomain.com/login</code>).</li>
+<li>Enter your registered <strong>Email</strong> address.</li>
+<li>Enter your <strong>Password</strong> (click the <strong>Eye Icon</strong> to toggle password visibility).</li>
+<li>Click <strong>Sign In</strong>.</li>
 </ul>
-</li>
-</ol>
-<p><strong>Confirmation:</strong> Upon successful completion of the above steps, your login password for PixelView will be updated to the new one you specified.
-<img alt="Finalize Password Change" src="../../images/update-passwd.png" /></p>
-<p><strong>Note:</strong> For security purposes, it is advisable to choose a strong, unique password that is not easily guessable and to periodically update your password.</p>
+<p>Upon successful authentication, the system creates an encrypted session token and redirects you to the main dashboard.</p>
+<hr />
+<h2 id="single-sign-on-sso">Single Sign-On (SSO)<a class="headerlink" href="#single-sign-on-sso" title="Permanent link">&para;</a></h2>
+<p>If your organization has integrated an enterprise identity provider (such as Keycloak, Okta, Microsoft Entra ID, or Google Workspace):</p>
+<ul>
+<li>On the login page, click the <strong>Single Sign-On (SSO)</strong> button.</li>
+<li>You will be redirected to your organization's identity provider portal.</li>
+<li>Authenticate using your corporate credentials and multi-factor authentication (MFA).</li>
+<li>Once verified, you will be redirected back to PixelView with an authenticated session.</li>
+</ul>
+<p>For identity provider configuration details, see <a href="../../management/sso-integration/">SSO Integration Guide</a>.</p>
+<hr />
+<h2 id="password-recovery-reset">Password Recovery &amp; Reset<a class="headerlink" href="#password-recovery-reset" title="Permanent link">&para;</a></h2>
+<p>If you have forgotten your password:</p>
+<ul>
+<li>Click the <strong>Forgot password?</strong> link on the login page (navigates to <code>/forgot-password</code>).</li>
+<li>Enter your registered email address and click <strong>Send Reset Link</strong>.</li>
+<li>Check your email for a secure password reset link.</li>
+<li>Click the link to open the <strong>Reset Password</strong> page (<code>/reset-password</code>).</li>
+<li>Enter your <strong>New Password</strong> and <strong>Confirm Password</strong> (minimum 8 characters with letters, numbers, and symbols).</li>
+<li>Click <strong>Reset Password</strong> to complete the update.</li>
+</ul>
+<hr />
+<h2 id="logging-out">Logging Out<a class="headerlink" href="#logging-out" title="Permanent link">&para;</a></h2>
+<p>To end your active session and log out of PixelView:</p>
+<ul>
+<li>Click the <strong>Logout</strong> button located at the bottom of the left navigation sidebar:
+  <a href="../../images/logout.png" class="glightbox">
+    <img src="../../images/logout.png" alt="Logout Navigation Sidebar">
+  </a></li>
+<li>When triggered, PixelView:</li>
+<li>Revokes the active session token via the backend API.</li>
+<li>Clears all local application states, session storage, and cached data.</li>
+<li>Redirects you securely back to the login portal.</li>
+</ul>
 
 
 
