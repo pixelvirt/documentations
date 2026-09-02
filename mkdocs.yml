@@ -84,6 +84,7 @@ nav:
       # - Automation Workflows: ""
     - Inventory:
       - Cloud Inventory: pixelview/inventory/inventory.md
+      - Credentials Management: pixelview/inventory/creds.md
     - Patch Management:
       - Patch Management Overview: pixelview/patch-management/patch-management.md
       - Patchset Management: pixelview/patch-management/patchset.md
