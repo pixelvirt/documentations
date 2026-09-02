@@ -28,3 +28,15 @@
     /* border-left: 1px solid var(--md-default-fg-color--lightest); */
     padding-left: 1rem;
 }
+
+/* Fix sidebar container bounds and prevent footer overlap */
+.md-sidebar--primary .md-sidebar__scrollwrap {
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+}
+
+.md-footer {
+    position: relative;
+    z-index: 10;
+    clear: both;
+}

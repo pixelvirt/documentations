@@ -1,38 +1,67 @@
-**Default Login Credentials:**
+# Authentication & Login
 
-The default login credentials for accessing PixelView are as follows:
+PixelView provides a secure authentication portal supporting local database credentials and Single Sign-On (SSO) enterprise identity providers.
 
-- **Username:** admin@localhost
-- **Password:** password
+---
 
-**Important Note:** It is highly recommended to change your default password immediately after your first login to enhance the security of your account.
+## Default Credentials
 
-**Steps to Change Password:**
+On a newly deployed PixelView instance, use the initial administrative credentials to log in:
 
-1. **Login to PixelView:** Use the default credentials (admin@localhost and password) to log in to your PixelView account.
-    
-2. **Access Settings:**
-    
-    - After logging in, navigate to the bottom-left corner of the interface.
-    - Click on the settings icon to access the settings menu.
-    ![Settings](../images/settings.png)
-3. **Locate Change Password Option:**
-    
-    - Within the settings menu, locate the "Change Password" option.
-    - Click on this option to proceed with changing your password.
-    ![Change Password](../images/chpasswd.png)
-4. **Submit New Password:**
-    
-    - After selecting the "Change Password" option, you will be directed to a page where you can input your new password.
-    - Enter your desired new password in the provided field.
-5. **Confirm New Password:**
-    
-    - Re-enter the new password in the confirmation field to ensure accuracy.
-6. **Finalize Password Change:**
-    
-    - Once you have entered and confirmed your new password, click on the "Change Password" button to finalize the process.
+* **Email / Username**: `admin@localhost`
+* **Password**: `password`
 
-**Confirmation:** Upon successful completion of the above steps, your login password for PixelView will be updated to the new one you specified.
-![Finalize Password Change](../images/update-passwd.png)
+!!! warning "Change Default Password"
+    It is critical to change the default `admin@localhost` password immediately after your first login by navigating to **Settings** > **Profile** > **Change Password**.
 
-**Note:** For security purposes, it is advisable to choose a strong, unique password that is not easily guessable and to periodically update your password.
+---
+
+## Standard Login Procedure
+
+* Open your browser and navigate to your PixelView host URL (e.g., `https://pixelview.yourdomain.com/login`).
+* Enter your registered **Email** address.
+* Enter your **Password** (click the **Eye Icon** to toggle password visibility).
+* Click **Sign In**.
+
+Upon successful authentication, the system creates an encrypted session token and redirects you to the main dashboard.
+
+---
+
+## Single Sign-On (SSO)
+
+If your organization has integrated an enterprise identity provider (such as Keycloak, Okta, Microsoft Entra ID, or Google Workspace):
+
+* On the login page, click the **Single Sign-On (SSO)** button.
+* You will be redirected to your organization's identity provider portal.
+* Authenticate using your corporate credentials and multi-factor authentication (MFA).
+* Once verified, you will be redirected back to PixelView with an authenticated session.
+
+For identity provider configuration details, see [SSO Integration Guide](../management/sso-integration.md).
+
+---
+
+## Password Recovery & Reset
+
+If you have forgotten your password:
+
+* Click the **Forgot password?** link on the login page (navigates to `/forgot-password`).
+* Enter your registered email address and click **Send Reset Link**.
+* Check your email for a secure password reset link.
+* Click the link to open the **Reset Password** page (`/reset-password`).
+* Enter your **New Password** and **Confirm Password** (minimum 8 characters with letters, numbers, and symbols).
+* Click **Reset Password** to complete the update.
+
+---
+
+## Logging Out
+
+To end your active session and log out of PixelView:
+
+* Click the **Logout** button located at the bottom of the left navigation sidebar:
+  <a href="../../images/logout.png" class="glightbox">
+    <img src="../../images/logout.png" alt="Logout Navigation Sidebar">
+  </a>
+* When triggered, PixelView:
+  * Revokes the active session token via the backend API.
+  * Clears all local application states, session storage, and cached data.
+  * Redirects you securely back to the login portal.

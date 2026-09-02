@@ -57,7 +57,7 @@ extra_javascript:
 
 nav:
   - Welcome: index.md
-  - Pixeview Documentation:
+  - PixelView Documentation:
     - PixelView:
       - Introduction: pixelview/introduction.md
     - Installations:
@@ -91,7 +91,7 @@ nav:
       - Settings: pixelview/settings/settings.md
       - Login: pixelview/settings/login.md
       - SSO Integration: pixelview/management/sso-integration.md
-  - Pixelview API:
+  - PixelView API:
     - "API Examples": pixelview/api/api.md
     - "Python Example": pixelview/api/create-alerts.md
 
@@ -120,6 +120,9 @@ markdown_extensions:
   - pymdownx.superfences
   - attr_list
   - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
   # - pymdownx.blocks.caption
 
 plugins:
