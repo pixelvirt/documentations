@@ -4,7 +4,7 @@ The **Bots** section (`/bots`) in PixelView manages automation bots and automate
 
 ---
 
-## 1. Viewing Automation Bots
+## Viewing Automation Bots
 
 Navigate to **Management** > **Bots** from the left navigation sidebar:
 
@@ -23,7 +23,7 @@ The bots table provides an inventory of all configured automation bots:
 | **Type** | Bot execution engine type: <br> • `StackStorm` — Connects to a StackStorm automation action runner. <br> • `Custom` — Custom webhook handler or script integration. |
 | **Actions** | Context menu (`...`) allowing administrators to **Delete** the bot. |
 
-#### Table Toolbar Controls
+**Table Toolbar Controls:**
 * **Search / Global Filter**: Search across bot names, types, and URLs.
 * **Toggle Column Filters**: Filter specific columns.
 * **Show/Hide Columns**: Customize visible headers in the table.
@@ -33,30 +33,29 @@ The bots table provides an inventory of all configured automation bots:
 
 ---
 
-## 2. Adding a New Bot
+## Adding a New Bot
 
 To register a new automation bot in PixelView:
 
-1. Click the **`+`** (Add Bot) button in the top-right corner of the table toolbar:
-   <a href="../../images/add-bot.png" class="glightbox">
-     <img src="../../images/add-bot.png" alt="Add Bot Button">
-   </a>
-2. The **Add Bot** modal dialog will open:
-   <a href="../../images/create-bot.png" class="glightbox">
-     <img src="../../images/create-bot.png" alt="Add Bot Modal">
-   </a>
-3. Fill in the required parameters:
-   * **Name** *(Required)*: A unique name for your bot (e.g., `StackStorm Runner`, `Disk Cleanup Bot`).
-   * **Bot URL** *(Required)*: The fully qualified URL or IP endpoint where the bot can be reached.
-   * **Bot Auth Token** *(Required)*: The secret token used for payload verification.
-   * **Bot Type** *(Required)*: Select the bot engine from the dropdown:
-     * **StackStorm**: Standard StackStorm automation integration.
-     * **Custom**: Custom webhook endpoint or custom automation bot.
-4. Click **Create** (shows *Creating...* while registering).
+* Click the **`+`** (Add Bot) button in the top-right corner of the table toolbar:
+  <a href="../../images/add-bot.png" class="glightbox">
+    <img src="../../images/add-bot.png" alt="Add Bot Button">
+  </a>
+* In the **Add Bot** modal dialog, configure the required parameters:
+  <a href="../../images/create-bot.png" class="glightbox">
+    <img src="../../images/create-bot.png" alt="Add Bot Modal">
+  </a>
+  * **Name** *(Required)*: A unique name for your bot (e.g., `StackStorm Runner`, `Disk Cleanup Bot`).
+  * **Bot URL** *(Required)*: The fully qualified URL or IP endpoint where the bot can be reached.
+  * **Bot Auth Token** *(Required)*: The secret token used for payload verification.
+  * **Bot Type** *(Required)*: Select the bot engine from the dropdown:
+    * **StackStorm**: Standard StackStorm automation integration.
+    * **Custom**: Custom webhook endpoint or custom automation bot.
+* Click **Create** (shows *Creating...* while registering).
 
 ---
 
-## 3. Managing Bot Secrets & Actions
+## Managing Bot Secrets & Actions
 
 ### Viewing and Copying Tokens
 Both the **Auth Token** and **API Key** columns use security masking by default (`••••••••`):
@@ -64,17 +63,17 @@ Both the **Auth Token** and **API Key** columns use security masking by default 
 * Click the **Copy Icon** to copy the token directly to your clipboard.
 
 ### Deleting a Bot
-1. In the Bots table, click the **`...`** icon under the **Actions** column for the target bot.
-2. Select **Delete** (Trash Icon):
-   <a href="../../images/delete-bots.png" class="glightbox">
-     <img src="../../images/delete-bots.png" alt="Delete Bot">
-   </a>
-3. Confirm the deletion prompt (`Are you sure you want to delete <Bot Name>?`).
-4. The bot will be permanently detached and removed from the system.
+* In the Bots table, click the **`...`** icon under the **Actions** column for the target bot.
+* Select **Delete** (Trash Icon):
+  <a href="../../images/delete-bots.png" class="glightbox">
+    <img src="../../images/delete-bots.png" alt="Delete Bot">
+  </a>
+* Confirm the deletion prompt (`Are you sure you want to delete <Bot Name>?`).
+* The bot will be permanently detached and removed from the system.
 
 ---
 
-## 4. Using Bots in Escalation Policies
+## Using Bots in Escalation Policies
 
 Once registered, bots can be automatically assigned to alert escalation workflows:
 * In **Escalations** > **Policies**, you can add an escalation level and choose **Assign to Automations**.

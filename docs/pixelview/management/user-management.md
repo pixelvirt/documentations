@@ -1,15 +1,14 @@
+# User & Group Management
 
-# Management
-
-The **Management** section in PixelView is the administrative hub for managing team members, access groups, automation bots, and permissions.
+The **Management** section in PixelView provides administrative controls for managing team members, organizing access groups, and configuring granular, module-level permissions.
 
 ---
 
-## Users
+## User Management
 
-The **Users** page (`/users`) provides a centralized view of all registered accounts, enabling administrators to invite team members, adjust roles, toggle account statuses, and configure granular, module-level access control permissions.
+The **Users** page (`/users`) provides a centralized view of all registered accounts, enabling administrators to invite team members, adjust roles, toggle account statuses, and configure access control permissions.
 
-### 1. Viewing and Managing Users
+### Overview & User Table
 
 Navigate to **Management** > **Users** from the left navigation sidebar:
 
@@ -17,7 +16,7 @@ Navigate to **Management** > **Users** from the left navigation sidebar:
   <img src="../../images/management-sidebar.png" alt="Management Navigation Sidebar">
 </a>
 
-The users table provides real-time information with the following columns:
+The users table provides real-time account information:
 
 | Column | Description |
 | :--- | :--- |
@@ -27,7 +26,7 @@ The users table provides real-time information with the following columns:
 | **Role** | System role assigned to the user (`Admin` or `User`). |
 | **Actions** | Action menu (`...`) to edit or manage user profile settings. |
 
-#### Table Toolbar Controls
+**Table Toolbar Controls:**
 * **Search / Global Filter**: Quickly filter users across names, emails, and roles.
 * **Toggle Column Filters**: Apply column-specific filters.
 * **Show/Hide Columns**: Customize which columns are visible in the table.
@@ -37,27 +36,27 @@ The users table provides real-time information with the following columns:
 
 ---
 
-### 2. Inviting a New User
+### Inviting a New User
 
 To add a new team member to PixelView:
 
-1. Click the **`+`** (Add User) icon located in the top-right corner of the table toolbar:
-   <a href="../../images/adduser.png" class="glightbox">
-     <img src="../../images/adduser.png" alt="Add User Button">
-   </a>
-2. The **Invite User** modal dialog will open:
-   <a href="../../images/invite-user.png" class="glightbox">
-     <img src="../../images/invite-user.png" alt="Invite User Dialog">
-   </a>
-3. Fill in the required fields:
-   * **First Name** *(Required)*: The user's first name.
-   * **Last Name** *(Required)*: The user's last name.
-   * **Email** *(Required)*: A valid email address to receive account credentials.
-   * **Role** *(Required)*: Select the system role from the dropdown:
-     * **Admin**: Full administrative access across the platform.
-     * **User**: Standard user with access scoped by the permissions matrix.
-   * **Permissions**: Expand the permissions section to define module-level access (see [Granular Permissions Matrix](#4-granular-permissions-matrix)).
-4. Click **Send Invite**.
+* Click the **`+`** (Add User) icon located in the top-right corner of the table toolbar:
+  <a href="../../images/adduser.png" class="glightbox">
+    <img src="../../images/adduser.png" alt="Add User Button">
+  </a>
+* In the **Invite User** modal dialog:
+  <a href="../../images/invite-user.png" class="glightbox">
+    <img src="../../images/invite-user.png" alt="Invite User Dialog">
+  </a>
+* Fill in the required fields:
+  * **First Name** *(Required)*: The user's first name.
+  * **Last Name** *(Required)*: The user's last name.
+  * **Email** *(Required)*: A valid email address to receive account credentials.
+  * **Role** *(Required)*: Select the system role from the dropdown:
+    * **Admin**: Full administrative access across the platform.
+    * **User**: Standard user with access scoped by the permissions matrix.
+  * **Permissions**: Expand the permissions section to define module-level access (see [Granular Permissions Matrix](#granular-permissions-matrix)).
+* Click **Send Invite**.
 
 !!! note "Initial User Password"
     Upon sending the invitation, an initial password is generated following the convention:  
@@ -66,25 +65,25 @@ To add a new team member to PixelView:
 
 ---
 
-### 3. Updating an Existing User
+### Updating an Existing User
 
 Administrators can modify account details, toggle access status, and update permission levels at any time:
 
-1. Locate the user in the table and click the **`...`** icon in the **Actions** column.
-2. Select **Edit** to open the **Update User** modal:
-   <a href="../../images/update-user.png" class="glightbox">
-     <img src="../../images/update-user.png" alt="Update User">
-   </a>
-3. Modify the desired parameters:
-   * **First Name** / **Last Name**: Update the user's name.
-   * **Role**: Switch between `Admin` and `User`.
-   * **Status**: Toggle between `Enabled` and `Disabled` to instantly grant or revoke access.
-   * **Permissions**: Adjust individual read/write capabilities across platform modules.
-4. Click **Update User** to save the changes.
+* Locate the user in the table and click the **`...`** icon in the **Actions** column.
+* Select **Edit** to open the **Update User** modal:
+  <a href="../../images/update-user.png" class="glightbox">
+    <img src="../../images/update-user.png" alt="Update User">
+  </a>
+* Modify the desired parameters:
+  * **First Name** / **Last Name**: Update the user's name.
+  * **Role**: Switch between `Admin` and `User`.
+  * **Status**: Toggle between `Enabled` and `Disabled` to instantly grant or revoke access.
+  * **Permissions**: Adjust individual read/write capabilities across platform modules.
+* Click **Update User** to save the changes.
 
 ---
 
-### 4. Granular Permissions Matrix
+### Granular Permissions Matrix
 
 PixelView features a role-based access control (RBAC) permissions matrix that allows fine-grained access control per feature module.
 
@@ -94,13 +93,12 @@ PixelView features a role-based access control (RBAC) permissions matrix that al
 
 Permissions can be configured when **Inviting a User** or when **Updating a User**.
 
-#### Quick Bulk Actions
-Use the top quick-selection buttons to bulk apply permissions across all modules at once:
+**Quick Bulk Actions:**
 * **Set all to: Disabled**: Revokes access to all modules.
 * **Set all to: Read Only**: Grants view-only access across all modules.
 * **Set all to: Read/Write**: Grants full read, write, and execution capabilities.
 
-#### Supported Modules & Permission Levels
+**Supported Modules & Permission Levels:**
 
 Each module can be independently set to **Disabled**, **Read Only**, or **Read/Write**:
 
@@ -122,13 +120,11 @@ Each module can be independently set to **Disabled**, **Read Only**, or **Read/W
 
 ---
 
-## Groups
+## Access Groups
 
 The **Groups** page (`/groups`) allows administrators to organize team members into functional operational units (e.g., `admins`, `Approvers`, `L1 Reviewers`, `L2 Reviewers`) for collaborative incident management, alert assignments, and escalation routing.
 
----
-
-### 1. Viewing Groups
+### Overview & Groups Table
 
 Navigate to **Management** > **Groups** from the left navigation sidebar:
 
@@ -144,7 +140,7 @@ The groups table displays all configured user groups:
 | **Updated At** | Timestamp indicating when the group or its member list was last modified. |
 | **Actions** | Action menu (`...`) providing options to **View** or **Delete** the group. |
 
-#### Table Toolbar Controls
+**Table Toolbar Controls:**
 * **Search / Global Filter**: Search across group names.
 * **Toggle Column Filters**: Filter specific table columns.
 * **Show/Hide Columns**: Customize visible table headers.
@@ -154,26 +150,26 @@ The groups table displays all configured user groups:
 
 ---
 
-### 2. Creating a New Group
+### Creating a New Group
 
 To create a new access group:
 
-1. Click the **`+`** (Add Group) button located in the top-right corner of the table toolbar:
-   <a href="../../images/add-group-btn.png" class="glightbox">
-     <img src="../../images/add-group-btn.png" alt="Add Group Button">
-   </a>
-2. The **Add Group** modal dialog will open:
-   <a href="../../images/add-groups.png" class="glightbox">
-     <img src="../../images/add-groups.png" alt="Add Group Dialog">
-   </a>
-3. Fill in the group parameters:
-   * **Group Name** *(Required)*: Enter a unique and descriptive name for the group (e.g., `admins`, `Approvers`).
-   * **Add Members**: Open the dropdown to select one or multiple registered team members to add to the group.
-4. Click **Create** to save the new group.
+* Click the **`+`** (Add Group) button located in the top-right corner of the table toolbar:
+  <a href="../../images/add-group-btn.png" class="glightbox">
+    <img src="../../images/add-group-btn.png" alt="Add Group Button">
+  </a>
+* In the **Add Group** modal dialog:
+  <a href="../../images/add-groups.png" class="glightbox">
+    <img src="../../images/add-groups.png" alt="Add Group Dialog">
+  </a>
+* Fill in the group parameters:
+  * **Group Name** *(Required)*: Enter a unique and descriptive name for the group (e.g., `admins`, `Approvers`).
+  * **Add Members**: Open the dropdown to select one or multiple registered team members to add to the group.
+* Click **Create** to save the new group.
 
 ---
 
-### 3. Managing Group Actions
+### Managing Group Actions
 
 In the Groups table, click the **`...`** icon under the **Actions** column for any group:
 
@@ -188,71 +184,3 @@ In the Groups table, click the **`...`** icon under the **Actions** column for a
   * Remove members from the group.
 * **Delete (Trash Icon)**:  
   Prompts a confirmation dialog (`Are you sure you want to delete group <name>?`). Confirming will permanently remove the group from the system.
-
----
-
-## Bots
-
-The **Bots** section (`/bots`) manages automation bots and webhook endpoints for automated task remediation, alert triage, and escalation integration.
-
----
-
-### 1. Viewing Bots
-
-Navigate to **Management** > **Bots** from the left navigation sidebar:
-
-<a href="../../images/bots.png" class="glightbox">
-  <img src="../../images/bots.png" alt="Bots Navigation Sidebar">
-</a>
-
-The bots table displays all registered automation bots:
-
-| Column | Description |
-| :--- | :--- |
-| **Name** | Identifier name of the bot. |
-| **URL** | Webhook or API endpoint URL where the bot listens. |
-| **Auth Token** | Masked authentication token with toggle-to-view (eye icon) and copy controls. |
-| **API Key** | System-generated bot API key with toggle-to-view and copy controls. |
-| **Type** | Execution engine: `StackStorm` or `Custom`. |
-| **Actions** | Context menu (`...`) to **Delete** the bot. |
-
-#### Table Toolbar Controls
-* **Search / Global Filter**: Search across bot names and endpoints.
-* **Toggle Column Filters**: Apply column-specific filters.
-* **Show/Hide Columns**: Customize visible headers in the table.
-* **Density Toggle**: Toggle compact / relaxed row spacing.
-* **Refresh**: Reload the latest bot list from the server.
-* **Add Bot (`+`)**: Open the bot registration modal.
-
----
-
-### 2. Adding a Bot
-
-To register a new bot:
-
-1. Click the **`+`** (Add Bot) button in the top-right corner of the table toolbar:
-   <a href="../../images/add-bot.png" class="glightbox">
-     <img src="../../images/add-bot.png" alt="Add Bot Button">
-   </a>
-2. The **Add Bot** modal dialog will open:
-   <a href="../../images/create-bot.png" class="glightbox">
-     <img src="../../images/create-bot.png" alt="Add Bot Modal">
-   </a>
-3. Fill in the required parameters:
-   * **Name** *(Required)*: Unique identifier name for the bot (e.g., `StackStorm Runner`, `Remediation Bot`).
-   * **Bot URL** *(Required)*: Endpoint URL or IP where the bot is reachable.
-   * **Bot Auth Token** *(Required)*: Authentication token for incoming/outgoing webhooks.
-   * **Bot Type** *(Required)*: Select `StackStorm` or `Custom`.
-4. Click **Create** to register the bot.
-
----
-
-### 3. Managing Bot Secrets & Actions
-
-* **Masked Credentials**: Both the **Auth Token** and **API Key** fields are masked by default (`••••••••`) for security. Click the **Eye Icon** to unmask, or click the **Copy Icon** to copy the token directly.
-* **Deleting a Bot**: Click the **`...`** action menu in the target bot's row, select **Delete**, and confirm the prompt to permanently remove the bot:
-  <a href="../../images/delete-bots.png" class="glightbox">
-    <img src="../../images/delete-bots.png" alt="Delete Bot">
-  </a>
-
-

@@ -4,19 +4,19 @@ PixelView supports enterprise **Single Sign-On (SSO)** using industry-standard *
 
 ---
 
-## 1. Architecture & Authentication Flow
+## Architecture & Authentication Flow
 
 PixelView leverages standard authorization code flow with PKCE:
 
 ```
-+----------------+          1. Click SSO Login          +-------------------+
++----------------+            Click SSO Login           +-------------------+
 |                | -----------------------------------> |                   |
 |                |                                      |   PixelView Web   |
 |   End User     | <----------------------------------- |     Frontend      |
-|                |    2. Redirect to IdP Auth URL       +-------------------+
+|                |       Redirect to IdP Auth URL       +-------------------+
 +----------------+                                                |
         |                                                         |
-        | 3. Authenticate with IdP Credentials                    |
+        | Authenticate with IdP Credentials                       |
         v                                                         |
 +-------------------+                                             |
 |  Identity Provider|                                             |
@@ -24,10 +24,10 @@ PixelView leverages standard authorization code flow with PKCE:
 |   Microsoft / ...) |                                            |
 +-------------------+                                             |
         |                                                         |
-        | 4. Redirect with Auth Code to /sso-login-success        |
+        | Redirect with Auth Code to /sso-login-success           |
         +-------------------------------------------------------->+
                                                                   |
-                                                5. Exchange Code for JWT Session
+                                                    Exchange Code for JWT Session
                                                                   v
                                                         +-------------------+
                                                         | PixelView Backend |
@@ -36,7 +36,7 @@ PixelView leverages standard authorization code flow with PKCE:
 
 ---
 
-## 2. Prerequisites
+## Prerequisites
 
 Before configuring SSO in PixelView, ensure you have:
 * Administrator access to your corporate Identity Provider (IdP).
@@ -48,30 +48,30 @@ Before configuring SSO in PixelView, ensure you have:
 
 ---
 
-## 3. Identity Provider (IdP) Configuration
+## Identity Provider (IdP) Configuration
 
-### Step 1: Register an OIDC Application / Client
+### Register an OIDC Application / Client
 In your IdP administration console (e.g. Keycloak or Okta):
 
-1. Create a new **OpenID Connect (OIDC)** client.
-2. Set the **Client Type** to `Confidential` (or `Web App`).
-3. Set the **Valid Redirect URIs** (or Allowed Callback URLs) to:
-   ```
-   https://<your-pixelview-domain>/sso-login-success
-   ```
-4. Set the **Allowed Web Origins** to your base domain:
-   ```
-   https://<your-pixelview-domain>
-   ```
-5. Ensure the standard OIDC scopes are granted:
-   * `openid`
-   * `email`
-   * `profile`
-6. Copy the generated **Client ID** and **Client Secret**.
+* Create a new **OpenID Connect (OIDC)** client.
+* Set the **Client Type** to `Confidential` (or `Web App`).
+* Set the **Valid Redirect URIs** (or Allowed Callback URLs) to:
+  ```
+  https://<your-pixelview-domain>/sso-login-success
+  ```
+* Set the **Allowed Web Origins** to your base domain:
+  ```
+  https://<your-pixelview-domain>
+  ```
+* Ensure the standard OIDC scopes are granted:
+  * `openid`
+  * `email`
+  * `profile`
+* Copy the generated **Client ID** and **Client Secret**.
 
 ---
 
-## 4. Configuring PixelView Backend
+## Configuring PixelView Backend
 
 Set the following environment variables in your PixelView backend deployment configuration (`.env` or Docker Compose):
 
@@ -96,25 +96,25 @@ docker compose restart backend
 
 ---
 
-## 5. User Provisioning & Permissions
+## User Provisioning & Permissions
 
 When a user logs in via SSO for the first time:
 * **Automatic Account Creation**: PixelView automatically creates a user account using the `email`, `given_name` (First Name), and `family_name` (Last Name) claims received from the identity provider.
 * **Default Role Assignment**: New SSO users are assigned the default `User` role with initial scoped permissions.
-* **Role Elevation**: Administrators can upgrade roles to `Admin` or customize the [Granular Permissions Matrix](../management/user-management.md#4-granular-permissions-matrix) at any time from the **Management > Users** page.
+* **Role Elevation**: Administrators can upgrade roles to `Admin` or customize the [Granular Permissions Matrix](../management/user-management.md#granular-permissions-matrix) at any time from the **Management > Users** page.
 
 ---
 
-## 6. End-User Login Experience
+## End-User Login Experience
 
-1. Navigate to the PixelView login page (`/login`).
-2. Click the **Single Sign-On (SSO)** button under the login form.
-3. Complete authentication on your organization's identity portal.
-4. You will be automatically redirected to `/sso-login-success` and then into your PixelView dashboard.
+* Navigate to the PixelView login page (`/login`).
+* Click the **Single Sign-On (SSO)** button under the login form.
+* Complete authentication on your organization's identity portal.
+* You will be automatically redirected to `/sso-login-success` and then into your PixelView dashboard.
 
 ---
 
-## 7. Troubleshooting
+## Troubleshooting
 
 | Issue / Error | Potential Cause | Solution |
 | :--- | :--- | :--- |
