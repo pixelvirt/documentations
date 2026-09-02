@@ -119,14 +119,14 @@ Switch to the **HOSTS** tab to monitor per-host hierarchical execution progress:
 
 The table provides a three-tiered collapsible tree:
 
-1. **Host Tier**:
+* **Host Tier**:
     * Displays target host name (`ha-node-1`, `ha-node-2`, `ha-node-3`) and management IP address (`119.9.94.19`).
     * Total patch count chip (`1 patch`).
     * Overall host status badge (`Completed`).
-2. **Patchset Tier**:
+* **Patchset Tier**:
     * Displays attached patchset packages and total workflow count (`1 workflow`).
     * Tracks attempts, start/finish timestamps, and execution UUIDs.
-3. **Workflow Tier**:
+* **Workflow Tier**:
     * Tracks individual workflow steps and sequences (e.g., `#0`).
     * Displays underlying Ansible Execution UUIDs linking directly into raw playbook execution logs.
     * Displays actionable error traces if any failure occurs during execution.
