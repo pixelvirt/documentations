@@ -8,7 +8,9 @@ The **Bots** section (`/bots`) in PixelView manages automation bots and automate
 
 Navigate to **Management** > **Bots** from the left navigation sidebar:
 
-![Bots Navigation Sidebar](../images/bots.png)
+<a href="../../images/bots.png" class="glightbox">
+  <img src="../../images/bots.png" alt="Bots Navigation Sidebar">
+</a>
 
 The bots table provides an inventory of all configured automation bots:
 
@@ -36,9 +38,13 @@ The bots table provides an inventory of all configured automation bots:
 To register a new automation bot in PixelView:
 
 1. Click the **`+`** (Add Bot) button in the top-right corner of the table toolbar:
-   ![Add Bot Button](../images/add-bot.png)
+   <a href="../../images/add-bot.png" class="glightbox">
+     <img src="../../images/add-bot.png" alt="Add Bot Button">
+   </a>
 2. The **Add Bot** modal dialog will open:
-   ![Add Bot Modal](../images/create-bot.png)
+   <a href="../../images/create-bot.png" class="glightbox">
+     <img src="../../images/create-bot.png" alt="Add Bot Modal">
+   </a>
 3. Fill in the required parameters:
    * **Name** *(Required)*: A unique name for your bot (e.g., `StackStorm Runner`, `Disk Cleanup Bot`).
    * **Bot URL** *(Required)*: The fully qualified URL or IP endpoint where the bot can be reached.
@@ -60,7 +66,9 @@ Both the **Auth Token** and **API Key** columns use security masking by default 
 ### Deleting a Bot
 1. In the Bots table, click the **`...`** icon under the **Actions** column for the target bot.
 2. Select **Delete** (Trash Icon):
-   ![Delete Bot](../images/delete-bots.png)
+   <a href="../../images/delete-bots.png" class="glightbox">
+     <img src="../../images/delete-bots.png" alt="Delete Bot">
+   </a>
 3. Confirm the deletion prompt (`Are you sure you want to delete <Bot Name>?`).
 4. The bot will be permanently detached and removed from the system.
 

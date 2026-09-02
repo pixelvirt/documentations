@@ -50,3 +50,18 @@ If you have forgotten your password:
 4. Click the link to open the **Reset Password** page (`/reset-password`).
 5. Enter your **New Password** and **Confirm Password** (minimum 8 characters with letters, numbers, and symbols).
 6. Click **Reset Password** to complete the update.
+
+---
+
+## 5. Logging Out
+
+To end your active session and log out of PixelView:
+
+1. Click the **Logout** button located at the bottom of the left navigation sidebar:
+   <a href="../../images/logout.png" class="glightbox">
+     <img src="../../images/logout.png" alt="Logout Navigation Sidebar">
+   </a>
+2. When triggered, PixelView:
+   * Revokes the active session token via the backend API.
+   * Clears all local application states, session storage, and cached data.
+   * Redirects you securely back to the login portal.

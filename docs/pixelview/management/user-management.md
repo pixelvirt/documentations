@@ -13,7 +13,9 @@ The **Users** page (`/users`) provides a centralized view of all registered acco
 
 Navigate to **Management** > **Users** from the left navigation sidebar:
 
-![Management Navigation Sidebar](../images/management-sidebar.png)
+<a href="../../images/management-sidebar.png" class="glightbox">
+  <img src="../../images/management-sidebar.png" alt="Management Navigation Sidebar">
+</a>
 
 The users table provides real-time information with the following columns:
 
@@ -40,9 +42,13 @@ The users table provides real-time information with the following columns:
 To add a new team member to PixelView:
 
 1. Click the **`+`** (Add User) icon located in the top-right corner of the table toolbar:
-   ![Add User Button](../images/adduser.png)
+   <a href="../../images/adduser.png" class="glightbox">
+     <img src="../../images/adduser.png" alt="Add User Button">
+   </a>
 2. The **Invite User** modal dialog will open:
-   ![Invite User Dialog](../images/invite-user.png)
+   <a href="../../images/invite-user.png" class="glightbox">
+     <img src="../../images/invite-user.png" alt="Invite User Dialog">
+   </a>
 3. Fill in the required fields:
    * **First Name** *(Required)*: The user's first name.
    * **Last Name** *(Required)*: The user's last name.
@@ -66,7 +72,9 @@ Administrators can modify account details, toggle access status, and update perm
 
 1. Locate the user in the table and click the **`...`** icon in the **Actions** column.
 2. Select **Edit** to open the **Update User** modal:
-   ![Update User](../images/update-user.png)
+   <a href="../../images/update-user.png" class="glightbox">
+     <img src="../../images/update-user.png" alt="Update User">
+   </a>
 3. Modify the desired parameters:
    * **First Name** / **Last Name**: Update the user's name.
    * **Role**: Switch between `Admin` and `User`.
@@ -80,7 +88,9 @@ Administrators can modify account details, toggle access status, and update perm
 
 PixelView features a role-based access control (RBAC) permissions matrix that allows fine-grained access control per feature module.
 
-![Granular Permissions Matrix](../images/user-permissions.png)
+<a href="../../images/user-permissions.png" class="glightbox">
+  <img src="../../images/user-permissions.png" alt="Granular Permissions Matrix">
+</a>
 
 Permissions can be configured when **Inviting a User** or when **Updating a User**.
 
@@ -122,7 +132,9 @@ The **Groups** page (`/groups`) allows administrators to organize team members i
 
 Navigate to **Management** > **Groups** from the left navigation sidebar:
 
-![Groups Navigation Sidebar](../images/groups.png)
+<a href="../../images/groups.png" class="glightbox">
+  <img src="../../images/groups.png" alt="Groups Navigation Sidebar">
+</a>
 
 The groups table displays all configured user groups:
 
@@ -147,9 +159,13 @@ The groups table displays all configured user groups:
 To create a new access group:
 
 1. Click the **`+`** (Add Group) button located in the top-right corner of the table toolbar:
-   ![Add Group Button](../images/add-group-btn.png)
+   <a href="../../images/add-group-btn.png" class="glightbox">
+     <img src="../../images/add-group-btn.png" alt="Add Group Button">
+   </a>
 2. The **Add Group** modal dialog will open:
-   ![Add Group Dialog](../images/add-groups.png)
+   <a href="../../images/add-groups.png" class="glightbox">
+     <img src="../../images/add-groups.png" alt="Add Group Dialog">
+   </a>
 3. Fill in the group parameters:
    * **Group Name** *(Required)*: Enter a unique and descriptive name for the group (e.g., `admins`, `Approvers`).
    * **Add Members**: Open the dropdown to select one or multiple registered team members to add to the group.
@@ -161,7 +177,9 @@ To create a new access group:
 
 In the Groups table, click the **`...`** icon under the **Actions** column for any group:
 
-![Group Actions Menu](../images/group-actions.png)
+<a href="../../images/group-actions.png" class="glightbox">
+  <img src="../../images/group-actions.png" alt="Group Actions Menu">
+</a>
 
 * **View (Eye Icon)**:  
   Opens the group management modal where you can:
@@ -183,7 +201,9 @@ The **Bots** section (`/bots`) manages automation bots and webhook endpoints for
 
 Navigate to **Management** > **Bots** from the left navigation sidebar:
 
-![Bots Navigation Sidebar](../images/bots.png)
+<a href="../../images/bots.png" class="glightbox">
+  <img src="../../images/bots.png" alt="Bots Navigation Sidebar">
+</a>
 
 The bots table displays all registered automation bots:
 
@@ -211,9 +231,13 @@ The bots table displays all registered automation bots:
 To register a new bot:
 
 1. Click the **`+`** (Add Bot) button in the top-right corner of the table toolbar:
-   ![Add Bot Button](../images/add-bot.png)
+   <a href="../../images/add-bot.png" class="glightbox">
+     <img src="../../images/add-bot.png" alt="Add Bot Button">
+   </a>
 2. The **Add Bot** modal dialog will open:
-   ![Add Bot Modal](../images/create-bot.png)
+   <a href="../../images/create-bot.png" class="glightbox">
+     <img src="../../images/create-bot.png" alt="Add Bot Modal">
+   </a>
 3. Fill in the required parameters:
    * **Name** *(Required)*: Unique identifier name for the bot (e.g., `StackStorm Runner`, `Remediation Bot`).
    * **Bot URL** *(Required)*: Endpoint URL or IP where the bot is reachable.
@@ -227,6 +251,8 @@ To register a new bot:
 
 * **Masked Credentials**: Both the **Auth Token** and **API Key** fields are masked by default (`••••••••`) for security. Click the **Eye Icon** to unmask, or click the **Copy Icon** to copy the token directly.
 * **Deleting a Bot**: Click the **`...`** action menu in the target bot's row, select **Delete**, and confirm the prompt to permanently remove the bot:
-  ![Delete Bot](../images/delete-bots.png)
+  <a href="../../images/delete-bots.png" class="glightbox">
+    <img src="../../images/delete-bots.png" alt="Delete Bot">
+  </a>
 
 

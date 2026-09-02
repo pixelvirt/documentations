@@ -15,7 +15,9 @@ The **Profile** page (`/profile`) provides a unified dashboard for updating your
 
 Navigate to **Settings** > **Profile** from the left navigation sidebar:
 
-![Account Settings Profile](../images/profile.png)
+<a href="../../images/profile.png" class="glightbox">
+  <img src="../../images/profile.png" alt="Account Settings Profile">
+</a>
 
 ### User Header Banner
 The top banner displays:
@@ -78,7 +80,9 @@ Navigate to **Settings** > **Config** from the left navigation sidebar. The top 
 
 Configure the platform's outbound email delivery settings for alert dispatch and user invitations:
 
-![Email Configuration](../images/config-email.png)
+<a href="../../images/config-email.png" class="glightbox">
+  <img src="../../images/config-email.png" alt="Email Configuration">
+</a>
 
 #### Supported Email Providers:
 
@@ -102,7 +106,9 @@ Click **SAVE** to persist your email configuration.
 
 Set up SMS notification providers to deliver urgent, high-priority incident alerts directly to team members' mobile phones:
 
-![SMS Configuration](../images/config-sms.png)
+<a href="../../images/config-sms.png" class="glightbox">
+  <img src="../../images/config-sms.png" alt="SMS Configuration">
+</a>
 
 #### Supported SMS Providers:
 
@@ -125,7 +131,9 @@ Click **SAVE** to apply SMS configuration settings.
 
 The **OpenStack** tab manages multi-cloud OpenStack credentials and cluster endpoints via `clouds.yaml`.
 
-![OpenStack Settings](../images/config-openstack.png)
+<a href="../../images/config-openstack.png" class="glightbox">
+  <img src="../../images/config-openstack.png" alt="OpenStack Settings">
+</a>
 
 #### OpenStack Settings Table:
 * **ID/Name**: Configuration identifier name with a quick **Copy ID** button.
@@ -137,9 +145,13 @@ The **OpenStack** tab manages multi-cloud OpenStack credentials and cluster endp
 
 #### Adding an OpenStack Configuration:
 1. In the **OpenStack** tab, click the **`+`** (Add) button on the table toolbar:
-   ![Add OpenStack Button](../images/config-openstack-add.png)
+   <a href="../../images/config-openstack-add.png" class="glightbox">
+     <img src="../../images/config-openstack-add.png" alt="Add OpenStack Button">
+   </a>
 2. The **Add OpenStack Config** dialog will open:
-   ![Add OpenStack Modal](../images/config-openstack-modal.png)
+   <a href="../../images/config-openstack-modal.png" class="glightbox">
+     <img src="../../images/config-openstack-modal.png" alt="Add OpenStack Modal">
+   </a>
 3. Paste your standard `clouds.yaml` content into the code editor.
    !!! tip "Autofill Example Template"
        Press **`Tab`** inside the empty editor to automatically populate a sample `clouds.yaml` template with required syntax.
@@ -151,7 +163,9 @@ The **OpenStack** tab manages multi-cloud OpenStack credentials and cluster endp
 
 The **Kubernetes** tab allows administrators to register cluster endpoints and credentials using standard `kubeconfig` specifications.
 
-![Kubernetes Settings](../images/config-k8s.png)
+<a href="../../images/config-k8s.png" class="glightbox">
+  <img src="../../images/config-k8s.png" alt="Kubernetes Settings">
+</a>
 
 #### Kubernetes Settings Table:
 * **ID/Cluster Name**: Unique cluster identifier name with a quick **Copy ID** button.
@@ -162,7 +176,9 @@ The **Kubernetes** tab allows administrators to register cluster endpoints and c
 #### Adding a Kubernetes Configuration:
 1. In the **Kubernetes** tab, click the **`+`** (Add) button on the table toolbar.
 2. The **Add Kubernetes Config** dialog will open:
-   ![Add Kubernetes Modal](../images/config-k8s-modal.png)
+   <a href="../../images/config-k8s-modal.png" class="glightbox">
+     <img src="../../images/config-k8s-modal.png" alt="Add Kubernetes Modal">
+   </a>
 3. Fill in the cluster parameters:
    * **Name** *(Required)*: A descriptive identifier name for this Kubernetes configuration.
    * **Kubernetes Config**: Paste your cluster's `kubeconfig` YAML file into the code editor. Press **`Tab`** to autofill a sample template.
@@ -176,7 +192,9 @@ The **License Key** page (`/license-key`) allows administrators to manage and in
 
 Navigate to **Settings** > **License Key** from the left navigation sidebar:
 
-![License Management](../images/license.png)
+<a href="../../images/license.png" class="glightbox">
+  <img src="../../images/license.png" alt="License Management">
+</a>
 
 ### License Details & Fields:
 
@@ -200,7 +218,9 @@ Navigate to **Settings** > **License Key** from the left navigation sidebar:
 
 PixelView provides built-in theme support allowing users to switch between **Dark Mode** (default) and **Light Mode** at any time:
 
-![Theme Mode Toggle](../images/theme-toggle.png)
+<a href="../../images/theme-toggle.png" class="glightbox">
+  <img src="../../images/theme-toggle.png" alt="Theme Mode Toggle">
+</a>
 
 * Click **Light Mode** (sun icon) in the bottom-left sidebar to switch to the light visual theme.
 * When in Light Mode, the button dynamically updates to **Dark Mode** (moon icon) to switch back.
