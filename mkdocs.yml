@@ -79,9 +79,13 @@ nav:
       - Escalation Policies: pixelview/escalation/policies.md
     - Automation:
       - Automation Overview: pixelview/automation/automation.md
+      - Executions: pixelview/automation/executions.md
+      - Playbooks: pixelview/automation/playbooks.md
+      - Rules: pixelview/automation/rules.md
+      - Runners: pixelview/automation/runners.md
+      - Scripts: pixelview/automation/scripts.md
+      - Workflows: pixelview/automation/workflows.md
       - Automation Bots: pixelview/management/bots.md
-      # - Automation Rules: ""
-      # - Automation Workflows: ""
     - Inventory:
       - Cloud Inventory: pixelview/inventory/inventory.md
       - Credentials Management: pixelview/inventory/creds.md
