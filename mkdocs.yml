@@ -97,6 +97,7 @@ nav:
       - Patch Management Overview: pixelview/patch-management/patch-management.md
       - Patchset Management: pixelview/patch-management/patchset.md
       - Planner Management: pixelview/patch-management/planner.md
+    - JSON Bridge: pixelview/json-bridge/json-bridge.md
     - Management and Settings:
       - User Management: pixelview/management/user-management.md
       - Settings: pixelview/settings/settings.md
