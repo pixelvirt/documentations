@@ -1,84 +1,34 @@
-# Cases
+# Cases Overview
 
-The **Cases** section is where you can view and manage all of your alerts. This section provides three categories to help you organize and address issues effectively:
+The **Cases** module in PixelView provides a centralized incident management and alert orchestration hub. It aggregates telemetry and alert triggers from diverse monitoring platforms—such as Prometheus, Alertmanager, Zabbix, and Nagios—as well as manually reported operational issues.
 
-- **Open Cases**
-- **My Cases**
-- **Resolved Cases**
+By integrating automated event-driven remediations with human-in-the-loop triage, PixelView empowers operations teams to minimize Mean Time to Acknowledge (MTTA) and Mean Time to Resolution (MTTR).
 
-### Open Cases
+---
 
-In the **Open Cases** section, you can view all newly triggered alerts from various monitoring platforms such as Zabbix, Prometheus, Nagios, etc. This section also allows you to create new cases to ensure all alerts are addressed promptly.
+## Core Operational Workflows
 
-<a href="../images/open-cases.png" class="glightbox">
-    <img src="../images/open-cases.png" width="800">
-</a>
+The Cases section is organized into three specialized views catering to different stages of the incident lifecycle:
 
-#### Creating a New Case
-To create a new case, follow these steps:
+| Section | Role & Primary Function |
+| :--- | :--- |
+| [**Open Cases**](open-cases.md) | **Active Triage Console**: Centralizes all newly triggered, unacknowledged, and active alerts across your entire infrastructure. Supports manual case creation, severity prioritization, and batch operations. |
+| [**My Cases**](my-cases.md) | **Personal Incident Workbench**: Isolates incidents assigned specifically to the authenticated operator or their immediate teams. Features 60-second automated polling and quick ownership transitions. |
+| [**Resolved Cases**](resolved-cases.md) | **Incident Archive & Retrospective**: Retains a permanent record of all mitigated and closed issues. Supports post-mortems, SLA auditing, pattern correlation, and incident reopening. |
 
-- **Navigate to Open Cases**
-    - In the **Cases** section, click on **Open Cases** to view all active alerts.
-- **Initiate Case Creation**
-    - Click on the **+ icon** located in the upper right corner of the Open Cases section. This action will open a popup window for creating a new case.
-    ![Create New Cases](../images/Create-Case.jpg)
-- **Fill in Case Details**
-In the popup window, provide the following details for the new case:
-    - **Case Name:** Enter a descriptive name for the new case.
-    - **Severity:** Select the appropriate severity level for the case. The severity levels are:
-        - **L** for Low
-        - **M** for Medium
-        - **H** for High
-        - **C** for Critical
-    - **Tags:** Add relevant tags to help categorize and filter the case.
-    - **Description:** Provide a detailed description of the case, including any pertinent information that will help in resolving the issue.
-- **Create the Case**
-    - After filling in all the necessary details, click on the **Create Case** button. This will create the new case and add it to the **Open Cases** list.
+---
 
-![New Cases](../images/new-case.jpg)
+## Key Capabilities
 
-## Managing Alerts
-In the **Open Cases** section, you can manage your alerts according to your preferences. The available options include:
+### 1. Centralized Ingestion & Normalization
+Incoming alerts from diverse monitoring tools are normalized into a unified schema detailing the impacted **Hostname**, **Service**, calculated **Severity** tier, and raw **Trigger Event** JSON payloads.
 
-- **Add Comments**: You can add comments to any alert for better tracking and communication.
-- **Acknowledge Alerts**: Mark alerts as acknowledged to indicate that you are aware of them.
-- **Manually Resolve Alerts**: Resolve alerts manually if you have addressed the issue.
+### 2. Deep-Dive Investigation Dashboard (`/cases/:id`)
+Every case includes a dedicated four-tab investigation console:
+* **DETAIL**: Chronological investigation timeline from initial ingest to bot notifications, paired with raw monitoring telemetry.
+* **TASKS**: Granular sub-task delegation, allowing lead responders to assign action items to individual engineers or groups (e.g., `admins`).
+* **COMMENTS**: Interactive, real-time threaded chat stream for team collaboration and post-mortem notes.
+* **HISTORY**: Automated host-level pattern correlation showing past incidents on the same infrastructure node to detect flapping services.
 
-## **Viewing Alert Details**
-By clicking on any alert, you can access a detailed view of that alert. This detailed view offers multiple management options:
-
-- **Assign Tasks**: Assign tasks related to the alert to a specific user.
-- **Add Observables**: Include relevant observables to the alert for further analysis.
-- **Add or View Comments**: Add new comments or view existing comments for context and updates.
-- **View Alert History**: Review the history of the alert to track its progression and any actions taken.
-![New Cases](../images/manage-alerts.png)
-
-### My Cases
-In the **My Cases** section, you can find alerts that are specifically assigned to you. Here, you have the ability to:
-![My Cases](../images/my-cases.png)
-
-- **Acknowledge Cases or Alerts**: This section lists all the cases or alerts assigned to you, allowing you to acknowledge them.
-- **View Detailed Information**: By clicking on any alert, you can view comprehensive details about it. This helps you understand the nature and specifics of the alert for better management and resolution.
-
-#### Tasks Management
-The **Tasks** section enables you to create, manage, and assign tasks to other users. The functionalities include:
-
-- **Create New Task**: You can create a new task by clicking on the **'TASKS'** button. This will take you to the task page.
-- **Manage Tasks**: On the task page, you can find all tasks. Here, you have the option to add new tasks.
-- **Add New Task**:
-    - Click on the **'Add Task'** button.
-    - Provide the following details:
-        - **Task Title**: A brief title for the task.
-        - **Description**: A detailed description of the task.
-        - **Assign to User or Groups**: Select the user or groups you want to assign the task to.
-    3. Click on the **'Create Task'** button to finalize and assign the task.
-
-
-### Resolved Cases
-In the **Resolved Case** section, you can find alerts related to problems that have been fixed or resolved. If you determine that an issue is not actually resolved, you can reopen the case by following these steps:
-
-- Click on the `...` icon located in the last column of the alert.
-![Re-Open Cases](../images/r-case.png)
-- Select `Re-open`.
-![Re-Open Cases](../images/re-open.png)
-- The alert will be reopened for further investigation and resolution.
+### 3. Integrated Automation & Self-Healing
+Cases natively integrate with PixelView's [Automation Rules](../automation/rules.md) and [Workflows](../automation/workflows.md). When an alert triggers, rules can automatically dispatch [Runners](../automation/runners.md) to execute remediation [Scripts](../automation/scripts.md) or Ansible [Playbooks](../automation/playbooks.md), resolving issues without human intervention.

@@ -93,7 +93,7 @@ Operators can manage incidents directly from the table without navigating away:
 </a>
 
 * **Acknowledge**: Transition the case status to *acknowledged*, notifying the team that an engineer is actively addressing the alert.
-* **Resolve**: Mark the underlying incident as fixed, automatically moving the case from Open Cases to [Resolved Cases](cases.md#resolved-cases).
+* **Resolve**: Mark the underlying incident as fixed, automatically moving the case from Open Cases to [Resolved Cases](resolved-cases.md).
 
 ### 2. Inline Row Expansion & Quick Comments
 

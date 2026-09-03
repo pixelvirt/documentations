@@ -62,7 +62,7 @@ Responders can update incident states directly from the table row:
 
 * **Unacknowledge**: Reverts an `acknowledged` case back to `triggered`. Use this if you need to hand off the incident back to the general triage queue or if further automated escalation is required.
 * **Acknowledge**: If an unacknowledged incident is assigned to you, select **Acknowledge** to signal to the team that you have commenced investigation.
-* **Resolve**: Conclude the incident once remediation is verified. Resolving the case automatically moves it into [Resolved Cases](cases.md#resolved-cases).
+* **Resolve**: Conclude the incident once remediation is verified. Resolving the case automatically moves it into [Resolved Cases](resolved-cases.md).
 
 ---
 
