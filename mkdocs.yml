@@ -83,6 +83,7 @@ nav:
       - Playbooks: pixelview/automation/playbooks.md
       - Rules: pixelview/automation/rules.md
       - Runners: pixelview/automation/runners.md
+      - Scripts: pixelview/automation/scripts.md
       - Automation Bots: pixelview/management/bots.md
       # - Automation Workflows: ""
     - Inventory:
