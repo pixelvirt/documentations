@@ -79,6 +79,7 @@ nav:
       - Escalation Policies: pixelview/escalation/policies.md
     - Automation:
       - Automation Overview: pixelview/automation/automation.md
+      - Executions: pixelview/automation/executions.md
       - Automation Bots: pixelview/management/bots.md
       # - Automation Rules: ""
       # - Automation Workflows: ""
