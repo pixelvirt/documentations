@@ -69,6 +69,7 @@ nav:
       - VMware: pixelview/clouds/vmware.md
     - Cases: 
       - Cases Overview: pixelview/cases/cases.md
+      - Open Cases: pixelview/cases/open-cases.md
     - Services/Monitoring:
       - Services Overview: pixelview/services/services.md
       # - Zabbix Integration:
