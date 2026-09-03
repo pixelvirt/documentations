@@ -76,7 +76,7 @@ nav:
       - Prometheus Integration:
         - Setup AlertManager: pixelview/services/prometheus/integration.md
     - Escalation:
-      - Escalation Overview: pixelview/escalation/esclation.md
+      - Escalation Policies: pixelview/escalation/policies.md
     - Automation:
       - Automation Overview: pixelview/automation/automation.md
       - Automation Bots: pixelview/management/bots.md
