@@ -16,10 +16,11 @@ To access the patching module:
   <img src="../../images/patch-sidebar.png" alt="Patch Management Sidebar Navigation">
 </a>
 
-The module provides three operational views:
+The module provides four operational views:
 * **Overview (`/patching`)**: Live status dashboard displaying pending actions, top patchset activities, and recent runs.
 * **Patchset (`/patchset`)**: Inventory of all created patch definitions, workflows, dependencies, and targeted hosts.
 * **Planner (`/planner`)**: Scheduling engine for defining maintenance windows, rollout rates, and batch executions.
+* **[Packages](packages.md) (`/patch-management/packages`)**: Per-OS catalog of version-pinned software package lists linked to automation workflows and version history tracking.
 
 ---
 
