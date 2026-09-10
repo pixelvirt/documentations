@@ -112,6 +112,32 @@ Clicking the orange **`+`** button on any table toolbar launches PixelView's nat
 | **`ADD <RESOURCE>`** | Bottom Left | Validates the YAML manifest against the cluster OpenAPI schema and submits it directly to the Kubernetes API server. |
 | **`CANCEL`** | Bottom Left | Aborts creation and returns to the resource inventory table without applying changes. |
 
+#### Column Actions Three-Dot Context Menu
+Every table column header across PixelView Kubernetes inventory views features an integrated three-dot menu button (`⋮` / `aria-label="Column Actions"`):
+
+<a href="../../images/kubernetes-column-actions-icon.png" class="glightbox">
+  <img src="../../images/kubernetes-column-actions-icon.png" alt="Kubernetes Table Column Header Actions Three-Dot Button Marked">
+</a>
+
+Clicking this three-dot icon opens the **Column Actions** context menu for instantaneous table restructuring:
+
+<a href="../../images/kubernetes-column-actions-menu.png" class="glightbox">
+  <img src="../../images/kubernetes-column-actions-menu.png" alt="Kubernetes Table Column Actions Three-Dot Context Menu">
+</a>
+
+| Menu Action | Functionality |
+| :--- | :--- |
+| **Clear sort** | Removes existing sorting constraints from the selected column. |
+| **Sort by <Column> ascending** | Reorders table rows in ascending order based on this column's values. |
+| **Sort by <Column> descending** | Reorders table rows in descending order based on this column's values. |
+| **Clear filter** | Purges any active filter expression applied to this specific column. |
+| **Filter by <Column>** | Injects an inline search and condition filter scoped strictly to this column. |
+| **Group by <Column>** | Dynamically aggregates matching table records by common values in this column. |
+| **Reset column size** | Restores the default column width and spacing. |
+| **Hide <Column> column** | Hides this specific column from the active table layout. |
+| **Show all columns** | Restores all hidden columns back into visibility across the table grid. |
+
+
 ---
 
 ## Workloads & Pod Lifecycle Management
@@ -138,7 +164,20 @@ Navigate to **Workloads** &rarr; **Pods** in the secondary sidebar:
 | **Restarts** | Total restart count triggered by container crash exits or liveness probe failures. |
 | **Labels** | Searchable key-value metadata tags (e.g., `app=cert-manager`, `control-plane=controller-manager`). |
 | **Created** | Timestamp indicating pod provisioning date and time. |
-| **Actions (`...`)** | Contextual shortcuts allowing operators to view pod logs, execute web terminal shell, delete pod, or trigger graceful restart. |
+| **Actions** | Direct resource lifecycle management button (`Delete item` trash bin icon) allowing operators to terminate or purge the pod instance. |
+
+#### Pod Lifecycle Management & Row Actions
+Operators can trigger lifecycle actions directly from any table row without drilling down:
+* In the **Pods** inventory table, locate the target workload.
+* In the rightmost **Actions** column, click the trash bin icon (`Delete item`).
+* PixelView prompts with a safety confirmation dialog to prevent accidental workload disruption:
+
+<a href="../../images/kubernetes-row-action-delete-dialog.png" class="glightbox">
+  <img src="../../images/kubernetes-row-action-delete-dialog.png" alt="Pod Row Action Delete Confirmation Dialog">
+</a>
+
+* The confirmation card displays the exact pod identification string (e.g., `argocd-operator-controller-manager-75c9dbfdc9-czq8f`).
+* Click **DELETE** to issue a graceful eviction request to the Kubernetes API server, or **CANCEL** to abort.
 
 ---
 
@@ -161,7 +200,31 @@ Navigate to **Workloads** &rarr; **Deployments** in the secondary sidebar:
 | **Labels** | Deployment metadata tags used for service discovery and organizational grouping. |
 | **Pod Selector** | Label query matching member pods managed by the underlying ReplicaSet. |
 | **Created At** | Initial deployment creation timestamp. |
-| **Actions** | Contextual options menu to scale replica count, restart rollout, pause rollout, or delete. |
+| **Actions** | Direct lifecycle management button (`Delete item` trash bin icon) allowing operators to tear down the deployment and associated replicas. In-place configuration edits, scaling, and rollout adjustments are performed inside Deployment Details. |
+
+#### Creating Deployments Declaratively
+To provision a new Deployment workload:
+* In the secondary sidebar, navigate to **Workloads** &rarr; **Deployments**.
+* Click the orange circular **`+`** (Add item) button on the table toolbar:
+
+<a href="../../images/kubernetes-deployments-add-button.png" class="glightbox">
+  <img src="../../images/kubernetes-deployments-add-button.png" alt="Deployments Table Toolbar Add Button Marked">
+</a>
+
+* PixelView opens the **Create New Deployment** Monaco editor interface:
+
+<a href="../../images/kubernetes-create-deployment-editor.png" class="glightbox">
+  <img src="../../images/kubernetes-create-deployment-editor.png" alt="Creating a Deployment via Monaco YAML Editor">
+</a>
+
+* The editor automatically populates an industry-standard Deployment manifest template:
+  * **`metadata.name`**: Target workload name (e.g., `nginx-deployment`).
+  * **`metadata.namespace`**: Scoped deployment namespace (defaults to active namespace or `default`).
+  * **`spec.replicas`**: Desired pod instance count.
+  * **`spec.selector.matchLabels`**: Label query matching the pod template.
+  * **`spec.template.spec.containers`**: Container name, image registry path (e.g., `nginx:1.14.2`), and container port bindings.
+* Modify the manifest as required or paste an existing declarative spec.
+* Click **ADD DEPLOYMENT** to deploy the workload to the cluster.
 
 #### Deployment Deep-Dive & Multi-Tab Inspection
 Clicking any deployment row in the inventory table navigates to the dedicated Deployment Details page (`/kubernetes/:clusterName/deployments/:namespace/:deploymentName/details`):
@@ -182,29 +245,65 @@ Clicking any deployment row in the inventory table navigates to the dedicated De
 | **`METRICS`** | Real-time aggregate telemetry graphs monitoring CPU millicore consumption, memory utilization, and network traffic across all deployment replicas. |
 
 ##### Deployment Details Cards
-* **Basic Information**: Workload Name (`argocd-operator-controller-manager`), Namespace badge (`argocd-operator`), Creation timestamp, Labels list with **ADD LABELS** modal, and Annotations list with **EDIT ANNOTATIONS** modal.
+* **Basic Information**: Workload Name (`argocd-operator-controller-manager`), Namespace badge (`argocd-operator`), Creation timestamp, Labels list with **ADD LABELS** modal, Annotations list with **EDIT ANNOTATIONS** modal, and Tolerations list with **EDIT TOLERATIONS** modal.
 * **Deployment Configuration**: Desired Replicas, Pod Selector badge query (`control-plane=controller-manager`), Deployment Strategy (`RollingUpdate` with Max Surge `25%` and Max Unavailable `25%`), Progress Deadline (`600s`), and Revision History Limit (`1`).
 * **Conditions**: Real-time controller conditions table tracking `Available` and `Progressing` states, status badges (`True`/`False`), last update timestamps, and controller reason messages.
 * **Containers**: List of container specifications, base images, port bindings, resource requests/limits, and health probe definitions.
 
-#### Creating Deployments Declaratively
-To provision a new Deployment workload:
-* In the secondary sidebar, navigate to **Workloads** &rarr; **Deployments**.
-* Click the orange circular **`+`** (Add item) button on the table toolbar.
-* PixelView opens the **Create New Deployment** Monaco editor interface:
+##### Editing Deployment Annotations & Tolerations
+Operators can modify workload metadata and pod scheduling rules directly from the Basic Information card without redeploying manifests:
 
-<a href="../../images/kubernetes-create-deployment-editor.png" class="glightbox">
-  <img src="../../images/kubernetes-create-deployment-editor.png" alt="Creating a Deployment via Monaco YAML Editor">
+* Locate the **EDIT ANNOTATIONS** and **EDIT TOLERATIONS** buttons on the Basic Information card:
+
+<a href="../../images/kubernetes-deployments-edit-buttons.png" class="glightbox">
+  <img src="../../images/kubernetes-deployments-edit-buttons.png" alt="Deployment Details Basic Information Edit Buttons Marked">
 </a>
 
-* The editor automatically populates an industry-standard Deployment manifest template:
-  * **`metadata.name`**: Target workload name (e.g., `nginx-deployment`).
-  * **`metadata.namespace`**: Scoped deployment namespace (defaults to active namespace or `default`).
-  * **`spec.replicas`**: Desired pod instance count.
-  * **`spec.selector.matchLabels`**: Label query matching the pod template.
-  * **`spec.template.spec.containers`**: Container name, image registry path (e.g., `nginx:1.14.2`), and container port bindings.
-* Modify the manifest as required or paste an existing declarative spec.
-* Click **ADD DEPLOYMENT** to deploy the workload to the cluster.
+* **Editing Annotations**: Clicking the **`EDIT ANNOTATIONS`** button opens the dedicated configuration dialog:
+
+<a href="../../images/kubernetes-edit-annotations-modal.png" class="glightbox">
+  <img src="../../images/kubernetes-edit-annotations-modal.png" alt="Editing Deployment Annotations Modal Dialog">
+</a>
+
+* Configure annotation parameters:
+  * **Key & Value pairs**: Edit existing keys (such as `deployment.kubernetes.io/revision` or Helm release metadata) or add new custom operational tracking tags.
+  * **ADD MORE**: Dynamically appends additional key-value input fields.
+  * **Remove (`-`)**: Deletes selected annotation entries.
+  * Click **SAVE** to persist changes directly to cluster etcd state.
+
+* **Editing Tolerations**: Clicking the **`EDIT TOLERATIONS`** button launches the scheduling constraints dialog:
+
+<a href="../../images/kubernetes-edit-tolerations-modal.png" class="glightbox">
+  <img src="../../images/kubernetes-edit-tolerations-modal.png" alt="Editing Deployment Tolerations Modal Dialog">
+</a>
+
+* Specify toleration keys, operator comparison conditions, values, and effects (`NoSchedule`, `PreferNoSchedule`, `NoExecute`) to permit workload scheduling onto tainted worker nodes. Click **SAVE** to apply.
+
+#### In-Place Declarative Manifest Editing (Live YAML Editor)
+PixelView allows direct, live declarative modification of running deployments through the embedded Monaco code editor under the **`YAML`** tab:
+
+* In the Deployment Details tab navigation, click the **`YAML`** tab:
+
+<a href="../../images/kubernetes-deployments-yaml-tab.png" class="glightbox">
+  <img src="../../images/kubernetes-deployments-yaml-tab.png" alt="Deployment Details YAML Tab Button Marked">
+</a>
+
+* PixelView renders the full-screen interactive YAML manifest editor:
+
+<a href="../../images/kubernetes-deployment-yaml-editor.png" class="glightbox">
+  <img src="../../images/kubernetes-deployment-yaml-editor.png" alt="In-Place Declarative Deployment Manifest Editing via Live YAML Editor">
+</a>
+
+* **Monaco Editor Features**:
+  * Pre-loaded with the live cluster manifest (`Raw Configuration`) synchronized from the active deployment spec.
+  * Adjust typography using **`A-`** / **`14`** / **`A+`**, toggle soft text wrapping (**`Wrap`**), activate modal **`Vim`** mode, or copy buffer content (**`Copy`**).
+* **Direct Spec Updates**:
+  * Edit container images, tag revisions, environment variable maps, resource request/limit ceilings, and replica scaling parameters in-place.
+* **Commit Controls**:
+  * **`SAVE`**: Validates the updated YAML against Kubernetes OpenAPI schemas and pushes changes to the cluster API server, triggering immediate controller reconciliation and rolling pod updates.
+  * **`RELOAD`**: Re-queries the cluster API server to discard uncommitted local modifications and refresh with current cluster state.
+  * **`CANCEL`**: Resets the editor buffer without applying modifications.
+
 
 ---
 
@@ -505,6 +604,13 @@ Upon selecting a node, PixelView opens the dedicated Node Details page (`/kubern
   * Columns: **Key**, **Value**, and **Effect** (`NoSchedule`, `PreferNoSchedule`, or `NoExecute`).
   * Toolbar controls: Search, Column selector, Filter, Refresh, and the bright orange circular **`+`** (Add Taint) action button.
 
+##### Node Configuration Action Triggers
+Operators can attach metadata labels to worker nodes or configure scheduling taints directly from the Node Details page using the action buttons marked below:
+
+<a href="../../images/kubernetes-node-add-actions.png" class="glightbox">
+  <img src="../../images/kubernetes-node-add-actions.png" alt="Node Details Add Labels and Add Taint Action Buttons Marked">
+</a>
+
 ##### Adding Node Taints (Inline Form Card)
 Node taints prevent pods from being scheduled onto inappropriate nodes unless those pods possess matching tolerations. To configure a new taint on a node:
 * On the Node Details page, locate the **Taints** card.
@@ -631,6 +737,30 @@ Navigate to **Storage** &rarr; **Storage Classes** in the secondary sidebar:
 | **Reclaim Policy** | Default lifecycle behavior for dynamically created volumes (`Delete` or `Retain`). |
 | **Volume Binding Mode** | Immediate allocation (`Immediate`) or delayed until pod scheduling (`WaitForFirstConsumer`). |
 | **Allow Volume Expansion** | Boolean flag indicating whether volume capacity can be extended dynamically. |
+
+#### Creating a Storage Class Declaratively
+To provision a dynamic storage provisioning class:
+* In the secondary sidebar, navigate to **Storage** &rarr; **Storage Classes**.
+* Click the orange circular **`+`** (Create storage resource) button on the table toolbar:
+
+<a href="../../images/kubernetes-storage-classes-add-button.png" class="glightbox">
+  <img src="../../images/kubernetes-storage-classes-add-button.png" alt="Storage Classes Table Toolbar Add Button Marked">
+</a>
+
+* PixelView opens the **Create New StorageClass** Monaco editor interface:
+
+<a href="../../images/kubernetes-create-storage-class-editor.png" class="glightbox">
+  <img src="../../images/kubernetes-create-storage-class-editor.png" alt="Creating a StorageClass via Monaco YAML Editor">
+</a>
+
+* The editor pre-populates a complete StorageClass declarative manifest:
+  * **`apiVersion`**: `storage.k8s.io/v1`
+  * **`kind`**: `StorageClass`
+  * **`metadata.name`**: Target storage tier name (e.g., `fast-ssd`, `ceph-block`).
+  * **`provisioner`**: CSI driver plugin string (e.g., `kubernetes.io/no-provisioner`, `ebs.csi.aws.com`).
+  * **`reclaimPolicy`**: Lifecycle policy (`Delete` or `Retain`).
+  * **`volumeBindingMode`**: Provisioning timing policy (`Immediate` or `WaitForFirstConsumer`).
+* Click **ADD STORAGECLASS** to register the storage class with the cluster.
 
 ---
 
@@ -770,7 +900,12 @@ Navigate to **Configuration** &rarr; **Namespaces** in the secondary sidebar:
 #### Creating a Namespace Declaratively
 To provision an isolated tenant or project namespace:
 * In the secondary sidebar, navigate to **Configuration** &rarr; **Namespaces**.
-* Click the orange circular **`+`** (Create namespace) button on the table toolbar.
+* Click the orange circular **`+`** (Create namespace) button on the table toolbar:
+
+<a href="../../images/kubernetes-namespaces-add-button.png" class="glightbox">
+  <img src="../../images/kubernetes-namespaces-add-button.png" alt="Namespaces Table Toolbar Add Button Marked">
+</a>
+
 * PixelView opens the **Create New Namespace** editor:
 
 <a href="../../images/kubernetes-create-namespace-editor.png" class="glightbox">
@@ -808,7 +943,12 @@ Navigate to **Configuration** &rarr; **Config Maps** in the secondary sidebar:
 #### Creating a ConfigMap Declaratively
 To create a new configuration resource:
 * In the secondary sidebar, navigate to **Configuration** &rarr; **Config Maps**.
-* Click the orange circular **`+`** (Add ConfigMap) button on the table toolbar.
+* Click the orange circular **`+`** (Add ConfigMap) button on the table toolbar:
+
+<a href="../../images/kubernetes-configmaps-add-button.png" class="glightbox">
+  <img src="../../images/kubernetes-configmaps-add-button.png" alt="ConfigMaps Table Toolbar Add Button Marked">
+</a>
+
 * PixelView opens the **Create New ConfigMap** editor:
 
 <a href="../../images/kubernetes-create-configmap-editor.png" class="glightbox">
@@ -846,7 +986,12 @@ Navigate to **Configuration** &rarr; **Secrets** in the secondary sidebar:
 #### Creating a Secret Declaratively
 To create encrypted sensitive application credentials:
 * In the secondary sidebar, navigate to **Configuration** &rarr; **Secrets**.
-* Click the orange circular **`+`** (Add Secret) button on the table toolbar.
+* Click the orange circular **`+`** (Add Secret) button on the table toolbar:
+
+<a href="../../images/kubernetes-secrets-add-button.png" class="glightbox">
+  <img src="../../images/kubernetes-secrets-add-button.png" alt="Secrets Table Toolbar Add Button Marked">
+</a>
+
 * PixelView opens the **Create New Secret** editor:
 
 <a href="../../images/kubernetes-create-secret-editor.png" class="glightbox">
