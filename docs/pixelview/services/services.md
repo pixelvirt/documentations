@@ -142,6 +142,47 @@ The **Escalation** section links the service stream directly to an automated inc
 
 ---
 
+## Alert Ingestion Pipeline & Webhook Payloads
+
+PixelView acts as an intelligent aggregation gateway between external monitoring agents and response teams. When an alert arrives on a registered service stream:
+
+* **Authentication**: PixelView validates the `servicekey` passed via query parameter (`?servicekey=<key>`) or request header against the registered service database.
+* **Payload Normalization**: The alert payload (Prometheus Alertmanager format, Zabbix alert structure, or Generic JSON) is normalized into a standardized PixelView incident model.
+* **Incident Creation**: An active case is created or correlated in the **Cases** module (`/cases`), updating severity, host associations, and description tags.
+* **Outbound Webhook Forwarding**: If outbound webhooks are configured on the service, PixelView immediately relays the alert payload to external destinations (such as chat relays or incident systems).
+* **Escalation Trigger**: If an escalation policy is bound to the service, the Tier 1 escalation timer begins immediately.
+
+### Generic Webhook Payload Specification
+For monitoring agents integrating via the `generic` service type, send HTTP POST requests with a JSON body formatted as follows:
+
+```json
+{
+  "servicekey": "your-service-key-uuid",
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "HighMemoryUtilization",
+        "instance": "192.168.10.45",
+        "severity": "critical"
+      },
+      "annotations": {
+        "summary": "Memory consumption exceeded 90%",
+        "description": "Host 192.168.10.45 has only 850 MB of available memory remaining."
+      },
+      "startsAt": "2026-09-10T16:45:00Z"
+    }
+  ]
+}
+```
+
+### Ingestion Troubleshooting & Common Issues
+* **HTTP 401 / Unauthorized**: The provided `servicekey` does not match any registered service in PixelView, or the target service has been deleted.
+* **Service Disabled**: If the service status is toggled to **Disabled**, PixelView accepts the connection but drops incoming alerts without triggering cases or escalations.
+* **Duplicate Alert Suppression**: Subsequent firing alerts sharing identical alert names, instances, and fingerprints within the active case window are appended to the existing open case rather than spawning duplicate cases.
+
+---
+
 ## Deleting a Service
 
 * From the **Actions** context menu (`...`), select **Delete**.
