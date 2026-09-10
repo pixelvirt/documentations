@@ -67,6 +67,7 @@ nav:
       - OpenStack: pixelview/clouds/openstack.md
       - Kubernetes: pixelview/clouds/kubernetes.md
       - VMware: pixelview/clouds/vmware.md
+      - Cloud Reporting: pixelview/clouds/reporting.md
     - Cases: 
       - Cases Overview: pixelview/cases/cases.md
       - Open Cases: pixelview/cases/open-cases.md
