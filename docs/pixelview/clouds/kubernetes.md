@@ -12,7 +12,7 @@ PixelView integrates natively with Kubernetes APIs to deliver complete managemen
 
 ---
 
-## Accessing Kubernetes & Multi-Cluster Management
+## Cluster Overview & Access Management
 
 ### Navigating to Kubernetes
 To access the Kubernetes module:
@@ -140,9 +140,74 @@ Clicking this three-dot icon opens the **Column Actions** context menu for insta
 
 ---
 
-## Workloads & Pod Lifecycle Management
+## Favorites
+
+The **Favorites** workspace (`/kubernetes/:clusterName/favorites`) provides a centralized, rapid-access board for pinning critical Kubernetes resources, frequently monitored workloads, production namespaces, and high-priority cluster nodes.
+
+### Favorites Workspace Overview
+Navigate to **Favorites** in the secondary sidebar:
+
+<a href="../../images/kubernetes-favorites-view.png" class="glightbox">
+  <img src="../../images/kubernetes-favorites-view.png" alt="Kubernetes Favorites Workspace View">
+</a>
+
+| Feature | Operational Capability |
+| :--- | :--- |
+| **Instant Workload Pinning** | Operators can bookmark any running Pod, Deployment, StatefulSet, or Namespace directly from its details header by clicking the star bookmark icon. |
+| **Unified Status Monitoring** | All pinned items aggregate in the Favorites canvas, providing immediate health badges and replica telemetry without navigating through deep secondary submenus. |
+| **One-Click Deep-Dive** | Clicking any favorited item directly opens its dedicated multi-tab inspection interface or live YAML editor buffer. |
+| **Quick Browse Action** | The **BROWSE KUBERNETES RESOURCES** button provides instant access to the cluster inventory to begin adding resources to the favorites board. |
+
+---
+
+## Workloads
 
 The **Workloads** submenu provides granular lifecycle management over containers, replica controllers, batch workloads, and virtual machines running on Kubernetes.
+
+### Virtual Machines (KubeVirt VMs)
+
+PixelView provides native orchestration for **KubeVirt**, allowing traditional virtual machines to run side-by-side with containerized workloads directly on Kubernetes worker nodes.
+
+#### VMs Table Overview
+Navigate to **Workloads** &rarr; **VMs** in the secondary sidebar:
+
+<a href="../../images/kubernetes-vms-table.png" class="glightbox">
+  <img src="../../images/kubernetes-vms-table.png" alt="KubeVirt Virtual Machines on Kubernetes Table">
+</a>
+
+| Column | Description |
+| :--- | :--- |
+| **Name** | Virtual machine display name and UUID. |
+| **Namespace** | Tenant namespace boundary. |
+| **Status** | Virtual machine power state: `Running`, `Stopped`, `Starting`, or `Error`. |
+| **CPU Cores** | Virtual processor cores allocated to the guest OS. |
+| **Memory** | RAM capacity assigned to the virtual machine. |
+| **IP Address** | Assigned IP endpoints (pod network or bridged external IP). |
+| **Actions** | Context actions to open web VNC console, start, stop, restart, or delete the virtual machine. |
+
+#### Virtual Machine Deep-Dive & Hardware Allocation
+Clicking any virtual machine row in the inventory table navigates to the dedicated VM Details page (`/kubernetes/:clusterName/vms/:namespace/:vmName`):
+
+<a href="../../images/kubernetes-vm-details.png" class="glightbox">
+  <img src="../../images/kubernetes-vm-details.png" alt="KubeVirt Virtual Machine Hardware and Lifecycle Details View">
+</a>
+
+| Tab / Control | Purpose & Capabilities |
+| :--- | :--- |
+| **`Details`** | Core virtual machine specifications, memory quotas, CPU topologies, storage volume attachments, and live scheduling state. |
+| **`Snapshots`** | Point-in-time VM snapshot management, allowing operators to create, restore, or delete consistent disk and memory checkpoints. |
+| **`Console`** | Interactive browser-based graphical noVNC and serial console for direct OS-level administrative login without SSH. |
+| **Action Toolbar** | Direct lifecycle power buttons: **`Start`**, **`Refresh`**, **`Delete`**, and **`Freeze`** (guest filesystem and memory quiesce). |
+
+##### Virtual Machine Details Cards
+* **Metadata**: VM Name (`demo`), Namespace (`default`), UID, Creation timestamp, and Resource Version.
+* **Compute**: Memory allocation (`5126i`), vCPU Cores (`1`), CPU Sockets, and CPU Threads.
+* **Status**: Running state (`No`), Printable Status (`ErrorUnschedulable`), Ready state (`No`), and detailed scheduling error messages.
+* **Disks & Volumes**: Disk Name (`bootdisk`), Bus architecture (`virtio`), and container disk image source (`quay.io/kubevirt/cirros-container-disk-demo`).
+* **Network**: Interface Type (`Pod`) and internal IP configuration.
+* **Virtual Machine Instance (Live)**: Phase (`Scheduling`), Placement Node, and Guest OS telemetry.
+
+---
 
 ### Pods
 
@@ -429,51 +494,6 @@ Navigate to **Workloads** &rarr; **Cron Jobs** in the secondary sidebar:
 | **Suspend** | Boolean indicator showing whether recurring execution is currently paused. |
 | **Active** | Number of job instances currently executing in the cluster. |
 | **Last Schedule** | Timestamp recording the most recent job trigger. |
-
----
-
-### KubeVirt Virtual Machines
-
-PixelView provides unified management for **KubeVirt**, allowing traditional virtual machines to run side-by-side with containerized workloads directly within Kubernetes clusters.
-
-#### VMs Table Overview
-Navigate to **Workloads** &rarr; **VMs** in the secondary sidebar:
-
-<a href="../../images/kubernetes-vms-table.png" class="glightbox">
-  <img src="../../images/kubernetes-vms-table.png" alt="KubeVirt Virtual Machines on Kubernetes Table">
-</a>
-
-| Column | Description |
-| :--- | :--- |
-| **Name** | Virtual machine display name and UUID. |
-| **Namespace** | Tenant namespace boundary. |
-| **Status** | Virtual machine power state: `Running`, `Stopped`, `Starting`, or `Error`. |
-| **CPU Cores** | Virtual processor cores allocated to the guest OS. |
-| **Memory** | RAM capacity assigned to the virtual machine. |
-| **IP Address** | Assigned IP endpoints (pod network or bridged external IP). |
-| **Actions** | Context actions to open web VNC console, start, stop, restart, or delete the virtual machine. |
-
-#### Virtual Machine Deep-Dive & Hardware Allocation
-Clicking any virtual machine row in the inventory table navigates to the dedicated VM Details page (`/kubernetes/:clusterName/vms/:namespace/:vmName`):
-
-<a href="../../images/kubernetes-vm-details.png" class="glightbox">
-  <img src="../../images/kubernetes-vm-details.png" alt="KubeVirt Virtual Machine Hardware and Lifecycle Details View">
-</a>
-
-| Tab / Control | Purpose & Capabilities |
-| :--- | :--- |
-| **`Details`** | Core virtual machine specifications, memory quotas, CPU topologies, storage volume attachments, and live scheduling state. |
-| **`Snapshots`** | Point-in-time VM snapshot management, allowing operators to create, restore, or delete consistent disk and memory checkpoints. |
-| **`Console`** | Interactive browser-based graphical noVNC and serial console for direct OS-level administrative login without SSH. |
-| **Action Toolbar** | Direct lifecycle power buttons: **`Start`**, **`Refresh`**, **`Delete`**, and **`Freeze`** (guest filesystem and memory quiesce). |
-
-##### Virtual Machine Details Cards
-* **Metadata**: VM Name (`demo`), Namespace (`default`), UID, Creation timestamp, and Resource Version.
-* **Compute**: Memory allocation (`5126i`), vCPU Cores (`1`), CPU Sockets, and CPU Threads.
-* **Status**: Running state (`No`), Printable Status (`ErrorUnschedulable`), Ready state (`No`), and detailed scheduling error messages.
-* **Disks & Volumes**: Disk Name (`bootdisk`), Bus architecture (`virtio`), and container disk image source (`quay.io/kubevirt/cirros-container-disk-demo`).
-* **Network**: Interface Type (`Pod`) and internal IP configuration.
-* **Virtual Machine Instance (Live)**: Phase (`Scheduling`), Placement Node, and Guest OS telemetry.
 
 ---
 
@@ -1072,15 +1092,11 @@ Navigate to **Configuration** &rarr; **Pod Disruption Budgets** in the secondary
 
 ---
 
-## Observability, CRDs & Topology Graph
-
-The observability layer provides deep cluster event telemetry, schema extension governance, and interactive visual network topology mapping.
-
-### Cluster Events Stream
+## Cluster Events
 
 The **Events** stream (`/kubernetes/:clusterName/events`) records cluster state changes, scheduler actions, container lifecycle transitions, and warning errors across all namespaces in real time.
 
-#### Events Table Overview
+### Events Table Overview
 Navigate to **Events** in the secondary sidebar:
 
 <a href="../../images/kubernetes-events-table.png" class="glightbox">
@@ -1098,11 +1114,11 @@ Navigate to **Events** in the secondary sidebar:
 
 ---
 
-### Custom Resource Definitions (CRDs)
+## Custom Resource Definitions (CRDs)
 
 Custom Resource Definitions extend the Kubernetes API beyond built-in primitives, allowing operators and custom controllers to define specialized resources.
 
-#### CRDs Table Overview
+### CRDs Table Overview
 Navigate to **CRDs** in the secondary sidebar:
 
 <a href="../../images/kubernetes-crds-table.png" class="glightbox">
@@ -1117,14 +1133,14 @@ Navigate to **CRDs** in the secondary sidebar:
 | **Scope** | Domain boundaries: `Namespaced` or `Cluster`. |
 | **Actions** | View JSON/YAML schema definitions or inspect custom resource instances. |
 
-#### CRD Deep-Dive & Schema Specification
+### CRD Deep-Dive & Schema Specification
 Clicking any custom resource definition row in the table opens the dedicated CRD Details view (`/kubernetes/:clusterName/crds/:crdName`):
 
 <a href="../../images/kubernetes-crd-details.png" class="glightbox">
   <img src="../../images/kubernetes-crd-details.png" alt="Kubernetes Custom Resource Definition Schema Details View">
 </a>
 
-##### CRD Specification Cards
+#### CRD Specification Cards
 * **Metadata**: Resource Name (`alertmanagerconfigs.monitoring.coreos.com`), UID, Creation timestamp, Resource Version, and Generation count.
 * **Spec**: API Group (`monitoring.coreos.com`), Scope (`Namespaced`), Kind (`AlertmanagerConfig`), List Kind (`AlertmanagerConfigList`), Plural endpoint (`alertmanagerconfigs`), Singular name (`alertmanagerconfig`), and Short Names (`amcfg`).
 * **Versions**: Supported API versions (`v1alpha1`), active served status (`Yes`), and persistent storage backend flag (`Yes`).
@@ -1133,11 +1149,31 @@ Clicking any custom resource definition row in the table opens the dedicated CRD
 
 ---
 
-### Interactive Visual Graph Topology
+## Hub (Application Manager & Operator Catalog)
+
+The **Hub** (`/kubernetes/:clusterName/hubs`) serves as the integrated enterprise application marketplace and operator catalog for the cluster, providing one-click deployments of production-grade controllers, cloud provider integrations, databases, AI/machine learning toolchains, and observability stacks.
+
+### Application Manager & Catalog Overview
+Navigate to **Hub** in the secondary sidebar:
+
+<a href="../../images/kubernetes-hub-overview.png" class="glightbox">
+  <img src="../../images/kubernetes-hub-overview.png" alt="Kubernetes Hub Application Manager and Operator Catalog">
+</a>
+
+| Catalog Area | Description |
+| :--- | :--- |
+| **Search & Filtering** | Instant search bar (`Search applications...`) with categorized filtering across Monitoring, Security, Cloud Provider, Database, AI/Machine Learning, Developer Tools, and Networking. |
+| **Curated Operators** | Pre-packaged Operator Lifecycle Manager (OLM) packages from OperatorHub and certified enterprise vendors (such as AWS Controllers for Kubernetes, Accuknox, ArgoCD, Cert-Manager). |
+| **One-Click Installation** | Selecting any application card opens the automated installer drawer to configure target namespaces, installation modes, and subscription approval strategies. |
+| **Ecosystem Categories** | Side-rail category browser facilitating rapid discovery of cluster runtime extensions and hardware drivers. |
+
+---
+
+## Interactive Visual Graph Topology
 
 The **Graph** view (`/kubernetes/:clusterName/graph`) provides an interactive real-time visual canvas depicting service relationships, pod connectivity, and Prometheus metric queries.
 
-#### Graph Topology Canvas Overview
+### Graph Topology Canvas Overview
 Navigate to **Graph** in the secondary sidebar:
 
 <a href="../../images/kubernetes-graph-overview.png" class="glightbox">
