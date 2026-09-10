@@ -66,17 +66,17 @@ To register a new operating system package baseline:
 
 Configure the following fields in the modal:
 
-1. **OS Name** *(Required)*: Enter the distribution title (e.g., `Ubuntu`, `Debian`, `RedHat`, `Rocky Linux`).
-2. **OS Version** *(Required)*: Enter the release version identifier (e.g., `22.04`, `9.2`, `11`).
-3. **Family** *(Dropdown)*: Select the distribution family (`Debian / Ubuntu`, `RHEL`, `Arch`, `SUSE`, `Windows`, or `Other`). This automatically drives native installation syntax and command helpers.
-4. **Workflow** *(Required Dropdown)*: Select the registered automation workflow responsible for executing or validating these packages across target hosts.
-5. **Description** *(Optional)*: Provide operational details, intended environment tiers (e.g., `Production Web Tier baseline`), or change request references.
+* **OS Name** *(Required)*: Enter the distribution title (e.g., `Ubuntu`, `Debian`, `RedHat`, `Rocky Linux`).
+* **OS Version** *(Required)*: Enter the release version identifier (e.g., `22.04`, `9.2`, `11`).
+* **Family** *(Dropdown)*: Select the distribution family (`Debian / Ubuntu`, `RHEL`, `Arch`, `SUSE`, `Windows`, or `Other`). This automatically drives native installation syntax and command helpers.
+* **Workflow** *(Required Dropdown)*: Select the registered automation workflow responsible for executing or validating these packages across target hosts.
+* **Description** *(Optional)*: Provide operational details, intended environment tiers (e.g., `Production Web Tier baseline`), or change request references.
 
 ### Package List Input & Synchronization
 
 PixelView provides two synchronized methods to input and manage package definitions:
 
-#### 1. Bulk Input (Paste Box or CSV Import)
+#### Bulk Input (Paste Box or CSV Import)
 * **Textarea Input**: Paste raw package lines using the standard `name=version` format:
   ```text
   curl=7.81.0-1ubuntu1.27
@@ -87,7 +87,7 @@ PixelView provides two synchronized methods to input and manage package definiti
 * **Parse Into Rows**: Click **PARSE INTO ROWS** to validate and automatically convert the bulk lines into the structured table rows below.
 * **Import CSV**: Click **IMPORT CSV** to upload an existing package inventory containing package names and version strings.
 
-#### 2. Interactive Row Editor
+#### Interactive Row Editor
 * **Add Row (`+ ADD ROW`)**: Append individual package rows directly into the list.
 * **Package Name**: Specify the package binary or library identifier.
 * **Pinned Version**: Set the exact version string to pin, or leave blank to track unpinned latest packages.
@@ -140,13 +140,13 @@ The detail table lists all individual packages defined within the list:
 
 Every package list is directly tied to an automation workflow pipeline:
 
-1. In the **Package Detail** view, the linked workflow name is highlighted in the header:
+* In the **Package Detail** view, the linked workflow name is highlighted in the header:
 
 <a href="../../images/packages-workflow-link.png" class="glightbox">
   <img src="../../images/packages-workflow-link.png" alt="Linked Workflow in Package Header">
 </a>
 
-2. Clicking the workflow title (or the workflow link in the main table) redirects directly to the **Workflows** management console (`/workflows?expand=<uuid>`) with the target workflow automatically expanded:
+* Clicking the workflow title (or the workflow link in the main table) redirects directly to the **Workflows** management console (`/workflows?expand=<uuid>`) with the target workflow automatically expanded:
 
 <a href="../../images/packages-workflow-redirection.png" class="glightbox">
   <img src="../../images/packages-workflow-redirection.png" alt="Workflow Redirection & Task Details">
@@ -178,19 +178,19 @@ Selecting **Edit** opens the **Edit Package List** modal dialog pre-populated wi
   <img src="../../images/packages-edit-modal.png" alt="Edit Package List Modal Dialog">
 </a>
 
-1. Update the **OS Name**, **OS Version**, **Family**, **Workflow**, or **Description**.
-2. Modify version pins in the paste box or using the row editor below.
-3. Click **REVERT CHANGES** at any time to discard uncommitted edits and restore the saved baseline.
-4. Click **SAVE CHANGES** to apply the updates.
+* Update the **OS Name**, **OS Version**, **Family**, **Workflow**, or **Description**.
+* Modify version pins in the paste box or using the row editor below.
+* Click **REVERT CHANGES** at any time to discard uncommitted edits and restore the saved baseline.
+* Click **SAVE CHANGES** to apply the updates.
 
 ### Deleting a Package List
 
-1. From the main table or the **OPEN MENU** on the detail page, click **Delete**.
-2. A confirmation prompt will appear:
+* From the main table or the **OPEN MENU** on the detail page, click **Delete**.
+* A confirmation prompt will appear:
    ```text
    Delete the package list for [OS Name] [OS Version]? This cannot be undone.
    ```
-3. Confirm deletion to permanently remove the package list from PixelView.
+* Confirm deletion to permanently remove the package list from PixelView.
 
 > [!WARNING]
 > Deleting a package list permanently removes the version-pinned baseline from the catalog. Any active automation jobs or patch planners expecting this package list will no longer receive updates.

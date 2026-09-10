@@ -1,8 +1,8 @@
 # Patchset Management
 
-The **Patchsets** section (`/patchset`) in PixelView allows administrators to create, configure, and manage modular patching packages called **Patchsets**.
+The **Patchsets** section (`/patch-management/patchsets`) in PixelView allows administrators to create, configure, and manage modular patching packages called **Patchsets**.
 
-A Patchset encapsulates one or more sequential automation workflows, prerequisite dependencies, execution priority levels, and metadata labels. Once defined, patchsets can be executed across host clusters through the **Planner** or triggered automatically via remediation policies.
+A Patchset encapsulates one or more sequential automation workflows or OS package lists, prerequisite dependencies, execution priority levels, and metadata labels. Once defined, patchsets can be executed across host clusters through the **[Planner](planner.md)** or triggered automatically via remediation policies.
 
 ---
 
@@ -33,13 +33,13 @@ The **Patchsets** table displays all configured patch definitions in the system:
 
 To define a new patchset:
 
-* Click the orange **`+`** (Add Patchset) button located in the top-right toolbar above the table:
+* Click the orange **`+`** (Create patchset) button located in the top-right toolbar above the table:
 
 <a href="../../images/patchset-add-button.png" class="glightbox">
   <img src="../../images/patchset-add-button.png" alt="Add Patchset Button">
 </a>
 
-* The **Create Patchset** modal dialog will open:
+* The **Create Patchset** modal dialog opens:
 
 <a href="../../images/patchset-create-modal.png" class="glightbox">
   <img src="../../images/patchset-create-modal.png" alt="Create Patchset Modal Dialog">
@@ -49,12 +49,15 @@ To define a new patchset:
 
 Configure the following parameters in the dialog:
 
-* **Patchset Name** *(Required)*: Enter a short, descriptive name (e.g., `InstallKubectl`, `KernelSecurityPatch`).
-* **Description**: Detail the operational purpose, target packages, or changelog notes.
-* **Labels**: Click **`+ ADD LABEL`** to define key-value pairs (e.g., `env: production`, `tier: web`) for metadata classification and dynamic filtering.
-* **Tags**: Enter comma-separated non-identifying context tags.
-* **Workflows**: Select target automation workflows from the **Add workflow** dropdown and click **`+`** to append them in sequential execution order.
-* **Depends On**: Select any prerequisite patchset that must successfully complete on a target host before this patchset executes.
+* **Patchset Name** *(Required)*: Enter a short, descriptive identifier (placeholder `Ubuntu-Security-Aug2026`).
+* **Description**: Detail the operational purpose, target packages, or changelog notes (placeholder `What this patchset covers and why`).
+* **Labels**: Click **`ADD LABEL`** to define key-value pairs (e.g., `env: production`, `tier: web`) for metadata classification and dynamic filtering.
+* **Tags (comma separated)**: Enter comma-separated context tags (placeholder `e.g. security, urgent, rollback-tested`).
+* **Source Type Selection (Workflows vs Packages)**:
+  A patchset is driven by an ordered list of workflows **or** one or more package lists (never both):
+  * **Workflows Mode**: Select target automation workflows from the **Add workflow** dropdown and click **`+`** to append them into the sequential execution pipeline. Reorder workflows using the arrow buttons or remove them with the trash button.
+  * **Packages Mode**: Select registered [OS Package Lists](packages.md) to apply version-pinned package baselines directly.
+* **Depends On**: Select any prerequisite patchset that must successfully complete on a target host before this patchset executes. Optionally enter a dependency note (placeholder `Why this dependency exists`) and click **ADD DEPENDENCY**.
 * Click **CREATE PATCHSET** to persist and register the patch definition.
 
 ---

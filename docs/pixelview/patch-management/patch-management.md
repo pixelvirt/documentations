@@ -17,9 +17,9 @@ To access the patching module:
 </a>
 
 The module provides four operational views:
-* **Overview (`/patching`)**: Live status dashboard displaying pending actions, top patchset activities, and recent runs.
-* **Patchset (`/patchset`)**: Inventory of all created patch definitions, workflows, dependencies, and targeted hosts.
-* **Planner (`/planner`)**: Scheduling engine for defining maintenance windows, rollout rates, and batch executions.
+* **[Overview](patch-management.md) (`/patch-management/overview`)**: Live status dashboard displaying pending actions, top patchset activities, and recent runs.
+* **[Patchset](patchset.md) (`/patch-management/patchsets`)**: Inventory of all created patch definitions, workflows, dependencies, and targeted hosts.
+* **[Planner](planner.md) (`/patch-management/planners`)**: Scheduling engine for defining maintenance windows, rollout rates, and batch executions.
 * **[Packages](packages.md) (`/patch-management/packages`)**: Per-OS catalog of version-pinned software package lists linked to automation workflows and version history tracking.
 
 ---
@@ -57,7 +57,7 @@ The **Recent Runs** stream across the bottom provides a live audit trail of plan
 * **Status Badges**: Real-time status indicators showing planner run outcomes (`Completed`, `Cancelled`, `Running`, `Failed`).
 * **Run Metadata**: Displays the run title, associated patchset, target host group (e.g., `InstallKubectl — ha-host-gtoup`), timestamp, and the triggering user (`admin@localhost`).
 * **Planner Redirection**:
-  * **View All Link**: Click **View all** in the top-right corner of the card to navigate directly to the full **Planner** (`/planner`) schedule and batch management dashboard.
+  * **View All Link**: Click **View all** in the top-right corner of the card to navigate directly to the full **[Planner](planner.md)** (`/patch-management/planners`) schedule and batch management dashboard.
   * **Individual Run Tracking**: Click on any specific run in the list (e.g., `real-test`) to be redirected into the **Planner Run Execution** view, where you can monitor live per-host and per-workflow progress, inspect output logs, and review stage transitions.
 
 ### Top Patchsets Card
