@@ -108,3 +108,20 @@ To modify an existing rule or remove it:
 
 > [!WARNING]
 > Deleting a rule immediately ceases automated responses for its configured trigger. Any incoming alerts or bot events matching this trigger will no longer initiate remediation workflows.
+
+---
+
+## Event-Driven Triggers & Webhook Integration
+
+Automation rules provide the automated bridge between monitoring alerts and hands-free remediation:
+
+* **Trigger Identification Standards**:
+    * Trigger keys must follow predictable, space-free naming patterns (such as `mariadb-down`, `disk-threshold-critical`, or `ssl-cert-expiring`).
+    * The trigger identifier acts as the lookup key matched against inbound event webhooks.
+* **Inbound Alert Matching**:
+    * When an external monitoring system (such as Prometheus Alertmanager or Zabbix) posts an alert payload to a PixelView Service endpoint (`?servicekey=<key>`), the ingestion engine extracts the event name.
+    * If the event name matches an active, enabled rule trigger, PixelView automatically instantiates an execution run for the bound workflow.
+* **Audit & Execution Tracing**:
+    * Jobs triggered via automation rules appear in [Executions](executions.md) with `Source: Automation`.
+    * If a rule is temporarily **Disabled**, incoming events are logged in case history but do not spawn automated executions, giving operators the flexibility to perform manual maintenance without automated interference.
+

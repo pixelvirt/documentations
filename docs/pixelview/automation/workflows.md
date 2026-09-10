@@ -58,9 +58,10 @@ To view the exact sequence of playbooks and scripts contained within a workflow:
 
 ### Details Breakdown
 
-* **Associated Playbooks**: A numbered list of all Ansible playbooks executed in sequential order, along with their registered descriptions (e.g., `1. ha-playbook-info`).
-* **Associated Scripts**: A numbered list of all Python scripts executed within the workflow, or a note indicating *No scripts associated*.
+* **Associated Playbooks**: An ordered sequence of all Ansible playbooks executed in sequential pipeline progression, accompanied by their registered operational descriptions.
+* **Associated Scripts**: An ordered sequence of all Python scripts executed within the workflow, or a note indicating *No scripts associated*.
 * **Description**: Custom workflow notes and documentation explaining the pipeline's operational purpose.
+* **Deep-Link URL Support**: Workflows support direct contextual navigation via `/workflows?expand=<uuid>`. When referenced from [Patch Management](../patch-management/patchset.md) or external case runbooks, PixelView navigates directly to the target page and automatically expands the workflow's detail panel.
 
 ---
 
@@ -123,3 +124,15 @@ To remove an obsolete workflow from the platform:
 
 > [!WARNING]
 > Deleting a workflow removes its pipeline definition permanently. Any event-driven [Rules](rules.md), patchsets, or automated triggers linked to this workflow will no longer be able to execute.
+
+---
+
+## Workflow Composition Patterns & Best Practices
+
+Designing reliable multi-step automation pipelines requires structuring individual tasks into clean operational phases:
+
+* **Triage & Diagnostic First**: Begin the workflow with a lightweight Python probe script (such as `db_health_check.py`) to gather node telemetry, verify reachability, and confirm fault symptoms before attempting invasive modifications.
+* **Idempotent Remediation Execution**: Leverage Ansible playbooks for system changes. Playbooks ensure changes are only made when necessary, preventing duplicate reconfigurations or accidental data corruption if rerun.
+* **Post-Remediation Health Validation**: Conclude the workflow with a verification step that queries application health endpoints, restarts background workers, and ensures full operational recovery.
+* **Fail-Fast Safety Boundary**: If any playbook or script step returns a non-zero exit code, PixelView halts the remaining execution sequence immediately. This prevents secondary deployment steps from executing against broken or partitioned hosts.
+

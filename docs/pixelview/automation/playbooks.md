@@ -215,3 +215,142 @@ To inspect the full metadata of a playbook:
 <a href="../../images/automation-playbooks-edit-from-details.png" class="glightbox">
   <img src="../../images/automation-playbooks-edit-from-details.png" alt="Edit Playbook Dialog from Details">
 </a>
+
+---
+
+## Curated Operational Playbook Library
+
+The following production-tested Ansible playbooks represent common operational templates designed for mounting into `/opt/pixelvirt/playbooks/` and registering into PixelView.
+
+### Automated SSL/TLS Certificate Renewal (`renew-ssl-cert.yaml`)
+
+Renews Let's Encrypt certificates using Certbot, verifies web server syntax, and reloads active reverse proxy daemons without dropping client sessions:
+
+```yaml
+---
+- name: Automate SSL/TLS Certificate Renewal
+  hosts: all
+  become: true
+  vars:
+    web_server_service: nginx
+    cert_domain: "{{ domain_name | default('api.example.com') }}"
+
+  tasks:
+    - name: Ensure Certbot is installed
+      ansible.builtin.package:
+        name:
+          - certbot
+          - python3-certbot-nginx
+        state: present
+
+    - name: Execute certificate dry-run verification
+      ansible.builtin.command:
+        cmd: certbot renew --dry-run
+      register: dry_run_result
+      changed_when: false
+
+    - name: Renew expiring certificates
+      ansible.builtin.command:
+        cmd: certbot renew --non-interactive --quiet
+      register: renewal_output
+      when: dry_run_result.rc == 0
+
+    - name: Validate web server configuration syntax
+      ansible.builtin.command:
+        cmd: "{{ web_server_service }} -t"
+      changed_when: false
+
+    - name: Reload web server daemon
+      ansible.builtin.systemd:
+        name: "{{ web_server_service }}"
+        state: reloaded
+```
+
+### Zero-Downtime Rolling Service Restart (`rolling-service-restart.yaml`)
+
+Restarts backend microservices sequentially across fleet hosts while validating health probe endpoints before proceeding to subsequent cluster nodes:
+
+```yaml
+---
+- name: Zero-Downtime Rolling Service Restart
+  hosts: all
+  become: true
+  serial: 1
+  vars:
+    target_service: "{{ service_name | default('pixelview-worker') }}"
+    health_endpoint_url: "http://127.0.0.1:8080/healthz"
+    max_health_retries: 12
+    health_retry_delay_seconds: 5
+
+  tasks:
+    - name: Pre-restart health verification
+      ansible.builtin.uri:
+        url: "{{ health_endpoint_url }}"
+        status_code: 200
+        timeout: 5
+      register: pre_check
+      ignore_errors: true
+
+    - name: Gracefully restart systemd service unit
+      ansible.builtin.systemd:
+        name: "{{ target_service }}"
+        state: restarted
+
+    - name: Await service health endpoint recovery
+      ansible.builtin.uri:
+        url: "{{ health_endpoint_url }}"
+        status_code: 200
+        timeout: 5
+      register: post_check
+      until: post_check.status == 200
+      retries: "{{ max_health_retries }}"
+      delay: "{{ health_retry_delay_seconds }}"
+
+    - name: Report successful node recycling
+      ansible.builtin.debug:
+        msg: "Successfully recycled {{ target_service }} on {{ inventory_hostname }}"
+```
+
+### Emergency Disk Space Reclamation (`reclaim-disk-space.yaml`)
+
+Safely purges rotated logs, vacuums systemd journal archives older than 7 days, cleans package manager caches, and prunes dangling container images:
+
+```yaml
+---
+- name: Emergency Disk Space Reclamation
+  hosts: all
+  become: true
+  vars:
+    journal_retention_days: 7
+
+  tasks:
+    - name: Vacuum systemd journald archives
+      ansible.builtin.command:
+        cmd: "journalctl --vacuum-time={{ journal_retention_days }}d"
+      changed_when: true
+
+    - name: Purge APT package manager cache on Debian/Ubuntu
+      ansible.builtin.apt:
+        autoclean: true
+        autoremove: true
+      when: ansible_os_family == "Debian"
+
+    - name: Clean DNF package manager cache on RHEL/Rocky
+      ansible.builtin.dnf:
+        clean: all
+      when: ansible_os_family == "RedHat"
+
+    - name: Check for Docker daemon availability
+      ansible.builtin.command:
+        cmd: docker info
+      register: docker_check
+      ignore_errors: true
+      changed_when: false
+
+    - name: Prune orphaned Docker container resources
+      ansible.builtin.command:
+        cmd: docker system prune -af --volumes
+      when: docker_check.rc == 0
+      changed_when: true
+```
+

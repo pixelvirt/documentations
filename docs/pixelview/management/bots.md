@@ -76,5 +76,52 @@ Both the **Auth Token** and **API Key** columns use security masking by default 
 ## Using Bots in Escalation Policies
 
 Once registered, bots can be automatically assigned to alert escalation workflows:
-* In **Escalations** > **Policies**, you can add an escalation level and choose **Assign to Automations**.
-* Select the desired bot from the dropdown. When an unresolved incident reaches this escalation tier, PixelView automatically dispatches the alert payload to the bot's configured endpoint.
+
+* In **Escalations** &rarr; **Policies**, operators configure escalation tiers with the **Assign To Automation** action.
+* Select the desired bot from the dropdown. When an unresolved incident reaches this escalation tier, PixelView dispatches the alert payload directly to the bot's configured endpoint.
+
+---
+
+## Outbound Bot Webhook Specification
+
+When an escalation tier or automation rule invokes a registered bot, PixelView sends an authenticated HTTP `POST` request to the configured `bot_url`:
+
+### Request Headers
+
+```http
+POST /api/v1/remediate HTTP/1.1
+Host: bot.example.com
+Authorization: Bearer <bot_auth_token>
+X-API-KEY: <api_key>
+Content-Type: application/json
+User-Agent: PixelView-AutomationBot/1.0
+```
+
+### JSON Dispatch Payload
+
+```json
+{
+  "event_id": "evt-8c29b41a-3e77-4f9a-9e62-0b1a6299b1a5",
+  "bot_name": "Disk Cleanup Bot",
+  "bot_type": "custom",
+  "timestamp": "2026-09-10T14:30:00Z",
+  "case": {
+    "uuid": "case-94b1c20e-7d6a-4c28-98e2-f4728923a109",
+    "title": "High Disk Space Utilization on database-prod-01",
+    "severity": "critical",
+    "status": "open",
+    "target_host": "10.0.12.45",
+    "service_name": "Prometheus-Ingress"
+  },
+  "labels": {
+    "env": "production",
+    "mount": "/var/lib/mysql",
+    "threshold": "95%"
+  }
+}
+```
+
+### Bot Response & Lifecycle Handling
+
+* **Expected HTTP Response**: The receiving bot service must respond with HTTP `200 OK` or `202 Accepted` to acknowledge receipt.
+* **Incident Auto-Resolution**: Upon successfully completing remediation, the bot can call PixelView's REST API (`/api/v1/cases/:uuid`) with `status: "resolved"` and an appended timeline note, automatically halting subsequent escalation tiers.
