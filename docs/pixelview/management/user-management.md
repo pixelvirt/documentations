@@ -6,9 +6,9 @@ The **Management** section in PixelView provides administrative controls for man
 
 ## User Management
 
-The **Users** page (`/users`) provides a centralized view of all registered accounts, enabling administrators to invite team members, adjust roles, toggle account statuses, and configure access control permissions.
+The **Users** view (`/users`) provides administrators with an overview of all registered accounts, enabling them to invite team members, adjust roles, toggle account statuses, and configure module-level access control permissions.
 
-### Overview & User Table
+### Overview & Users Table
 
 Navigate to **Management** > **Users** from the left navigation sidebar:
 
@@ -16,52 +16,52 @@ Navigate to **Management** > **Users** from the left navigation sidebar:
   <img src="../../images/management-sidebar.png" alt="Management Navigation Sidebar">
 </a>
 
-The users table provides real-time account information:
+The users table displays all registered accounts:
 
 | Column | Description |
 | :--- | :--- |
 | **Name** | Full display name of the user. |
-| **Email** | Registered email address used for login and notifications. |
-| **Status** | Current account state: <br> • `Enabled` (Green badge) — Active access permitted. <br> • `Disabled` (Grey badge) — Account is deactivated. |
+| **Email** | Registered email address used for login and alert notifications. |
+| **Status** | Current account state: <br> * `Enabled` (Green badge) &mdash; Active account permitted to log in. <br> * `Disabled` (Grey badge) &mdash; Account is deactivated; login access is immediately revoked. |
 | **Role** | System role assigned to the user (`Admin` or `User`). |
-| **Actions** | Action menu (`...`) to edit or manage user profile settings. |
+| **Actions** | Context menu (`...`) to edit or manage user profile settings. |
 
 **Table Toolbar Controls:**
-* **Search / Global Filter**: Quickly filter users across names, emails, and roles.
+
+* **Search / Global Filter**: Search across user names, email addresses, and roles.
 * **Toggle Column Filters**: Apply column-specific filters.
 * **Show/Hide Columns**: Customize which columns are visible in the table.
 * **Density Toggle**: Switch between compact and spacious row layouts.
 * **Refresh**: Fetch the latest user records from the server.
-* **Add User (`+`)**: Open the user invitation modal.
+* **Add User (`+`)**: Open the user invitation modal dialog.
 
 ---
 
 ### Inviting a New User
 
-To add a new team member to PixelView:
+To onboard a new team member to PixelView:
 
-* Click the **`+`** (Add User) icon located in the top-right corner of the table toolbar:
+* Click the **`+`** (Add User) icon located in the upper-right corner of the table toolbar:
   <a href="../../images/adduser.png" class="glightbox">
     <img src="../../images/adduser.png" alt="Add User Button">
   </a>
-* In the **Invite User** modal dialog:
+* In the **Invite User** modal dialog, complete the required fields:
   <a href="../../images/invite-user.png" class="glightbox">
     <img src="../../images/invite-user.png" alt="Invite User Dialog">
   </a>
-* Fill in the required fields:
   * **First Name** *(Required)*: The user's first name.
   * **Last Name** *(Required)*: The user's last name.
   * **Email** *(Required)*: A valid email address to receive account credentials.
   * **Role** *(Required)*: Select the system role from the dropdown:
-    * **Admin**: Full administrative access across the platform.
-    * **User**: Standard user with access scoped by the permissions matrix.
+    * `Admin`: Full administrative access across the platform, including managing other users, communication gateways, and licenses.
+    * `User`: Standard user with access scoped by the permissions matrix.
   * **Permissions**: Expand the permissions section to define module-level access (see [Granular Permissions Matrix](#granular-permissions-matrix)).
 * Click **Send Invite**.
 
 !!! note "Initial User Password"
     Upon sending the invitation, an initial password is generated following the convention:  
     `FirstName#123` *(e.g., if First Name is "Duke", the default password is `Duke#123`)*.  
-    Users should change their password upon their first login under **Settings** > **Profile**.
+    Users should change their password upon their first login under **Settings** > **Profile** > **Change Password**.
 
 ---
 
@@ -69,15 +69,15 @@ To add a new team member to PixelView:
 
 Administrators can modify account details, toggle access status, and update permission levels at any time:
 
-* Locate the user in the table and click the **`...`** icon in the **Actions** column.
+* In the Users table, click the **`...`** icon in the **Actions** column for the target user.
 * Select **Edit** to open the **Update User** modal:
   <a href="../../images/update-user.png" class="glightbox">
-    <img src="../../images/update-user.png" alt="Update User">
+    <img src="../../images/update-user.png" alt="Update User Dialog">
   </a>
 * Modify the desired parameters:
   * **First Name** / **Last Name**: Update the user's name.
   * **Role**: Switch between `Admin` and `User`.
-  * **Status**: Toggle between `Enabled` and `Disabled` to instantly grant or revoke access.
+  * **Status**: Toggle between `Enabled` and `Disabled` to instantly grant or suspend access.
   * **Permissions**: Adjust individual read/write capabilities across platform modules.
 * Click **Update User** to save the changes.
 
@@ -93,19 +93,20 @@ PixelView features a role-based access control (RBAC) permissions matrix that al
 
 Permissions can be configured when **Inviting a User** or when **Updating a User**.
 
-**Quick Bulk Actions:**
-* **Set all to: Disabled**: Revokes access to all modules.
-* **Set all to: Read Only**: Grants view-only access across all modules.
-* **Set all to: Read/Write**: Grants full read, write, and execution capabilities.
+#### Quick Bulk Actions
 
-**Supported Modules & Permission Levels:**
+* **Set all to: Disabled**: Revokes access to all modules.
+* **Set all to: Read Only**: Grants view-only access across all modules (default initial state).
+* **Set all to: Read/Write**: Grants full operational and editing capabilities across all modules.
+
+#### Supported Modules & Capabilities
 
 Each module can be independently set to **Disabled**, **Read Only**, or **Read/Write**:
 
 | Module | Scope / Capabilities |
 | :--- | :--- |
 | **OpenStack** | Compute instances, flavors, keypairs, volumes, networks, routers, and quotas. |
-| **Kubernetes** | Clusters, nodes, pods, deployments, services, namespaces, and ConfigMaps. |
+| **Kubernetes** | Clusters, nodes, pods, workloads (Deployments, StatefulSets, DaemonSets, Jobs), and ConfigMaps. |
 | **Reporting** | Analytics, metrics utilization, and executive infrastructure reports. |
 | **Cases** | Incident tickets, alert triage, comments, observables, and task management. |
 | **Services** | Monitoring data sources and service configurations (Prometheus, Zabbix). |
@@ -122,7 +123,7 @@ Each module can be independently set to **Disabled**, **Read Only**, or **Read/W
 
 ## Access Groups
 
-The **Groups** page (`/groups`) allows administrators to organize team members into functional operational units (e.g., `admins`, `Approvers`, `L1 Reviewers`, `L2 Reviewers`) for collaborative incident management, alert assignments, and escalation routing.
+The **Groups** view (`/groups`) allows administrators to organize team members into functional operational units (e.g., `admins`, `Approvers`, `L1 Reviewers`, `L2 Reviewers`) for collaborative incident management, alert assignments, and escalation routing.
 
 ### Overview & Groups Table
 
@@ -138,9 +139,10 @@ The groups table displays all configured user groups:
 | :--- | :--- |
 | **Name** | Unique name identifier of the group. |
 | **Updated At** | Timestamp indicating when the group or its member list was last modified. |
-| **Actions** | Action menu (`...`) providing options to **View** or **Delete** the group. |
+| **Actions** | Context menu (`...`) providing options to **View** or **Delete** the group. |
 
 **Table Toolbar Controls:**
+
 * **Search / Global Filter**: Search across group names.
 * **Toggle Column Filters**: Filter specific table columns.
 * **Show/Hide Columns**: Customize visible table headers.
@@ -162,14 +164,13 @@ To create a new access group:
   <a href="../../images/add-groups.png" class="glightbox">
     <img src="../../images/add-groups.png" alt="Add Group Dialog">
   </a>
-* Fill in the group parameters:
   * **Group Name** *(Required)*: Enter a unique and descriptive name for the group (e.g., `admins`, `Approvers`).
-  * **Add Members**: Open the dropdown to select one or multiple registered team members to add to the group.
+  * **Add Members**: Select one or multiple registered team members to add to the group.
 * Click **Create** to save the new group.
 
 ---
 
-### Managing Group Actions
+### Managing Group Membership & Actions
 
 In the Groups table, click the **`...`** icon under the **Actions** column for any group:
 
@@ -177,10 +178,24 @@ In the Groups table, click the **`...`** icon under the **Actions** column for a
   <img src="../../images/group-actions.png" alt="Group Actions Menu">
 </a>
 
-* **View (Eye Icon)**:  
-  Opens the group management modal where you can:
-  * Inspect the list of active members currently assigned to the group.
-  * Add additional users to the group.
-  * Remove members from the group.
-* **Delete (Trash Icon)**:  
-  Prompts a confirmation dialog (`Are you sure you want to delete group <name>?`). Confirming will permanently remove the group from the system.
+#### View & Edit Membership (Eye Icon)
+
+Clicking **View** opens the group management modal with two tabs:
+
+* **Members Tab**:
+  * Displays the list of current members assigned to the group, including user avatar and full name.
+  * Click **Remove** next to any member to detach them from the group.
+  * If no members are assigned, shows `No members in this group`.
+
+* **Other Users Tab**:
+  * Displays all registered platform users who are not currently part of the group.
+  * Click **Add** next to any user to immediately add them to the group.
+  * If all users are already assigned, shows `No users yet.`
+
+#### Delete Group (Trash Icon)
+
+Clicking **Delete** prompts a confirmation dialog:
+```
+Are you sure you want to delete group <name>?
+```
+Confirming will permanently remove the group from the system. Individual user accounts are preserved.
