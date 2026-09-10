@@ -82,8 +82,8 @@ To build a new multi-step automation pipeline:
 
 ### Pipeline Configuration
 
-1. **Workflow Name** *(Required)*: Enter a unique, recognizable title for the workflow (e.g., `mariadb-restart-workflow`, `Install kubectl`).
-2. **Description** *(Optional)*: Provide an operational summary explaining the sequence of tasks performed by the pipeline.
+* **Workflow Name** *(Required)*: Enter a unique, recognizable title for the workflow (e.g., `mariadb-restart-workflow`, `Install kubectl`).
+* **Description** *(Optional)*: Provide an operational summary explaining the sequence of tasks performed by the pipeline.
 
 ### Visual Flow Builder
 

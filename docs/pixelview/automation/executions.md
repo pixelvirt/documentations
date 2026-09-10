@@ -62,7 +62,7 @@ To manually dispatch a new automation run:
 
 ### Configuration Fields
 
-* **Name** *(Required)*: Enter a unique, recognizable identifier for the execution run.
+* **Name** *(Required)*: Enter a unique, recognizable identifier for the execution run (e.g., `Weekly Patch Job - Sep 2024`).
 * **Workflow** *(Required)*: Select the automated workflow containing the playbooks or scripts to run.
 * **SSH Credential** *(Required)*: Choose the stored credential profile from [Credentials Management](../inventory/creds.md) to authenticate against target hosts.
 * **Extra Variables (JSON)** *(Optional)*: Supply custom runtime variables to the playbook or script in valid JSON format (default: `{}`).
@@ -71,7 +71,9 @@ To manually dispatch a new automation run:
     * **Inventory Servers**: Target servers cataloged within PixelView's Cloud Catalogue.
     * **Cloud Servers**: Query live compute instances directly from integrated cloud providers (e.g., OpenStack regions).
     * **Host Groups**: Target pre-configured clusters defined in [Host Groups Management](../inventory/host-groups.md).
-* **Target Servers Selection**: Select one or more target servers or select all in bulk.
+* **Runner** *(Optional)*: Select a specific runner instance from [Runners](runners.md), or leave unassigned to route automatically to the source-based queue.
+* **Cloud** *(Required)*: Select the target cloud environment or cluster hosting the desired nodes.
+* **Select Servers** *(Required)*: Select one or more target servers across available regions, or select all in bulk.
 
 ### Dialog Actions
 
@@ -109,7 +111,7 @@ To inspect per-host execution progress, playbook stdout/stderr, and runtime tele
 
 The dashboard displays the **Jobs List** on the left panel (listing all individual playbook or script jobs with status badges) and four detailed tabs on the right:
 
-### 1. Details Tab
+### Details Tab
 
 The **DETAILS** tab provides high-level run metadata and operational parameters:
 
@@ -125,7 +127,7 @@ The **DETAILS** tab provides high-level run metadata and operational parameters:
 * **Timestamps**: Exact creation and last updated timestamps.
 * **Execution ID**: Parent execution identifier linking all concurrent jobs in this run.
 
-### 2. Logs Tab (Real-Time SSE Stream)
+### Logs Tab (Real-Time SSE Stream)
 
 The **LOGS** tab provides live, streaming console output of the execution:
 
@@ -140,7 +142,7 @@ The **LOGS** tab provides live, streaming console output of the execution:
     * Task outputs & stdout: `TASK [Show kubectl version] => {"kubectl_version": "v1.37.0"}`
 * **PLAY RECAP**: Complete end-of-playbook summary showing host status counters (`ok`, `changed`, `unreachable`, `failed`, `skipped`, `rescued`, `ignored`).
 
-### 3. Metadata Tab
+### Metadata Tab
 
 The **METADATA** tab displays structured JSON telemetry for auditing and debugging:
 
@@ -152,7 +154,7 @@ The **METADATA** tab displays structured JSON telemetry for auditing and debuggi
 * **Execution Results**: Displays `status`, `return_code` (`0` for success), and total execution `duration` in seconds.
 * **Secret Protection**: Sensitive authentication data (such as `ansible_ssh_private_key`) is automatically masked with `***` in telemetry payloads.
 
-### 4. Hosts Tab
+### Hosts Tab
 
 The **HOSTS** tab displays the targeted host inventory configuration:
 

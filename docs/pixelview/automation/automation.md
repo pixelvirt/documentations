@@ -1,36 +1,45 @@
 # Automation
 
-PixelView Automation allows teams to configure rules and workflows that respond to alerts and events automatically, ensuring prompt handling of issues and reducing manual intervention. Automation in PixelView is particularly effective when combined with Escalation Policies, enabling seamless escalation through predefined levels when alerts remain unresolved.
+The **Automation** subsystem in PixelView provides an event-driven infrastructure orchestration engine designed to automate routine maintenance, self-heal system incidents, enforce configuration consistency, and orchestrate complex multi-step deployments across distributed infrastructure.
 
-## Features of PixelView Automation
+PixelView decouples orchestration definitions from physical code execution: playbooks and scripts reside in your team's Git repositories and are mounted into containerized runner workers, while PixelView manages the catalog, visual pipeline composition, queue routing, and real-time observability.
 
-### Automated Actions
-PixelView Automation enables you to set up automatic responses, such as sending notifications, updating ticket statuses, or assigning alerts based on defined rules.
-### Escalation Integration
-Automations can be configured to work in tandem with escalation policies, triggering actions that move unresolved issues to subsequent levels, ensuring timely response and accountability.
-### Customizable Triggers
-Users can define trigger conditions, such as time-based triggers, specific event occurrences, or unique criteria, to ensure automation aligns with operational requirements.
-### Efficient Alert Assignment
-Assign alerts directly to users, on-call schedules, or automation bots, ensuring that alerts reach the right personnel or automated workflows without delay.
+<a href="../../images/automation-workflows.png" class="glightbox">
+  <img src="../../images/automation-workflows.png" alt="PixelView Automation Overview">
+</a>
 
-## How Automation Works with Escalation Policies
+---
 
-In PixelView, automation is tightly integrated with Escalation Policies. Escalation Policies define a structured approach to managing unresolved alerts, and automation steps in to execute actions based on the escalation level. Each escalation level within a policy can be assigned an automation bot, user, or on-call schedule:
+## Core Automation Modules
 
-### Assign to Automations
-Use automation bots to manage alerts according to policy-defined escalation levels, routing alerts to automated workflows.
-### Assign to User
-Alerts can automatically be assigned to individual team members based on their availability and role in the escalation chain.
-### Assign to On-call
-When an alert reaches an escalation level assigned to an on-call schedule, PixelView automatically routes the alert to the on-call team.
+PixelView Automation is structured into six tightly integrated modules:
 
+* [**Executions**](executions.md): The real-time operations console. Dispatch manual or scheduled runs, stream live task-by-task execution logs over Server-Sent Events (SSE), inspect per-host results, and manage automated retries.
+* [**Playbooks**](playbooks.md): The Ansible playbook catalog. Reference infrastructure-as-code YAML definitions mounted directly into runner containers with full GitOps versioning support.
+* [**Scripts**](scripts.md): The custom Python automation catalog. Register custom Python scripts for complex API tasks, database cleanups, and system health checks mounted into runner environments.
+* [**Workflows**](workflows.md): The visual pipeline builder. Compose sequential automation pipelines chaining multiple playbooks and scripts into unified execution workflows.
+* [**Rules**](rules.md): The event-driven trigger engine. Bind monitoring alerts, webhook notifications, and external triggers to automated workflows for hands-free incident self-healing.
+* [**Runners**](runners.md): The worker fleet dashboard. Monitor active execution daemons, queue allocations (`automation`, `admin-admin`), heartbeat health, and capacity across your worker infrastructure.
 
-## Benefits of Using PixelView Automation
-### Increased Responsiveness
-Automation reduces the time required to respond to incidents by automatically handling or assigning alerts as defined.
-### Consistency in Workflow
-Automated processes ensure that escalation policies are followed precisely, promoting consistency across teams and incidents.
-### Reduced Manual Workload
-By automating recurring tasks, teams can focus on more complex issues, reducing fatigue and enhancing productivity.
-### Clear Accountability
-Automation and escalation integration creates a transparent process, making it clear who is responsible at each level of an alert’s escalation.
+---
+
+## End-to-End Automation Lifecycle
+
+PixelView's automation architecture operates in a clear, synchronized operational loop:
+
+* **Author & Version Control in Git**: DevOps and systems engineers author Ansible playbooks (`.yml`) and Python scripts (`.py`) inside version-controlled repositories on GitHub or GitLab with code review, pull requests, and CI linting.
+* **Mount into Runner Workers**: Repositories are cloned onto runner host machines and volume-mounted directly into runner daemon containers under `/playbooks` and `/scripts`.
+* **Register Pointers in PixelView**: In [Playbooks](playbooks.md) and [Scripts](scripts.md), operators create catalog definitions that point to the mounted filepaths without uploading or duplicating code in the database.
+* **Compose Visual Pipelines**: In [Workflows](workflows.md), operators assemble multi-step sequences combining playbooks and scripts with sequential dependencies.
+* **Configure Event Triggers**: In [Rules](rules.md), operators configure event triggers (such as `mariadb-down` or `backup_failure`) to automatically fire specific workflows when alerts arrive.
+* **Dispatch, Monitor & Audit**: In [Executions](executions.md), jobs are dispatched to dedicated runner queues. Operators monitor live terminal output with SSE streaming, review host telemetry, and retry failed tasks.
+
+---
+
+## Escalation & Incident Self-Healing Integration
+
+PixelView Automation integrates directly with [Escalation Policies](../escalation/policies.md) and [Cases](../cases/cases.md):
+
+* **Automated Bot Remediation**: Assign an automation bot to specific escalation levels. When an incident reaches that tier, the bot triggers the corresponding self-healing workflow before escalating to human on-call engineers.
+* **Alert-to-Rule Binding**: Inbound alerts from monitoring sources (such as Zabbix or Prometheus) automatically match registered rule triggers, executing diagnostic playbooks or remediation scripts instantly.
+* **Audit Trail & Governance**: Every execution records the initiating user or bot, target host inventories, execution durations, return codes, and masked credential telemetry for complete compliance tracking.

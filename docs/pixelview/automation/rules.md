@@ -82,7 +82,7 @@ To modify an existing rule or remove it:
   <img src="../../images/automation-rules-context-menu.png" alt="Rule Actions Context Menu">
 </a>
 
-### 1. Editing a Rule
+### Editing a Rule
 
 * Click **Edit** from the actions menu:
 
@@ -97,7 +97,7 @@ To modify an existing rule or remove it:
   * **RESET CHANGES**: Discard unsaved changes and reset inputs back to their saved state.
   * **SAVE CHANGES**: Persist updates to the rule.
 
-### 2. Deleting a Rule
+### Deleting a Rule
 
 * Click **Delete** from the actions menu.
 * A browser confirmation prompt will appear:
