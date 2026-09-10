@@ -35,7 +35,7 @@ The **Planners** table displays all configured patch execution runs:
 
 To schedule or trigger a new patching rollout:
 
-* Click the orange **`+`** (Add Planner) button in the top-right table toolbar:
+* Click the orange **`+`** (Create planner) button in the top-right table toolbar:
 
 <a href="../../images/planner-add-button.png" class="glightbox">
   <img src="../../images/planner-add-button.png" alt="Add Planner Button">
@@ -51,18 +51,18 @@ To schedule or trigger a new patching rollout:
 
 Configure the following deployment parameters:
 
-* **Planner Name** *(Required)*: Enter a short, descriptive identifier for this rollout run (e.g., `weekly-security-rollout`, `real-test`).
-* **Target Host Group** *(Required)*: Select the host group containing all target compute nodes, virtual machines, or bare-metal servers.
-* **Patchset** *(Required)*: Choose the target patchset package containing the automation workflows and dependency rules to apply.
-* **Credential** *(Required)*: Select the credential profile required to authenticate against target hosts.
-* **Runner** *(Optional)*: Select a dedicated runner queue (`automation`) or leave blank for automatic source-based queue routing.
+* **Planner Name** *(Required)*: Enter a short, descriptive identifier for this rollout run (placeholder `weekly-security-rollout`).
+* **Target Host Group** *(Required)*: Select the [Host Group](../inventory/host-groups.md) containing all target compute nodes, virtual machines, or bare-metal servers.
+* **Patchset** *(Required)*: Choose the target [Patchset](patchset.md) package containing the automation workflows, package lists, and dependency rules to apply.
+* **Credential** *(Required)*: Select the [Credential Profile](../inventory/creds.md) required to authenticate against target hosts.
+* **Runner** *(Optional)*: Select a dedicated [Automation Runner](../automation/runners.md) queue (`automation`) or leave blank for automatic source-based queue routing.
 * **On Failure Policy**: Define system behavior when an execution step fails on a host:
     * **Waiting Intervention** *(Default)*: Automatically pauses the run upon failure, notifying administrators and allowing manual intervention (`Retry`, `Skip`, or `Abort`) before continuing.
     * **Retry**: Automatically retries the failed workflow on the target host.
     * **Skip**: Bypasses the failed step/host and continues rollout to remaining hosts.
     * **Abort**: Immediately halts the entire planner execution across all hosts.
-* **Labels**: Click **`+ ADD LABEL`** to attach key-value pairs (e.g., `team: devops`, `env: production`) for ownership and dynamic filtering.
-* **Annotations**: Click **`+ ADD ANNOTATION`** to include non-identifying metadata, schedule notes, or change ticket references.
+* **Labels**: Click **ADD LABEL** to attach key-value pairs (e.g., `team: devops`, `env: production`) for ownership and dynamic filtering.
+* **Annotations**: Click **ADD ANNOTATION** to include non-identifying metadata, schedule notes, or change ticket references.
 * Click **CREATE PLANNER** to register and dispatch the execution plan.
 
 ---
