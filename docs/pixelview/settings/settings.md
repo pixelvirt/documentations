@@ -231,7 +231,7 @@ The table displays all registered Kubernetes clusters:
   </a>
 * Complete the cluster parameters:
   * **Name** *(Required)*: Enter a descriptive name to identify this cluster in the UI.
-  * **Kubernetes Config** *(Required)*: Paste your complete `kubeconfig` YAML file into the code editor.
+  * **Kubernetes Config** *(Required)*: Paste your complete `kubeconfig` YAML file into the code editor. Press **`Tab`** inside the empty editor to autofill a sample template.
 * Click **Save** to validate and register the cluster.
 
 ---
