@@ -6,14 +6,77 @@ Playbooks define idempotent infrastructure-as-code automation tasks—such as pa
 
 ---
 
-## Architecture & Runner Mounts
+## Architecture & GitOps Runner Mounts
 
-PixelView decouples playbook catalog management from execution runners:
+PixelView is an **orchestration and execution engine**, not a raw code repository. Because of this, Ansible playbooks are **not stored directly inside PixelView's database**. Instead, they are maintained externally on your host filesystem and mounted into runner environments.
 
-> [!NOTE]
-> Playbooks registered in PixelView must physically reside in the storage volume mounted to your **Ansible Runner** containers under the `playbooks/` directory (for example, `/playbooks/install-kubectl.yaml`). 
-> 
-> Registering a playbook in this inventory enables it to be selected when triggering ad-hoc runs in [Executions](executions.md) or composing multi-step automated Workflows.
+<a href="../../images/automation-playbooks-mounted-filepath.png" class="glightbox">
+  <img src="../../images/automation-playbooks-mounted-filepath.png" alt="Playbook Definition Pointing to Mounted Filepath">
+</a>
+
+### How Playbook Execution Works
+
+* **External Storage**: Playbook files (`.yml` or `.yaml`) reside on the runner host's local filesystem or shared network storage.
+* **Container Volume Mounting**: When an [Ansible Runner](runners.md) worker daemon container starts up, the host's playbook directory is volume mounted into the container under the `/playbooks/` path (for example, `/opt/pixelvirt/playbooks` mounted to `/playbooks`).
+* **Catalog Pointer in PixelView**: Registering a playbook in the PixelView UI does not upload the file. It simply creates a catalog definition that points to the mounted file path on the runner. As shown in the modal above, the **Filepath** field explicitly references the target file within the mounted `playbooks/` volume (for example, `install-kubectl.yaml` directs the runner to execute `/playbooks/install-kubectl.yaml`).
+
+### Architectural Rationale & Benefits
+
+This decoupled architecture was intentionally chosen for several major operational advantages:
+
+* **Version Control & GitOps**: You can maintain all your playbooks in a private GitHub or GitLab repository with complete version history, branch protection, pull request reviews, and auditing.
+* **Zero Database Bloat**: PixelView remains lightweight and fast, eliminating the risk of database bloat or synchronization conflicts from storing raw executable code blobs.
+* **Seamless Updates Without Platform Restarts**: When you update or patch a playbook in your Git repository, pulling the changes onto the runner host updates the automation code immediately. You do not need to reconfigure or restart PixelView.
+* **Separation of Concerns**: DevOps engineers and system administrators write, test, and version-control infrastructure playbooks using familiar IDEs and Git workflows, while operations teams execute, monitor, and correlate them inside PixelView.
+
+---
+
+## Recommended Deployment Pattern (GitOps Setup)
+
+To establish a production-ready playbook management workflow, we recommend cloning your playbook repository directly onto the runner host and mounting it as a read-only volume.
+
+### Step: Prepare the Host Directory
+Create a dedicated storage directory on the host machine running your Ansible Runner:
+
+```bash
+sudo mkdir -p /opt/pixelvirt/playbooks
+sudo chown -R 1000:1000 /opt/pixelvirt/playbooks
+```
+
+### Step: Clone Your Git Repository
+Clone your team's playbook repository from GitHub into the host directory:
+
+```bash
+git clone git@github.com:your-organization/ansible-playbooks.git /opt/pixelvirt/playbooks
+```
+
+### Step: Mount Directory into the Runner Container
+In your Ansible Runner `docker-compose.yml` or container startup command, mount the host directory into `/playbooks`:
+
+```yaml
+services:
+  ansible-runner:
+    image: pixelvirt/ansible-runner:latest
+    container_name: pixelvirt-runner-1
+    restart: unless-stopped
+    volumes:
+      - /opt/pixelvirt/playbooks:/playbooks:ro
+      - /opt/pixelvirt/scripts:/scripts:ro
+    environment:
+      - AGENT_ID=runner-prod-1
+      - QUEUE_NAME=automation
+      - PIXELVIEW_URL=https://cloud.pixelvirt.com
+```
+
+### Step: Synchronize Updates
+To update playbooks across your runners whenever changes are merged into your GitHub repository, pull the latest revisions on the host:
+
+```bash
+cd /opt/pixelvirt/playbooks && git pull origin main
+```
+
+> [!TIP]
+> You can automate this synchronization by setting up a GitHub Actions workflow that executes `git pull` over SSH on runner nodes, or by configuring a periodic cron job on the runner host.
 
 ---
 
@@ -23,13 +86,13 @@ To view and manage your registered playbooks:
 
 * In the left navigation sidebar under **Automation**, click **Playbooks**:
 
-<a href="../../images/automation-playbooks-table.png" class="glightbox">
-  <img src="../../images/automation-playbooks-table.png" alt="Ansible Playbooks Overview Table">
-</a>
-
 ### Playbooks Table Overview
 
 The main table lists all registered playbooks and their underlying script files:
+
+<a href="../../images/automation-playbooks-table.png" class="glightbox">
+  <img src="../../images/automation-playbooks-table.png" alt="Ansible Playbooks Overview Table">
+</a>
 
 | Column | Description |
 | :--- | :--- |
@@ -90,7 +153,7 @@ To modify or delete an existing playbook:
   <img src="../../images/automation-playbooks-context-menu.png" alt="Playbook Actions Context Menu">
 </a>
 
-### 1. Editing Playbook Metadata
+### Editing Playbook Metadata
 
 * Click **Edit** from the actions menu to open the **Edit Playbook** modal:
 
@@ -101,7 +164,7 @@ To modify or delete an existing playbook:
 * Update the **Name**, mounted **Filepath**, or **Description**.
 * Click **UPDATE PLAYBOOK** to save changes.
 
-### 2. Deleting a Playbook
+### Deleting a Playbook
 
 * Click **Delete Playbook** from the actions menu.
 * A browser confirmation dialog will prompt:

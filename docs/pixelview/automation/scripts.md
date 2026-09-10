@@ -6,14 +6,74 @@ While Ansible playbooks are ideal for idempotent configuration management and pr
 
 ---
 
-## Architecture & Runner Mounts
+## Architecture & GitOps Script Mounts
 
-Similar to playbooks, PixelView decouples script catalog management from execution runners:
+Similar to Ansible playbooks, Python scripts are **not stored inside PixelView's database**. PixelView operates as an orchestration catalog and execution dispatcher rather than a source code repository.
 
-> [!NOTE]
-> Python scripts registered in PixelView must physically reside in the storage volume mounted to your [Ansible Runner](runners.md) containers under the `scripts/` directory (for example, `/scripts/cleanup.py`).
->
-> When registering a script, PixelView automatically manages the `scripts/` path prefix and `.py` extension. Once registered, scripts can be executed directly through [Executions](executions.md) or orchestrated into complex multi-step automated workflows.
+<a href="../../images/automation-scripts-mounted-filepath.png" class="glightbox">
+  <img src="../../images/automation-scripts-mounted-filepath.png" alt="Script Definition Pointing to Mounted Filepath">
+</a>
+
+### How Script Execution Works
+
+* **External Storage**: Python script files (`.py`) are hosted externally on your runner host's filesystem or storage volume.
+* **Container Volume Mounting**: When an [Ansible Runner](runners.md) daemon container starts up, the host's script directory is volume mounted into the container under the `/scripts/` directory (for example, `/opt/pixelvirt/scripts` mounted to `/scripts`).
+* **Catalog Pointer in PixelView**: Registering a script in PixelView creates a reference definition that points to the mounted file on the runner. As shown in the modal above, the **Filepath** field automatically prefixes the `scripts/` directory and appends the `.py` extension (for example, entering `cleanup` directs the runner to execute `/scripts/cleanup.py`).
+
+### Architectural Rationale & Benefits
+
+Maintaining scripts outside of PixelView provides significant architectural advantages:
+
+* **Version Control & GitOps**: Scripts are versioned in GitHub or GitLab with full commit histories, branch protection, peer code reviews, and CI test pipelines.
+* **Zero Database Bloat**: Keeps the PixelView database clean and fast, avoiding storage of raw application binaries or Python code.
+* **Instant Updates Without Platform Restarts**: You can update, patch, or refactor a script via standard `git pull` on the host, and all runner workers immediately have access to the latest code without restarting PixelView.
+* **Security & Auditing**: Code modifications are strictly tracked in Git, ensuring every execution references an audited, review-approved version.
+
+---
+
+## Recommended Deployment Pattern (GitOps Setup)
+
+To establish an automated, version-controlled script repository:
+
+### Step: Prepare the Host Directory
+Create a dedicated storage directory on the host machine running your runner daemon:
+
+```bash
+sudo mkdir -p /opt/pixelvirt/scripts
+sudo chown -R 1000:1000 /opt/pixelvirt/scripts
+```
+
+### Step: Clone Your Git Repository
+Clone your team's custom scripts repository from GitHub into the host directory:
+
+```bash
+git clone git@github.com:your-organization/automation-scripts.git /opt/pixelvirt/scripts
+```
+
+### Step: Mount Directory into the Runner Container
+In your runner's `docker-compose.yml` or container startup command, mount the host directory into `/scripts`:
+
+```yaml
+services:
+  ansible-runner:
+    image: pixelvirt/ansible-runner:latest
+    container_name: pixelvirt-runner-1
+    restart: unless-stopped
+    volumes:
+      - /opt/pixelvirt/playbooks:/playbooks:ro
+      - /opt/pixelvirt/scripts:/scripts:ro
+    environment:
+      - AGENT_ID=runner-prod-1
+      - QUEUE_NAME=automation
+      - PIXELVIEW_URL=https://cloud.pixelvirt.com
+```
+
+### Step: Synchronize Updates
+To pull new script updates or bug fixes, simply run `git pull` on the runner host:
+
+```bash
+cd /opt/pixelvirt/scripts && git pull origin main
+```
 
 ---
 
@@ -23,13 +83,13 @@ To view and manage your registered Python automation scripts:
 
 * In the left navigation sidebar under **Automation**, click **Scripts**:
 
-<a href="../../images/automation-scripts-table.png" class="glightbox">
-  <img src="../../images/automation-scripts-table.png" alt="Automation Scripts Overview Table">
-</a>
-
 ### Scripts Table Overview
 
 The main table lists all registered Python scripts:
+
+<a href="../../images/automation-scripts-table.png" class="glightbox">
+  <img src="../../images/automation-scripts-table.png" alt="Automation Scripts Overview Table">
+</a>
 
 | Column | Description |
 | :--- | :--- |
@@ -92,7 +152,7 @@ To update metadata or remove an obsolete script:
   <img src="../../images/automation-scripts-context-menu.png" alt="Script Actions Context Menu">
 </a>
 
-### 1. Editing Script Metadata
+### Editing Script Metadata
 
 * Click **Edit** from the actions menu:
 
@@ -103,7 +163,7 @@ To update metadata or remove an obsolete script:
 * Update the script **Name**, target **Filepath**, or **Description**.
 * Click **UPDATE SCRIPT** to save your modifications.
 
-### 2. Deleting a Script
+### Deleting a Script
 
 * Click **Delete Script** from the actions menu.
 * A browser confirmation dialog will prompt:

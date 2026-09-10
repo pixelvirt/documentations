@@ -8,11 +8,55 @@ Runners act as worker daemons that consume automation jobs from assigned message
 
 ## Architecture & Worker Queues
 
-PixelView uses a distributed queue-based worker architecture:
+PixelView uses a distributed queue-based worker architecture designed for high scalability and security:
 
 * **Dynamic Registration**: Rather than being manually provisioned via the web interface, Ansible Runners register dynamically when their daemon container or service starts up, announcing their unique `Agent ID` and designated `Queue Name`.
-* **Queue Isolation**: Workloads can be partitioned across different queues (e.g., `automation`, `admin-admin`, `ha-nodes-queue`) allowing organizations to isolate tasks by network boundaries, compute capacity, or security clearance.
+* **Queue Isolation**: Workloads can be partitioned across different queues (e.g., `automation`, `admin-admin`, `ha-nodes-queue`), allowing organizations to isolate tasks by network boundaries, compute capacity, or security clearance.
 * **Heartbeat & Status Monitoring**: Active runners continuously emit periodic heartbeats (synchronized every 30 seconds in the UI) to signal whether they are `Idle`, `Busy`, or `Offline`.
+
+---
+
+## Runner Volume Mounts & External Playbook / Script Storage
+
+PixelView decouples the automation platform from the physical files being executed:
+
+<a href="../../images/automation-runners-queues.png" class="glightbox">
+  <img src="../../images/automation-runners-queues.png" alt="Ansible Runner Subscribed to Automation Queue">
+</a>
+
+* **No Code Stored in Database**: Neither Ansible playbooks nor Python scripts are stored directly in PixelView.
+* **Host Volume Mounting**: Automation files are maintained externally in a version-controlled Git repository (e.g., GitHub, GitLab) and cloned onto the runner host machine. When the runner container starts up, these directories are mounted into the container:
+    * `/opt/pixelvirt/playbooks` $\rightarrow$ `/playbooks`
+    * `/opt/pixelvirt/scripts` $\rightarrow$ `/scripts`
+* **Execution by Reference via Queues**: When a job is dispatched from PixelView, the platform sends a message containing the catalog reference (e.g., `install-kubectl.yaml` or `cleanup.py`) over the designated message queue (such as the `automation` queue highlighted above). The assigned runner locates the file directly within its local container mount and executes it.
+
+### Example Runner Deployment Configuration
+
+Here is a production-grade Docker Compose configuration showing how playbooks and scripts are mounted into the runner container:
+
+```yaml
+version: '3.8'
+
+services:
+  ansible-runner:
+    image: pixelvirt/ansible-runner:latest
+    container_name: pixelvirt-runner-1
+    restart: unless-stopped
+    volumes:
+      # Host directories cloned from GitHub mounted into the runner
+      - /opt/pixelvirt/playbooks:/playbooks:ro
+      - /opt/pixelvirt/scripts:/scripts:ro
+      # Docker socket if the runner executes containerized tasks
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - AGENT_ID=runner-prod-1
+      - QUEUE_NAME=automation
+      - PIXELVIEW_URL=https://cloud.pixelvirt.com
+      - PIXELVIEW_TOKEN=your-runner-authentication-token
+```
+
+> [!TIP]
+> Mounting playbooks and scripts as read-only (`:ro`) ensures the runner cannot accidentally alter or corrupt the underlying Git repository during execution.
 
 ---
 
@@ -55,9 +99,9 @@ The main table lists all registered runner instances with 30-second automated po
 
 When an automation job is dispatched from [Executions](executions.md), [Playbooks](playbooks.md), or [Rules](rules.md), PixelView routes the task to the designated queue:
 
-1. **Active Job Assignment**: The runner consuming that queue picks up the execution, transitioning its status to active/busy.
-2. **Direct Execution Inspection**: The **Execution ID** column displays the active run's UUID. Clicking this link navigates straight to `/executions/:executionId` where operators can view live Server-Sent Events (SSE) terminal output.
-3. **Completion & Idle State**: Once all playbook tasks complete, the runner reports return codes, duration, and returns to `Idle` ready for subsequent tasks.
+* **Active Job Assignment**: The runner consuming that queue picks up the execution, transitioning its status to active/busy.
+* **Direct Execution Inspection**: The **Execution ID** column displays the active run's UUID. Clicking this link navigates straight to `/executions/:executionId` where operators can view live Server-Sent Events (SSE) terminal output.
+* **Completion & Idle State**: Once all playbook tasks complete, the runner reports return codes, duration, and returns to `Idle` ready for subsequent tasks.
 
 ---
 
