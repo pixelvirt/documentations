@@ -3,13 +3,13 @@
 The **OpenStack** module (`/openstack`) under **Clouds** provides centralized enterprise cloud orchestration, infrastructure lifecycle management, and full-stack observability for OpenStack environments within PixelView.
 
 PixelView seamlessly integrates with core OpenStack services to deliver a unified operational interface:
-- **Telemetry & Quotas (Gnocchi / Ceilometer)**: Real-time resource utilization, core/RAM/storage capacity tracking, and regional quota telemetry.
-- **Nova (Compute)**: Virtual machine provisioning, live state management, sizing flavors, SSH key pairs, and anti-affinity placement policies.
-- **Glance (Image Service)**: OS image catalogs, public and private template lifecycle, and distribution management.
-- **Cinder & Swift (Storage Services)**: Persistent block volume lifecycle, NVMe/Standard storage tiers, point-in-time volume snapshots, durable volume backups, and distributed Swift object storage containers.
-- **Neutron (Software-Defined Networking)**: Multi-tenant virtual networks, subnets, routers, distributed firewall security groups, public floating elastic IPs, virtual network ports, and QoS bandwidth policies.
-- **Octavia (Load Balancing)**: Enterprise layer 4/7 load balancers, listener pools, and active health monitoring.
-- **Keystone (Identity & Governance)**: Multi-tenant project boundaries, user authentication, role-based access control (RBAC), and automation application credentials.
+* **Telemetry & Quotas (Gnocchi / Ceilometer)**: Real-time resource utilization, core/RAM/storage capacity tracking, and regional quota telemetry.
+* **Nova (Compute)**: Virtual machine provisioning, live state management, sizing flavors, SSH key pairs, and anti-affinity placement policies.
+* **Glance (Image Service)**: OS image catalogs, public and private template lifecycle, and distribution management.
+* **Cinder & Swift (Storage Services)**: Persistent block volume lifecycle, NVMe/Standard storage tiers, point-in-time volume snapshots, durable volume backups, and distributed Swift object storage containers.
+* **Neutron (Software-Defined Networking)**: Multi-tenant virtual networks, subnets, routers, distributed firewall security groups, public floating elastic IPs, virtual network ports, and QoS bandwidth policies.
+* **Octavia (Load Balancing)**: Enterprise layer 4/7 load balancers, listener pools, and active health monitoring.
+* **Keystone (Identity & Governance)**: Multi-tenant project boundaries, user authentication, role-based access control (RBAC), and automation application credentials.
 
 ---
 
@@ -74,6 +74,19 @@ Navigate to **Utilization** in the secondary sidebar:
 | | **Snapshots** | Point-in-time volume snapshot copies retained (e.g., `1 used / Limit: 50`). |
 | | **Backups** | Durable volume backup archives stored in object storage (e.g., `0 used / Limit: 10`). |
 | | **Total Storage (GiB)** | Cumulative disk space allocated across all block volumes (e.g., `295 GiB used / Limit: 1000 GiB`). |
+
+### Hypervisor Overcommit Ratios & Capacity Sizing
+When operating private enterprise clouds, hypervisor resources are managed according to deliberate allocation ratios configured in `nova.conf`. PixelView tracks the physical allocation footprint against these overcommit policies:
+
+* **CPU Allocation Ratio (`cpu_allocation_ratio`)**:
+    * **Development / Staging Clusters (`16.0`)**: 16 virtual vCPUs per physical host core. Suitable for bursty development environments, CI/CD runners, and microservices with low average CPU utilization.
+    * **General Enterprise Workloads (`4.0` - `8.0`)**: 4 to 8 virtual vCPUs per physical core. Provides high density while avoiding CPU "noisy neighbor" latency spikes.
+    * **High-Performance & Database Clusters (`1.0` - `2.0`)**: Dedicated or near-dedicated physical cores. Prevents context switching overhead for latency-sensitive transactional databases (e.g., PostgreSQL, MySQL, Redis).
+* **RAM Allocation Ratio (`ram_allocation_ratio`)**:
+    * **Production Standard (`1.0`)**: PixelView recommends a strict 1:1 physical memory allocation ratio for production hypervisors. Unlike CPU cores, memory cannot be transparently compressed on Linux KVM hosts without triggering kernel swap thrashing or the Out-of-Memory (`oom-killer`) daemon terminating active hypervisor processes.
+* **Disk Allocation Ratio (`disk_allocation_ratio`)**:
+    * **Ceph RBD & Thin-Provisioned SAN (`1.5` - `2.0`)**: Enables safe overprovisioning when volume backends utilize thin provisioning, copy-on-write, and deduplication.
+    * **Local Ephemeral Disks (`1.0`)**: Dedicated disk space allocation to prevent hypervisor local `/var/lib/nova/instances` storage from running out of disk during snapshot operations.
 
 ---
 
@@ -1364,3 +1377,37 @@ To generate an automated API authentication token:
 | **Volume in `error_extending`** | Backend Cinder Ceph pool out of physical storage capacity. | Check storage backend pool health. Ensure target storage volume size is supported. |
 | **Cannot Reach Instance via Floating IP** | Security Group lacks inbound rule, or instance guest OS firewall is active. | Verify security group has an `Ingress` rule permitting TCP port `22` (SSH) or `3389` (RDP) from client CIDR. Verify instance default gateway routes through router interface. |
 | **Load Balancer `OFFLINE`** | Backend pool members failed health monitor probes or listener port misconfigured. | Inspect **Health Monitor** timeout and interval settings. Verify member compute instances are answering HTTP/TCP checks on target port. |
+
+### Diagnostic Workflow for NoValidHost Scheduling Failures
+When an instance provisioning or resize operation fails with `NoValidHost` (HTTP 500 / No valid host was found):
+* **Identify Active Scheduler Filters**:
+    * Nova scheduler filters candidate hypervisors sequentially. Review which filter eliminated the hosts:
+        * `AvailabilityZoneFilter`: Verify that active compute nodes exist in the selected Availability Zone.
+        * `RamFilter` & `DiskFilter`: Inspect hypervisor free memory and local storage. If memory overcommit ceiling is reached, the host is excluded.
+        * `ComputeFilter`: Ensure compute services (`nova-compute`) are in `enabled` and `up` state.
+        * `ImagePropertiesFilter`: Check if the image specifies architecture constraints (e.g., `hw_machine_type=q35`, `hw_cpu_policy=dedicated`) that hypervisors do not advertise.
+* **Inspect Placement API Allocation State**:
+    * In the PixelView console, check regional quota utilization under **Utilization** to ensure vCPU, RAM, and instance counts have not exceeded the project ceiling.
+
+### Diagnostic Workflow for Storage Volumes Stuck in Attaching or Detaching State
+When a Cinder volume becomes stuck in an intermediate state (`attaching` or `detaching`):
+* **Identify Stale Attachment Records**:
+    * In **Storage** &rarr; **Volumes**, select the volume and inspect the **Attached To** field to identify the hypervisor host and instance ID.
+* **Inspect Nova and Cinder Attachment Mismatch**:
+    * If the volume is detached in Nova but still marked `in-use` or `detaching` in Cinder, use the instance **Actions** menu to trigger an attachment state refresh.
+    * If necessary, use PixelView automation or the OpenStack CLI to reset the volume state to `available` once confirmed unmounted from the guest OS:
+        ```bash
+        openstack volume set --state available <volume_id>
+        ```
+
+### Hypervisor Maintenance & Live Evacuation Runbook
+When performing physical host hardware maintenance, kernel upgrades, or RAM replacement:
+* **Disable Compute Scheduling**:
+    * Prevent new workloads from landing on the hypervisor by disabling the compute service:
+        ```bash
+        openstack compute service set --disable --disable-reason "Hardware Maintenance" <hypervisor_hostname> nova-compute
+        ```
+* **Execute Live Migration**:
+    * Select active instances running on the hypervisor and initiate live migration to target hypervisors with shared storage (`live_migration_block_migration=auto`).
+* **Evacuate Remaining Compute Workloads**:
+    * If the hypervisor suffered an unexpected hardware failure, execute instance evacuation to restore instances on healthy hypervisors from remote Cinder boot volumes.
