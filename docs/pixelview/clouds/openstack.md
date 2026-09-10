@@ -215,6 +215,17 @@ Within the main **Instances** table, clicking the three-dot (`...`) action butto
   <img src="../../images/openstack-instance-row-actions.png" alt="Instances Table Contextual Row Actions Menu Marked with Red Box">
 </a>
 
+#### Updating an Instance
+Selecting **Update Instance** from the contextual row actions menu opens the configuration modal to rename the instance without rebooting:
+
+<a href="../../images/openstack-instances-update-modal.png" class="glightbox">
+  <img src="../../images/openstack-instances-update-modal.png" alt="Update Instance Configuration Modal Marked with Red Box">
+</a>
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **Instance Name** | Required Text | Updated human-readable identifier for the compute virtual machine. |
+
 ---
 
 ### Flavors (Hardware Sizing Profiles)
@@ -483,6 +494,18 @@ From the main **Volumes** table, clicking the three-dot (`...`) button on any vo
 <a href="../../images/openstack-volume-row-actions.png" class="glightbox">
   <img src="../../images/openstack-volume-row-actions.png" alt="Storage Volumes Table Contextual Row Actions Menu Marked with Red Box">
 </a>
+
+#### Updating a Volume
+Selecting **Update Volume** from the row actions menu or the volume details page opens the volume metadata update modal:
+
+<a href="../../images/openstack-volumes-update-modal.png" class="glightbox">
+  <img src="../../images/openstack-volumes-update-modal.png" alt="Update Volume Configuration Modal Marked with Red Box">
+</a>
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **Name** | Required Text | Updated human-readable label for the block storage volume. |
+| **Description** | Optional Text | Contextual notes detailing volume workload, mount purpose, or retention requirements. |
 
 ---
 
@@ -856,6 +879,19 @@ In the Routers table, clicking the three-dot (`...`) button on any router row op
   <img src="../../images/openstack-router-row-actions.png" alt="Routers Table Contextual Row Actions Menu Marked with Red Box">
 </a>
 
+#### Editing a Router
+Selecting **Edit Router** from the row actions menu or the router details menu opens the router configuration modal:
+
+<a href="../../images/openstack-routers-edit-modal.png" class="glightbox">
+  <img src="../../images/openstack-routers-edit-modal.png" alt="Edit Router Configuration Modal Marked with Red Box">
+</a>
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **Router Name** | Required Text | Updated administrative identifier for the virtual router. |
+| **Admin State Up** | Toggle Switch | Administrative status controlling whether the virtual router processes transit packets (`Up` / `Down`). |
+| **Availability Zone Hints** | Optional Text | Comma-separated availability zones for localized high-availability router placement (e.g., `az1`). |
+
 ---
 
 ### Security Groups (Distributed Firewalls)
@@ -963,11 +999,40 @@ Clicking on any load balancer name navigates to the **Load Balancer Details** pa
 </a>
 
 The Listeners tab provides comprehensive operational monitoring:
-- **Name & Protocol**: Listener identifier and protocol (`TCP`, `HTTP`, `HTTPS`).
-- **Port**: Target listening port (e.g., `6443` for Kubernetes API, `80`, `443`).
-- **Operating Status**: Live health status badge (`ONLINE`, `OFFLINE`).
-- **Provisioning Status**: Orchestration state (`ACTIVE`).
-- **Admin State Up**: Administrative operational state (`UP`).
+* **Name & Protocol**: Listener identifier and protocol (`TCP`, `HTTP`, `HTTPS`).
+* **Port**: Target listening port (e.g., `6443` for Kubernetes API, `80`, `443`).
+* **Operating Status**: Live health status badge (`ONLINE`, `OFFLINE`).
+* **Provisioning Status**: Orchestration state (`ACTIVE`).
+* **Admin State Up**: Administrative operational state (`UP`).
+
+#### Adding a Listener
+* Click the orange **`+`** button in the Listeners tab toolbar:
+
+<a href="../../images/openstack-loadbalancer-listeners-add-button.png" class="glightbox">
+  <img src="../../images/openstack-loadbalancer-listeners-add-button.png" alt="Load Balancer Listeners Add Button Marked with Red Box">
+</a>
+
+* The **Create Listener** modal opens:
+
+<a href="../../images/openstack-loadbalancer-listeners-create-modal.png" class="glightbox">
+  <img src="../../images/openstack-loadbalancer-listeners-create-modal.png" alt="Create Load Balancer Listener Modal Dialog Marked with Red Box">
+</a>
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **Name** | Required Text | Descriptive identifier for the listener. |
+| **Description** | Optional Text | Contextual notes detailing listening traffic purpose or upstream routing targets. |
+| **Protocol** | Required Dropdown | Traffic protocol to terminate: `HTTP`, `HTTPS`, `TCP`, or `UDP`. |
+| **Port** | Required Number | Port number between 1 and 65535 to receive traffic (e.g., `80`, `443`, `6443`). |
+| **Client Data Timeout (s)** | Optional Number | Maximum time in seconds frontend connections remain idle waiting for client data. |
+| **TCP Inspect Timeout (s)** | Optional Number | Time in seconds allowed for inspecting TCP payload content. |
+| **Member Connect Timeout (s)** | Optional Number | Maximum timeout in seconds to establish connections to backend member instances. |
+| **Member Data Timeout (s)** | Optional Number | Inactivity timeout in seconds waiting for backend responses. |
+| **Connection Limit** | Number | Maximum concurrent connections allowed (`-1` for unlimited). |
+| **Allowed CIDRs** | Optional Text | Comma-separated list of IP prefixes authorized to reach this listener frontend. |
+| **Tags** | Optional Text | Comma-separated organizational labels. |
+| **Insert Headers** | Checkboxes | Optional HTTP request header injection: `X-Forwarded-For`, `X-Forwarded-Port`, `X-Forwarded-Proto`. |
+| **Admin State Up** | Toggle Switch | Administrative status enabling or disabling traffic processing. |
 
 #### Load Balancer Pools Tab
 Clicking the **POOLS** tab reveals backend server pools, balancing algorithms, and member health states:
@@ -975,6 +1040,30 @@ Clicking the **POOLS** tab reveals backend server pools, balancing algorithms, a
 <a href="../../images/openstack-loadbalancer-pools-tab.png" class="glightbox">
   <img src="../../images/openstack-loadbalancer-pools-tab.png" alt="OpenStack Load Balancer Backend Pools Tab View">
 </a>
+
+#### Adding a Backend Pool
+* Click the orange **`+`** button in the Pools tab toolbar:
+
+<a href="../../images/openstack-loadbalancer-pools-add-button.png" class="glightbox">
+  <img src="../../images/openstack-loadbalancer-pools-add-button.png" alt="Load Balancer Pools Add Button Marked with Red Box">
+</a>
+
+* The **Create Pool** modal opens:
+
+<a href="../../images/openstack-loadbalancer-pools-create-modal.png" class="glightbox">
+  <img src="../../images/openstack-loadbalancer-pools-create-modal.png" alt="Create Load Balancer Pool Modal Dialog Marked with Red Box">
+</a>
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **Name** | Required Text | Identifying label for the backend server pool. |
+| **Description** | Optional Text | Descriptive operational summary for the pool. |
+| **Algorithm** | Required Dropdown | Traffic distribution method: `ROUND_ROBIN`, `LEAST_CONNECTIONS`, or `SOURCE_IP`. |
+| **Protocol** | Required Dropdown | Communication protocol used to talk to backend pool members: `http`, `https`, `tcp`, `udp`. |
+| **Session Persistence** | Optional Dropdown | Method used to stick client sessions to specific members (`SOURCE_IP`, `HTTP_COOKIE`, `APP_COOKIE`). |
+| **TLS Enabled** | Toggle Switch | Enables backend re-encryption between the load balancer amphora and backend servers. |
+| **Tags** | Optional Text | Comma-separated organizational tags. |
+| **Admin State Up** | Toggle Switch | Administrative enablement state for the backend pool. |
 
 #### Load Balancers Contextual Row Actions
 From the Load Balancers table, clicking the three-dot (`...`) button on any row reveals contextual management actions:
