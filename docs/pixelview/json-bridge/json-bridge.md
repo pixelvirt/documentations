@@ -18,12 +18,12 @@ To access the query editor:
 
 ### Console Layout Overview
 
-The JSON Bridge workspace is arranged into three primary sections:
+The JSON Bridge workspace is arranged into four primary operational sections:
 
-1. **Top Controls & SQL Editor**: Schema selection, query naming, and a Monaco-powered SQL code editor.
-2. **Action Toolbar**: Primary triggers to run, save, and clear queries.
-3. **Saved Queries Panel**: A right-hand library for searching, loading, and managing reusable query templates.
-4. **Results Area**: A dynamic table pane that renders query outputs with sorting, filtering, and pagination.
+* **Top Controls & SQL Editor**: Schema selection, query naming, and a Monaco-powered SQL code editor.
+* **Action Toolbar**: Primary triggers to run, save, and clear queries.
+* **Saved Queries Panel**: A right-hand library for searching, loading, sharing, and managing reusable query templates.
+* **Results Area**: A dynamic table pane that renders query outputs with sorting, filtering, CSV export, and pagination.
 
 ---
 
@@ -38,7 +38,7 @@ Before executing a query, define your target database schema and optional query 
 ### Configuration Fields
 
 * **Schema** *(Dropdown)*: Dynamically lists all database schemas available on the connected database cluster (e.g., `pixelview`). Selecting a schema sets the database context for all subsequent queries.
-* **Query Name** *(Input)*: An optional name used to organize and identify the query (e.g., `stuck backups`, `show_database`, `active_cases`). A name is required when saving a query to your library.
+* **Query Name** *(Input)*: An optional name used to organize and identify the query (placeholder `e.g. stuck backups`). A descriptive name is required when saving a query to your library.
 
 ---
 
@@ -89,9 +89,10 @@ The right-hand side panel acts as a persistent query manager for team operations
 
 ### Managing Saved Queries
 
-* **Search Filter (`Filter queries...`)**: Perform instant real-time filtering across stored query names.
-* **My Queries**: Lists your saved queries with total item counts (e.g., `show_database`).
+* **Search Filter (`Filter queries…`)**: Perform instant real-time filtering across stored query names.
+* **My Queries**: Lists your saved queries with total item counts (e.g., `show_database`, `stuck backups`).
 * **Load a Query**: Click on any saved query name to populate the SQL editor immediately with the stored query text and automatically switch to its mapped database schema.
+* **Share Query (Public vs Private)**: Click the share icon on any query row to toggle between **Private** (visible only to you) and **Public** (shared across all team members for collaborative troubleshooting).
 * **Delete a Query**: Remove obsolete or outdated queries with a single click, protected by a safety confirmation dialog.
 * **Refresh**: Click the circular refresh icon in the panel header to re-synchronize the list with the server.
 
@@ -108,6 +109,8 @@ When a query finishes executing, results are rendered in the bottom **Results** 
 ### Results Display Capabilities
 
 * **Interactive Data Grid (`ReactTable`)**: Displays query outputs in a structured table layout with sortable column headers, pagination controls, and row density toggles.
-* **Complex Column Support**: Safely formats aggregated columns (such as `COUNT(*)`), joined table identifiers (`u.username`), and clearly distinguishes `NULL` database values in italicized text.
+* **CSV Export (`Download CSV`)**: Click the download icon in the table toolbar to export the active query dataset directly to a local `.csv` file.
+* **Complex Column Support**: Safely formats aggregated columns (such as `COUNT(*)`), joined table identifiers (`u.username`), and clearly distinguishes `NULL` database values in italicized dimmed text.
+* **Execution Telemetry**: Displays the total count of returned rows and exact query execution latency measured in milliseconds (`elapsedMs`).
 * **Global Search & Column Filtering**: Filter query result rows directly within the browser without having to re-execute the SQL query.
 * **Execution Diagnostics**: If a query encounters a syntax error or runtime exception, the results area displays the diagnostic error message returned directly by the MySQL/MariaDB database engine.
