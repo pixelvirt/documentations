@@ -4,31 +4,50 @@ The **Cases** module in PixelView provides a centralized incident management and
 
 By integrating automated event-driven remediations with human-in-the-loop triage, PixelView empowers operations teams to minimize Mean Time to Acknowledge (MTTA) and Mean Time to Resolution (MTTR).
 
+<a href="../../images/cases-overview.png" class="glightbox">
+  <img src="../../images/cases-overview.png" alt="PixelView Cases Module Overview">
+</a>
+
 ---
 
 ## Core Operational Workflows
 
-The Cases section is organized into three specialized views catering to different stages of the incident lifecycle:
+The Cases module is organized into three specialized operational consoles catering to distinct stages of the incident lifecycle:
 
 | Section | Role & Primary Function |
 | :--- | :--- |
-| [**Open Cases**](open-cases.md) | **Active Triage Console**: Centralizes all newly triggered, unacknowledged, and active alerts across your entire infrastructure. Supports manual case creation, severity prioritization, and batch operations. |
-| [**My Cases**](my-cases.md) | **Personal Incident Workbench**: Isolates incidents assigned specifically to the authenticated operator or their immediate teams. Features 60-second automated polling and quick ownership transitions. |
-| [**Resolved Cases**](resolved-cases.md) | **Incident Archive & Retrospective**: Retains a permanent record of all mitigated and closed issues. Supports post-mortems, SLA auditing, pattern correlation, and incident reopening. |
+| [**Open Cases**](open-cases.md) | **Active Triage Console**: Centralizes all newly triggered, unacknowledged, and active alerts across your entire infrastructure. Supports manual case creation, severity prioritization, multi-select batch triage, and row expansion for inline quick comments. |
+| [**My Cases**](my-cases.md) | **Personal Incident Workbench**: Isolates incidents assigned specifically to the authenticated operator or their immediate teams. Features 60-second automated polling, instant ownership handoffs, and focused resolution workflows. |
+| [**Resolved Cases**](resolved-cases.md) | **Incident Archive & Retrospective**: Retains a permanent record of all mitigated and closed issues. Supports post-mortems, SLA auditing, pattern correlation across historical outages, and one-click incident reopening. |
+
+---
+
+## Incident Lifecycle Architecture
+
+Every incident in PixelView follows a structured four-stage lifecycle:
+
+* **Ingestion & Normalization**: Monitoring webhooks and API alerts are normalized into a unified incident schema containing target hostnames, impacted services, and calculated severity tiers (**CRITICAL**, **HIGH**, **MEDIUM**, **LOW**).
+* **Triage & Ownership**: Operational teams assess the incident via [Open Cases](open-cases.md), assign designated responder teams (e.g., `admins`), or execute bulk triage actions (**Acknowledge**, **Unacknowledge**, **Resolve**).
+* **Investigation & Remediation**: Responders drill into the dedicated incident console (`/case/:id`) to review chronological investigation timelines, inspect raw monitoring telemetry, delegate structured sub-tasks, and collaborate via threaded chat.
+* **Closure & Retrospective**: Once resolved, cases transition to [Resolved Cases](resolved-cases.md) for post-mortem analysis and SLA compliance reporting, with the ability to reopen if flapping is detected.
 
 ---
 
 ## Key Capabilities
 
-### 1. Centralized Ingestion & Normalization
-Incoming alerts from diverse monitoring tools are normalized into a unified schema detailing the impacted **Hostname**, **Service**, calculated **Severity** tier, and raw **Trigger Event** JSON payloads.
+### Centralized Ingestion and Normalization
+Incoming alerts from disparate monitoring tools are transformed into consistent incident models capturing:
+* Impacted **Hostname** (FQDN or IP address)
+* Source monitoring integration (e.g., `ha-monitoring`, `Prometheus`, `Zabbix`)
+* Standardized **Severity** levels
+* Raw JSON **Trigger Event** payloads containing full contextual metrics
 
-### 2. Deep-Dive Investigation Dashboard (`/cases/:id`)
-Every case includes a dedicated four-tab investigation console:
-* **DETAIL**: Chronological investigation timeline from initial ingest to bot notifications, paired with raw monitoring telemetry.
-* **TASKS**: Granular sub-task delegation, allowing lead responders to assign action items to individual engineers or groups (e.g., `admins`).
-* **COMMENTS**: Interactive, real-time threaded chat stream for team collaboration and post-mortem notes.
-* **HISTORY**: Automated host-level pattern correlation showing past incidents on the same infrastructure node to detect flapping services.
+### Deep-Dive Investigation Console
+Every incident provides a comprehensive investigation dashboard with four specialized workspaces:
+* **DETAIL**: Chronological investigation timeline from initial ingest to bot notifications, paired with complete activity metadata and raw telemetry.
+* **TASKS**: Granular sub-task delegation, allowing lead responders to create, edit, assign, and track action items for individual engineers or groups.
+* **COMMENTS**: Real-time collaborative discussion thread for triage findings, terminal output snippets, and handover notes.
+* **HISTORY**: Automated host-level correlation showing past incidents on the same infrastructure node to quickly detect flapping services.
 
-### 3. Integrated Automation & Self-Healing
-Cases natively integrate with PixelView's [Automation Rules](../automation/rules.md) and [Workflows](../automation/workflows.md). When an alert triggers, rules can automatically dispatch [Runners](../automation/runners.md) to execute remediation [Scripts](../automation/scripts.md) or Ansible [Playbooks](../automation/playbooks.md), resolving issues without human intervention.
+### Integrated Automation and Self-Healing
+Cases natively integrate with PixelView's [Automation Rules](../automation/rules.md) and [Workflows](../automation/workflows.md). When an alert triggers, rules can automatically dispatch [Runners](../automation/runners.md) to execute remediation [Scripts](../automation/scripts.md) or Ansible [Playbooks](../automation/playbooks.md), mitigating outages without requiring manual human intervention.
