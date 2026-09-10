@@ -66,6 +66,16 @@ Responders can update incident states directly from the table row:
 
 ---
 
+## Ownership Handoff & Shift Transition Protocols
+
+During on-call shift changes or escalation transfers, engineers use **My Cases** to ensure seamless operational continuity:
+
+* **Documenting Investigation State**: Before transferring an incident, expand the row using the chevron (**`v`**) and post an inline quick comment summarizing diagnostic findings, tested hypotheses, and current system symptoms.
+* **Executing Clean Handoffs**: Selecting **Unacknowledge** from the context menu removes your active claim, transitioning the case back to `triggered` so the incoming on-call engineer or team lead can claim it from [Open Cases](open-cases.md).
+* **Automated Escalation Protection**: While a case is actively `acknowledged` in your queue, automated escalation timers are paused. Handoffs ensure that unmonitored cases do not remain stuck in unaddressed states.
+
+---
+
 ## Deep-Dive Investigation & Task Tracking
 
 Clicking any case title in **My Cases** opens the comprehensive investigation dashboard:
