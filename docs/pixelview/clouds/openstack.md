@@ -506,7 +506,7 @@ Navigate to **Storage** &rarr; **Backups** in the secondary sidebar:
 | **Container** | Target object storage container holding the backup chunks. |
 | **Actions** | Restore backup to a new or existing volume, or purge backup record. |
 
-* **Creation Workflow**: Volume backups do not provide an independent toolbar `+` button because they are point-in-time copies generated directly from an existing volume. To initiate a backup, navigate to the [Volumes](#block-storage-cinder-volumes) table, click the contextual row actions menu (`...`) on the source volume, and select **Create Backup**.
+* **Creation Workflow**: Volume backups do not provide an independent toolbar `+` button because they are point-in-time copies generated directly from an existing volume. To initiate a backup, navigate to the [Volumes](#volumes-block-storage) table, click the contextual row actions menu (`...`) on the source volume, and select **Create Backup**.
 
 ---
 
@@ -521,7 +521,7 @@ Navigate to **Storage** &rarr; **Snapshots** in the secondary sidebar:
   <img src="../../images/openstack-snapshots-table.png" alt="OpenStack Storage Volume Snapshots Table">
 </a>
 
-* **Creation Workflow**: Volume snapshots do not provide an independent toolbar `+` button. They are instantaneous delta snapshots initiated directly from the source volume's row actions menu (`...`) &rarr; **Create Snapshot** in the [Volumes](#block-storage-cinder-volumes) table.
+* **Creation Workflow**: Volume snapshots do not provide an independent toolbar `+` button. They are instantaneous delta snapshots initiated directly from the source volume's row actions menu (`...`) &rarr; **Create Snapshot** in the [Volumes](#volumes-block-storage) table.
 
 | Column | Description |
 | :--- | :--- |
