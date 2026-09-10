@@ -656,6 +656,8 @@
       
         
       
+        
+      
     
     
     
@@ -720,7 +722,7 @@
   <span class="md-ellipsis">
     
   
-    Openstack
+    OpenStack
   
 
     
@@ -777,6 +779,34 @@
     
   
     VMware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
   
 
     
@@ -1506,6 +1536,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#runner-volume-mounts-external-playbook-script-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runner Volume Mounts &amp; External Playbook / Script Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Runner Volume Mounts &amp; External Playbook / Script Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-runner-deployment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Runner Deployment Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#navigating-to-runners" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1839,6 +1897,8 @@
       
         
       
+        
+      
     
     
     
@@ -1960,6 +2020,34 @@
     
   
     Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
   
 
     
@@ -2363,6 +2451,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#runner-volume-mounts-external-playbook-script-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runner Volume Mounts &amp; External Playbook / Script Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Runner Volume Mounts &amp; External Playbook / Script Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-runner-deployment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Runner Deployment Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#navigating-to-runners" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2519,12 +2635,52 @@
 <p>Runners act as worker daemons that consume automation jobs from assigned message queues, execute playbooks against target infrastructure, stream real-time logs back to the platform, and report ongoing health and availability.</p>
 <hr />
 <h2 id="architecture-worker-queues">Architecture &amp; Worker Queues<a class="headerlink" href="#architecture-worker-queues" title="Permanent link">&para;</a></h2>
-<p>PixelView uses a distributed queue-based worker architecture:</p>
+<p>PixelView uses a distributed queue-based worker architecture designed for high scalability and security:</p>
 <ul>
 <li><strong>Dynamic Registration</strong>: Rather than being manually provisioned via the web interface, Ansible Runners register dynamically when their daemon container or service starts up, announcing their unique <code>Agent ID</code> and designated <code>Queue Name</code>.</li>
-<li><strong>Queue Isolation</strong>: Workloads can be partitioned across different queues (e.g., <code>automation</code>, <code>admin-admin</code>, <code>ha-nodes-queue</code>) allowing organizations to isolate tasks by network boundaries, compute capacity, or security clearance.</li>
+<li><strong>Queue Isolation</strong>: Workloads can be partitioned across different queues (e.g., <code>automation</code>, <code>admin-admin</code>, <code>ha-nodes-queue</code>), allowing organizations to isolate tasks by network boundaries, compute capacity, or security clearance.</li>
 <li><strong>Heartbeat &amp; Status Monitoring</strong>: Active runners continuously emit periodic heartbeats (synchronized every 30 seconds in the UI) to signal whether they are <code>Idle</code>, <code>Busy</code>, or <code>Offline</code>.</li>
 </ul>
+<hr />
+<h2 id="runner-volume-mounts-external-playbook-script-storage">Runner Volume Mounts &amp; External Playbook / Script Storage<a class="headerlink" href="#runner-volume-mounts-external-playbook-script-storage" title="Permanent link">&para;</a></h2>
+<p>PixelView decouples the automation platform from the physical files being executed:</p>
+<p><a href="../../images/automation-runners-queues.png" class="glightbox">
+  <img src="../../images/automation-runners-queues.png" alt="Ansible Runner Subscribed to Automation Queue">
+</a></p>
+<ul>
+<li><strong>No Code Stored in Database</strong>: Neither Ansible playbooks nor Python scripts are stored directly in PixelView.</li>
+<li><strong>Host Volume Mounting</strong>: Automation files are maintained externally in a version-controlled Git repository (e.g., GitHub, GitLab) and cloned onto the runner host machine. When the runner container starts up, these directories are mounted into the container:<ul>
+<li><code>/opt/pixelvirt/playbooks</code> $\rightarrow$ <code>/playbooks</code></li>
+<li><code>/opt/pixelvirt/scripts</code> $\rightarrow$ <code>/scripts</code></li>
+</ul>
+</li>
+<li><strong>Execution by Reference via Queues</strong>: When a job is dispatched from PixelView, the platform sends a message containing the catalog reference (e.g., <code>install-kubectl.yaml</code> or <code>cleanup.py</code>) over the designated message queue (such as the <code>automation</code> queue highlighted above). The assigned runner locates the file directly within its local container mount and executes it.</li>
+</ul>
+<h3 id="example-runner-deployment-configuration">Example Runner Deployment Configuration<a class="headerlink" href="#example-runner-deployment-configuration" title="Permanent link">&para;</a></h3>
+<p>Here is a production-grade Docker Compose configuration showing how playbooks and scripts are mounted into the runner container:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.8&#39;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">ansible-runner</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelvirt/ansible-runner:latest</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelvirt-runner-1</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="c1"># Host directories cloned from GitHub mounted into the runner</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/pixelvirt/playbooks:/playbooks:ro</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/pixelvirt/scripts:/scripts:ro</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="c1"># Docker socket if the runner executes containerized tasks</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock:ro</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AGENT_ID=runner-prod-1</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QUEUE_NAME=automation</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PIXELVIEW_URL=https://cloud.pixelvirt.com</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PIXELVIEW_TOKEN=your-runner-authentication-token</span>
+</span></code></pre></div>
+<blockquote>
+<p>[!TIP]
+Mounting playbooks and scripts as read-only (<code>:ro</code>) ensures the runner cannot accidentally alter or corrupt the underlying Git repository during execution.</p>
+</blockquote>
 <hr />
 <h2 id="navigating-to-runners">Navigating to Runners<a class="headerlink" href="#navigating-to-runners" title="Permanent link">&para;</a></h2>
 <p>To inspect runner health, queues, and active workloads:</p>
@@ -2589,11 +2745,11 @@
 <hr />
 <h2 id="workload-observability">Workload Observability<a class="headerlink" href="#workload-observability" title="Permanent link">&para;</a></h2>
 <p>When an automation job is dispatched from <a href="../executions/">Executions</a>, <a href="../playbooks/">Playbooks</a>, or <a href="../rules/">Rules</a>, PixelView routes the task to the designated queue:</p>
-<ol>
+<ul>
 <li><strong>Active Job Assignment</strong>: The runner consuming that queue picks up the execution, transitioning its status to active/busy.</li>
 <li><strong>Direct Execution Inspection</strong>: The <strong>Execution ID</strong> column displays the active run's UUID. Clicking this link navigates straight to <code>/executions/:executionId</code> where operators can view live Server-Sent Events (SSE) terminal output.</li>
 <li><strong>Completion &amp; Idle State</strong>: Once all playbook tasks complete, the runner reports return codes, duration, and returns to <code>Idle</code> ready for subsequent tasks.</li>
-</ol>
+</ul>
 <hr />
 <h2 id="managing-runners-decommissioning">Managing Runners (Decommissioning)<a class="headerlink" href="#managing-runners-decommissioning" title="Permanent link">&para;</a></h2>
 <p>If a runner node has been permanently taken offline, scaled down, or decommissioned, its stale record can be cleaned up from the inventory:</p>
@@ -2606,7 +2762,7 @@
 <ul>
 <li>Click <strong>Delete Runner</strong>.</li>
 <li>A confirmation prompt will appear:
-  <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Are you sure you want to delete the runner &quot;[Agent ID]&quot;?
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Are you sure you want to delete the runner &quot;[Agent ID]&quot;?
 </span></code></pre></div></li>
 <li>Click <strong>OK</strong> to remove the runner from the inventory.</li>
 </ul>

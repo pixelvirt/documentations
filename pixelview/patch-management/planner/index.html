@@ -14,7 +14,7 @@
         <link rel="prev" href="../patchset/">
       
       
-        <link rel="next" href="../../json-bridge/json-bridge/">
+        <link rel="next" href="../packages/">
       
       
         
@@ -656,6 +656,8 @@
       
         
       
+        
+      
     
     
     
@@ -720,7 +722,7 @@
   <span class="md-ellipsis">
     
   
-    Openstack
+    OpenStack
   
 
     
@@ -777,6 +779,34 @@
     
   
     VMware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
   
 
     
@@ -1720,6 +1750,8 @@
       
         
       
+        
+      
     
     
     
@@ -2007,6 +2039,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2651,7 +2711,7 @@
 <h2 id="creating-a-new-planner">Creating a New Planner<a class="headerlink" href="#creating-a-new-planner" title="Permanent link">&para;</a></h2>
 <p>To schedule or trigger a new patching rollout:</p>
 <ul>
-<li>Click the orange <strong><code>+</code></strong> (Add Planner) button in the top-right table toolbar:</li>
+<li>Click the orange <strong><code>+</code></strong> (Create planner) button in the top-right table toolbar:</li>
 </ul>
 <p><a href="../../images/planner-add-button.png" class="glightbox">
   <img src="../../images/planner-add-button.png" alt="Add Planner Button">
@@ -2665,11 +2725,11 @@
 <h3 id="configuration-parameters">Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permanent link">&para;</a></h3>
 <p>Configure the following deployment parameters:</p>
 <ul>
-<li><strong>Planner Name</strong> <em>(Required)</em>: Enter a short, descriptive identifier for this rollout run (e.g., <code>weekly-security-rollout</code>, <code>real-test</code>).</li>
-<li><strong>Target Host Group</strong> <em>(Required)</em>: Select the host group containing all target compute nodes, virtual machines, or bare-metal servers.</li>
-<li><strong>Patchset</strong> <em>(Required)</em>: Choose the target patchset package containing the automation workflows and dependency rules to apply.</li>
-<li><strong>Credential</strong> <em>(Required)</em>: Select the credential profile required to authenticate against target hosts.</li>
-<li><strong>Runner</strong> <em>(Optional)</em>: Select a dedicated runner queue (<code>automation</code>) or leave blank for automatic source-based queue routing.</li>
+<li><strong>Planner Name</strong> <em>(Required)</em>: Enter a short, descriptive identifier for this rollout run (placeholder <code>weekly-security-rollout</code>).</li>
+<li><strong>Target Host Group</strong> <em>(Required)</em>: Select the <a href="../../inventory/host-groups/">Host Group</a> containing all target compute nodes, virtual machines, or bare-metal servers.</li>
+<li><strong>Patchset</strong> <em>(Required)</em>: Choose the target <a href="../patchset/">Patchset</a> package containing the automation workflows, package lists, and dependency rules to apply.</li>
+<li><strong>Credential</strong> <em>(Required)</em>: Select the <a href="../../inventory/creds/">Credential Profile</a> required to authenticate against target hosts.</li>
+<li><strong>Runner</strong> <em>(Optional)</em>: Select a dedicated <a href="../../automation/runners/">Automation Runner</a> queue (<code>automation</code>) or leave blank for automatic source-based queue routing.</li>
 <li><strong>On Failure Policy</strong>: Define system behavior when an execution step fails on a host:<ul>
 <li><strong>Waiting Intervention</strong> <em>(Default)</em>: Automatically pauses the run upon failure, notifying administrators and allowing manual intervention (<code>Retry</code>, <code>Skip</code>, or <code>Abort</code>) before continuing.</li>
 <li><strong>Retry</strong>: Automatically retries the failed workflow on the target host.</li>
@@ -2677,8 +2737,8 @@
 <li><strong>Abort</strong>: Immediately halts the entire planner execution across all hosts.</li>
 </ul>
 </li>
-<li><strong>Labels</strong>: Click <strong><code>+ ADD LABEL</code></strong> to attach key-value pairs (e.g., <code>team: devops</code>, <code>env: production</code>) for ownership and dynamic filtering.</li>
-<li><strong>Annotations</strong>: Click <strong><code>+ ADD ANNOTATION</code></strong> to include non-identifying metadata, schedule notes, or change ticket references.</li>
+<li><strong>Labels</strong>: Click <strong>ADD LABEL</strong> to attach key-value pairs (e.g., <code>team: devops</code>, <code>env: production</code>) for ownership and dynamic filtering.</li>
+<li><strong>Annotations</strong>: Click <strong>ADD ANNOTATION</strong> to include non-identifying metadata, schedule notes, or change ticket references.</li>
 <li>Click <strong>CREATE PLANNER</strong> to register and dispatch the execution plan.</li>
 </ul>
 <hr />
@@ -2840,13 +2900,13 @@
         
         
           
-          <a href="../../json-bridge/json-bridge/" class="md-footer__link md-footer__link--next" aria-label="Next: JSON Bridge">
+          <a href="../packages/" class="md-footer__link md-footer__link--next" aria-label="Next: Packages">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                JSON Bridge
+                Packages
               </div>
             </div>
             <div class="md-footer__button md-icon">

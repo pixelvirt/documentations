@@ -1,0 +1,3119 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/patch-management/packages/">
+      
+      
+        <link rel="prev" href="../planner/">
+      
+      
+        <link rel="next" href="../../json-bridge/json-bridge/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Packages - PixelVirt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/empty.css">
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/glightbox.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#packages-os-package-lists" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="PixelVirt" class="md-header__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PixelVirt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Packages
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="https://blog.pixelvirt.com" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blogs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="PixelVirt" class="md-nav__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    PixelVirt
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PixelView Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PixelView
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/install-on-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install on Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/install-ha/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HA Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clouds
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clouds
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/openstack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenStack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/vmware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VMware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cases Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/open-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/my-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/resolved-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolved Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services/Monitoring
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services/Monitoring
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../services/prometheus/integration/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Integration
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Escalation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escalation/policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalation Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/executions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/playbooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/runners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/bots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Bots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inventory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/creds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/host-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch Management
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Patch Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patch-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch Management Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patchset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patchset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../planner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-to-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigating to Packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Navigating to Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packages-table-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Packages Table Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-toolbar-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table Toolbar Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-package-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Package List
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a Package List">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-list-input-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package List Input &amp; Synchronization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-package-list-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting Package List Details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inspecting Package List Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#console-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinned-packages-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pinned Packages Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-integration-pipeline-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Integration &amp; Pipeline Redirection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-and-deleting-package-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing and Deleting Package Lists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Editing and Deleting Package Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-package-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing Package Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-a-package-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing a Package List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleting-a-package-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deleting a Package List
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../json-bridge/json-bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Bridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Settings
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Management and Settings
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/sso-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSO Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../api/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView API
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="https://blog.pixelvirt.com" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blogs
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-to-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigating to Packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Navigating to Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#packages-table-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Packages Table Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-toolbar-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table Toolbar Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-package-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Package List
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a Package List">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-list-input-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package List Input &amp; Synchronization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-package-list-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting Package List Details
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inspecting Package List Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#console-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinned-packages-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pinned Packages Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-integration-pipeline-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Integration &amp; Pipeline Redirection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editing-and-deleting-package-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing and Deleting Package Lists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Editing and Deleting Package Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-package-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing Package Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-a-package-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing a Package List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleting-a-package-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deleting a Package List
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../introduction/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    PixelView Documentation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../patch-management/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Patch Management
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="packages-os-package-lists">Packages (OS Package Lists)<a class="headerlink" href="#packages-os-package-lists" title="Permanent link">&para;</a></h1>
+<p>The <strong>Packages</strong> module (<code>/patch-management/packages</code>) under <strong>Patch Management</strong> provides a centralized catalog for managing per-operating-system, version-pinned software package lists in PixelView.</p>
+<p>By defining explicit package baselines per operating system and release (e.g., Ubuntu 22.04, RHEL 9, Debian 12), infrastructure teams can guarantee deterministic environments across cloud servers, bare-metal instances, and container hosts. Each package list is linked to an <a href="../../automation/workflows/">Automation Workflow</a> for automated provisioning and patching, while also tracking full historical audits for every package version bump.</p>
+<hr />
+<h2 id="navigating-to-packages">Navigating to Packages<a class="headerlink" href="#navigating-to-packages" title="Permanent link">&para;</a></h2>
+<p>To access the package lists catalog:</p>
+<ul>
+<li>In the left navigation sidebar under <strong>Patch Management</strong>, click <strong>Packages</strong>:</li>
+</ul>
+<p><a href="../../images/packages-menu-select.png" class="glightbox">
+  <img src="../../images/packages-menu-select.png" alt="Packages Sidebar Navigation & Inventory Table">
+</a></p>
+<h3 id="packages-table-overview">Packages Table Overview<a class="headerlink" href="#packages-table-overview" title="Permanent link">&para;</a></h3>
+<p>The <strong>Package Lists</strong> table displays all configured OS package definitions registered in PixelView:</p>
+<p><a href="../../images/packages-table-row-select.png" class="glightbox">
+  <img src="../../images/packages-table-row-select.png" alt="Packages Table Overview & Row Selection">
+</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Operating System</strong></td>
+<td style="text-align: left;">OS name and version release (e.g., <code>Ubuntu 22.04</code>, <code>Windows 22.041</code>). Clicking the title navigates directly to the <a href="#inspecting-package-list-details">Package Detail</a> view. Also displays an 8-character system UUID with a quick-copy utility.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Family</strong></td>
+<td style="text-align: left;">Distribution family badge (<strong>Debian / Ubuntu</strong>, <strong>RHEL</strong>, <strong>Arch</strong>, <strong>SUSE</strong>, <strong>Windows</strong>, or <strong>Other</strong>) color-coded to identify the upstream package manager (<code>apt</code>, <code>yum</code>/<code>dnf</code>, <code>pacman</code>, <code>zypper</code>, <code>choco</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Packages</strong></td>
+<td style="text-align: left;">Total count of software packages defined and pinned within the list (e.g., <code>11</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Workflow</strong></td>
+<td style="text-align: left;">Linked <a href="../../automation/workflows/">Automation Workflow</a> associated with the package list. Hovering displays a tooltip breakdown of all attached Ansible playbooks and Python scripts. Clicking navigates directly to the expanded workflow pipeline.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Description</strong></td>
+<td style="text-align: left;">Operational notes, target node roles, or compliance baseline descriptions.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Updated At</strong></td>
+<td style="text-align: left;">Timestamp indicating the last modification date and time (<code>YYYY-MM-DD HH:mm</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Created At</strong></td>
+<td style="text-align: left;">Timestamp indicating initial catalog registration (<code>YYYY-MM-DD HH:mm</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Actions</strong></td>
+<td style="text-align: left;">Context menu (<code>...</code>) providing quick shortcuts to <strong>Edit</strong> or <strong>Delete</strong> the package list.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="table-toolbar-controls">Table Toolbar Controls<a class="headerlink" href="#table-toolbar-controls" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Search / Global Filter</strong>: Perform full-text search queries across operating systems, UUIDs, descriptions, and workflow names.</li>
+<li><strong>Column Filters</strong>: Filter records by distribution family, package counts, or creation dates.</li>
+<li><strong>Show/Hide Columns</strong>: Customize table visibility to show only relevant attributes.</li>
+<li><strong>Density Toggle</strong>: Toggle between standard and compact table row spacing.</li>
+<li><strong>Refresh</strong>: Instantly fetch the latest package lists from the backend API.</li>
+<li><strong>Add Package List (<code>+</code>)</strong>: Open the package creation modal.</li>
+</ul>
+<hr />
+<h2 id="creating-a-package-list">Creating a Package List<a class="headerlink" href="#creating-a-package-list" title="Permanent link">&para;</a></h2>
+<p>To register a new operating system package baseline:</p>
+<ul>
+<li>Click the orange <strong><code>+</code></strong> (Create package list) button located in the top-right toolbar above the table:</li>
+</ul>
+<p><a href="../../images/packages-add-button.png" class="glightbox">
+  <img src="../../images/packages-add-button.png" alt="Add Package List Toolbar Button">
+</a></p>
+<ul>
+<li>The <strong>Create Package List</strong> modal dialog will open:</li>
+</ul>
+<p><a href="../../images/packages-create-modal.png" class="glightbox">
+  <img src="../../images/packages-create-modal.png" alt="Create Package List Modal Dialog">
+</a></p>
+<h3 id="configuration-parameters">Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permanent link">&para;</a></h3>
+<p>Configure the following fields in the modal:</p>
+<ul>
+<li><strong>OS Name</strong> <em>(Required)</em>: Enter the distribution title (e.g., <code>Ubuntu</code>, <code>Debian</code>, <code>RedHat</code>, <code>Rocky Linux</code>).</li>
+<li><strong>OS Version</strong> <em>(Required)</em>: Enter the release version identifier (e.g., <code>22.04</code>, <code>9.2</code>, <code>11</code>).</li>
+<li><strong>Family</strong> <em>(Dropdown)</em>: Select the distribution family (<code>Debian / Ubuntu</code>, <code>RHEL</code>, <code>Arch</code>, <code>SUSE</code>, <code>Windows</code>, or <code>Other</code>). This automatically drives native installation syntax and command helpers.</li>
+<li><strong>Workflow</strong> <em>(Required Dropdown)</em>: Select the registered automation workflow responsible for executing or validating these packages across target hosts.</li>
+<li><strong>Description</strong> <em>(Optional)</em>: Provide operational details, intended environment tiers (e.g., <code>Production Web Tier baseline</code>), or change request references.</li>
+</ul>
+<h3 id="package-list-input-synchronization">Package List Input &amp; Synchronization<a class="headerlink" href="#package-list-input-synchronization" title="Permanent link">&para;</a></h3>
+<p>PixelView provides two synchronized methods to input and manage package definitions:</p>
+<h4 id="bulk-input-paste-box-or-csv-import">Bulk Input (Paste Box or CSV Import)<a class="headerlink" href="#bulk-input-paste-box-or-csv-import" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Textarea Input</strong>: Paste raw package lines using the standard <code>name=version</code> format:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl=7.81.0-1ubuntu1.27
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>openssl=3.0.2-0ubuntu1.29
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>vim=2:8.2.3995-1ubuntu2.36
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>jq=1.6-2.1ubuntu3.2
+</span></code></pre></div></li>
+<li><strong>Parse Into Rows</strong>: Click <strong>PARSE INTO ROWS</strong> to validate and automatically convert the bulk lines into the structured table rows below.</li>
+<li><strong>Import CSV</strong>: Click <strong>IMPORT CSV</strong> to upload an existing package inventory containing package names and version strings.</li>
+</ul>
+<h4 id="interactive-row-editor">Interactive Row Editor<a class="headerlink" href="#interactive-row-editor" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Add Row (<code>+ ADD ROW</code>)</strong>: Append individual package rows directly into the list.</li>
+<li><strong>Package Name</strong>: Specify the package binary or library identifier.</li>
+<li><strong>Pinned Version</strong>: Set the exact version string to pin, or leave blank to track unpinned latest packages.</li>
+<li><strong>Delete (<code>Trash Icon</code>)</strong>: Remove individual package entries from the list.</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+The row editor and bulk text area remain dynamically synchronized. Edits made in the row editor update the text representation in real time.</p>
+</blockquote>
+<ul>
+<li>Click <strong>CREATE PACKAGE LIST</strong> to save and persist the package baseline.</li>
+</ul>
+<hr />
+<h2 id="inspecting-package-list-details">Inspecting Package List Details<a class="headerlink" href="#inspecting-package-list-details" title="Permanent link">&para;</a></h2>
+<p>Clicking the operating system name on any table row opens the <strong>Package Detail</strong> console (<code>/patch-management/packages/:id</code>):</p>
+<p><a href="../../images/packages-detail-overview.png" class="glightbox">
+  <img src="../../images/packages-detail-overview.png" alt="Package Detail Page Overview">
+</a></p>
+<h3 id="console-features">Console Features<a class="headerlink" href="#console-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Header Controls</strong>:</li>
+<li><strong>Back Button (<code>&lt;-</code>)</strong>: Return to the main Packages table.</li>
+<li><strong>Distribution Info</strong>: OS Name, version badge, copyable system UUID, family tag, and total package count.</li>
+<li><strong>Open Menu (<code>OPEN MENU</code>)</strong>: Action menu providing options to <strong>Edit</strong> or <strong>Delete</strong> the package list.</li>
+<li><strong>Refresh Button</strong>: Instantly refresh the package list details from the server.</li>
+<li><strong>Associated Workflow Card</strong>: Shows the linked pipeline name, UUID, and the total count of included playbooks and scripts (e.g., <code>Install kubectl</code> playbook and <code>random</code> script).</li>
+<li><strong>Manual Installation Command Helper</strong>:</li>
+<li>An expandable helper accordion that dynamically compiles a ready-to-run installation command formatted for the target OS family:<ul>
+<li><strong>Debian / Ubuntu</strong>: <code>apt-get install -y curl=7.81.0-1ubuntu1.27 iputils-tracepath=3:20211215-1ubuntu0.1 ...</code></li>
+<li><strong>RHEL / CentOS / Rocky</strong>: <code>yum install -y curl-7.81.0 ...</code></li>
+<li><strong>Windows</strong>: <code>choco install curl openssl ...</code></li>
+</ul>
+</li>
+<li>Includes a single-click copy button on the right edge to paste directly into remote terminals or SSH sessions.</li>
+</ul>
+<h3 id="pinned-packages-table">Pinned Packages Table<a class="headerlink" href="#pinned-packages-table" title="Permanent link">&para;</a></h3>
+<p>The detail table lists all individual packages defined within the list:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>#</strong></td>
+<td style="text-align: left;">Numerical sequence index.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Package</strong></td>
+<td style="text-align: left;">Name of the software package (e.g., <code>curl</code>, <code>openssl</code>, <code>jq</code>, <code>vim</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Pinned Version</strong></td>
+<td style="text-align: left;">Exact pinned version string in monospace with a copy utility button, or an <code>unpinned</code> indicator chip.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>History</strong></td>
+<td style="text-align: left;">Clock icon triggering the version history audit modal.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="workflow-integration-pipeline-redirection">Workflow Integration &amp; Pipeline Redirection<a class="headerlink" href="#workflow-integration-pipeline-redirection" title="Permanent link">&para;</a></h2>
+<p>Every package list is directly tied to an automation workflow pipeline:</p>
+<ul>
+<li>In the <strong>Package Detail</strong> view, the linked workflow name is highlighted in the header:</li>
+</ul>
+<p><a href="../../images/packages-workflow-link.png" class="glightbox">
+  <img src="../../images/packages-workflow-link.png" alt="Linked Workflow in Package Header">
+</a></p>
+<ul>
+<li>Clicking the workflow title (or the workflow link in the main table) redirects directly to the <strong>Workflows</strong> management console (<code>/workflows?expand=&lt;uuid&gt;</code>) with the target workflow automatically expanded:</li>
+</ul>
+<p><a href="../../images/packages-workflow-redirection.png" class="glightbox">
+  <img src="../../images/packages-workflow-redirection.png" alt="Workflow Redirection & Task Details">
+</a></p>
+<p>Here you can inspect the exact sequence of <strong>Associated Playbooks</strong>, <strong>Associated Scripts</strong>, and the pipeline's operational <strong>Description</strong>.</p>
+<hr />
+<h2 id="editing-and-deleting-package-lists">Editing and Deleting Package Lists<a class="headerlink" href="#editing-and-deleting-package-lists" title="Permanent link">&para;</a></h2>
+<h3 id="accessing-package-actions">Accessing Package Actions<a class="headerlink" href="#accessing-package-actions" title="Permanent link">&para;</a></h3>
+<p>To modify or delete a package list from the detail view:</p>
+<ul>
+<li>Click <strong>OPEN MENU</strong> in the top-right corner of the Package Detail page:</li>
+</ul>
+<p><a href="../../images/packages-detail-menu.png" class="glightbox">
+  <img src="../../images/packages-detail-menu.png" alt="Package Detail Actions Menu">
+</a></p>
+<ul>
+<li>Select <strong>Edit</strong> or <strong>Delete</strong>.</li>
+</ul>
+<h3 id="editing-a-package-list">Editing a Package List<a class="headerlink" href="#editing-a-package-list" title="Permanent link">&para;</a></h3>
+<p>Selecting <strong>Edit</strong> opens the <strong>Edit Package List</strong> modal dialog pre-populated with current settings:</p>
+<p><a href="../../images/packages-edit-modal.png" class="glightbox">
+  <img src="../../images/packages-edit-modal.png" alt="Edit Package List Modal Dialog">
+</a></p>
+<ul>
+<li>Update the <strong>OS Name</strong>, <strong>OS Version</strong>, <strong>Family</strong>, <strong>Workflow</strong>, or <strong>Description</strong>.</li>
+<li>Modify version pins in the paste box or using the row editor below.</li>
+<li>Click <strong>REVERT CHANGES</strong> at any time to discard uncommitted edits and restore the saved baseline.</li>
+<li>Click <strong>SAVE CHANGES</strong> to apply the updates.</li>
+</ul>
+<h3 id="deleting-a-package-list">Deleting a Package List<a class="headerlink" href="#deleting-a-package-list" title="Permanent link">&para;</a></h3>
+<ul>
+<li>From the main table or the <strong>OPEN MENU</strong> on the detail page, click <strong>Delete</strong>.</li>
+<li>A confirmation prompt will appear:
+   <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Delete the package list for [OS Name] [OS Version]? This cannot be undone.
+</span></code></pre></div></li>
+<li>Confirm deletion to permanently remove the package list from PixelView.</li>
+</ul>
+<blockquote>
+<p>[!WARNING]
+Deleting a package list permanently removes the version-pinned baseline from the catalog. Any active automation jobs or patch planners expecting this package list will no longer receive updates.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../planner/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Planner Management">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Planner Management
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../json-bridge/json-bridge/" class="md-footer__link md-footer__link--next" aria-label="Next: JSON Bridge">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                JSON Bridge
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "header.autohide", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.prune", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/glightbox.min.js"></script>
+      
+        <script src="../../../assets/javascripts/lightbox.js"></script>
+      
+    
+  </body>
+</html>

@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/cases/cases/">
       
       
-        <link rel="prev" href="../../clouds/vmware/">
+        <link rel="prev" href="../../clouds/reporting/">
       
       
         <link rel="next" href="../open-cases/">
@@ -656,6 +656,8 @@
       
         
       
+        
+      
     
     
     
@@ -720,7 +722,7 @@
   <span class="md-ellipsis">
     
   
-    Openstack
+    OpenStack
   
 
     
@@ -777,6 +779,34 @@
     
   
     VMware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
   
 
     
@@ -945,6 +975,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#incident-lifecycle-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Lifecycle Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#key-capabilities" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -957,10 +998,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-centralized-ingestion-normalization" class="md-nav__link">
+  <a href="#centralized-ingestion-and-normalization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Centralized Ingestion &amp; Normalization
+        Centralized Ingestion and Normalization
       
     </span>
   </a>
@@ -968,10 +1009,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-deep-dive-investigation-dashboard-casesid" class="md-nav__link">
+  <a href="#deep-dive-investigation-console" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Deep-Dive Investigation Dashboard (/cases/:id)
+        Deep-Dive Investigation Console
       
     </span>
   </a>
@@ -979,10 +1020,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-integrated-automation-self-healing" class="md-nav__link">
+  <a href="#integrated-automation-and-self-healing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Integrated Automation &amp; Self-Healing
+        Integrated Automation and Self-Healing
       
     </span>
   </a>
@@ -1828,6 +1869,8 @@
       
         
       
+        
+      
     
     
     
@@ -1949,6 +1992,34 @@
     
   
     Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
   
 
     
@@ -2352,6 +2423,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#incident-lifecycle-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Lifecycle Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#key-capabilities" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2364,10 +2446,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-centralized-ingestion-normalization" class="md-nav__link">
+  <a href="#centralized-ingestion-and-normalization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Centralized Ingestion &amp; Normalization
+        Centralized Ingestion and Normalization
       
     </span>
   </a>
@@ -2375,10 +2457,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-deep-dive-investigation-dashboard-casesid" class="md-nav__link">
+  <a href="#deep-dive-investigation-console" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Deep-Dive Investigation Dashboard (/cases/:id)
+        Deep-Dive Investigation Console
       
     </span>
   </a>
@@ -2386,10 +2468,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-integrated-automation-self-healing" class="md-nav__link">
+  <a href="#integrated-automation-and-self-healing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Integrated Automation &amp; Self-Healing
+        Integrated Automation and Self-Healing
       
     </span>
   </a>
@@ -2495,9 +2577,12 @@
 <h1 id="cases-overview">Cases Overview<a class="headerlink" href="#cases-overview" title="Permanent link">&para;</a></h1>
 <p>The <strong>Cases</strong> module in PixelView provides a centralized incident management and alert orchestration hub. It aggregates telemetry and alert triggers from diverse monitoring platforms—such as Prometheus, Alertmanager, Zabbix, and Nagios—as well as manually reported operational issues.</p>
 <p>By integrating automated event-driven remediations with human-in-the-loop triage, PixelView empowers operations teams to minimize Mean Time to Acknowledge (MTTA) and Mean Time to Resolution (MTTR).</p>
+<p><a href="../../images/cases-overview.png" class="glightbox">
+  <img src="../../images/cases-overview.png" alt="PixelView Cases Module Overview">
+</a></p>
 <hr />
 <h2 id="core-operational-workflows">Core Operational Workflows<a class="headerlink" href="#core-operational-workflows" title="Permanent link">&para;</a></h2>
-<p>The Cases section is organized into three specialized views catering to different stages of the incident lifecycle:</p>
+<p>The Cases module is organized into three specialized operational consoles catering to distinct stages of the incident lifecycle:</p>
 <table>
 <thead>
 <tr>
@@ -2508,30 +2593,43 @@
 <tbody>
 <tr>
 <td style="text-align: left;"><a href="../open-cases/"><strong>Open Cases</strong></a></td>
-<td style="text-align: left;"><strong>Active Triage Console</strong>: Centralizes all newly triggered, unacknowledged, and active alerts across your entire infrastructure. Supports manual case creation, severity prioritization, and batch operations.</td>
+<td style="text-align: left;"><strong>Active Triage Console</strong>: Centralizes all newly triggered, unacknowledged, and active alerts across your entire infrastructure. Supports manual case creation, severity prioritization, multi-select batch triage, and row expansion for inline quick comments.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="../my-cases/"><strong>My Cases</strong></a></td>
-<td style="text-align: left;"><strong>Personal Incident Workbench</strong>: Isolates incidents assigned specifically to the authenticated operator or their immediate teams. Features 60-second automated polling and quick ownership transitions.</td>
+<td style="text-align: left;"><strong>Personal Incident Workbench</strong>: Isolates incidents assigned specifically to the authenticated operator or their immediate teams. Features 60-second automated polling, instant ownership handoffs, and focused resolution workflows.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="../resolved-cases/"><strong>Resolved Cases</strong></a></td>
-<td style="text-align: left;"><strong>Incident Archive &amp; Retrospective</strong>: Retains a permanent record of all mitigated and closed issues. Supports post-mortems, SLA auditing, pattern correlation, and incident reopening.</td>
+<td style="text-align: left;"><strong>Incident Archive &amp; Retrospective</strong>: Retains a permanent record of all mitigated and closed issues. Supports post-mortems, SLA auditing, pattern correlation across historical outages, and one-click incident reopening.</td>
 </tr>
 </tbody>
 </table>
 <hr />
+<h2 id="incident-lifecycle-architecture">Incident Lifecycle Architecture<a class="headerlink" href="#incident-lifecycle-architecture" title="Permanent link">&para;</a></h2>
+<p>Every incident in PixelView follows a structured four-stage lifecycle:</p>
+<ul>
+<li><strong>Ingestion &amp; Normalization</strong>: Monitoring webhooks and API alerts are normalized into a unified incident schema containing target hostnames, impacted services, and calculated severity tiers (<strong>CRITICAL</strong>, <strong>HIGH</strong>, <strong>MEDIUM</strong>, <strong>LOW</strong>).</li>
+<li><strong>Triage &amp; Ownership</strong>: Operational teams assess the incident via <a href="../open-cases/">Open Cases</a>, assign designated responder teams (e.g., <code>admins</code>), or execute bulk triage actions (<strong>Acknowledge</strong>, <strong>Unacknowledge</strong>, <strong>Resolve</strong>).</li>
+<li><strong>Investigation &amp; Remediation</strong>: Responders drill into the dedicated incident console (<code>/case/:id</code>) to review chronological investigation timelines, inspect raw monitoring telemetry, delegate structured sub-tasks, and collaborate via threaded chat.</li>
+<li><strong>Closure &amp; Retrospective</strong>: Once resolved, cases transition to <a href="../resolved-cases/">Resolved Cases</a> for post-mortem analysis and SLA compliance reporting, with the ability to reopen if flapping is detected.</li>
+</ul>
+<hr />
 <h2 id="key-capabilities">Key Capabilities<a class="headerlink" href="#key-capabilities" title="Permanent link">&para;</a></h2>
-<h3 id="1-centralized-ingestion-normalization">1. Centralized Ingestion &amp; Normalization<a class="headerlink" href="#1-centralized-ingestion-normalization" title="Permanent link">&para;</a></h3>
-<p>Incoming alerts from diverse monitoring tools are normalized into a unified schema detailing the impacted <strong>Hostname</strong>, <strong>Service</strong>, calculated <strong>Severity</strong> tier, and raw <strong>Trigger Event</strong> JSON payloads.</p>
-<h3 id="2-deep-dive-investigation-dashboard-casesid">2. Deep-Dive Investigation Dashboard (<code>/cases/:id</code>)<a class="headerlink" href="#2-deep-dive-investigation-dashboard-casesid" title="Permanent link">&para;</a></h3>
-<p>Every case includes a dedicated four-tab investigation console:
-* <strong>DETAIL</strong>: Chronological investigation timeline from initial ingest to bot notifications, paired with raw monitoring telemetry.
-* <strong>TASKS</strong>: Granular sub-task delegation, allowing lead responders to assign action items to individual engineers or groups (e.g., <code>admins</code>).
-* <strong>COMMENTS</strong>: Interactive, real-time threaded chat stream for team collaboration and post-mortem notes.
-* <strong>HISTORY</strong>: Automated host-level pattern correlation showing past incidents on the same infrastructure node to detect flapping services.</p>
-<h3 id="3-integrated-automation-self-healing">3. Integrated Automation &amp; Self-Healing<a class="headerlink" href="#3-integrated-automation-self-healing" title="Permanent link">&para;</a></h3>
-<p>Cases natively integrate with PixelView's <a href="../../automation/rules/">Automation Rules</a> and <a href="../../automation/workflows/">Workflows</a>. When an alert triggers, rules can automatically dispatch <a href="../../automation/runners/">Runners</a> to execute remediation <a href="../../automation/scripts/">Scripts</a> or Ansible <a href="../../automation/playbooks/">Playbooks</a>, resolving issues without human intervention.</p>
+<h3 id="centralized-ingestion-and-normalization">Centralized Ingestion and Normalization<a class="headerlink" href="#centralized-ingestion-and-normalization" title="Permanent link">&para;</a></h3>
+<p>Incoming alerts from disparate monitoring tools are transformed into consistent incident models capturing:
+* Impacted <strong>Hostname</strong> (FQDN or IP address)
+* Source monitoring integration (e.g., <code>ha-monitoring</code>, <code>Prometheus</code>, <code>Zabbix</code>)
+* Standardized <strong>Severity</strong> levels
+* Raw JSON <strong>Trigger Event</strong> payloads containing full contextual metrics</p>
+<h3 id="deep-dive-investigation-console">Deep-Dive Investigation Console<a class="headerlink" href="#deep-dive-investigation-console" title="Permanent link">&para;</a></h3>
+<p>Every incident provides a comprehensive investigation dashboard with four specialized workspaces:
+* <strong>DETAIL</strong>: Chronological investigation timeline from initial ingest to bot notifications, paired with complete activity metadata and raw telemetry.
+* <strong>TASKS</strong>: Granular sub-task delegation, allowing lead responders to create, edit, assign, and track action items for individual engineers or groups.
+* <strong>COMMENTS</strong>: Real-time collaborative discussion thread for triage findings, terminal output snippets, and handover notes.
+* <strong>HISTORY</strong>: Automated host-level correlation showing past incidents on the same infrastructure node to quickly detect flapping services.</p>
+<h3 id="integrated-automation-and-self-healing">Integrated Automation and Self-Healing<a class="headerlink" href="#integrated-automation-and-self-healing" title="Permanent link">&para;</a></h3>
+<p>Cases natively integrate with PixelView's <a href="../../automation/rules/">Automation Rules</a> and <a href="../../automation/workflows/">Workflows</a>. When an alert triggers, rules can automatically dispatch <a href="../../automation/runners/">Runners</a> to execute remediation <a href="../../automation/scripts/">Scripts</a> or Ansible <a href="../../automation/playbooks/">Playbooks</a>, mitigating outages without requiring manual human intervention.</p>
 
 
 
@@ -2567,7 +2665,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../clouds/vmware/" class="md-footer__link md-footer__link--prev" aria-label="Previous: VMware">
+          <a href="../../clouds/reporting/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cloud Reporting">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2577,7 +2675,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                VMware
+                Cloud Reporting
               </div>
             </div>
           </a>

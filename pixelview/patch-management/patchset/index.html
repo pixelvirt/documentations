@@ -656,6 +656,8 @@
       
         
       
+        
+      
     
     
     
@@ -720,7 +722,7 @@
   <span class="md-ellipsis">
     
   
-    Openstack
+    OpenStack
   
 
     
@@ -777,6 +779,34 @@
     
   
     VMware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
   
 
     
@@ -1720,6 +1750,8 @@
       
         
       
+        
+      
     
     
     
@@ -2010,6 +2042,34 @@
     
   
     Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
   
 
     
@@ -2615,8 +2675,8 @@
 
 
 <h1 id="patchset-management">Patchset Management<a class="headerlink" href="#patchset-management" title="Permanent link">&para;</a></h1>
-<p>The <strong>Patchsets</strong> section (<code>/patchset</code>) in PixelView allows administrators to create, configure, and manage modular patching packages called <strong>Patchsets</strong>.</p>
-<p>A Patchset encapsulates one or more sequential automation workflows, prerequisite dependencies, execution priority levels, and metadata labels. Once defined, patchsets can be executed across host clusters through the <strong>Planner</strong> or triggered automatically via remediation policies.</p>
+<p>The <strong>Patchsets</strong> section (<code>/patch-management/patchsets</code>) in PixelView allows administrators to create, configure, and manage modular patching packages called <strong>Patchsets</strong>.</p>
+<p>A Patchset encapsulates one or more sequential automation workflows or OS package lists, prerequisite dependencies, execution priority levels, and metadata labels. Once defined, patchsets can be executed across host clusters through the <strong><a href="../planner/">Planner</a></strong> or triggered automatically via remediation policies.</p>
 <hr />
 <h2 id="navigating-to-patchsets">Navigating to Patchsets<a class="headerlink" href="#navigating-to-patchsets" title="Permanent link">&para;</a></h2>
 <p>To access the patchsets inventory:</p>
@@ -2665,13 +2725,13 @@
 <h2 id="creating-a-new-patchset">Creating a New Patchset<a class="headerlink" href="#creating-a-new-patchset" title="Permanent link">&para;</a></h2>
 <p>To define a new patchset:</p>
 <ul>
-<li>Click the orange <strong><code>+</code></strong> (Add Patchset) button located in the top-right toolbar above the table:</li>
+<li>Click the orange <strong><code>+</code></strong> (Create patchset) button located in the top-right toolbar above the table:</li>
 </ul>
 <p><a href="../../images/patchset-add-button.png" class="glightbox">
   <img src="../../images/patchset-add-button.png" alt="Add Patchset Button">
 </a></p>
 <ul>
-<li>The <strong>Create Patchset</strong> modal dialog will open:</li>
+<li>The <strong>Create Patchset</strong> modal dialog opens:</li>
 </ul>
 <p><a href="../../images/patchset-create-modal.png" class="glightbox">
   <img src="../../images/patchset-create-modal.png" alt="Create Patchset Modal Dialog">
@@ -2679,12 +2739,15 @@
 <h3 id="patchset-parameters">Patchset Parameters<a class="headerlink" href="#patchset-parameters" title="Permanent link">&para;</a></h3>
 <p>Configure the following parameters in the dialog:</p>
 <ul>
-<li><strong>Patchset Name</strong> <em>(Required)</em>: Enter a short, descriptive name (e.g., <code>InstallKubectl</code>, <code>KernelSecurityPatch</code>).</li>
-<li><strong>Description</strong>: Detail the operational purpose, target packages, or changelog notes.</li>
-<li><strong>Labels</strong>: Click <strong><code>+ ADD LABEL</code></strong> to define key-value pairs (e.g., <code>env: production</code>, <code>tier: web</code>) for metadata classification and dynamic filtering.</li>
-<li><strong>Tags</strong>: Enter comma-separated non-identifying context tags.</li>
-<li><strong>Workflows</strong>: Select target automation workflows from the <strong>Add workflow</strong> dropdown and click <strong><code>+</code></strong> to append them in sequential execution order.</li>
-<li><strong>Depends On</strong>: Select any prerequisite patchset that must successfully complete on a target host before this patchset executes.</li>
+<li><strong>Patchset Name</strong> <em>(Required)</em>: Enter a short, descriptive identifier (placeholder <code>Ubuntu-Security-Aug2026</code>).</li>
+<li><strong>Description</strong>: Detail the operational purpose, target packages, or changelog notes (placeholder <code>What this patchset covers and why</code>).</li>
+<li><strong>Labels</strong>: Click <strong><code>ADD LABEL</code></strong> to define key-value pairs (e.g., <code>env: production</code>, <code>tier: web</code>) for metadata classification and dynamic filtering.</li>
+<li><strong>Tags (comma separated)</strong>: Enter comma-separated context tags (placeholder <code>e.g. security, urgent, rollback-tested</code>).</li>
+<li><strong>Source Type Selection (Workflows vs Packages)</strong>:
+  A patchset is driven by an ordered list of workflows <strong>or</strong> one or more package lists (never both):</li>
+<li><strong>Workflows Mode</strong>: Select target automation workflows from the <strong>Add workflow</strong> dropdown and click <strong><code>+</code></strong> to append them into the sequential execution pipeline. Reorder workflows using the arrow buttons or remove them with the trash button.</li>
+<li><strong>Packages Mode</strong>: Select registered <a href="../packages/">OS Package Lists</a> to apply version-pinned package baselines directly.</li>
+<li><strong>Depends On</strong>: Select any prerequisite patchset that must successfully complete on a target host before this patchset executes. Optionally enter a dependency note (placeholder <code>Why this dependency exists</code>) and click <strong>ADD DEPENDENCY</strong>.</li>
 <li>Click <strong>CREATE PATCHSET</strong> to persist and register the patch definition.</li>
 </ul>
 <hr />

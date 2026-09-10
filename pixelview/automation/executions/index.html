@@ -656,6 +656,8 @@
       
         
       
+        
+      
     
     
     
@@ -720,7 +722,7 @@
   <span class="md-ellipsis">
     
   
-    Openstack
+    OpenStack
   
 
     
@@ -777,6 +779,34 @@
     
   
     VMware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
   
 
     
@@ -1529,10 +1559,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-details-tab" class="md-nav__link">
+  <a href="#details-tab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Details Tab
+        Details Tab
       
     </span>
   </a>
@@ -1540,10 +1570,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-logs-tab-real-time-sse-stream" class="md-nav__link">
+  <a href="#logs-tab-real-time-sse-stream" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Logs Tab (Real-Time SSE Stream)
+        Logs Tab (Real-Time SSE Stream)
       
     </span>
   </a>
@@ -1551,10 +1581,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-metadata-tab" class="md-nav__link">
+  <a href="#metadata-tab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Metadata Tab
+        Metadata Tab
       
     </span>
   </a>
@@ -1562,10 +1592,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-hosts-tab" class="md-nav__link">
+  <a href="#hosts-tab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Hosts Tab
+        Hosts Tab
       
     </span>
   </a>
@@ -1934,6 +1964,8 @@
       
         
       
+        
+      
     
     
     
@@ -2055,6 +2087,34 @@
     
   
     Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
   
 
     
@@ -2565,10 +2625,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-details-tab" class="md-nav__link">
+  <a href="#details-tab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Details Tab
+        Details Tab
       
     </span>
   </a>
@@ -2576,10 +2636,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-logs-tab-real-time-sse-stream" class="md-nav__link">
+  <a href="#logs-tab-real-time-sse-stream" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Logs Tab (Real-Time SSE Stream)
+        Logs Tab (Real-Time SSE Stream)
       
     </span>
   </a>
@@ -2587,10 +2647,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-metadata-tab" class="md-nav__link">
+  <a href="#metadata-tab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Metadata Tab
+        Metadata Tab
       
     </span>
   </a>
@@ -2598,10 +2658,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-hosts-tab" class="md-nav__link">
+  <a href="#hosts-tab" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Hosts Tab
+        Hosts Tab
       
     </span>
   </a>
@@ -2787,7 +2847,7 @@
 </a></p>
 <h3 id="configuration-fields">Configuration Fields<a class="headerlink" href="#configuration-fields" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Name</strong> <em>(Required)</em>: Enter a unique, recognizable identifier for the execution run.</li>
+<li><strong>Name</strong> <em>(Required)</em>: Enter a unique, recognizable identifier for the execution run (e.g., <code>Weekly Patch Job - Sep 2024</code>).</li>
 <li><strong>Workflow</strong> <em>(Required)</em>: Select the automated workflow containing the playbooks or scripts to run.</li>
 <li><strong>SSH Credential</strong> <em>(Required)</em>: Choose the stored credential profile from <a href="../../inventory/creds/">Credentials Management</a> to authenticate against target hosts.</li>
 <li><strong>Extra Variables (JSON)</strong> <em>(Optional)</em>: Supply custom runtime variables to the playbook or script in valid JSON format (default: <code>{}</code>).</li>
@@ -2798,7 +2858,9 @@
 <li><strong>Host Groups</strong>: Target pre-configured clusters defined in <a href="../../inventory/host-groups/">Host Groups Management</a>.</li>
 </ul>
 </li>
-<li><strong>Target Servers Selection</strong>: Select one or more target servers or select all in bulk.</li>
+<li><strong>Runner</strong> <em>(Optional)</em>: Select a specific runner instance from <a href="../runners/">Runners</a>, or leave unassigned to route automatically to the source-based queue.</li>
+<li><strong>Cloud</strong> <em>(Required)</em>: Select the target cloud environment or cluster hosting the desired nodes.</li>
+<li><strong>Select Servers</strong> <em>(Required)</em>: Select one or more target servers across available regions, or select all in bulk.</li>
 </ul>
 <h3 id="dialog-actions">Dialog Actions<a class="headerlink" href="#dialog-actions" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2831,7 +2893,7 @@
 <li>Click on the execution name or ID link to open the <strong>Job Executions</strong> dashboard (<code>/executions/:id</code>).</li>
 </ul>
 <p>The dashboard displays the <strong>Jobs List</strong> on the left panel (listing all individual playbook or script jobs with status badges) and four detailed tabs on the right:</p>
-<h3 id="1-details-tab">1. Details Tab<a class="headerlink" href="#1-details-tab" title="Permanent link">&para;</a></h3>
+<h3 id="details-tab">Details Tab<a class="headerlink" href="#details-tab" title="Permanent link">&para;</a></h3>
 <p>The <strong>DETAILS</strong> tab provides high-level run metadata and operational parameters:</p>
 <p><a href="../../images/automation-executions-details-tab.png" class="glightbox">
   <img src="../../images/automation-executions-details-tab.png" alt="Job Execution Details Tab">
@@ -2845,7 +2907,7 @@
 <li><strong>Timestamps</strong>: Exact creation and last updated timestamps.</li>
 <li><strong>Execution ID</strong>: Parent execution identifier linking all concurrent jobs in this run.</li>
 </ul>
-<h3 id="2-logs-tab-real-time-sse-stream">2. Logs Tab (Real-Time SSE Stream)<a class="headerlink" href="#2-logs-tab-real-time-sse-stream" title="Permanent link">&para;</a></h3>
+<h3 id="logs-tab-real-time-sse-stream">Logs Tab (Real-Time SSE Stream)<a class="headerlink" href="#logs-tab-real-time-sse-stream" title="Permanent link">&para;</a></h3>
 <p>The <strong>LOGS</strong> tab provides live, streaming console output of the execution:</p>
 <p><a href="../../images/automation-executions-logs-tab.png" class="glightbox">
   <img src="../../images/automation-executions-logs-tab.png" alt="Job Execution Logs Tab">
@@ -2860,7 +2922,7 @@
 </li>
 <li><strong>PLAY RECAP</strong>: Complete end-of-playbook summary showing host status counters (<code>ok</code>, <code>changed</code>, <code>unreachable</code>, <code>failed</code>, <code>skipped</code>, <code>rescued</code>, <code>ignored</code>).</li>
 </ul>
-<h3 id="3-metadata-tab">3. Metadata Tab<a class="headerlink" href="#3-metadata-tab" title="Permanent link">&para;</a></h3>
+<h3 id="metadata-tab">Metadata Tab<a class="headerlink" href="#metadata-tab" title="Permanent link">&para;</a></h3>
 <p>The <strong>METADATA</strong> tab displays structured JSON telemetry for auditing and debugging:</p>
 <p><a href="../../images/automation-executions-metadata-tab.png" class="glightbox">
   <img src="../../images/automation-executions-metadata-tab.png" alt="Job Execution Metadata Tab">
@@ -2870,7 +2932,7 @@
 <li><strong>Execution Results</strong>: Displays <code>status</code>, <code>return_code</code> (<code>0</code> for success), and total execution <code>duration</code> in seconds.</li>
 <li><strong>Secret Protection</strong>: Sensitive authentication data (such as <code>ansible_ssh_private_key</code>) is automatically masked with <code>***</code> in telemetry payloads.</li>
 </ul>
-<h3 id="4-hosts-tab">4. Hosts Tab<a class="headerlink" href="#4-hosts-tab" title="Permanent link">&para;</a></h3>
+<h3 id="hosts-tab">Hosts Tab<a class="headerlink" href="#hosts-tab" title="Permanent link">&para;</a></h3>
 <p>The <strong>HOSTS</strong> tab displays the targeted host inventory configuration:</p>
 <p><a href="../../images/automation-executions-hosts-tab.png" class="glightbox">
   <img src="../../images/automation-executions-hosts-tab.png" alt="Job Execution Target Hosts Tab">

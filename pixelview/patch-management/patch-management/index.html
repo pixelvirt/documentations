@@ -656,6 +656,8 @@
       
         
       
+        
+      
     
     
     
@@ -720,7 +722,7 @@
   <span class="md-ellipsis">
     
   
-    Openstack
+    OpenStack
   
 
     
@@ -777,6 +779,34 @@
     
   
     VMware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
   
 
     
@@ -1720,6 +1750,8 @@
       
         
       
+        
+      
     
     
     
@@ -2110,6 +2142,34 @@
     
   
     Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
   
 
     
@@ -2826,10 +2886,11 @@
 <p><a href="../../images/patch-sidebar.png" class="glightbox">
   <img src="../../images/patch-sidebar.png" alt="Patch Management Sidebar Navigation">
 </a></p>
-<p>The module provides three operational views:
-* <strong>Overview (<code>/patching</code>)</strong>: Live status dashboard displaying pending actions, top patchset activities, and recent runs.
-* <strong>Patchset (<code>/patchset</code>)</strong>: Inventory of all created patch definitions, workflows, dependencies, and targeted hosts.
-* <strong>Planner (<code>/planner</code>)</strong>: Scheduling engine for defining maintenance windows, rollout rates, and batch executions.</p>
+<p>The module provides four operational views:
+* <strong><a href="./">Overview</a> (<code>/patch-management/overview</code>)</strong>: Live status dashboard displaying pending actions, top patchset activities, and recent runs.
+* <strong><a href="../patchset/">Patchset</a> (<code>/patch-management/patchsets</code>)</strong>: Inventory of all created patch definitions, workflows, dependencies, and targeted hosts.
+* <strong><a href="../planner/">Planner</a> (<code>/patch-management/planners</code>)</strong>: Scheduling engine for defining maintenance windows, rollout rates, and batch executions.
+* <strong><a href="../packages/">Packages</a> (<code>/patch-management/packages</code>)</strong>: Per-OS catalog of version-pinned software package lists linked to automation workflows and version history tracking.</p>
 <hr />
 <h2 id="overview-dashboard">Overview Dashboard<a class="headerlink" href="#overview-dashboard" title="Permanent link">&para;</a></h2>
 <p>Clicking <strong>Overview</strong> opens the live operational summary of your patching estate:</p>
@@ -2856,7 +2917,7 @@
 <li><strong>Status Badges</strong>: Real-time status indicators showing planner run outcomes (<code>Completed</code>, <code>Cancelled</code>, <code>Running</code>, <code>Failed</code>).</li>
 <li><strong>Run Metadata</strong>: Displays the run title, associated patchset, target host group (e.g., <code>InstallKubectl — ha-host-gtoup</code>), timestamp, and the triggering user (<code>admin@localhost</code>).</li>
 <li><strong>Planner Redirection</strong>:</li>
-<li><strong>View All Link</strong>: Click <strong>View all</strong> in the top-right corner of the card to navigate directly to the full <strong>Planner</strong> (<code>/planner</code>) schedule and batch management dashboard.</li>
+<li><strong>View All Link</strong>: Click <strong>View all</strong> in the top-right corner of the card to navigate directly to the full <strong><a href="../planner/">Planner</a></strong> (<code>/patch-management/planners</code>) schedule and batch management dashboard.</li>
 <li><strong>Individual Run Tracking</strong>: Click on any specific run in the list (e.g., <code>real-test</code>) to be redirected into the <strong>Planner Run Execution</strong> view, where you can monitor live per-host and per-workflow progress, inspect output logs, and review stage transitions.</li>
 </ul>
 <h3 id="top-patchsets-card">Top Patchsets Card<a class="headerlink" href="#top-patchsets-card" title="Permanent link">&para;</a></h3>

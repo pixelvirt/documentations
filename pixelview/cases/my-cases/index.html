@@ -656,6 +656,8 @@
       
         
       
+        
+      
     
     
     
@@ -720,7 +722,7 @@
   <span class="md-ellipsis">
     
   
-    Openstack
+    OpenStack
   
 
     
@@ -777,6 +779,34 @@
     
   
     VMware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
   
 
     
@@ -1029,15 +1059,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managing-assigned-cases-actions" class="md-nav__link">
+  <a href="#managing-assigned-cases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managing Assigned Cases (Actions)
+        Managing Assigned Cases
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Managing Assigned Cases (Actions)">
+    <nav class="md-nav" aria-label="Managing Assigned Cases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1845,6 +1875,8 @@
       
         
       
+        
+      
     
     
     
@@ -1966,6 +1998,34 @@
     
   
     Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
   
 
     
@@ -2397,15 +2457,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managing-assigned-cases-actions" class="md-nav__link">
+  <a href="#managing-assigned-cases" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managing Assigned Cases (Actions)
+        Managing Assigned Cases
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Managing Assigned Cases (Actions)">
+    <nav class="md-nav" aria-label="Managing Assigned Cases">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2573,7 +2633,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Duration</strong></td>
-<td style="text-align: left;">Elapsed time since the incident was initially triggered (e.g., <code>2 days ago</code>).</td>
+<td style="text-align: left;">Elapsed time since the incident was initially triggered (e.g., <code>9 days ago</code>).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Created at</strong></td>
@@ -2601,12 +2661,12 @@
 <ul>
 <li><strong>Search / Global Filter</strong>: Search across your assigned alert titles, hostnames, and monitoring sources.</li>
 <li><strong>Column Filters</strong>: Filter your workload by severity tier or creation date.</li>
-<li><strong>Show/Hide Columns</strong>: Customize table column visibility.</li>
+<li><strong>Show/Hide Columns</strong>: Customize table column visibility to maximize screen efficiency.</li>
 <li><strong>Density Toggle</strong>: Toggle between compact and relaxed row height.</li>
 <li><strong>Refresh</strong>: Instantly fetch the newest assignments from the backend API.</li>
 </ul>
 <hr />
-<h2 id="managing-assigned-cases-actions">Managing Assigned Cases (Actions)<a class="headerlink" href="#managing-assigned-cases-actions" title="Permanent link">&para;</a></h2>
+<h2 id="managing-assigned-cases">Managing Assigned Cases<a class="headerlink" href="#managing-assigned-cases" title="Permanent link">&para;</a></h2>
 <p>Responders can update incident states directly from the table row:</p>
 <ul>
 <li>Click the <strong>Actions</strong> menu (<strong><code>...</code></strong>) on any assigned case row:</li>
@@ -2617,7 +2677,7 @@
 <h3 id="state-transition-actions">State Transition Actions<a class="headerlink" href="#state-transition-actions" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Unacknowledge</strong>: Reverts an <code>acknowledged</code> case back to <code>triggered</code>. Use this if you need to hand off the incident back to the general triage queue or if further automated escalation is required.</li>
-<li><strong>Acknowledge</strong>: If an unacknowledged incident is assigned to you, select <strong>Acknowledge</strong> to signal to the team that you have commenced investigation.</li>
+<li><strong>Acknowledge</strong>: If an unacknowledged incident is assigned to you, select <strong>Acknowledge</strong> to signal to the team that you have commenced active investigation.</li>
 <li><strong>Resolve</strong>: Conclude the incident once remediation is verified. Resolving the case automatically moves it into <a href="../resolved-cases/">Resolved Cases</a>.</li>
 </ul>
 <hr />
@@ -2631,7 +2691,7 @@
 </ul>
 <blockquote>
 <p>[!TIP]
-For a full walkthrough of the 4-tab investigation dashboard and sub-task workflows, see the <a href="../open-cases/#detailed-case-dashboard-casesid">Open Cases Guide</a>.</p>
+For a full walkthrough of the four-tab investigation dashboard and sub-task workflows, see the <a href="../open-cases/#detailed-case-dashboard-caseid">Open Cases Guide</a>.</p>
 </blockquote>
 
 
