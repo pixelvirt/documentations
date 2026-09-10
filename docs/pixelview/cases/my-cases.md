@@ -31,7 +31,7 @@ The table displays your assigned cases with 60-second automatic background polli
 | **Title** | The incident summary or alert name (e.g., `Service MariaDB down`). Clicking the title opens the full case investigation console. |
 | **Hostname** | Target node IP or hostname under your responsibility (e.g., `119.9.94.19`). |
 | **Severity** | Operational priority level represented as a colored pill badge (**CRITICAL** in red, **HIGH** in orange, **MEDIUM** in yellow, **LOW** in blue). |
-| **Duration** | Elapsed time since the incident was initially triggered (e.g., `2 days ago`). |
+| **Duration** | Elapsed time since the incident was initially triggered (e.g., `9 days ago`). |
 | **Created at** | Creation timestamp recording when the monitoring alert was captured. |
 | **Assigned to** | Confirms assignment to your user account or primary team. |
 | **Status** | Current incident lifecycle state (e.g., `acknowledged`, `triggered`). |
@@ -42,13 +42,13 @@ The table displays your assigned cases with 60-second automatic background polli
 
 * **Search / Global Filter**: Search across your assigned alert titles, hostnames, and monitoring sources.
 * **Column Filters**: Filter your workload by severity tier or creation date.
-* **Show/Hide Columns**: Customize table column visibility.
+* **Show/Hide Columns**: Customize table column visibility to maximize screen efficiency.
 * **Density Toggle**: Toggle between compact and relaxed row height.
 * **Refresh**: Instantly fetch the newest assignments from the backend API.
 
 ---
 
-## Managing Assigned Cases (Actions)
+## Managing Assigned Cases
 
 Responders can update incident states directly from the table row:
 
@@ -61,7 +61,7 @@ Responders can update incident states directly from the table row:
 ### State Transition Actions
 
 * **Unacknowledge**: Reverts an `acknowledged` case back to `triggered`. Use this if you need to hand off the incident back to the general triage queue or if further automated escalation is required.
-* **Acknowledge**: If an unacknowledged incident is assigned to you, select **Acknowledge** to signal to the team that you have commenced investigation.
+* **Acknowledge**: If an unacknowledged incident is assigned to you, select **Acknowledge** to signal to the team that you have commenced active investigation.
 * **Resolve**: Conclude the incident once remediation is verified. Resolving the case automatically moves it into [Resolved Cases](resolved-cases.md).
 
 ---
@@ -76,4 +76,4 @@ Clicking any case title in **My Cases** opens the comprehensive investigation da
 * **Historical Host Analysis**: Check the **HISTORY** tab to see if the assigned host has experienced similar failures in the past.
 
 > [!TIP]
-> For a full walkthrough of the 4-tab investigation dashboard and sub-task workflows, see the [Open Cases Guide](open-cases.md#detailed-case-dashboard-casesid).
+> For a full walkthrough of the four-tab investigation dashboard and sub-task workflows, see the [Open Cases Guide](open-cases.md#detailed-case-dashboard-caseid).

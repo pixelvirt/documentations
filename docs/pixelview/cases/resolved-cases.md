@@ -12,13 +12,17 @@ To review resolved incidents and historical post-mortems:
 
 * In the left navigation sidebar under **Cases**, click **Resolved Cases**:
 
-<a href="../../images/cases-resolved-cases-table.png" class="glightbox">
-  <img src="../../images/cases-resolved-cases-table.png" alt="Resolved Cases Overview Table">
+<a href="../../images/cases-resolved-cases-sidebar.png" class="glightbox">
+  <img src="../../images/cases-resolved-cases-sidebar.png" alt="Navigating to Resolved Cases Sidebar">
 </a>
 
 ### Resolved Cases Table Overview
 
 The table displays all closed incidents with 60-second automatic background polling:
+
+<a href="../../images/cases-resolved-cases-table.png" class="glightbox">
+  <img src="../../images/cases-resolved-cases-table.png" alt="Resolved Cases Overview Table">
+</a>
 
 | Column | Description |
 | :--- | :--- |
@@ -26,9 +30,9 @@ The table displays all closed incidents with 60-second automatic background poll
 | **Title** | The incident summary or headline (e.g., `Service MariaDB down`). Clicking the title opens the complete historical case console. |
 | **Hostname** | Affected infrastructure node IP or FQDN (e.g., `119.9.94.19`). |
 | **Severity** | Peak incident severity recorded during the outage (**CRITICAL** in red, **HIGH** in orange, **MEDIUM** in yellow, **LOW** in blue). |
-| **Duration** | Elapsed time since the incident was initially triggered (e.g., `2 days ago`). |
+| **Duration** | Elapsed time since the incident was initially triggered (e.g., `9 days ago`). |
 | **Created at** | Creation timestamp recording when the monitoring alert was captured. |
-| **Assigned to** | The final operator or automated bot that remediated the incident (e.g., `AutomationBot`). |
+| **Assigned to** | The final operator or automated bot that remediated the incident (e.g., `Admin`). |
 | **Status** | Operational status confirming the case is `resolved`. |
 | **Source** | Originating monitoring provider or integration (e.g., `ha-monitoring`). |
 | **Actions** | Row context menu (**`...`**) providing quick actions. |
@@ -43,7 +47,7 @@ The table displays all closed incidents with 60-second automatic background poll
 
 * **Search / Global Filter**: Perform queries across resolved incident titles, hostnames, and sources.
 * **Column Filters**: Filter historical incidents by severity tier or creation date.
-* **Show/Hide Columns**: Customize table column visibility.
+* **Show/Hide Columns**: Customize table column visibility to focus on desired metrics.
 * **Density Toggle**: Switch between compact and spacious row height.
 * **Refresh**: Query the backend API for the latest resolved cases.
 
@@ -53,11 +57,11 @@ The table displays all closed incidents with 60-second automatic background poll
 
 If an issue reoccurs after initial mitigation, or if an alert was closed prematurely before verification, engineers can reopen the incident immediately.
 
-PixelView provides two methods to reopen a resolved case:
+PixelView provides two straightforward workflows to reopen a resolved case:
 
-### Method 1: Row Context Menu
+### Reopening via Row Context Menu
 
-* Click the **Actions** menu (**`...`**) on the resolved case row:
+* Click the **Actions** menu (**`...`**) on any resolved case row:
 
 <a href="../../images/cases-resolved-cases-context-menu.png" class="glightbox">
   <img src="../../images/cases-resolved-cases-context-menu.png" alt="Resolved Cases Row Actions Menu">
@@ -65,9 +69,9 @@ PixelView provides two methods to reopen a resolved case:
 
 * Click **Re-open**.
 
-### Method 2: Case Dashboard Header Button
+### Reopening via Case Dashboard Header
 
-* Click into any resolved case to open its detail dashboard.
+* Click into any resolved case to open its detailed investigation dashboard.
 * Click the blue **RE-OPEN** button in the upper-right corner of the header:
 
 <a href="../../images/cases-resolved-cases-reopen-button.png" class="glightbox">
@@ -75,17 +79,17 @@ PixelView provides two methods to reopen a resolved case:
 </a>
 
 > [!NOTE]
-> Reopening a case transitions its operational status back to `triggered` or `open`, immediately restoring it to the active triage queue in [Open Cases](open-cases.md) and alerting assigned responders.
+> Reopening a case transitions its operational status back to `triggered` or `open`, immediately restoring it to the active triage queue in [Open Cases](open-cases.md) and notifying assigned responders.
 
 ---
 
-## Historical Retrospective & Audit Console (`/cases/:id`)
+## Historical Retrospective & Audit Console (`/case/:id`)
 
-Clicking any resolved case title opens its full post-mortem console. Responders can review the complete timeline of actions taken during the outage across four tabs:
+Clicking any resolved case title opens its full post-mortem console. Responders can review the complete timeline of actions taken during the outage across four dedicated tabs:
 
 ---
 
-### Tab 1: DETAIL (Telemetry & Timeline Audit)
+### Detail Tab: Telemetry & Timeline Audit
 
 The **DETAIL** tab preserves the immutable chronological timeline of the incident:
 
@@ -93,13 +97,13 @@ The **DETAIL** tab preserves the immutable chronological timeline of the inciden
   <img src="../../images/cases-resolved-cases-detail-tab.png" alt="Resolved Case Detail Tab and Investigation Timeline">
 </a>
 
-* **Investigation Timeline**: Review each step of the resolution lifecycle—from initial alert ingest (`Triggered`), email/chat dispatches (`Notification`), automated playbook execution (`Automation`), to task completions.
+* **Investigation Timeline**: Review each step of the resolution lifecycle—from initial alert ingest (`Triggered`), email/chat dispatches (`Notification`), automated playbook execution (`Automation`), to sub-task completions.
 * **Activity Details**: Reference key incident identifiers (**Item UUID**, **Incident Key**, **Service Name**, and timestamps).
 * **Trigger Event**: Inspect the exact JSON telemetry received from the monitoring provider at the moment the outage occurred.
 
 ---
 
-### Tab 2: TASKS (Action Item Audit)
+### Tasks Tab: Action Item Audit
 
 The **TASKS** tab displays all sub-tasks and checklists that were assigned and completed during remediation:
 
@@ -108,10 +112,11 @@ The **TASKS** tab displays all sub-tasks and checklists that were assigned and c
 </a>
 
 * Provides operational accountability by showing which engineer or group handled specific recovery steps.
+* Retains completed checklist records for SLA compliance verification.
 
 ---
 
-### Tab 3: COMMENTS (Resolution Notes & Post-Mortem)
+### Comments Tab: Resolution Notes & Post-Mortem
 
 The **COMMENTS** tab preserves the collaborative chat thread between operators, DBAs, and management:
 
@@ -120,11 +125,11 @@ The **COMMENTS** tab preserves the collaborative chat thread between operators, 
 </a>
 
 * Review root cause hypotheses, terminal logs, and final handover summaries.
-* Operators can continue posting follow-up post-mortem notes even after the case is closed.
+* Operators can continue posting follow-up post-mortem notes and recommendations even after the case is closed.
 
 ---
 
-### Tab 4: HISTORY (Pattern Correlation)
+### History Tab: Host Pattern Correlation
 
 The **HISTORY** tab displays all historical alerts that have occurred on the same infrastructure node:
 
@@ -132,4 +137,4 @@ The **HISTORY** tab displays all historical alerts that have occurred on the sam
   <img src="../../images/cases-resolved-cases-history-tab.png" alt="Similar Cases on This Host History Tab">
 </a>
 
-* **Similar cases on this host**: Shows past alerts for the current node (`119.9.94.19`), allowing reliability engineers to track recurring degradation, service flap frequencies, and verify whether a permanent fix has stabilized the host.
+* **Similar cases on this host**: Shows past alerts for the current node (`119.9.94.19`), allowing reliability engineers to track recurring degradation, service flap frequencies, and verify whether a permanent fix has stabilized the host over time.
