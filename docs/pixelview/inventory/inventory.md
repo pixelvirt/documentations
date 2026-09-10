@@ -4,7 +4,7 @@ The **Catalogue** section (`/inventory`) under **Inventory** provides a complete
 
 Infrastructure in PixelView is organized in a structured tree hierarchy:
 
-$$\text{Cloud} \longrightarrow \text{Region} \longrightarrow \text{Zone} \longrightarrow \text{Entities (Servers, Network Devices, Apps, Storage)}$$
+**Cloud** &rarr; **Region** &rarr; **Zone** &rarr; **Entities** (Servers, Network Devices, Applications, Storage)
 
 ---
 
@@ -101,7 +101,7 @@ A **Region** represents a geographical location or primary datacenter partition 
 
 ### Viewing a Region
 
-* Under the **REGIONS** section of the Cloud Dashboard, click **View region $\rightarrow$** on any region card (such as `testRegion`):
+* Under the **REGIONS** section of the Cloud Dashboard, click **View region &rarr;** on any region card (such as `testRegion`):
 
 <a href="../../images/inventory-view-region-card.png" class="glightbox">
   <img src="../../images/inventory-view-region-card.png" alt="Region Card Navigation">
@@ -136,7 +136,7 @@ A **Zone** (Availability Zone or Datacenter Rack Partition) represents an isolat
 
 ### Viewing a Zone
 
-* On the Region Overview dashboard, locate the target zone under **ZONES** and click **View zone $\rightarrow$**:
+* On the Region Overview dashboard, locate the target zone under **ZONES** and click **View zone &rarr;**:
 
 <a href="../../images/inventory-view-zone-card.png" class="glightbox">
   <img src="../../images/inventory-view-zone-card.png" alt="Zone Card Navigation">
@@ -373,3 +373,15 @@ A **Zone** (Availability Zone or Datacenter Rack Partition) represents an isolat
 * **General Info & Storage Details**: Displays storage name, system UUID, backend type (`storageType`), allocated capacity, and mount path.
 * **Infrastructure Placement**: Tracks assigned Cloud, Region, and Zone UUID mappings.
 * **Header Actions**: Quick buttons to Edit storage parameters, Attach Credentials, or Delete the storage resource.
+
+---
+
+## Vault Secret & File Integration
+
+PixelView embeds a secure **HashiCorp Vault** secret manager directly within inventory entity views (Servers, Applications, and Storage types).
+
+### Vault Capabilities within Inventory
+* **Entity Secret Storage**: Store sensitive configuration parameters, API keys, database connection URIs, and TLS certificates directly bound to individual inventory assets.
+* **Encrypted File Vault**: Upload, store, and manage encrypted credential files (such as SSH private keys, kubeconfig profiles, and licensing bundles) accessible only to authorized operators.
+* **Vault Authentication**: Connect using secure Vault session tokens with granular role-based policy enforcement.
+* **Secure Secret Sharing**: Share encrypted secrets and configuration files securely across authorized platform engineering team members without exposing raw credentials in plaintext.
