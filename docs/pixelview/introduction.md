@@ -2,9 +2,9 @@
 
 ### Overview
 
-PixelView unifies OpenStack, Kubernetes, and VMware into a single management platform, purpose-built to make deploying AI infrastructure on private cloud as effortless as the public cloud — without your data ever leaving your environment.
+PixelView unifies OpenStack and Kubernetes into a single management platform, purpose-built to make deploying AI infrastructure on private cloud as effortless as the public cloud — without your data ever leaving your environment.
 
-PixelView cloud platform makes private cloud the simplest place to run AI. It unifies OpenStack, Kubernetes, and VMware into one hub, and its agentic AI acts like an SRE engineer — monitoring your infrastructure, troubleshooting issues in real time, and cutting resolution time from hours to minutes. Built for teams who want to run AI workloads in their own environment.
+PixelView cloud platform makes private cloud the simplest place to run AI. It unifies OpenStack and Kubernetes into one hub, and its agentic AI acts like an SRE engineer — monitoring your infrastructure, troubleshooting issues in real time, and cutting resolution time from hours to minutes. Built for teams who want to run AI workloads in their own environment.
 
 
 ### Why PixelView
@@ -13,7 +13,7 @@ Your Cloud. Your Data. Your AI.
 
 Running AI workloads shouldn't mean handing your data to a hyperscaler. PixelView is built for organizations that want the power of modern AI infrastructure with the control, security, and cost-predictability of private cloud.
 
-From GPU provisioning to model deployment, PixelView turns your existing OpenStack, Kubernetes, and VMware investments into a production-ready AI platform.
+From GPU provisioning to model deployment, PixelView turns your existing OpenStack and Kubernetes investments into a production-ready AI platform.
 
 
 ### One Platform, Every Cloud
@@ -22,7 +22,7 @@ Unified Multi-Cloud Management
 
 Stop juggling consoles. PixelView brings your entire private cloud estate into a single pane of glass:
 
-- Centralized control — Manage OpenStack, Kubernetes, and VMware resources from one hub
+- Centralized control — Manage OpenStack and Kubernetes resources from one hub
 - Consolidated monitoring — Aggregate alerts and metrics across every platform into a single view
 - Complete inventory — Track cloud resources across your entire infrastructure in real time
 - Built-in incident workflows — Alert assignment, escalation policies, and automated remediation out of the box
@@ -56,7 +56,7 @@ Built for Private Cloud Teams Running AI
 - Enterprises with data sovereignty, compliance, or security requirements
 Platform teams standardizing AI infrastructure across departments
 - Organizations moving AI workloads off expensive public cloud GPU instances
-- Operators managing OpenStack, Kubernetes, and VMware who want one platform instead of five tools
+- Operators managing OpenStack and Kubernetes who want one platform instead of multiple tools
 
 The Best Way to Run AI on Your Own Cloud
 

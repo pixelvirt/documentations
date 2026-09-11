@@ -21,14 +21,14 @@ To register Prometheus as an alerting source:
 
 * In the primary navigation sidebar, navigate to **Services** &rarr; **All Services**:
 
-<a href="../images/prometheus1.jpg" class="glightbox">
-  <img src="../images/prometheus1.jpg" alt="All Services View in PixelView">
+<a href="../../../images/prometheus1.png" class="glightbox">
+  <img src="../../../images/prometheus1.png" alt="All Services View in PixelView">
 </a>
 
 * Click the orange **`+`** (Add Service) button on the top-right toolbar:
 
-<a href="../images/prometheus2.jpg" class="glightbox">
-  <img src="../images/prometheus2.jpg" alt="Add Service Button in Table Toolbar">
+<a href="../../../images/prometheus2.png" class="glightbox">
+  <img src="../../../images/prometheus2.png" alt="Add Service Button in Table Toolbar">
 </a>
 
 * In the **Add New Service** dialog:
@@ -36,8 +36,8 @@ To register Prometheus as an alerting source:
     * In the **Integration Type** dropdown, select **Prometheus**.
     * Click **CREATE TEMPLATE**:
 
-<a href="../images/prometheus3.jpg" class="glightbox">
-  <img src="../images/prometheus3.jpg" alt="Creating Prometheus Service Template">
+<a href="../../../images/prometheus3.png" class="glightbox">
+  <img src="../../../images/prometheus3.png" alt="Creating Prometheus Service Template">
 </a>
 
 ### Copying the Service Key
@@ -46,14 +46,14 @@ Each registered service is provisioned with a cryptographic unique identifier us
 * In the **All Services** table, locate your newly created Prometheus service.
 * Click the action menu (**`...`**) in the **Actions** column and select **Edit**:
 
-<a href="../images/prometheus4.jpg" class="glightbox">
-  <img src="../images/prometheus4.jpg" alt="Edit Service Context Action Menu">
+<a href="../../../images/prometheus4.png" class="glightbox">
+  <img src="../../../images/prometheus4.png" alt="Edit Service Context Action Menu">
 </a>
 
 * In the **Edit Service** modal, locate the **Service Key** field and click the **Copy** icon to copy the key to your clipboard:
 
-<a href="../images/prometheus5.jpg" class="glightbox">
-  <img src="../images/prometheus5.jpg" alt="Copying Service Key from Edit Service Modal">
+<a href="../../../images/prometheus5.png" class="glightbox">
+  <img src="../../../images/prometheus5.png" alt="Copying Service Key from Edit Service Modal">
 </a>
 
 * Click **Cancel** to close the modal without modifying existing settings.
@@ -63,8 +63,8 @@ To ensure you receive direct notifications when alerts trigger on this service:
 
 * In the **Actions** column (**`...`**), click **Subscribe**:
 
-<a href="../images/prometheus6.jpg" class="glightbox">
-  <img src="../images/prometheus6.jpg" alt="Subscribing to Prometheus Service Alerts">
+<a href="../../../images/prometheus6.png" class="glightbox">
+  <img src="../../../images/prometheus6.png" alt="Subscribing to Prometheus Service Alerts">
 </a>
 
 * The subscription status badge updates to **Subscribed** (green).
