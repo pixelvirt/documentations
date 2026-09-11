@@ -161,9 +161,9 @@ connectors:
         nameAttr: cn
 ```
 
-> [!IMPORTANT]
-> * The `redirectURIs` registered under `staticClients` in Dex **must** point to PixelView's backend callback endpoint: `https://<your-pixelview-domain>/api/auth/callback`.
-> * Retain `id: pixelview` as the client identifier matching PixelView's internal OIDC client configuration.
+!!! warning "Important"
+    * The `redirectURIs` registered under `staticClients` in Dex **must** point to PixelView's backend callback endpoint: `https://<your-pixelview-domain>/api/auth/callback`.
+    * Retain `id: pixelview` as the client identifier matching PixelView's internal OIDC client configuration.
 
 ---
 

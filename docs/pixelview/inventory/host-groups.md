@@ -131,5 +131,5 @@ Host groups are the primary deployment targets for orchestration, compliance enf
 * Click the **Delete** (Trash) icon on the Host Group Details page, or choose **Delete Host Group** from the table actions menu (`...`).
 * Confirm the confirmation prompt to remove the group definition.
 
-> [!NOTE]
-> Deleting a host group only removes the grouping reference; the underlying compute servers remain unaffected in Cloud Inventory.
+!!! note
+    Deleting a host group only removes the grouping reference; the underlying compute servers remain unaffected in Cloud Inventory.

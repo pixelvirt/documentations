@@ -96,10 +96,10 @@ receivers:
           follow_redirects: true
 ```
 
-> [!IMPORTANT]
-> * Replace `<pixelview-host>` with the fully qualified domain name or IP address of your PixelView instance (e.g., `cloud.pixelvirt.com`).
-> * Replace `<service_key>` with the exact unique UUID copied from the PixelView service edit dialog.
-> * Enabling `send_resolved: true` ensures that when metrics return below thresholds, Alertmanager sends a resolution event that automatically marks the incident as resolved in PixelView.
+!!! warning "Important"
+    * Replace `<pixelview-host>` with the fully qualified domain name or IP address of your PixelView instance (e.g., `cloud.pixelvirt.com`).
+    * Replace `<service_key>` with the exact unique UUID copied from the PixelView service edit dialog.
+    * Enabling `send_resolved: true` ensures that when metrics return below thresholds, Alertmanager sends a resolution event that automatically marks the incident as resolved in PixelView.
 
 ### Reloading Alertmanager Configuration
 Apply the updated configuration by sending an HTTP POST request to Alertmanager's reload endpoint:

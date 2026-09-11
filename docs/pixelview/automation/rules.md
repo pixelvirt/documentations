@@ -59,9 +59,9 @@ To register a new trigger-to-workflow rule:
 
 * **Name** *(Required)*: Enter a distinctive name for the automation rule (e.g., `MariaBD-rules`).
 * **Description** *(Optional)*: Provide an operational summary explaining what event this rule responds to and its target remediation path.
-* **Trigger** *(Required)*: The event identifier that triggers this rule. 
-  > [!IMPORTANT]
-  > Trigger names must be unique across your environment and must not contain spaces (e.g., use snake_case or kebab-case like `mariadb-down` or `service_failure`).
+* **Trigger** *(Required)*: The event identifier that triggers this rule.
+    !!! warning "Important"
+        Trigger names must be unique across your environment and must not contain spaces (e.g., use snake_case or kebab-case like `mariadb-down` or `service_failure`).
 * **Select Workflow** *(Required)*: Select the target automated workflow from the dropdown that should execute when the trigger occurs.
 * **Enabled** *(Toggle)*: Toggle the switch to activate or deactivate the rule upon creation (default: active).
 
@@ -106,8 +106,8 @@ To modify an existing rule or remove it:
   ```
 * Click **OK** to permanently remove the rule.
 
-> [!WARNING]
-> Deleting a rule immediately ceases automated responses for its configured trigger. Any incoming alerts or bot events matching this trigger will no longer initiate remediation workflows.
+!!! warning
+    Deleting a rule immediately ceases automated responses for its configured trigger. Any incoming alerts or bot events matching this trigger will no longer initiate remediation workflows.
 
 ---
 

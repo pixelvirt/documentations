@@ -86,8 +86,8 @@ services:
     network_mode: host
 ```
 
-> [!TIP]
-> Mounting playbooks and scripts as read-only (`:ro`) ensures the runner cannot accidentally alter or corrupt the underlying Git repository during execution.
+!!! tip
+    Mounting playbooks and scripts as read-only (`:ro`) ensures the runner cannot accidentally alter or corrupt the underlying Git repository during execution.
 
 ---
 
@@ -168,5 +168,5 @@ If a runner node has been permanently taken offline, scaled down, or decommissio
   ```
 * Click **OK** to remove the runner from the inventory.
 
-> [!NOTE]
-> Deleting a runner removes its historical registration record from the dashboard. If the runner daemon container is still running and re-connects, it will automatically register itself again upon its next heartbeat.
+!!! note
+    Deleting a runner removes its historical registration record from the dashboard. If the runner daemon container is still running and re-connects, it will automatically register itself again upon its next heartbeat.

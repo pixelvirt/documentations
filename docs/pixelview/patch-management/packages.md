@@ -93,8 +93,8 @@ PixelView provides two synchronized methods to input and manage package definiti
 * **Pinned Version**: Set the exact version string to pin, or leave blank to track unpinned latest packages.
 * **Delete (`Trash Icon`)**: Remove individual package entries from the list.
 
-> [!NOTE]
-> The row editor and bulk text area remain dynamically synchronized. Edits made in the row editor update the text representation in real time.
+!!! note
+    The row editor and bulk text area remain dynamically synchronized. Edits made in the row editor update the text representation in real time.
 
 * Click **CREATE PACKAGE LIST** to save and persist the package baseline.
 
@@ -192,5 +192,5 @@ Selecting **Edit** opens the **Edit Package List** modal dialog pre-populated wi
    ```
 * Confirm deletion to permanently remove the package list from PixelView.
 
-> [!WARNING]
-> Deleting a package list permanently removes the version-pinned baseline from the catalog. Any active automation jobs or patch planners expecting this package list will no longer receive updates.
+!!! warning
+    Deleting a package list permanently removes the version-pinned baseline from the catalog. Any active automation jobs or patch planners expecting this package list will no longer receive updates.

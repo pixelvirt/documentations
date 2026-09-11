@@ -87,8 +87,8 @@ To update playbooks across your runners whenever changes are merged into your Gi
 cd /opt/pixelvirt/playbooks && git pull origin main
 ```
 
-> [!TIP]
-> You can automate this synchronization by setting up a GitHub Actions workflow that executes `git pull` over SSH on runner nodes, or by configuring a periodic cron job on the runner host.
+!!! tip
+    You can automate this synchronization by setting up a GitHub Actions workflow that executes `git pull` over SSH on runner nodes, or by configuring a periodic cron job on the runner host.
 
 ---
 
@@ -185,8 +185,8 @@ To modify or delete an existing playbook:
   ```
 * Click **OK** to confirm. The playbook reference will be removed from the catalog.
 
-> [!WARNING]
-> Deleting a playbook removes its registration from PixelView. Workflows or automated execution jobs that depend on this playbook reference will fail if invoked.
+!!! warning
+    Deleting a playbook removes its registration from PixelView. Workflows or automated execution jobs that depend on this playbook reference will fail if invoked.
 
 ---
 

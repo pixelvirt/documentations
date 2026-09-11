@@ -85,5 +85,5 @@ Clicking any case title in **My Cases** opens the comprehensive investigation da
 * **Team Chat**: Communicate updates and upload logs in the **COMMENTS** tab.
 * **Historical Host Analysis**: Check the **HISTORY** tab to see if the assigned host has experienced similar failures in the past.
 
-> [!TIP]
-> For a full walkthrough of the four-tab investigation dashboard and sub-task workflows, see the [Open Cases Guide](open-cases.md#detailed-case-dashboard-caseid).
+!!! tip
+    For a full walkthrough of the four-tab investigation dashboard and sub-task workflows, see the [Open Cases Guide](open-cases.md#detailed-case-dashboard-caseid).

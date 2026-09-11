@@ -64,8 +64,8 @@ To register a new authentication profile:
     * **Public Key**: The OpenSSH public key string (e.g., `ssh-ed25519 AAAAC3...` or `ssh-rsa AAAAB3...`).
     * **Private Key**: The matching OpenSSH or RSA private key block for key-based authentication.
 
-> [!IMPORTANT]
-> At least one valid authentication secret (**Password** or **Private Key**) must be provided when creating a credential profile.
+!!! warning "Important"
+    At least one valid authentication secret (**Password** or **Private Key**) must be provided when creating a credential profile.
 
 * Click **CREATE CREDENTIAL** to securely store the profile in the vault.
 
@@ -128,5 +128,5 @@ Stored credential profiles provide the seamless authentication layer connecting 
 * In the **Actions** context menu (**`...`**), select **Delete Credential**.
 * Confirm the prompt to permanently delete the profile from the system vault.
 
-> [!WARNING]
-> Ensure the credential is not actively attached to critical production servers, network devices, or scheduled automation playbooks before deleting.
+!!! warning
+    Ensure the credential is not actively attached to critical production servers, network devices, or scheduled automation playbooks before deleting.

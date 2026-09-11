@@ -143,9 +143,9 @@ To register an existing runner Python script into PixelView's catalog:
 ### Configuration Fields
 
 * **Name** *(Required)*: A unique, descriptive title identifying the script (e.g., `cleanup-temp-files`, `random`).
-* **Filepath** *(Required)*: The filename of the Python script inside the runner's `scripts/` directory. 
-  > [!TIP]
-  > Enter only the base file name (e.g., `cleanup`). PixelView automatically provides the `scripts/` prefix and appends `.py` automatically.
+* **Filepath** *(Required)*: The filename of the Python script inside the runner's `scripts/` directory.
+    !!! tip
+        Enter only the base file name (e.g., `cleanup`). PixelView automatically provides the `scripts/` prefix and appends `.py` automatically.
 * **Description** *(Optional)*: Explanatory notes documenting the script arguments, expected behavior, or environment requirements.
 
 ### Dialog Actions
@@ -185,8 +185,8 @@ To update metadata or remove an obsolete script:
   ```
 * Click **OK** to confirm. The script record will be permanently deleted from the inventory.
 
-> [!WARNING]
-> Deleting a script removes its reference from PixelView. Any scheduled workflows or automated jobs that invoke this script will fail to execute.
+!!! warning
+    Deleting a script removes its reference from PixelView. Any scheduled workflows or automated jobs that invoke this script will fail to execute.
 
 ---
 

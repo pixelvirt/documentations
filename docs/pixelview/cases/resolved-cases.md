@@ -78,8 +78,8 @@ PixelView provides two straightforward workflows to reopen a resolved case:
   <img src="../../images/cases-resolved-cases-reopen-button.png" alt="Case Header Re-Open Button">
 </a>
 
-> [!NOTE]
-> Reopening a case transitions its operational status back to `triggered` or `open`, immediately restoring it to the active triage queue in [Open Cases](open-cases.md) and notifying assigned responders.
+!!! note
+    Reopening a case transitions its operational status back to `triggered` or `open`, immediately restoring it to the active triage queue in [Open Cases](open-cases.md) and notifying assigned responders.
 
 ---
 

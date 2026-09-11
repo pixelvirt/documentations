@@ -39,8 +39,8 @@ PixelView natively supports multi-region OpenStack deployments from a single uni
 | **Global Search Input** | Real-time full-text search with instant cross-region filtering. |
 | **Secondary Region Sidebar** | Dedicated service navigation tree on the left containing **Utilization**, **Compute**, **Storage**, **Network**, and **Identity**. |
 
-> [!NOTE]
-> All subsequent actions, resource tables, and provisioning wizards are scoped to the currently selected region displayed in the top header bar.
+!!! note
+    All subsequent actions, resource tables, and provisioning wizards are scoped to the currently selected region displayed in the top header bar.
 
 ---
 

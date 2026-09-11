@@ -127,5 +127,5 @@ Escalation policies ensure critical infrastructure incidents never go unaddresse
 * In the **Actions** context menu (`...`), select **Delete**.
 * Confirm the confirmation prompt to permanently remove the escalation policy.
 
-> [!WARNING]
-> Before deleting a policy, ensure no active production services are linked to it in the **Services using this escalation** panel.
+!!! warning
+    Before deleting a policy, ensure no active production services are linked to it in the **Services using this escalation** panel.

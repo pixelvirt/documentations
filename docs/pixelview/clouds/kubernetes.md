@@ -73,8 +73,8 @@ To register a new cluster and its connection credentials:
   * **Kubernetes Config** *(Required)*: Paste the complete, standard `kubeconfig` YAML file containing the cluster API server endpoint, Certificate Authority (`certificate-authority-data`), and authentication credentials (such as client certificates, bearer tokens, or service account authentication tokens). Press **`Tab`** to autofill a sample template.
 * Click **SAVE** to validate and register the cluster. Once added, the cluster immediately appears in the **K8s** module under **Clouds**.
 
-> [!TIP]
-> In-cluster workload credentials, image registry pull keys, TLS certificates, and service account tokens are managed within the cluster under [Secrets](#secrets).
+!!! tip
+    In-cluster workload credentials, image registry pull keys, TLS certificates, and service account tokens are managed within the cluster under [Secrets](#secrets).
 
 ---
 

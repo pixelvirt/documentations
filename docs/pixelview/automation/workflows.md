@@ -122,8 +122,8 @@ To remove an obsolete workflow from the platform:
   ```
 * Click **OK** to permanently remove the workflow.
 
-> [!WARNING]
-> Deleting a workflow removes its pipeline definition permanently. Any event-driven [Rules](rules.md), patchsets, or automated triggers linked to this workflow will no longer be able to execute.
+!!! warning
+    Deleting a workflow removes its pipeline definition permanently. Any event-driven [Rules](rules.md), patchsets, or automated triggers linked to this workflow will no longer be able to execute.
 
 ---
 
