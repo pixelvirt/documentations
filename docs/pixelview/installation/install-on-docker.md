@@ -172,6 +172,8 @@ volumes:
   data:
 ```
 
+!!! warning "Important: Service Authentication Key (`AUTH_KEY`)"
+    Make sure to change the default `AUTH_KEY` to a strong, secure secret before deploying. The `AUTH_KEY` must be identical across all PixelView backend services (`pixelview-backend`, `pixelview-escalation`, `pixelview-openstack`, `pixelview-kubernetes`, `pixelview-ansible-server`, `pixelview-patch-management`, etc.) to allow authenticated communication between all services.
 
 ### Start the containers
 !!! Info

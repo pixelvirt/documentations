@@ -51,21 +51,33 @@ git clone git@github.com:your-organization/ansible-playbooks.git /opt/pixelvirt/
 ```
 
 ### Step: Mount Directory into the Runner Container
-In your Ansible Runner `docker-compose.yml` or container startup command, mount the host directory into `/playbooks`:
+In your Ansible Runner `docker-compose.yml` or container startup command, mount the host directory into `/opt/playbooks`:
 
 ```yaml
 services:
   ansible-runner:
-    image: pixelvirt/ansible-runner:latest
-    container_name: pixelvirt-runner-1
-    restart: unless-stopped
-    volumes:
-      - /opt/pixelvirt/playbooks:/playbooks:ro
-      - /opt/pixelvirt/scripts:/scripts:ro
+    image: ghcr.io/pixelvirt/ansible-runner:latest
+    container_name: ansible-runner
     environment:
-      - AGENT_ID=runner-prod-1
-      - QUEUE_NAME=automation
-      - PIXELVIEW_URL=https://cloud.pixelvirt.com
+      - AGENT_ID=runner-1
+      - RABBITMQ_HOST=localhost
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=alertagility
+      - RABBITMQ_PASSWORD=dcW41MPUlM54uw2
+      - JOB_INPUT_QUEUE=automation
+      - JOB_OUTPUT_QUEUE=ansible_output
+      - PREFETCH_COUNT=1
+      - HEARTBEAT_INTERVAL=60
+      - DEFAULT_MAX_RETRIES=3
+      - LOG_LEVEL=INFO
+      - ANSIBLE_HOST_KEY_CHECKING=false
+      - STATIC_AUTH_KEY=6c673f51-6045-47b0-8745-eef9d165a310
+    volumes:
+      - ./playbooks:/opt/playbooks
+      - ./inventory:/opt/inventory
+      - ./logs:/var/log/ansible-runner
+    restart: unless-stopped
+    network_mode: host
 ```
 
 ### Step: Synchronize Updates

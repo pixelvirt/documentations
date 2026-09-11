@@ -26,33 +26,64 @@ PixelView decouples the automation platform from the physical files being execut
 
 * **No Code Stored in Database**: Neither Ansible playbooks nor Python scripts are stored directly in PixelView.
 * **Host Volume Mounting**: Automation files are maintained externally in a version-controlled Git repository (e.g., GitHub, GitLab) and cloned onto the runner host machine. When the runner container starts up, these directories are mounted into the container:
-    * `/opt/pixelvirt/playbooks` &rarr; `/playbooks`
-    * `/opt/pixelvirt/scripts` &rarr; `/scripts`
+    * `/opt/pixelvirt/playbooks` &rarr; `/opt/playbooks`
+    * `/opt/pixelvirt/scripts` &rarr; `/opt/scripts`
 * **Execution by Reference via Queues**: When a job is dispatched from PixelView, the platform sends a message containing the catalog reference (e.g., `install-kubectl.yaml` or `cleanup.py`) over the designated message queue (such as the `automation` queue highlighted above). The assigned runner locates the file directly within its local container mount and executes it.
 
 ### Example Runner Deployment Configuration
 
-Here is a production-grade Docker Compose configuration showing how playbooks and scripts are mounted into the runner container:
+Here is a production-grade Docker Compose configuration showing how playbooks, scripts, and credentials are mounted into the runner container:
 
 ```yaml
-version: '3.8'
-
 services:
   ansible-runner:
-    image: pixelvirt/ansible-runner:latest
-    container_name: pixelvirt-runner-1
-    restart: unless-stopped
-    volumes:
-      # Host directories cloned from GitHub mounted into the runner
-      - /opt/pixelvirt/playbooks:/playbooks:ro
-      - /opt/pixelvirt/scripts:/scripts:ro
-      # Docker socket if the runner executes containerized tasks
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+    image: ghcr.io/pixelvirt/ansible-runner:latest
+    container_name: ansible-runner
     environment:
-      - AGENT_ID=runner-prod-1
-      - QUEUE_NAME=automation
-      - PIXELVIEW_URL=https://cloud.pixelvirt.com
-      - PIXELVIEW_TOKEN=your-runner-authentication-token
+      - AGENT_ID=runner-1
+      - RABBITMQ_HOST=localhost
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=alertagility
+      - RABBITMQ_PASSWORD=dcW41MPUlM54uw2
+      - JOB_INPUT_QUEUE=admin-admin
+      - JOB_OUTPUT_QUEUE=ansible_output
+      - PREFETCH_COUNT=1
+      - HEARTBEAT_INTERVAL=60
+      - DEFAULT_MAX_RETRIES=3
+      - LOG_LEVEL=INFO
+      - ANSIBLE_HOST_KEY_CHECKING=false
+      - STATIC_AUTH_KEY=6c673f51-6045-47b0-8745-eef9d165a310
+    volumes:
+      - ./playbooks:/opt/playbooks
+      - ./inventory:/opt/inventory
+      - ./logs:/var/log/ansible-runner
+    restart: unless-stopped
+    network_mode: host
+
+  ansible-runner2:
+    image: ghcr.io/pixelvirt/ansible-runner:latest
+    container_name: ansible-runner2
+    environment:
+      - AGENT_ID=runner-2-py3asdf
+      - RABBITMQ_HOST=localhost
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=alertagility
+      - RABBITMQ_PASSWORD=dcW41MPUlM54uw2
+      - JOB_INPUT_QUEUE=automation
+      - JOB_OUTPUT_QUEUE=ansible_output
+      - PREFETCH_COUNT=1
+      - HEARTBEAT_INTERVAL=60
+      - DEFAULT_MAX_RETRIES=3
+      - LOG_LEVEL=INFO
+      - ANSIBLE_HOST_KEY_CHECKING=false
+      - STATIC_AUTH_KEY=6c673f51-6045-47b0-8745-eef9d165a310
+    volumes:
+      - ./playbooks:/opt/playbooks
+      - ./inventory:/opt/inventory
+      - ./scripts:/opt/scripts
+      - ./logs:/var/log/ansible-runner
+    restart: unless-stopped
+    network_mode: host
 ```
 
 > [!TIP]
@@ -109,7 +140,7 @@ When an automation job is dispatched from [Executions](executions.md), [Playbook
 
 PixelView runners eliminate the need to open inbound SSH or management ports from the central PixelView platform into protected enterprise networks:
 
-* **Outbound-Only Worker Connectivity**: Runner daemons establish secure, outbound-only HTTPS and WebSocket connections to PixelView. They pull assigned execution tasks from their subscribed queues and stream telemetry outward, allowing deployment inside private VPCs, behind NAT gateways, or within air-gapped enclaves.
+* **Outbound-Only Worker Connectivity**: Runner daemons establish secure, outbound-only AMQP connections to the platform's RabbitMQ message broker. They pull assigned execution tasks from their subscribed queues and stream execution telemetry outward, allowing deployment inside private VPCs, behind NAT gateways, or within air-gapped enclaves.
 * **Queue-Based Workload Partitioning**:
     * **`automation`**: The default general-purpose queue for routine maintenance, diagnostics, and non-privileged operations.
     * **`admin-admin`**: A restricted high-privilege queue dedicated to root-level platform provisioning, hypervisor management, and kernel upgrades.

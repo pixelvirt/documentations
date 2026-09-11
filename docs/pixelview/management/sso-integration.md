@@ -177,6 +177,7 @@ services:
     image: ghcr.io/pixelvirt/pixelview-backend:v0.0.1
     container_name: pixelview-backend
     restart: always
+    network_mode: host
     environment:
       # Service Authentication Key
       AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
@@ -186,9 +187,9 @@ services:
       DEX_REDIRECT_URI: https://<your-pixelview-domain>/api/auth/callback
       
       # Database and Domain Settings
-      MONGO_URI: mongodb://localhost:27017/pixelview
+      MONGO_URI: mongodb://localhost:27017/alertagility
       DOMAIN: yourdomain.com
-      SUBDOMAIN: cloud
+      SUBDOMAIN: alertagility
       ENVIRONMENT: production
 ```
 

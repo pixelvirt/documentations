@@ -1,7 +1,6 @@
 PixelView allows users to consolidate multiple cloud platforms into one place.
 
 Currently we support: Openstack and Kubernetes
-Coming Soon: VMWare Integration
 
 **Adding Openstack Cloud(s)**
 
