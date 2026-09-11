@@ -108,9 +108,7 @@ nav:
     - "API Examples": pixelview/api/api.md
     - "Python Example": pixelview/api/create-alerts.md
 
-  - Blogs:
-    - Blog: 
-      - https://blog.pixelvirt.com
+  - Blog: blog/index.md
 #  - openstack:
 #    - 'Initial setup': openstack/quick-guide.md
 #    - 'Launching an Instance ': openstack/lunch-instance.md
