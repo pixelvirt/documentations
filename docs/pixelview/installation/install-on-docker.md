@@ -142,7 +142,7 @@ services:
       MONGODB_URI: mongodb://localhost:27017
       MONGODB_DBNAME: pixelview
       ANSIBLE_SERVER_DBNAME: ansible_server_db
-      ANSIBLE_SERVER_URL: localhost:8000
+      ANSIBLE_SERVER_URL: http://localhost:8000
       LEASE_TTL_SECONDS: 30
       HEARTBEAT_INTERVAL_SECONDS: 10
       CLAIM_POLL_INTERVAL_SECONDS: 5
