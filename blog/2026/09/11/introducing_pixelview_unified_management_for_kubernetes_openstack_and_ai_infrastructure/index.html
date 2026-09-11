@@ -1,0 +1,923 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.pixelvirt.com/blog/2026/09/11/introducing_pixelview_unified_management_for_kubernetes_openstack_and_ai_infrastructure/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Introducing PixelView: Unified Management for Kubernetes, OpenStack, and AI Infrastructure - PixelVirt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/empty.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/glightbox.min.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introducing-pixelview-unified-management-for-kubernetes-openstack-and-ai-infrastructure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="PixelVirt" class="md-header__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PixelVirt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introducing PixelView: Unified Management for Kubernetes, OpenStack, and AI Infrastructure
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../pixelview/introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../pixelview/api/api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="PixelVirt" class="md-nav__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    PixelVirt
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../../../pixelview/introduction/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView Documentation
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../../pixelview/api/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView API
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-private-cloud-ai-infrastructure-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Private Cloud &amp; AI Infrastructure Challenge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architectural-pillars-of-pixelview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Pillars of PixelView
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architectural Pillars of PixelView">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unified-multi-cloud-management-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Unified Multi-Cloud Management Plane
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-decoupled-gitops-automation-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Decoupled GitOps Automation Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-native-alertmanager-integration-automated-case-triage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Native Alertmanager Integration &amp; Automated Case Triage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deterministic-patch-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Deterministic Patch Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-deployment-in-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Deployment in Minutes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next-on-the-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What’s Next on the Roadmap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explore-the-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explore the Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://github.com/pixelvirt.png" alt="PixelVirt Team">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          <a href="https://pixelvirt.com">PixelVirt Team</a>
+                        
+                      </strong>
+                      <br>
+                      Cloud Infrastructure & AI Systems Engineers
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-09-11 00:00:00+00:00" class="md-ellipsis">September 11, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/announcements/">Announcements</a>, 
+                              <a href="../../../../category/multi-cloud/">Multi-Cloud</a>, 
+                              <a href="../../../../category/kubernetes/">Kubernetes</a>, 
+                              <a href="../../../../category/openstack/">OpenStack</a>, 
+                              <a href="../../../../category/automation/">Automation</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              4 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="introducing-pixelview-unified-management-for-kubernetes-openstack-and-ai-infrastructure">Introducing PixelView: Unified Management for Kubernetes, OpenStack, and AI Infrastructure<a class="headerlink" href="#introducing-pixelview-unified-management-for-kubernetes-openstack-and-ai-infrastructure" title="Permanent link">&para;</a></h1>
+<p>Modern engineering organizations face a complex infrastructure paradox. On one hand, the explosive growth of artificial intelligence and high-performance computing workloads has revived demand for bare-metal and private cloud environments, where dedicated GPU economics far outpace hyperscaler pricing. On the other hand, managing distributed Kubernetes clusters alongside multi-region OpenStack deployments often results in operational fragmentation—forcing platform teams to navigate five different management portals, reconcile disparate monitoring streams, and rely on fragile manual remediation scripts.</p>
+<p>Today, we are thrilled to introduce <strong>PixelView</strong>, the AI-first cloud management platform built by PixelVirt Technology to unify multi-cloud operations, automated GitOps execution, and conversational infrastructure intelligence under a single pane of glass.</p>
+<!-- more -->
+
+<hr />
+<h2 id="the-private-cloud-ai-infrastructure-challenge">The Private Cloud &amp; AI Infrastructure Challenge<a class="headerlink" href="#the-private-cloud-ai-infrastructure-challenge" title="Permanent link">&para;</a></h2>
+<p>Running enterprise workloads across private and hybrid clouds delivers tremendous sovereignty, compliance, and cost advantages. However, teams quickly encounter critical friction points:</p>
+<ul>
+<li><strong>Fragmented Management Consoles</strong>: Operators switch contexts constantly between Kubernetes dashboards, OpenStack Horizon, hypervisor metrics, and identity providers.</li>
+<li><strong>Complex Automation Lifecycle</strong>: Coordinating configuration updates, zero-downtime rolling upgrades, and OS security patches across heterogeneous clusters frequently relies on ad-hoc scripts with limited audit visibility.</li>
+<li><strong>Alert Fatigue and Disjointed Incident Response</strong>: Monitoring alerts fire across Prometheus, Alertmanager, and external systems into cluttered notification channels without automated root-cause correlation or immediate remediation hooks.</li>
+<li><strong>Security &amp; Secret Sprawl</strong>: Worker nodes often require broad SSH access or hardcoded credentials across cloud boundaries to execute operational tasks.</li>
+</ul>
+<p>PixelView was architected from the ground up to solve these exact challenges.</p>
+<hr />
+<h2 id="architectural-pillars-of-pixelview">Architectural Pillars of PixelView<a class="headerlink" href="#architectural-pillars-of-pixelview" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                                  +-----------------------+
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                  |   PixelView Console   |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                                  |  (Single Pane of Glass|
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                                  +-----------+-----------+
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                                              |
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                     +------------------------+------------------------+
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                     |                                                 |
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>         +-----------v-----------+                         +-----------v-----------+
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>         | Multi-Cloud Inventory |                         |   Incident Response   |
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>         |  Kubernetes &amp; OpenStack                         |  Prometheus &amp; Webhooks|
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>         +-----------+-----------+                         +-----------+-----------+
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                     |                                                 |
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                     +------------------------+------------------------+
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                                              |
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                                  +-----------v-----------+
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                                  |  RabbitMQ Message Bus |
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                                  |   (AMQP Event Broker) |
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                                  +-----------+-----------+
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                                              |
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                     +------------------------+------------------------+
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                     |                                                 |
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>         +-----------v-----------+                         +-----------v-----------+
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>         |    `admin-admin`      |                         |     `automation`      |
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>         | Host Provisioning &amp; OS|                         | Playbooks &amp; App Tasks |
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>         +-----------------------+                         +-----------------------+
+</span></code></pre></div>
+<h3 id="1-unified-multi-cloud-management-plane">1. Unified Multi-Cloud Management Plane<a class="headerlink" href="#1-unified-multi-cloud-management-plane" title="Permanent link">&para;</a></h3>
+<p>PixelView treats Kubernetes clusters and OpenStack regions as first-class citizens in a shared inventory:</p>
+<ul>
+<li><strong>OpenStack Multi-Region Fleet</strong>: Real-time quota tracking, compute utilization heatmaps, automated security group enforcement, volume snapshot management, and software-defined network topologies across all data centers.</li>
+<li><strong>Kubernetes Orchestration</strong>: Cluster discovery via standard <code>kubeconfig</code> specifications, namespace-scoped deployments, daemonsets, and declarative resource inspection.</li>
+<li><strong>Zero Host Ingress Required</strong>: Compute servers and hypervisors do not need inbound SSH ports exposed to the public internet or external networks.</li>
+</ul>
+<h3 id="2-decoupled-gitops-automation-engine">2. Decoupled GitOps Automation Engine<a class="headerlink" href="#2-decoupled-gitops-automation-engine" title="Permanent link">&para;</a></h3>
+<p>A core design principle of PixelView is that <strong>code is never stored in the platform database</strong>. All Ansible playbooks, inventory files, and automation scripts remain strictly version-controlled within your organization's external Git repositories (GitHub, GitLab).</p>
+<p>When distributed runner daemons launch, these repositories are mounted directly from the host filesystem into containerized execution workers:</p>
+<ul>
+<li><code>/opt/pixelvirt/playbooks</code> &rarr; <code>/opt/playbooks</code></li>
+<li><code>/opt/pixelvirt/scripts</code> &rarr; <code>/opt/scripts</code></li>
+</ul>
+<p>Workloads are partitioned cleanly across designated message queues via RabbitMQ:
+* <strong><code>automation</code> queue</strong>: Standard operational jobs, routine diagnostics, and scheduled health maintenance.
+* <strong><code>admin-admin</code> queue</strong>: Restricted, high-privilege operations including hypervisor patching, kernel rebuilds, and root-level security provisioning.</p>
+<div class="admonition tip">
+<p class="admonition-title">Read-Only Security</p>
+<p>Mounting automation directories with read-only flags (<code>:ro</code>) ensures runner containers execute tasks headlessly without risk of modifying or polluting the underlying Git repository.</p>
+</div>
+<h3 id="3-native-alertmanager-integration-automated-case-triage">3. Native Alertmanager Integration &amp; Automated Case Triage<a class="headerlink" href="#3-native-alertmanager-integration-automated-case-triage" title="Permanent link">&para;</a></h3>
+<p>PixelView bridges the gap between observability and incident remediation:</p>
+<ul>
+<li><strong>Prometheus Alertmanager Ingestion</strong>: Dedicated webhook endpoints authenticate incoming alerts using cryptographic <strong>Service Keys</strong>.</li>
+<li><strong>Automatic Field Mapping</strong>: Incoming labels and annotations (<code>alertname</code>, <code>instance</code>, <code>severity</code>) are normalized in real time and converted into triage cases.</li>
+<li><strong>Resolution Sync</strong>: Enabling <code>send_resolved: true</code> in Alertmanager automatically marks the associated PixelView case as resolved when metrics return below thresholds.</li>
+<li><strong>Event-Driven Rules</strong>: Configure deterministic trigger rules (such as <code>mariadb-down</code> or <code>host-cpu-exhaustion</code>) to automatically dispatch remediation playbooks the instant an incident occurs.</li>
+</ul>
+<h3 id="4-deterministic-patch-management">4. Deterministic Patch Management<a class="headerlink" href="#4-deterministic-patch-management" title="Permanent link">&para;</a></h3>
+<p>Patching production clusters should never be an unpredictable gamble. PixelView's patch management suite introduces structured, reversible rollout pipelines:</p>
+<ul>
+<li><strong>Workflows &amp; Package Lists</strong>: Define patchsets either as sequential Ansible automation workflows or as version-pinned OS package baselines (supporting <code>apt</code>, <code>yum</code>/<code>dnf</code>, <code>pacman</code>, and <code>choco</code>).</li>
+<li><strong>Interactive Planners</strong>: Execute rolling deployment plans with automated checkpoint intervention gates (<code>Waiting Intervention</code>, <code>Retry</code>, <code>Skip</code>, <code>Abort</code>) to guarantee critical services remain online throughout maintenance windows.</li>
+</ul>
+<hr />
+<h2 id="production-deployment-in-minutes">Production Deployment in Minutes<a class="headerlink" href="#production-deployment-in-minutes" title="Permanent link">&para;</a></h2>
+<p>PixelView is engineered for rapid deployment, whether running as an all-in-one containerized stack on Docker Compose or scaled out as a multi-node High Availability (HA) cluster with dedicated MongoDB replica sets and RabbitMQ clusters:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 1. Create your deployment workspace</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>pixelview<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pixelview
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 2. Save your docker-compose.yml configuration</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># (Using ghcr.io/pixelvirt/ images)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 3. Launch the platform</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div>
+<p>Follow our comprehensive deployment guides for full production Docker Compose files, environment configurations, and reverse proxy blueprints:
+* <a href="https://docs.pixelvirt.com/pixelview/installation/install-on-docker/">Docker Compose Deployment Guide</a>
+* <a href="https://docs.pixelvirt.com/pixelview/installation/install-ha/">High Availability Multi-Node Setup</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Security First</p>
+<p>When deploying PixelView microservices in production, always configure a strong, unique <code>AUTH_KEY</code> across all backend containers (<code>pixelview-backend</code>, <code>pixelview-escalation</code>, <code>pixelview-openstack</code>, <code>pixelview-kubernetes</code>, <code>pixelview-ansible-server</code>) to enforce authenticated inter-service communication.</p>
+</div>
+<hr />
+<h2 id="whats-next-on-the-roadmap">What’s Next on the Roadmap<a class="headerlink" href="#whats-next-on-the-roadmap" title="Permanent link">&para;</a></h2>
+<p>The release of PixelView marks the foundation of our vision for autonomous infrastructure. In upcoming releases, we are expanding:</p>
+<ol>
+<li><strong>Domain-Specific Conversational SRE Agents</strong>: Natural-language infrastructure troubleshooting (<em>"Identify all memory-saturated worker nodes in Region East and suggest scaling playbooks"</em>).</li>
+<li><strong>Private Enterprise LLM Sidecars</strong>: Secure, on-premises inference pipelines (LLaMA, Qwen) for local log analysis without exposing sensitive operational telemetry to public APIs.</li>
+<li><strong>Advanced Telemetry Heatmaps</strong>: Deep GPU kernel-level utilization monitoring tailored for AI inference and distributed model training clusters.</li>
+</ol>
+<hr />
+<h2 id="explore-the-documentation">Explore the Documentation<a class="headerlink" href="#explore-the-documentation" title="Permanent link">&para;</a></h2>
+<p>Ready to dive deeper? Explore our comprehensive technical guides:</p>
+<ul>
+<li><a href="https://docs.pixelvirt.com">Architecture &amp; Getting Started</a></li>
+<li><a href="https://docs.pixelvirt.com/pixelview/installation/install-on-docker/">Installing on Docker Compose</a></li>
+<li><a href="https://docs.pixelvirt.com/pixelview/automation/runners/">Deploying Ansible Runners</a></li>
+<li><a href="https://docs.pixelvirt.com/pixelview/services/prometheus/integration/">Configuring Prometheus Alertmanager Integration</a></li>
+<li><a href="https://docs.pixelvirt.com/pixelview/patch-management/planner/">Building Patch Planners</a></li>
+</ul>
+<p>We welcome your feedback and look forward to shaping the future of AI-driven private cloud infrastructure with you!</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["announce.dismiss", "header.autohide", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.prune", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/glightbox.min.js"></script>
+      
+        <script src="../../../../../assets/javascripts/lightbox.js"></script>
+      
+    
+  </body>
+</html>

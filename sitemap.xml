@@ -9,6 +9,10 @@
          <lastmod>2026-09-11</lastmod>
     </url>
     <url>
+         <loc>https://docs.pixelvirt.com/blog/2026/09/11/introducing_pixelview_unified_management_for_kubernetes_openstack_and_ai_infrastructure/</loc>
+         <lastmod>2026-09-11</lastmod>
+    </url>
+    <url>
          <loc>https://docs.pixelvirt.com/pixelview/introduction/</loc>
          <lastmod>2026-09-11</lastmod>
     </url>
@@ -150,6 +154,30 @@
     </url>
     <url>
          <loc>https://docs.pixelvirt.com/pixelview/settings/settings/</loc>
+         <lastmod>2026-09-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.pixelvirt.com/blog/archive/2026/</loc>
+         <lastmod>2026-09-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.pixelvirt.com/blog/category/announcements/</loc>
+         <lastmod>2026-09-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.pixelvirt.com/blog/category/multi-cloud/</loc>
+         <lastmod>2026-09-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.pixelvirt.com/blog/category/kubernetes/</loc>
+         <lastmod>2026-09-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.pixelvirt.com/blog/category/openstack/</loc>
+         <lastmod>2026-09-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.pixelvirt.com/blog/category/automation/</loc>
          <lastmod>2026-09-11</lastmod>
     </url>
 </urlset>
