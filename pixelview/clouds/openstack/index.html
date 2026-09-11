@@ -658,8 +658,6 @@
       
         
       
-        
-      
     
     
     
@@ -843,6 +841,17 @@
     <span class="md-ellipsis">
       
         Quota Categories &amp; Resource Metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hypervisor-overcommit-ratios-capacity-sizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hypervisor Overcommit Ratios &amp; Capacity Sizing
       
     </span>
   </a>
@@ -1187,6 +1196,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-novalidhost-scheduling-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for NoValidHost Scheduling Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-storage-volumes-stuck-in-attaching-or-detaching-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for Storage Volumes Stuck in Attaching or Detaching State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hypervisor-maintenance-live-evacuation-runbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hypervisor Maintenance &amp; Live Evacuation Runbook
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1216,34 +1258,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -2828,6 +2842,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hypervisor-overcommit-ratios-capacity-sizing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hypervisor Overcommit Ratios &amp; Capacity Sizing
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3166,6 +3191,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-novalidhost-scheduling-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for NoValidHost Scheduling Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-storage-volumes-stuck-in-attaching-or-detaching-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for Storage Volumes Stuck in Attaching or Detaching State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hypervisor-maintenance-live-evacuation-runbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hypervisor Maintenance &amp; Live Evacuation Runbook
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3265,13 +3323,13 @@
 <h1 id="openstack-cloud-management">OpenStack Cloud Management<a class="headerlink" href="#openstack-cloud-management" title="Permanent link">&para;</a></h1>
 <p>The <strong>OpenStack</strong> module (<code>/openstack</code>) under <strong>Clouds</strong> provides centralized enterprise cloud orchestration, infrastructure lifecycle management, and full-stack observability for OpenStack environments within PixelView.</p>
 <p>PixelView seamlessly integrates with core OpenStack services to deliver a unified operational interface:
-- <strong>Telemetry &amp; Quotas (Gnocchi / Ceilometer)</strong>: Real-time resource utilization, core/RAM/storage capacity tracking, and regional quota telemetry.
-- <strong>Nova (Compute)</strong>: Virtual machine provisioning, live state management, sizing flavors, SSH key pairs, and anti-affinity placement policies.
-- <strong>Glance (Image Service)</strong>: OS image catalogs, public and private template lifecycle, and distribution management.
-- <strong>Cinder &amp; Swift (Storage Services)</strong>: Persistent block volume lifecycle, NVMe/Standard storage tiers, point-in-time volume snapshots, durable volume backups, and distributed Swift object storage containers.
-- <strong>Neutron (Software-Defined Networking)</strong>: Multi-tenant virtual networks, subnets, routers, distributed firewall security groups, public floating elastic IPs, virtual network ports, and QoS bandwidth policies.
-- <strong>Octavia (Load Balancing)</strong>: Enterprise layer 4/7 load balancers, listener pools, and active health monitoring.
-- <strong>Keystone (Identity &amp; Governance)</strong>: Multi-tenant project boundaries, user authentication, role-based access control (RBAC), and automation application credentials.</p>
+* <strong>Telemetry &amp; Quotas (Gnocchi / Ceilometer)</strong>: Real-time resource utilization, core/RAM/storage capacity tracking, and regional quota telemetry.
+* <strong>Nova (Compute)</strong>: Virtual machine provisioning, live state management, sizing flavors, SSH key pairs, and anti-affinity placement policies.
+* <strong>Glance (Image Service)</strong>: OS image catalogs, public and private template lifecycle, and distribution management.
+* <strong>Cinder &amp; Swift (Storage Services)</strong>: Persistent block volume lifecycle, NVMe/Standard storage tiers, point-in-time volume snapshots, durable volume backups, and distributed Swift object storage containers.
+* <strong>Neutron (Software-Defined Networking)</strong>: Multi-tenant virtual networks, subnets, routers, distributed firewall security groups, public floating elastic IPs, virtual network ports, and QoS bandwidth policies.
+* <strong>Octavia (Load Balancing)</strong>: Enterprise layer 4/7 load balancers, listener pools, and active health monitoring.
+* <strong>Keystone (Identity &amp; Governance)</strong>: Multi-tenant project boundaries, user authentication, role-based access control (RBAC), and automation application credentials.</p>
 <hr />
 <h2 id="accessing-openstack-multi-region-management">Accessing OpenStack &amp; Multi-Region Management<a class="headerlink" href="#accessing-openstack-multi-region-management" title="Permanent link">&para;</a></h2>
 <h3 id="navigating-to-openstack">Navigating to OpenStack<a class="headerlink" href="#navigating-to-openstack" title="Permanent link">&para;</a></h3>
@@ -3415,6 +3473,25 @@ All subsequent actions, resource tables, and provisioning wizards are scoped to 
 </tr>
 </tbody>
 </table>
+<h3 id="hypervisor-overcommit-ratios-capacity-sizing">Hypervisor Overcommit Ratios &amp; Capacity Sizing<a class="headerlink" href="#hypervisor-overcommit-ratios-capacity-sizing" title="Permanent link">&para;</a></h3>
+<p>When operating private enterprise clouds, hypervisor resources are managed according to deliberate allocation ratios configured in <code>nova.conf</code>. PixelView tracks the physical allocation footprint against these overcommit policies:</p>
+<ul>
+<li><strong>CPU Allocation Ratio (<code>cpu_allocation_ratio</code>)</strong>:<ul>
+<li><strong>Development / Staging Clusters (<code>16.0</code>)</strong>: 16 virtual vCPUs per physical host core. Suitable for bursty development environments, CI/CD runners, and microservices with low average CPU utilization.</li>
+<li><strong>General Enterprise Workloads (<code>4.0</code> - <code>8.0</code>)</strong>: 4 to 8 virtual vCPUs per physical core. Provides high density while avoiding CPU "noisy neighbor" latency spikes.</li>
+<li><strong>High-Performance &amp; Database Clusters (<code>1.0</code> - <code>2.0</code>)</strong>: Dedicated or near-dedicated physical cores. Prevents context switching overhead for latency-sensitive transactional databases (e.g., PostgreSQL, MySQL, Redis).</li>
+</ul>
+</li>
+<li><strong>RAM Allocation Ratio (<code>ram_allocation_ratio</code>)</strong>:<ul>
+<li><strong>Production Standard (<code>1.0</code>)</strong>: PixelView recommends a strict 1:1 physical memory allocation ratio for production hypervisors. Unlike CPU cores, memory cannot be transparently compressed on Linux KVM hosts without triggering kernel swap thrashing or the Out-of-Memory (<code>oom-killer</code>) daemon terminating active hypervisor processes.</li>
+</ul>
+</li>
+<li><strong>Disk Allocation Ratio (<code>disk_allocation_ratio</code>)</strong>:<ul>
+<li><strong>Ceph RBD &amp; Thin-Provisioned SAN (<code>1.5</code> - <code>2.0</code>)</strong>: Enables safe overprovisioning when volume backends utilize thin provisioning, copy-on-write, and deduplication.</li>
+<li><strong>Local Ephemeral Disks (<code>1.0</code>)</strong>: Dedicated disk space allocation to prevent hypervisor local <code>/var/lib/nova/instances</code> storage from running out of disk during snapshot operations.</li>
+</ul>
+</li>
+</ul>
 <hr />
 <h2 id="compute-infrastructure-nova-glance">Compute Infrastructure (Nova &amp; Glance)<a class="headerlink" href="#compute-infrastructure-nova-glance" title="Permanent link">&para;</a></h2>
 <p>The <strong>Compute</strong> submenu provides complete management over virtual machines, hardware profiles, image catalogs, SSH credentials, and server affinity placement.</p>
@@ -5821,6 +5898,35 @@ All subsequent actions, resource tables, and provisioning wizards are scoped to 
 </tr>
 </tbody>
 </table>
+<h3 id="diagnostic-workflow-for-novalidhost-scheduling-failures">Diagnostic Workflow for NoValidHost Scheduling Failures<a class="headerlink" href="#diagnostic-workflow-for-novalidhost-scheduling-failures" title="Permanent link">&para;</a></h3>
+<p>When an instance provisioning or resize operation fails with <code>NoValidHost</code> (HTTP 500 / No valid host was found):
+* <strong>Identify Active Scheduler Filters</strong>:
+    * Nova scheduler filters candidate hypervisors sequentially. Review which filter eliminated the hosts:
+        * <code>AvailabilityZoneFilter</code>: Verify that active compute nodes exist in the selected Availability Zone.
+        * <code>RamFilter</code> &amp; <code>DiskFilter</code>: Inspect hypervisor free memory and local storage. If memory overcommit ceiling is reached, the host is excluded.
+        * <code>ComputeFilter</code>: Ensure compute services (<code>nova-compute</code>) are in <code>enabled</code> and <code>up</code> state.
+        * <code>ImagePropertiesFilter</code>: Check if the image specifies architecture constraints (e.g., <code>hw_machine_type=q35</code>, <code>hw_cpu_policy=dedicated</code>) that hypervisors do not advertise.
+* <strong>Inspect Placement API Allocation State</strong>:
+    * In the PixelView console, check regional quota utilization under <strong>Utilization</strong> to ensure vCPU, RAM, and instance counts have not exceeded the project ceiling.</p>
+<h3 id="diagnostic-workflow-for-storage-volumes-stuck-in-attaching-or-detaching-state">Diagnostic Workflow for Storage Volumes Stuck in Attaching or Detaching State<a class="headerlink" href="#diagnostic-workflow-for-storage-volumes-stuck-in-attaching-or-detaching-state" title="Permanent link">&para;</a></h3>
+<p>When a Cinder volume becomes stuck in an intermediate state (<code>attaching</code> or <code>detaching</code>):
+* <strong>Identify Stale Attachment Records</strong>:
+    * In <strong>Storage</strong> &rarr; <strong>Volumes</strong>, select the volume and inspect the <strong>Attached To</strong> field to identify the hypervisor host and instance ID.
+* <strong>Inspect Nova and Cinder Attachment Mismatch</strong>:
+    * If the volume is detached in Nova but still marked <code>in-use</code> or <code>detaching</code> in Cinder, use the instance <strong>Actions</strong> menu to trigger an attachment state refresh.
+    * If necessary, use PixelView automation or the OpenStack CLI to reset the volume state to <code>available</code> once confirmed unmounted from the guest OS:
+        <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>openstack<span class="w"> </span>volume<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--state<span class="w"> </span>available<span class="w"> </span>&lt;volume_id&gt;
+</span></code></pre></div></p>
+<h3 id="hypervisor-maintenance-live-evacuation-runbook">Hypervisor Maintenance &amp; Live Evacuation Runbook<a class="headerlink" href="#hypervisor-maintenance-live-evacuation-runbook" title="Permanent link">&para;</a></h3>
+<p>When performing physical host hardware maintenance, kernel upgrades, or RAM replacement:
+* <strong>Disable Compute Scheduling</strong>:
+    * Prevent new workloads from landing on the hypervisor by disabling the compute service:
+        <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>openstack<span class="w"> </span>compute<span class="w"> </span>service<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--disable<span class="w"> </span>--disable-reason<span class="w"> </span><span class="s2">&quot;Hardware Maintenance&quot;</span><span class="w"> </span>&lt;hypervisor_hostname&gt;<span class="w"> </span>nova-compute
+</span></code></pre></div>
+* <strong>Execute Live Migration</strong>:
+    * Select active instances running on the hypervisor and initiate live migration to target hypervisors with shared storage (<code>live_migration_block_migration=auto</code>).
+* <strong>Evacuate Remaining Compute Workloads</strong>:
+    * If the hypervisor suffered an unexpected hardware failure, execute instance evacuation to restore instances on healthy hypervisors from remote Cinder boot volumes.</p>
 
 
 

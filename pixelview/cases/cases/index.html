@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -968,6 +938,17 @@
     <span class="md-ellipsis">
       
         Core Operational Workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incident-severity-sla-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Severity &amp; SLA Matrix
       
     </span>
   </a>
@@ -2423,6 +2404,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#incident-severity-sla-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Severity &amp; SLA Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#incident-lifecycle-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2606,10 +2598,59 @@
 </tbody>
 </table>
 <hr />
+<h2 id="incident-severity-sla-matrix">Incident Severity &amp; SLA Matrix<a class="headerlink" href="#incident-severity-sla-matrix" title="Permanent link">&para;</a></h2>
+<p>PixelView provides standardized operational severity classifications to align team response speed with business impact:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Severity Tier</th>
+<th style="text-align: left;">UI Badge</th>
+<th style="text-align: left;">Operational Definition</th>
+<th style="text-align: left;">Target MTTA</th>
+<th style="text-align: left;">Target MTTR</th>
+<th style="text-align: left;">Automation &amp; Escalation Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Critical</strong></td>
+<td style="text-align: left;">Red (<code>critical</code>)</td>
+<td style="text-align: left;">Catastrophic service outage, total datacenter failure, or critical database unavailability.</td>
+<td style="text-align: left;">&lt; 15 min</td>
+<td style="text-align: left;">&lt; 1 hour</td>
+<td style="text-align: left;">Immediate dispatch to on-call engineers; automated remediation bots trigger at Level 0.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>High</strong></td>
+<td style="text-align: left;">Orange (<code>high</code>)</td>
+<td style="text-align: left;">Redundancy loss, severe latency degradation, or partial service disruption impacting multiple users.</td>
+<td style="text-align: left;">&lt; 30 min</td>
+<td style="text-align: left;">&lt; 4 hours</td>
+<td style="text-align: left;">Escalation policy countdown initiates; notification dispatched via primary chat/email webhooks.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Moderate</strong></td>
+<td style="text-align: left;">Yellow (<code>moderate</code>)</td>
+<td style="text-align: left;">Non-blocking service degradation, single node failure in HA cluster, or capacity threshold warnings.</td>
+<td style="text-align: left;">&lt; 2 hours</td>
+<td style="text-align: left;">&lt; 24 hours</td>
+<td style="text-align: left;">Assigned to operational queue; standard escalation rules apply without emergency paging.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Low</strong></td>
+<td style="text-align: left;">Blue (<code>low</code>)</td>
+<td style="text-align: left;">Minor operational anomaly, non-urgent background task warning, or routine telemetry deviation.</td>
+<td style="text-align: left;">&lt; 8 hours</td>
+<td style="text-align: left;">&lt; 72 hours</td>
+<td style="text-align: left;">Logged for routine review during shift handovers; no automated paging triggered.</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="incident-lifecycle-architecture">Incident Lifecycle Architecture<a class="headerlink" href="#incident-lifecycle-architecture" title="Permanent link">&para;</a></h2>
 <p>Every incident in PixelView follows a structured four-stage lifecycle:</p>
 <ul>
-<li><strong>Ingestion &amp; Normalization</strong>: Monitoring webhooks and API alerts are normalized into a unified incident schema containing target hostnames, impacted services, and calculated severity tiers (<strong>CRITICAL</strong>, <strong>HIGH</strong>, <strong>MEDIUM</strong>, <strong>LOW</strong>).</li>
+<li><strong>Ingestion &amp; Normalization</strong>: Monitoring webhooks and API alerts are normalized into a unified incident schema containing target hostnames, impacted services, and calculated severity tiers (<strong>Critical</strong>, <strong>High</strong>, <strong>Moderate</strong>, <strong>Low</strong>).</li>
 <li><strong>Triage &amp; Ownership</strong>: Operational teams assess the incident via <a href="../open-cases/">Open Cases</a>, assign designated responder teams (e.g., <code>admins</code>), or execute bulk triage actions (<strong>Acknowledge</strong>, <strong>Unacknowledge</strong>, <strong>Resolve</strong>).</li>
 <li><strong>Investigation &amp; Remediation</strong>: Responders drill into the dedicated incident console (<code>/case/:id</code>) to review chronological investigation timelines, inspect raw monitoring telemetry, delegate structured sub-tasks, and collaborate via threaded chat.</li>
 <li><strong>Closure &amp; Retrospective</strong>: Once resolved, cases transition to <a href="../resolved-cases/">Resolved Cases</a> for post-mortem analysis and SLA compliance reporting, with the ability to reopen if flapping is detected.</li>

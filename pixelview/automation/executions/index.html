@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1604,6 +1574,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-time-sse-log-streaming-retry-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-Time SSE Log Streaming &amp; Retry Architecture
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2673,6 +2654,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#real-time-sse-log-streaming-retry-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-Time SSE Log Streaming &amp; Retry Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2940,6 +2932,22 @@
 <ul>
 <li><strong>Target Nodes</strong>: Array of all server IP addresses or hostnames targeted during the run (e.g., <code>["119.9.94.30"]</code>).</li>
 <li><strong>Host Variables</strong>: Connection variables, remote login user (<code>ansible_user: "root"</code>), and port definitions.</li>
+</ul>
+<hr />
+<h2 id="real-time-sse-log-streaming-retry-architecture">Real-Time SSE Log Streaming &amp; Retry Architecture<a class="headerlink" href="#real-time-sse-log-streaming-retry-architecture" title="Permanent link">&para;</a></h2>
+<p>The execution dashboard provides sub-second terminal observability backed by an enterprise Server-Sent Events (SSE) streaming engine:</p>
+<ul>
+<li><strong>Live Streaming Protocol</strong>: The frontend connects to the streaming endpoint via persistent HTTP SSE connections. As the runner daemon executes each Ansible task or Python command, output lines are published instantly without polling overhead.</li>
+<li><strong>Automatic Stream Reconnection</strong>: If a temporary network interruption occurs between the browser and PixelView, the client automatically attempts reconnection with a 5000ms backoff interval, preserving previously rendered terminal history.</li>
+<li><strong>Play Recap Metrics</strong>: Upon playbook conclusion, the runner emits a structured recap quantifying:<ul>
+<li><strong><code>ok</code></strong>: Tasks executed where the target node was already in the desired state.</li>
+<li><strong><code>changed</code></strong>: Tasks where modifications were actively applied to the system.</li>
+<li><strong><code>unreachable</code></strong>: Target nodes that could not be reached via SSH or network transport.</li>
+<li><strong><code>failed</code></strong>: Tasks that returned non-zero exit codes.</li>
+<li><strong><code>skipped</code></strong>: Tasks bypassed due to conditional <code>when</code> clauses.</li>
+</ul>
+</li>
+<li><strong>Retry Workflow</strong>: When a run encounters node failures, operators trigger <strong>Retry</strong> from the context menu. PixelView duplicates the exact configuration, creates a linked audit run tagged <code>(retry N)</code>, and dispatches it immediately to the assigned worker queue.</li>
 </ul>
 
 

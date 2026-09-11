@@ -14,7 +14,7 @@
         <link rel="prev" href="../openstack/">
       
       
-        <link rel="next" href="../vmware/">
+        <link rel="next" href="../reporting/">
       
       
         
@@ -658,8 +658,6 @@
       
         
       
-        
-      
     
     
     
@@ -1232,15 +1230,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cluster-events" class="md-nav__link">
+  <a href="#cluster-events-stream" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cluster Events
+        Cluster Events Stream
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Cluster Events">
+    <nav class="md-nav" aria-label="Cluster Events Stream">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1248,6 +1246,17 @@
     <span class="md-ellipsis">
       
         Events Table Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-retention-ingestion-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Retention &amp; Ingestion Mechanics
       
     </span>
   </a>
@@ -1388,6 +1397,50 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-crashloopbackoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for CrashLoopBackOff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-oomkilled-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for OOMKilled Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-storage-volume-mounting-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for Storage Volume Mounting Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-gateway-api-and-ingress-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for Gateway API and Ingress Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1397,34 +1450,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -3356,15 +3381,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cluster-events" class="md-nav__link">
+  <a href="#cluster-events-stream" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cluster Events
+        Cluster Events Stream
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Cluster Events">
+    <nav class="md-nav" aria-label="Cluster Events Stream">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3372,6 +3397,17 @@
     <span class="md-ellipsis">
       
         Events Table Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-retention-ingestion-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event Retention &amp; Ingestion Mechanics
       
     </span>
   </a>
@@ -3512,6 +3548,50 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-crashloopbackoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for CrashLoopBackOff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-oomkilled-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for OOMKilled Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-storage-volume-mounting-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for Storage Volume Mounting Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-workflow-for-gateway-api-and-ingress-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagnostic Workflow for Gateway API and Ingress Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3611,12 +3691,12 @@
 <h1 id="kubernetes-cloud-orchestration">Kubernetes Cloud Orchestration<a class="headerlink" href="#kubernetes-cloud-orchestration" title="Permanent link">&para;</a></h1>
 <p>The <strong>Kubernetes</strong> module (<code>/kubernetes</code>) under <strong>Clouds</strong> provides centralized enterprise container orchestration, multi-cluster visibility, workload lifecycle management, and full-stack observability for Kubernetes environments within PixelView.</p>
 <p>PixelView integrates natively with Kubernetes APIs to deliver complete management across all core primitives:
-- <strong>Workloads</strong>: High-level and low-level container orchestration including Pods, Deployments, ReplicaSets, DaemonSets, StatefulSets, Batch Jobs, Scheduled CronJobs, and native KubeVirt Virtual Machines.
-- <strong>Compute</strong>: Node inventory, hardware utilization (CPU, memory, storage allocations), and control-plane controllers.
-- <strong>Storage</strong>: Dynamic Persistent Volume Claims (PVCs), cluster-wide Persistent Volumes (PVs), and storage class provisioners.
-- <strong>Networking</strong>: L4 Services (<code>ClusterIP</code>, <code>NodePort</code>, <code>LoadBalancer</code>), Endpoints, Ingress routing controllers, and next-generation Gateway API resources.
-- <strong>Configuration &amp; Governance</strong>: Namespaces tenant isolation, ConfigMaps, sensitive Secrets, hard Resource Quotas, Horizontal Pod Autoscalers (HPA), and Pod Disruption Budgets (PDB).
-- <strong>Observability &amp; Topology</strong>: Live cluster event stream, Custom Resource Definitions (CRDs), Helm/Hub package integrations, and dynamic visual Graph topology maps.</p>
+* <strong>Workloads</strong>: High-level and low-level container orchestration including Pods, Deployments, ReplicaSets, DaemonSets, StatefulSets, Batch Jobs, Scheduled CronJobs, and native KubeVirt Virtual Machines.
+* <strong>Compute</strong>: Node inventory, hardware utilization (CPU, memory, storage allocations), and control-plane controllers.
+* <strong>Storage</strong>: Dynamic Persistent Volume Claims (PVCs), cluster-wide Persistent Volumes (PVs), and storage class provisioners.
+* <strong>Networking</strong>: L4 Services (<code>ClusterIP</code>, <code>NodePort</code>, <code>LoadBalancer</code>), Endpoints, Ingress routing controllers, and next-generation Gateway API resources.
+* <strong>Configuration &amp; Governance</strong>: Namespaces tenant isolation, ConfigMaps, sensitive Secrets, hard Resource Quotas, Horizontal Pod Autoscalers (HPA), and Pod Disruption Budgets (PDB).
+* <strong>Observability &amp; Topology</strong>: Live cluster event stream, Custom Resource Definitions (CRDs), Helm/Hub package integrations, and dynamic visual Graph topology maps.</p>
 <hr />
 <h2 id="cluster-overview-access-management">Cluster Overview &amp; Access Management<a class="headerlink" href="#cluster-overview-access-management" title="Permanent link">&para;</a></h2>
 <h3 id="navigating-to-kubernetes">Navigating to Kubernetes<a class="headerlink" href="#navigating-to-kubernetes" title="Permanent link">&para;</a></h3>
@@ -5496,8 +5576,8 @@ In-cluster workload credentials, image registry pull keys, TLS certificates, and
 </tbody>
 </table>
 <hr />
-<h2 id="cluster-events">Cluster Events<a class="headerlink" href="#cluster-events" title="Permanent link">&para;</a></h2>
-<p>The <strong>Events</strong> stream (<code>/kubernetes/:clusterName/events</code>) records cluster state changes, scheduler actions, container lifecycle transitions, and warning errors across all namespaces in real time.</p>
+<h2 id="cluster-events-stream">Cluster Events Stream<a class="headerlink" href="#cluster-events-stream" title="Permanent link">&para;</a></h2>
+<p>The <strong>Events</strong> stream (<code>/kubernetes/:clusterName/events</code>) records cluster state changes, scheduler actions, container lifecycle transitions, and warning errors across all namespaces in real time. PixelView consumes Kubernetes event objects (<code>events.k8s.io/v1</code>) directly from the API server stream, caching and aggregating them to provide instant visibility into cluster health and automated incident correlation.</p>
 <h3 id="events-table-overview">Events Table Overview<a class="headerlink" href="#events-table-overview" title="Permanent link">&para;</a></h3>
 <p>Navigate to <strong>Events</strong> in the secondary sidebar:</p>
 <p><a href="../../images/kubernetes-events-table.png" class="glightbox">
@@ -5513,30 +5593,36 @@ In-cluster workload credentials, image registry pull keys, TLS certificates, and
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>Type</strong></td>
-<td style="text-align: left;">Severity level badge: <code>Normal</code> (standard state transitions) or <code>Warning</code> (errors, crash loops, failed mounts).</td>
+<td style="text-align: left;">Severity level badge: <code>Normal</code> (routine state transitions such as scheduled pods, image pulls, and successful volume attachments) or <code>Warning</code> (actionable failures, crash loops, probe timeouts, failed scheduling).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Reason</strong></td>
-<td style="text-align: left;">Machine-readable error code (e.g., <code>BackOff</code>, <code>Pulling</code>, <code>Created</code>, <code>FailedMount</code>, <code>NodeReady</code>).</td>
+<td style="text-align: left;">Machine-readable error or action code (e.g., <code>BackOff</code>, <code>Pulling</code>, <code>Created</code>, <code>FailedMount</code>, <code>NodeReady</code>, <code>Killing</code>, <code>FailedScheduling</code>).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Message</strong></td>
-<td style="text-align: left;">Human-readable explanation detailing the event or root failure cause.</td>
+<td style="text-align: left;">Detailed human-readable explanation emitted by Kubelet, the scheduler, or controller managers detailing the root condition.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Object</strong></td>
-<td style="text-align: left;">Target Kubernetes resource kind and name (e.g., <code>Pod/alpine</code>, <code>Volume/config</code>).</td>
+<td style="text-align: left;">Target Kubernetes resource kind and name (e.g., <code>Pod/alpine-nginx</code>, <code>PersistentVolumeClaim/db-data</code>, <code>Node/worker-01</code>). Clicking the object opens its resource inspection drawer.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Namespace</strong></td>
-<td style="text-align: left;">Scoped namespace where the event originated.</td>
+<td style="text-align: left;">Scoped namespace where the event originated. Operators can filter across all namespaces or isolate individual tenant workloads.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Timestamp</strong></td>
-<td style="text-align: left;">Relative and absolute occurrence timestamp.</td>
+<td style="text-align: left;">Relative and absolute occurrence timestamp with aggregation counter (<code>Count</code>) showing how many times an identical event fired within the deduplication window.</td>
 </tr>
 </tbody>
 </table>
+<h3 id="event-retention-ingestion-mechanics">Event Retention &amp; Ingestion Mechanics<a class="headerlink" href="#event-retention-ingestion-mechanics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>etcd Retention Window</strong>: Standard Kubernetes API servers retain events in etcd for 1 hour (<code>--event-ttl=1h0m0s</code>).</li>
+<li><strong>PixelView Aggregated Stream</strong>: PixelView maintains a persistent operational event history, preventing critical diagnostic records from being lost during prolonged cluster outages or rolling node replacements.</li>
+<li><strong>Severity Filtering</strong>: Operators can toggle the event stream filter between <code>All Events</code>, <code>Warnings Only</code>, or filter by specific error reasons such as <code>FailedScheduling</code> or <code>Unhealthy</code>.</li>
+</ul>
 <hr />
 <h2 id="custom-resource-definitions-crds">Custom Resource Definitions (CRDs)<a class="headerlink" href="#custom-resource-definitions-crds" title="Permanent link">&para;</a></h2>
 <p>Custom Resource Definitions extend the Kubernetes API beyond built-in primitives, allowing operators and custom controllers to define specialized resources.</p>
@@ -5711,6 +5797,45 @@ In-cluster workload credentials, image registry pull keys, TLS certificates, and
 </tr>
 </tbody>
 </table>
+<h3 id="diagnostic-workflow-for-crashloopbackoff">Diagnostic Workflow for CrashLoopBackOff<a class="headerlink" href="#diagnostic-workflow-for-crashloopbackoff" title="Permanent link">&para;</a></h3>
+<p>When an application container repeatedly crashes after startup, follow this diagnostic runbook:
+* <strong>Check Exit Codes</strong>:
+    * <code>Exit Code 0</code>: The container finished its primary process successfully but had no foreground task keeping it alive (common in batch scripts or misconfigured web servers).
+    * <code>Exit Code 1</code>: General application error, such as an unhandled runtime exception or syntax fault.
+    * <code>Exit Code 137</code>: The container was terminated by SIGKILL (almost always an out-of-memory <code>OOMKilled</code> event).
+    * <code>Exit Code 143</code>: The container was gracefully terminated by SIGTERM (e.g., during pod eviction or deployment rollout).
+* <strong>Inspect Previous Container Logs</strong>:
+    * In the PixelView console, navigate to <strong>Workloads</strong> &rarr; <strong>Pods</strong> &rarr; select target Pod &rarr; click <strong>Actions</strong> &rarr; <strong>View Logs</strong>.
+    * Check the <strong>Previous Instance</strong> checkbox to inspect output generated immediately before the last crash.
+* <strong>Review Environment Configuration</strong>:
+    * Cross-reference referenced ConfigMaps and Secrets to ensure all required environment keys exist and are populated.</p>
+<h3 id="diagnostic-workflow-for-oomkilled-containers">Diagnostic Workflow for OOMKilled Containers<a class="headerlink" href="#diagnostic-workflow-for-oomkilled-containers" title="Permanent link">&para;</a></h3>
+<p>When a container exceeds its allocated memory ceiling:
+* <strong>Examine Memory Consumption Trends</strong>:
+    * Navigate to <strong>Workloads</strong> &rarr; <strong>Pods</strong> &rarr; select Pod &rarr; open the <strong>Metrics</strong> tab.
+    * Correlate memory spikes with specific application requests or traffic surges.
+* <strong>Tune Memory Requests and Limits</strong>:
+    * Edit the workload specification: increase <code>spec.containers[*].resources.limits.memory</code> by 25% to 50% to accommodate peak working sets.
+    * Ensure <code>requests.memory</code> matches the expected steady-state baseline to guarantee the pod is scheduled on nodes with sufficient headroom.
+* <strong>Profile Memory Leaks</strong>:
+    * If memory utilization increases monotonically over time without plateauing, initiate memory heap dump profiling in the application runtime.</p>
+<h3 id="diagnostic-workflow-for-storage-volume-mounting-failures">Diagnostic Workflow for Storage Volume Mounting Failures<a class="headerlink" href="#diagnostic-workflow-for-storage-volume-mounting-failures" title="Permanent link">&para;</a></h3>
+<p>When a pod remains stuck in <code>ContainerCreating</code> with <code>FailedMount</code> or <code>FailedAttachVolume</code>:
+* <strong>Inspect PersistentVolumeClaim (PVC) Status</strong>:
+    * Navigate to <strong>Storage</strong> &rarr; <strong>Persistent Volume Claims</strong>.
+    * Verify that the PVC status is <code>Bound</code>. If <code>Pending</code>, inspect whether the target StorageClass provisioner is active or if volume quotas are exceeded.
+* <strong>Resolve Multi-Attach Conflicts (<code>ReadWriteOnce</code>)</strong>:
+    * If a PVC is formatted with <code>ReadWriteOnce</code> access mode, it can only attach to a single worker node simultaneously.
+    * If the pod was rescheduled to a new node before the previous node released the volume attachment, wait for the volume detach timeout or drain the stale node.</p>
+<h3 id="diagnostic-workflow-for-gateway-api-and-ingress-routing">Diagnostic Workflow for Gateway API and Ingress Routing<a class="headerlink" href="#diagnostic-workflow-for-gateway-api-and-ingress-routing" title="Permanent link">&para;</a></h3>
+<p>When incoming traffic fails to reach backend pods:
+* <strong>Verify Service Endpoints</strong>:
+    * In <strong>Networking</strong> &rarr; <strong>Services</strong>, verify that the target Service has active healthy <strong>Endpoints</strong>. If Endpoints are <code>0</code>, verify that the Service <code>selector</code> labels exactly match the Pod labels.
+* <strong>Inspect Route Status</strong>:
+    * In <strong>Networking</strong> &rarr; <strong>Gateway</strong> &rarr; <strong>HTTPRoutes</strong>, inspect the <code>Accepted</code> and <code>Programmed</code> conditions.
+    * Ensure the route references a valid Gateway listener port and valid hostname match rules.
+* <strong>Verify TLS Certificate Validity</strong>:
+    * Inspect the referenced Secret in <strong>Configuration</strong> &rarr; <strong>Secrets</strong> to verify that the TLS certificate has not expired and covers the requested SNI hostname.</p>
 
 
 
@@ -5763,13 +5888,13 @@ In-cluster workload credentials, image registry pull keys, TLS certificates, and
         
         
           
-          <a href="../vmware/" class="md-footer__link md-footer__link--next" aria-label="Next: VMware">
+          <a href="../reporting/" class="md-footer__link md-footer__link--next" aria-label="Next: Cloud Reporting">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                VMware
+                Cloud Reporting
               </div>
             </div>
             <div class="md-footer__button md-icon">

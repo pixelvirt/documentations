@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -2176,6 +2146,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Architecture &amp; Authentication Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-flow-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Flow Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2190,22 +2177,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#identity-provider-idp-configuration" class="md-nav__link">
+  <a href="#dex-federated-identity-broker-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Identity Provider (IdP) Configuration
+        Dex Federated Identity Broker Setup
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identity Provider (IdP) Configuration">
+    <nav class="md-nav" aria-label="Dex Federated Identity Broker Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#register-an-oidc-application-client" class="md-nav__link">
+  <a href="#sample-dex-configuration-dexyaml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Register an OIDC Application / Client
+        Sample Dex Configuration (dex.yaml)
       
     </span>
   </a>
@@ -2225,6 +2212,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Configuring PixelView Backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2442,6 +2446,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Architecture &amp; Authentication Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-flow-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Flow Characteristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2456,22 +2477,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#identity-provider-idp-configuration" class="md-nav__link">
+  <a href="#dex-federated-identity-broker-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Identity Provider (IdP) Configuration
+        Dex Federated Identity Broker Setup
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identity Provider (IdP) Configuration">
+    <nav class="md-nav" aria-label="Dex Federated Identity Broker Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#register-an-oidc-application-client" class="md-nav__link">
+  <a href="#sample-dex-configuration-dexyaml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Register an OIDC Application / Client
+        Sample Dex Configuration (dex.yaml)
       
     </span>
   </a>
@@ -2491,6 +2512,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Configuring PixelView Backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2619,118 +2657,365 @@
 
 
 <h1 id="single-sign-on-sso-integration">Single Sign-On (SSO) Integration<a class="headerlink" href="#single-sign-on-sso-integration" title="Permanent link">&para;</a></h1>
-<p>PixelView supports enterprise <strong>Single Sign-On (SSO)</strong> using industry-standard <strong>OpenID Connect (OIDC)</strong> and <strong>OAuth 2.0</strong> protocols. Integrating SSO allows team members to authenticate seamlessly using their existing corporate identity providers (IdP) such as <strong>Keycloak</strong>, <strong>Okta</strong>, <strong>Microsoft Entra ID (Azure AD)</strong>, and <strong>Google Workspace</strong>.</p>
+<p>PixelView supports enterprise <strong>Single Sign-On (SSO)</strong> using industry-standard <strong>OpenID Connect (OIDC)</strong> and <strong>OAuth 2.0</strong> protocols. By integrating with <strong>Dex</strong>—an enterprise-grade federated identity broker—PixelView enables organization members to authenticate seamlessly using their existing corporate identity providers (IdPs), including <strong>Keycloak</strong>, <strong>Okta</strong>, <strong>Microsoft Entra ID (Azure AD)</strong>, <strong>Google Workspace</strong>, <strong>GitHub</strong>, and corporate <strong>LDAP / Active Directory</strong>.</p>
 <hr />
 <h2 id="architecture-authentication-flow">Architecture &amp; Authentication Flow<a class="headerlink" href="#architecture-authentication-flow" title="Permanent link">&para;</a></h2>
-<p>PixelView leverages standard authorization code flow with PKCE:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+----------------+            Click SSO Login           +-------------------+
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|                | -----------------------------------&gt; |                   |
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|                |                                      |   PixelView Web   |
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>|   End User     | &lt;----------------------------------- |     Frontend      |
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>|                |       Redirect to IdP Auth URL       +-------------------+
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>+----------------+                                                |
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        |                                                         |
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        | Authenticate with IdP Credentials                       |
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        v                                                         |
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>+-------------------+                                             |
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>|  Identity Provider|                                             |
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>| (Keycloak / Okta /|                                             |
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>|   Microsoft / ...) |                                            |
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>+-------------------+                                             |
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        |                                                         |
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        | Redirect with Auth Code to /sso-login-success           |
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        +--------------------------------------------------------&gt;+
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                                                                  |
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                                                    Exchange Code for JWT Session
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                                                                  v
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                                                        +-------------------+
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                                                        | PixelView Backend |
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>                                                        +-------------------+
+<p>PixelView delegates federated authentication to Dex, ensuring secure, token-based authorization code flow with backend-level verification and session management:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+---------------+              1. Click SSO Login (POST /api/ssologin)             +-------------------+
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|               | ---------------------------------------------------------------&gt; |                   |
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|               |                                                                  | PixelView Backend |
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>|   End User    | &lt;--------------------------------------------------------------- |  (API &amp; Session)  |
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>|   (Browser)   |                 2. HTTP 302 Redirect to IdP / Dex                +-------------------+
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>|               |                                                                            ^
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>+---------------+                                                                            |
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        |                                                                                    |
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        | 3. Authenticate with Corporate Credentials &amp; MFA                                   |
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        v                                                                                    |
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>+---------------+                                                                            |
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>|  Identity     |                                                                            |
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>|  Provider     |                                                                            |
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>|  (Dex / IdP)  |                                                                            |
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>+---------------+                                                                            |
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        |                                                                                    |
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        | 4. Redirect with Auth Code (GET /api/auth/callback?code=...&amp;state=...)             |
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        +------------------------------------------------------------------------------------+
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                                                |
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                                5. Backend validates code with Dex/IdP,
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                                   creates/syncs user in MongoDB, and
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                                   issues secure HttpOnly session cookie
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>                                                |
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        +---------------------------------------+
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        |
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        | 6. HTTP 302 Redirect to /sso-login-success
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>        v
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>+-------------------+                                                              +-------------------+
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>|   PixelView Web   |                     7. GET /api/profile                      | PixelView Backend |
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>|     Frontend      | -----------------------------------------------------------&gt; |  (API &amp; Session)  |
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>| (/sso-login-succ) | &lt;----------------------------------------------------------- |                   |
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>+-------------------+                   8. Session Validated                       +-------------------+
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        |
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        | 9. Redirect to Dashboard (/openstack)
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        v
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>+-------------------+
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>| Active Session    |
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>+-------------------+
 </span></code></pre></div>
+<h3 id="key-flow-characteristics">Key Flow Characteristics<a class="headerlink" href="#key-flow-characteristics" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Direct Backend Handshake</strong>: Clicking <strong>SSO Login</strong> initiates an HTTP POST to <code>/api/ssologin</code>. The browser is redirected directly to Dex/IdP.</li>
+<li><strong>Secure Callback Endpoint</strong>: The identity provider redirects back to the backend's dedicated callback endpoint (<code>/api/auth/callback</code>). Authorization codes and tokens are exchanged on the backend network, never exposed to client-side scripts.</li>
+<li><strong>Automated Session Handoff</strong>: Once verified, the backend issues an authenticated HTTP session cookie and forwards the browser to <code>/sso-login-success</code>. The frontend confirms the session via <code>/api/profile</code> and routes the user directly to the primary operational dashboard.</li>
+</ol>
 <hr />
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<p>Before configuring SSO in PixelView, ensure you have:
-* Administrator access to your corporate Identity Provider (IdP).
-* A fully qualified domain name (FQDN) configured with HTTPS for your PixelView instance.
-* Your PixelView SSO Callback / Redirect URI:
-  <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>https://&lt;your-pixelview-domain&gt;/sso-login-success
+<p>Before setting up SSO in PixelView, ensure you have:
+* A running <strong>Dex</strong> instance deployed and operated by your organization (acting as the federated identity broker to your upstream corporate IdPs).
+* Administrator privileges on your Identity Provider to register applications and configure redirect URIs.
+* A fully qualified domain name (FQDN) secured with HTTPS for your PixelView deployment (e.g., <code>https://cloud.pixelvirt.com</code>).
+* The mandatory PixelView OAuth Callback URL:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>https://&lt;your-pixelview-domain&gt;/api/auth/callback
 </span></code></pre></div></p>
 <hr />
-<h2 id="identity-provider-idp-configuration">Identity Provider (IdP) Configuration<a class="headerlink" href="#identity-provider-idp-configuration" title="Permanent link">&para;</a></h2>
-<h3 id="register-an-oidc-application-client">Register an OIDC Application / Client<a class="headerlink" href="#register-an-oidc-application-client" title="Permanent link">&para;</a></h3>
-<p>In your IdP administration console (e.g. Keycloak or Okta):</p>
-<ul>
-<li>Create a new <strong>OpenID Connect (OIDC)</strong> client.</li>
-<li>Set the <strong>Client Type</strong> to <code>Confidential</code> (or <code>Web App</code>).</li>
-<li>Set the <strong>Valid Redirect URIs</strong> (or Allowed Callback URLs) to:
-  <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>https://&lt;your-pixelview-domain&gt;/sso-login-success
-</span></code></pre></div></li>
-<li>Set the <strong>Allowed Web Origins</strong> to your base domain:
-  <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>https://&lt;your-pixelview-domain&gt;
-</span></code></pre></div></li>
-<li>Ensure the standard OIDC scopes are granted:</li>
-<li><code>openid</code></li>
-<li><code>email</code></li>
-<li><code>profile</code></li>
-<li>Copy the generated <strong>Client ID</strong> and <strong>Client Secret</strong>.</li>
-</ul>
+<h2 id="dex-federated-identity-broker-setup">Dex Federated Identity Broker Setup<a class="headerlink" href="#dex-federated-identity-broker-setup" title="Permanent link">&para;</a></h2>
+<p>PixelView is engineered to authenticate against Dex, which translates upstream identity credentials from any provider into standardized OIDC identity tokens.</p>
+<h3 id="sample-dex-configuration-dexyaml">Sample Dex Configuration (<code>dex.yaml</code>)<a class="headerlink" href="#sample-dex-configuration-dexyaml" title="Permanent link">&para;</a></h3>
+<p>Below is a representative Dex configuration illustrating how upstream identity providers map to PixelView:</p>
+<div class="language-yaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span>
+<span class="normal"><a href="#__codelineno-2-38">38</a></span>
+<span class="normal"><a href="#__codelineno-2-39">39</a></span>
+<span class="normal"><a href="#__codelineno-2-40">40</a></span>
+<span class="normal"><a href="#__codelineno-2-41">41</a></span>
+<span class="normal"><a href="#__codelineno-2-42">42</a></span>
+<span class="normal"><a href="#__codelineno-2-43">43</a></span>
+<span class="normal"><a href="#__codelineno-2-44">44</a></span>
+<span class="normal"><a href="#__codelineno-2-45">45</a></span>
+<span class="normal"><a href="#__codelineno-2-46">46</a></span>
+<span class="normal"><a href="#__codelineno-2-47">47</a></span>
+<span class="normal"><a href="#__codelineno-2-48">48</a></span>
+<span class="normal"><a href="#__codelineno-2-49">49</a></span>
+<span class="normal"><a href="#__codelineno-2-50">50</a></span>
+<span class="normal"><a href="#__codelineno-2-51">51</a></span>
+<span class="normal"><a href="#__codelineno-2-52">52</a></span>
+<span class="normal"><a href="#__codelineno-2-53">53</a></span>
+<span class="normal"><a href="#__codelineno-2-54">54</a></span>
+<span class="normal"><a href="#__codelineno-2-55">55</a></span>
+<span class="normal"><a href="#__codelineno-2-56">56</a></span>
+<span class="normal"><a href="#__codelineno-2-57">57</a></span>
+<span class="normal"><a href="#__codelineno-2-58">58</a></span>
+<span class="normal"><a href="#__codelineno-2-59">59</a></span>
+<span class="normal"><a href="#__codelineno-2-60">60</a></span>
+<span class="normal"><a href="#__codelineno-2-61">61</a></span>
+<span class="normal"><a href="#__codelineno-2-62">62</a></span>
+<span class="normal"><a href="#__codelineno-2-63">63</a></span>
+<span class="normal"><a href="#__codelineno-2-64">64</a></span>
+<span class="normal"><a href="#__codelineno-2-65">65</a></span>
+<span class="normal"><a href="#__codelineno-2-66">66</a></span>
+<span class="normal"><a href="#__codelineno-2-67">67</a></span>
+<span class="normal"><a href="#__codelineno-2-68">68</a></span>
+<span class="normal"><a href="#__codelineno-2-69">69</a></span>
+<span class="normal"><a href="#__codelineno-2-70">70</a></span>
+<span class="normal"><a href="#__codelineno-2-71">71</a></span>
+<span class="normal"><a href="#__codelineno-2-72">72</a></span>
+<span class="normal"><a href="#__codelineno-2-73">73</a></span>
+<span class="normal"><a href="#__codelineno-2-74">74</a></span>
+<span class="normal"><a href="#__codelineno-2-75">75</a></span>
+<span class="normal"><a href="#__codelineno-2-76">76</a></span>
+<span class="normal"><a href="#__codelineno-2-77">77</a></span>
+<span class="normal"><a href="#__codelineno-2-78">78</a></span>
+<span class="normal"><a href="#__codelineno-2-79">79</a></span>
+<span class="normal"><a href="#__codelineno-2-80">80</a></span>
+<span class="normal"><a href="#__codelineno-2-81">81</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># The base URL where Dex is publicly accessible</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://dex.yourdomain.com/dex</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1"># Storage backend for storing Dex state</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="nt">storage</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memory</span><span class="w"> </span><span class="c1"># or kubernetes / sqlite3 / mongo</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="c1"># Network binding</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="nt">web</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">  </span><span class="nt">http</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0:5556</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="c1"># Registered OAuth2/OIDC clients</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="nt">staticClients</span><span class="p">:</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelview</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="nt">redirectURIs</span><span class="p">:</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;https://&lt;your-pixelview-domain&gt;/api/auth/callback&#39;</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;PixelView</span><span class="nv"> </span><span class="s">Cloud</span><span class="nv"> </span><span class="s">Management&#39;</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;your-secure-dex-client-secret&#39;</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="c1"># Upstream Identity Provider Connectors</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="nt">connectors</span><span class="p">:</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">  </span><span class="c1"># Example 1: Google Workspace / Gmail</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Google</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">      </span><span class="nt">clientID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GOOGLE_CLIENT_ID</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">      </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GOOGLE_CLIENT_SECRET</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">      </span><span class="nt">redirectURI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://dex.yourdomain.com/dex/callback</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30"></a>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="w">  </span><span class="c1"># Example 2: Keycloak / Generic OIDC</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keycloak</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Keycloak</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="w">      </span><span class="nt">issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://sso.yourdomain.com/realms/organization</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37"></a><span class="w">      </span><span class="nt">clientID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$KEYCLOAK_CLIENT_ID</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38"></a><span class="w">      </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$KEYCLOAK_CLIENT_SECRET</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="w">      </span><span class="nt">redirectURI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://dex.yourdomain.com/dex/callback</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="w">      </span><span class="nt">scopes</span><span class="p">:</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openid</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">email</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44"></a>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45"></a><span class="w">  </span><span class="c1"># Example 3: GitHub / GitHub Enterprise</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47"></a><span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GitHub</span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50"></a><span class="w">      </span><span class="nt">clientID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GITHUB_CLIENT_ID</span>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51"></a><span class="w">      </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$GITHUB_CLIENT_SECRET</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52"></a><span class="w">      </span><span class="nt">redirectURI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://dex.yourdomain.com/dex/callback</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53"></a><span class="w">      </span><span class="nt">orgs</span><span class="p">:</span>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">your-organization</span>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55"></a>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56"></a><span class="w">  </span><span class="c1"># Example 4: Microsoft Entra ID (Azure AD)</span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">microsoft</span>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58"></a><span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">microsoft</span>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Microsoft</span>
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61"></a><span class="w">      </span><span class="nt">clientID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$MICROSOFT_CLIENT_ID</span>
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62"></a><span class="w">      </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$MICROSOFT_CLIENT_SECRET</span>
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63"></a><span class="w">      </span><span class="nt">redirectURI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://dex.yourdomain.com/dex/callback</span>
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64"></a><span class="w">      </span><span class="nt">tenant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$AZURE_TENANT_ID</span>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65"></a>
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66"></a><span class="w">  </span><span class="c1"># Example 5: LDAP / Microsoft Active Directory</span>
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ldap</span>
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68"></a><span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ldap</span>
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Active Directory</span>
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70"></a><span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71"></a><span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ldap.yourdomain.com:636</span>
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72"></a><span class="w">      </span><span class="nt">insecureNoSSL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73"></a><span class="w">      </span><span class="nt">bindDN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cn=admin,dc=example,dc=com&quot;</span>
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74"></a><span class="w">      </span><span class="nt">bindPW</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin_password&quot;</span>
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75"></a><span class="w">      </span><span class="nt">userSearch</span><span class="p">:</span>
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76"></a><span class="w">        </span><span class="nt">baseDN</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ou=Users,dc=example,dc=com&quot;</span>
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77"></a><span class="w">        </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;(objectClass=person)&quot;</span>
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78"></a><span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mail</span>
+</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79"></a><span class="w">        </span><span class="nt">idAttr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DN</span>
+</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80"></a><span class="w">        </span><span class="nt">emailAttr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mail</span>
+</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81"></a><span class="w">        </span><span class="nt">nameAttr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cn</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>[!IMPORTANT]
+* The <code>redirectURIs</code> registered under <code>staticClients</code> in Dex <strong>must</strong> point to PixelView's backend callback endpoint: <code>https://&lt;your-pixelview-domain&gt;/api/auth/callback</code>.
+* Retain <code>id: pixelview</code> as the client identifier matching PixelView's internal OIDC client configuration.</p>
+</blockquote>
 <hr />
 <h2 id="configuring-pixelview-backend">Configuring PixelView Backend<a class="headerlink" href="#configuring-pixelview-backend" title="Permanent link">&para;</a></h2>
-<p>Set the following environment variables in your PixelView backend deployment configuration (<code>.env</code> or Docker Compose):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Enable SSO Authentication</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">SSO_ENABLED</span><span class="o">=</span><span class="nb">true</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># OpenID Connect Configuration</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">OIDC_ISSUER_URL</span><span class="o">=</span>https://idp.yourdomain.com/realms/pixelvirt
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nv">OIDC_CLIENT_ID</span><span class="o">=</span>pixelview-client
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nv">OIDC_CLIENT_SECRET</span><span class="o">=</span>your_super_secret_client_key_here
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nv">OIDC_REDIRECT_URI</span><span class="o">=</span>https://pixelview.yourdomain.com/sso-login-success
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Scopes (default: openid email profile)</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nv">OIDC_SCOPES</span><span class="o">=</span>openid<span class="w"> </span>email<span class="w"> </span>profile
-</span></code></pre></div>
-<p>Restart the PixelView backend service to apply the new configuration:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>backend
+<p>To link PixelView to your Dex or OIDC identity provider, update the environment variables for the <code>pixelview-backend</code> container in your deployment configuration (<code>docker-compose.yml</code> or <code>.env</code> file):</p>
+<div class="language-yaml highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="nt">pixelview-backend</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/pixelvirt/pixelview-backend:v0.0.1</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pixelview-backend</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="nt">network_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">host</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">      </span><span class="c1"># Service Authentication Key</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">      </span><span class="nt">AUTH_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6c673f51-6045-47b0-8745-eef9d165a310</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">      </span><span class="c1"># OpenID Connect / Dex Configuration</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">      </span><span class="nt">DEX_ISSUER_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://dex.yourdomain.com/dex</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">      </span><span class="nt">DEX_REDIRECT_URI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://&lt;your-pixelview-domain&gt;/api/auth/callback</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">      </span><span class="c1"># Database and Domain Settings</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">      </span><span class="nt">MONGO_URI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mongodb://localhost:27017/alertagility</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">      </span><span class="nt">DOMAIN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yourdomain.com</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="w">      </span><span class="nt">SUBDOMAIN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alertagility</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="w">      </span><span class="nt">ENVIRONMENT</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">production</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="configuration-parameters">Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Environment Variable</th>
+<th style="text-align: left;">Requirement</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>DEX_ISSUER_URL</code></td>
+<td style="text-align: left;"><strong>Required</strong></td>
+<td style="text-align: left;">The base issuer URL of the Dex instance hosted by your organization (must serve <code>/.well-known/openid-configuration</code>, e.g., <code>https://dex.yourdomain.com/dex</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DEX_REDIRECT_URI</code></td>
+<td style="text-align: left;"><strong>Required</strong></td>
+<td style="text-align: left;">The fully qualified callback endpoint where the browser returns after authentication (<code>https://&lt;your-pixelview-domain&gt;/api/auth/callback</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AUTH_KEY</code></td>
+<td style="text-align: left;"><strong>Required</strong></td>
+<td style="text-align: left;">Internal microservice communication authentication token.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DOMAIN</code> / <code>SUBDOMAIN</code></td>
+<td style="text-align: left;">Optional</td>
+<td style="text-align: left;">Contextual domain definitions used for cookie scoping and multi-tenant URL generation.</td>
+</tr>
+</tbody>
+</table>
+<p>Restart the backend container to apply the new configuration:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>pixelview-backend
 </span></code></pre></div></p>
 <hr />
 <h2 id="user-provisioning-permissions">User Provisioning &amp; Permissions<a class="headerlink" href="#user-provisioning-permissions" title="Permanent link">&para;</a></h2>
-<p>When a user logs in via SSO for the first time:
-* <strong>Automatic Account Creation</strong>: PixelView automatically creates a user account using the <code>email</code>, <code>given_name</code> (First Name), and <code>family_name</code> (Last Name) claims received from the identity provider.
-* <strong>Default Role Assignment</strong>: New SSO users are assigned the default <code>User</code> role with initial scoped permissions.
-* <strong>Role Elevation</strong>: Administrators can upgrade roles to <code>Admin</code> or customize the <a href="../user-management/#granular-permissions-matrix">Granular Permissions Matrix</a> at any time from the <strong>Management &gt; Users</strong> page.</p>
+<p>PixelView implements Just-In-Time (JIT) user provisioning for SSO logins:</p>
+<ul>
+<li><strong>Automatic Account Creation</strong>: When an authenticated user signs in via SSO for the first time, PixelView automatically provisions a new account record in the database using the verified <code>email</code> and identity claims.</li>
+<li><strong>Default Role Assignment</strong>: Newly provisioned SSO accounts are initially granted the standard <code>User</code> role with scoped baseline access.</li>
+<li><strong>Access Elevation &amp; Governance</strong>: System administrators can elevate any SSO user to <code>Admin</code> or grant fine-grained module privileges (OpenStack, Kubernetes, Inventory, Patch Management, Automation) via the <a href="../user-management/#granular-permissions-matrix">Granular Permissions Matrix</a> located in <strong>Management</strong> &rarr; <strong>Users</strong>.</li>
+</ul>
 <hr />
 <h2 id="end-user-login-experience">End-User Login Experience<a class="headerlink" href="#end-user-login-experience" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Navigate to the PixelView login page (<code>/login</code>).</li>
-<li>Click the <strong>Single Sign-On (SSO)</strong> button under the login form.</li>
-<li>Complete authentication on your organization's identity portal.</li>
-<li>You will be automatically redirected to <code>/sso-login-success</code> and then into your PixelView dashboard.</li>
-</ul>
+<p>Once SSO is configured, users authenticate using their standard corporate workflow:</p>
+<ol>
+<li>Open your browser and navigate to the PixelView login portal (<code>/login</code>).</li>
+<li>Locate the <strong>Continue with SSO</strong> section beneath the primary login form and click <strong>SSO Login</strong>.</li>
+<li>You will be redirected to your corporate identity provider portal (or Dex connector selector).</li>
+<li>Enter your corporate credentials and complete any mandatory Multi-Factor Authentication (MFA) challenges.</li>
+<li>Upon successful authentication, your browser is redirected back through <code>/api/auth/callback</code> and <code>/sso-login-success</code>, landing directly on your active operational dashboard.</li>
+</ol>
 <hr />
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Issue / Error</th>
-<th style="text-align: left;">Potential Cause</th>
-<th style="text-align: left;">Solution</th>
+<th style="text-align: left;">Symptom / Error</th>
+<th style="text-align: left;">Probable Cause</th>
+<th style="text-align: left;">Recommended Resolution</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>Invalid redirect URI</code></td>
-<td style="text-align: left;">The Redirect URI in the IdP does not exactly match <code>https://&lt;domain&gt;/sso-login-success</code>.</td>
-<td style="text-align: left;">Check trailing slashes and ensure protocol is <code>https://</code>.</td>
+<td style="text-align: left;"><strong><code>Invalid redirect_uri</code> on IdP</strong></td>
+<td style="text-align: left;">The redirect URI in Dex or IdP does not match <code>https://&lt;domain&gt;/api/auth/callback</code>.</td>
+<td style="text-align: left;">Ensure the callback URL in your client configuration matches <code>https://&lt;your-domain&gt;/api/auth/callback</code> with exact spelling, port, and <code>https://</code> protocol.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>Token verification failed</code></td>
-<td style="text-align: left;">Issuer URL mismatch or clock skew between servers.</td>
-<td style="text-align: left;">Ensure server system clocks are synchronized via NTP and <code>OIDC_ISSUER_URL</code> matches the IdP's <code>iss</code> claim.</td>
+<td style="text-align: left;"><strong>User lands on <code>/sso-login-success</code> but remains unauthenticated</strong></td>
+<td style="text-align: left;">The session cookie was rejected by the browser due to protocol or domain mismatch.</td>
+<td style="text-align: left;">Ensure your reverse proxy (e.g. Nginx) passes <code>X-Forwarded-Proto: https</code> and <code>X-Forwarded-For</code> headers to <code>pixelview-backend</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>Missing email claim</code></td>
-<td style="text-align: left;">The IdP client is not releasing user email attributes.</td>
-<td style="text-align: left;">Add the <code>email</code> scope to your client mapper in the IdP console.</td>
+<td style="text-align: left;"><strong><code>Token verification failed</code></strong></td>
+<td style="text-align: left;">Clock skew between the PixelView host and Dex server.</td>
+<td style="text-align: left;">Synchronize system clocks on both servers using NTP (<code>chrony</code> or <code>systemd-timesyncd</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Missing user email attribute</strong></td>
+<td style="text-align: left;">Upstream Identity Provider is not releasing the <code>email</code> scope to Dex.</td>
+<td style="text-align: left;">Verify that the <code>email</code> and <code>profile</code> scopes are enabled in the upstream IdP client configuration.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dex Issuer Discovery Error</strong></td>
+<td style="text-align: left;">PixelView backend cannot reach <code>DEX_ISSUER_URL/.well-known/openid-configuration</code>.</td>
+<td style="text-align: left;">Test connectivity from inside the <code>pixelview-backend</code> container: <br> <code>docker exec -it pixelview-backend curl -k https://dex.yourdomain.com/dex/.well-known/openid-configuration</code>.</td>
 </tr>
 </tbody>
 </table>

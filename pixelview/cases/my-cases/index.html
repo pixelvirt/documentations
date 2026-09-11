@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1083,6 +1053,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ownership-handoff-shift-transition-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ownership Handoff &amp; Shift Transition Protocols
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2485,6 +2466,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ownership-handoff-shift-transition-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ownership Handoff &amp; Shift Transition Protocols
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deep-dive-investigation-task-tracking" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2679,6 +2671,14 @@
 <li><strong>Unacknowledge</strong>: Reverts an <code>acknowledged</code> case back to <code>triggered</code>. Use this if you need to hand off the incident back to the general triage queue or if further automated escalation is required.</li>
 <li><strong>Acknowledge</strong>: If an unacknowledged incident is assigned to you, select <strong>Acknowledge</strong> to signal to the team that you have commenced active investigation.</li>
 <li><strong>Resolve</strong>: Conclude the incident once remediation is verified. Resolving the case automatically moves it into <a href="../resolved-cases/">Resolved Cases</a>.</li>
+</ul>
+<hr />
+<h2 id="ownership-handoff-shift-transition-protocols">Ownership Handoff &amp; Shift Transition Protocols<a class="headerlink" href="#ownership-handoff-shift-transition-protocols" title="Permanent link">&para;</a></h2>
+<p>During on-call shift changes or escalation transfers, engineers use <strong>My Cases</strong> to ensure seamless operational continuity:</p>
+<ul>
+<li><strong>Documenting Investigation State</strong>: Before transferring an incident, expand the row using the chevron (<strong><code>v</code></strong>) and post an inline quick comment summarizing diagnostic findings, tested hypotheses, and current system symptoms.</li>
+<li><strong>Executing Clean Handoffs</strong>: Selecting <strong>Unacknowledge</strong> from the context menu removes your active claim, transitioning the case back to <code>triggered</code> so the incoming on-call engineer or team lead can claim it from <a href="../open-cases/">Open Cases</a>.</li>
+<li><strong>Automated Escalation Protection</strong>: While a case is actively <code>acknowledged</code> in your queue, automated escalation timers are paused. Handoffs ensure that unmonitored cases do not remain stuck in unaddressed states.</li>
 </ul>
 <hr />
 <h2 id="deep-dive-investigation-task-tracking">Deep-Dive Investigation &amp; Task Tracking<a class="headerlink" href="#deep-dive-investigation-task-tracking" title="Permanent link">&para;</a></h2>

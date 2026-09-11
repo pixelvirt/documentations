@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -2048,6 +2018,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#vault-secret-file-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vault Secret &amp; File Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vault Secret &amp; File Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vault-capabilities-within-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vault Capabilities within Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3017,6 +3015,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#vault-secret-file-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vault Secret &amp; File Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vault Secret &amp; File Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vault-capabilities-within-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vault Capabilities within Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3111,7 +3137,7 @@
 <h1 id="cloud-inventory-catalogue">Cloud Inventory &amp; Catalogue<a class="headerlink" href="#cloud-inventory-catalogue" title="Permanent link">&para;</a></h1>
 <p>The <strong>Catalogue</strong> section (<code>/inventory</code>) under <strong>Inventory</strong> provides a complete hierarchical asset management system for cataloging, grouping, and monitoring all physical and virtual infrastructure resources across your multi-cloud estate.</p>
 <p>Infrastructure in PixelView is organized in a structured tree hierarchy:</p>
-<p>$$\text{Cloud} \longrightarrow \text{Region} \longrightarrow \text{Zone} \longrightarrow \text{Entities (Servers, Network Devices, Apps, Storage)}$$</p>
+<p><strong>Cloud</strong> &rarr; <strong>Region</strong> &rarr; <strong>Zone</strong> &rarr; <strong>Entities</strong> (Servers, Network Devices, Applications, Storage)</p>
 <hr />
 <h2 id="navigating-to-catalogue">Navigating to Catalogue<a class="headerlink" href="#navigating-to-catalogue" title="Permanent link">&para;</a></h2>
 <p>To access the Cloud Inventory Catalogue:</p>
@@ -3217,7 +3243,7 @@
 <hr />
 <h3 id="viewing-a-region">Viewing a Region<a class="headerlink" href="#viewing-a-region" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Under the <strong>REGIONS</strong> section of the Cloud Dashboard, click <strong>View region $\rightarrow$</strong> on any region card (such as <code>testRegion</code>):</li>
+<li>Under the <strong>REGIONS</strong> section of the Cloud Dashboard, click <strong>View region &rarr;</strong> on any region card (such as <code>testRegion</code>):</li>
 </ul>
 <p><a href="../../images/inventory-view-region-card.png" class="glightbox">
   <img src="../../images/inventory-view-region-card.png" alt="Region Card Navigation">
@@ -3246,7 +3272,7 @@
 <hr />
 <h3 id="viewing-a-zone">Viewing a Zone<a class="headerlink" href="#viewing-a-zone" title="Permanent link">&para;</a></h3>
 <ul>
-<li>On the Region Overview dashboard, locate the target zone under <strong>ZONES</strong> and click <strong>View zone $\rightarrow$</strong>:</li>
+<li>On the Region Overview dashboard, locate the target zone under <strong>ZONES</strong> and click <strong>View zone &rarr;</strong>:</li>
 </ul>
 <p><a href="../../images/inventory-view-zone-card.png" class="glightbox">
   <img src="../../images/inventory-view-zone-card.png" alt="Zone Card Navigation">
@@ -3495,6 +3521,16 @@
 <li><strong>General Info &amp; Storage Details</strong>: Displays storage name, system UUID, backend type (<code>storageType</code>), allocated capacity, and mount path.</li>
 <li><strong>Infrastructure Placement</strong>: Tracks assigned Cloud, Region, and Zone UUID mappings.</li>
 <li><strong>Header Actions</strong>: Quick buttons to Edit storage parameters, Attach Credentials, or Delete the storage resource.</li>
+</ul>
+<hr />
+<h2 id="vault-secret-file-integration">Vault Secret &amp; File Integration<a class="headerlink" href="#vault-secret-file-integration" title="Permanent link">&para;</a></h2>
+<p>PixelView embeds a secure <strong>HashiCorp Vault</strong> secret manager directly within inventory entity views (Servers, Applications, and Storage types).</p>
+<h3 id="vault-capabilities-within-inventory">Vault Capabilities within Inventory<a class="headerlink" href="#vault-capabilities-within-inventory" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Entity Secret Storage</strong>: Store sensitive configuration parameters, API keys, database connection URIs, and TLS certificates directly bound to individual inventory assets.</li>
+<li><strong>Encrypted File Vault</strong>: Upload, store, and manage encrypted credential files (such as SSH private keys, kubeconfig profiles, and licensing bundles) accessible only to authorized operators.</li>
+<li><strong>Vault Authentication</strong>: Connect using secure Vault session tokens with granular role-based policy enforcement.</li>
+<li><strong>Secure Secret Sharing</strong>: Share encrypted secrets and configuration files securely across authorized platform engineering team members without exposing raw credentials in plaintext.</li>
 </ul>
 
 

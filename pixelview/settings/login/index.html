@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -2151,10 +2121,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-login-procedure" class="md-nav__link">
+  <a href="#standard-login" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Login Procedure
+        Standard Login
       
     </span>
   </a>
@@ -2173,13 +2143,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#password-recovery-reset" class="md-nav__link">
+  <a href="#password-recovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Password Recovery &amp; Reset
+        Password Recovery
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Password Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requesting-a-password-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requesting a Password Reset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-a-new-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting a New Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2188,6 +2186,17 @@
     <span class="md-ellipsis">
       
         Logging Out
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#account-security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account Security Best Practices
       
     </span>
   </a>
@@ -2406,10 +2415,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#standard-login-procedure" class="md-nav__link">
+  <a href="#standard-login" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Standard Login Procedure
+        Standard Login
       
     </span>
   </a>
@@ -2428,13 +2437,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#password-recovery-reset" class="md-nav__link">
+  <a href="#password-recovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Password Recovery &amp; Reset
+        Password Recovery
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Password Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requesting-a-password-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requesting a Password Reset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-a-new-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting a New Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2443,6 +2480,17 @@
     <span class="md-ellipsis">
       
         Logging Out
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#account-security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account Security Best Practices
       
     </span>
   </a>
@@ -2541,60 +2589,73 @@
 
 
 <h1 id="authentication-login">Authentication &amp; Login<a class="headerlink" href="#authentication-login" title="Permanent link">&para;</a></h1>
-<p>PixelView provides a secure authentication portal supporting local database credentials and Single Sign-On (SSO) enterprise identity providers.</p>
+<p>PixelView provides a secure authentication portal supporting local database credentials and enterprise Single Sign-On (SSO).</p>
 <hr />
 <h2 id="default-credentials">Default Credentials<a class="headerlink" href="#default-credentials" title="Permanent link">&para;</a></h2>
-<p>On a newly deployed PixelView instance, use the initial administrative credentials to log in:</p>
+<p>On a freshly deployed PixelView instance, use the initial administrative credentials to log in:</p>
 <ul>
 <li><strong>Email / Username</strong>: <code>admin@localhost</code></li>
 <li><strong>Password</strong>: <code>password</code></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Change Default Password</p>
-<p>It is critical to change the default <code>admin@localhost</code> password immediately after your first login by navigating to <strong>Settings</strong> &gt; <strong>Profile</strong> &gt; <strong>Change Password</strong>.</p>
+<p>Using default credentials in production introduces security risks. Immediately after your initial login, navigate to <strong>Settings</strong> &gt; <strong>Profile</strong> &gt; <strong>Change Password</strong> to establish a secure, unique password.</p>
 </div>
 <hr />
-<h2 id="standard-login-procedure">Standard Login Procedure<a class="headerlink" href="#standard-login-procedure" title="Permanent link">&para;</a></h2>
+<h2 id="standard-login">Standard Login<a class="headerlink" href="#standard-login" title="Permanent link">&para;</a></h2>
+<p>To log into PixelView using your email and password:</p>
 <ul>
 <li>Open your browser and navigate to your PixelView host URL (e.g., <code>https://pixelview.yourdomain.com/login</code>).</li>
 <li>Enter your registered <strong>Email</strong> address.</li>
-<li>Enter your <strong>Password</strong> (click the <strong>Eye Icon</strong> to toggle password visibility).</li>
-<li>Click <strong>Sign In</strong>.</li>
+<li>Enter your <strong>Password</strong>. Click the eye icon to toggle password visibility if needed.</li>
+<li>Click <strong>Log In</strong>.</li>
 </ul>
-<p>Upon successful authentication, the system creates an encrypted session token and redirects you to the main dashboard.</p>
+<p>Upon successful authentication, PixelView establishes a secure session and redirects you to your operational dashboard.</p>
 <hr />
 <h2 id="single-sign-on-sso">Single Sign-On (SSO)<a class="headerlink" href="#single-sign-on-sso" title="Permanent link">&para;</a></h2>
 <p>If your organization has integrated an enterprise identity provider (such as Keycloak, Okta, Microsoft Entra ID, or Google Workspace):</p>
 <ul>
-<li>On the login page, click the <strong>Single Sign-On (SSO)</strong> button.</li>
-<li>You will be redirected to your organization's identity provider portal.</li>
-<li>Authenticate using your corporate credentials and multi-factor authentication (MFA).</li>
-<li>Once verified, you will be redirected back to PixelView with an authenticated session.</li>
+<li>On the login page, locate the <strong>Continue with SSO</strong> section beneath the login form.</li>
+<li>Click the <strong>SSO Login</strong> button.</li>
+<li>Your browser will redirect to your organization's identity provider portal.</li>
+<li>Authenticate using your corporate credentials and multi-factor authentication (MFA) prompts.</li>
+<li>Upon successful verification, you are redirected back to PixelView with an active authenticated session.</li>
 </ul>
-<p>For identity provider configuration details, see <a href="../../management/sso-integration/">SSO Integration Guide</a>.</p>
+<p>For identity provider setup details, refer to the <a href="../../management/sso-integration/">SSO Integration Guide</a>.</p>
 <hr />
-<h2 id="password-recovery-reset">Password Recovery &amp; Reset<a class="headerlink" href="#password-recovery-reset" title="Permanent link">&para;</a></h2>
-<p>If you have forgotten your password:</p>
+<h2 id="password-recovery">Password Recovery<a class="headerlink" href="#password-recovery" title="Permanent link">&para;</a></h2>
+<p>If you have forgotten your account password, you can reset it via self-service recovery:</p>
+<h3 id="requesting-a-password-reset">Requesting a Password Reset<a class="headerlink" href="#requesting-a-password-reset" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Click the <strong>Forgot password?</strong> link on the login page (navigates to <code>/forgot-password</code>).</li>
-<li>Enter your registered email address and click <strong>Send Reset Link</strong>.</li>
-<li>Check your email for a secure password reset link.</li>
-<li>Click the link to open the <strong>Reset Password</strong> page (<code>/reset-password</code>).</li>
-<li>Enter your <strong>New Password</strong> and <strong>Confirm Password</strong> (minimum 8 characters with letters, numbers, and symbols).</li>
-<li>Click <strong>Reset Password</strong> to complete the update.</li>
+<li>On the login page, click the <strong>Forgot password?</strong> link located below the password field.</li>
+<li>In the <strong>Forgot Password</strong> view (<code>/forgot-password</code>), enter your registered account email address.</li>
+<li>Click <strong>Send Reset Link</strong>.</li>
+<li>A confirmation message will appear, and PixelView will dispatch a secure reset link to your email inbox.</li>
+</ul>
+<h3 id="setting-a-new-password">Setting a New Password<a class="headerlink" href="#setting-a-new-password" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Open the recovery email and click the password reset link.</li>
+<li>In the <strong>Reset Password</strong> screen (<code>/reset-password</code>), enter your <strong>New Password</strong>.</li>
+<li>Re-enter the password in <strong>Confirm Password</strong> to verify matching entries.</li>
+<li>Click <strong>Reset Password</strong> to apply your new credential.</li>
+<li>Once saved, you are redirected to the login page to sign in with your updated password.</li>
 </ul>
 <hr />
 <h2 id="logging-out">Logging Out<a class="headerlink" href="#logging-out" title="Permanent link">&para;</a></h2>
-<p>To end your active session and log out of PixelView:</p>
+<p>To end your active operational session:</p>
 <ul>
 <li>Click the <strong>Logout</strong> button located at the bottom of the left navigation sidebar:
   <a href="../../images/logout.png" class="glightbox">
     <img src="../../images/logout.png" alt="Logout Navigation Sidebar">
   </a></li>
-<li>When triggered, PixelView:</li>
-<li>Revokes the active session token via the backend API.</li>
-<li>Clears all local application states, session storage, and cached data.</li>
-<li>Redirects you securely back to the login portal.</li>
+<li>Logging out immediately invalidates your session, clears temporary cached application state from your browser, and returns you safely to the login screen.</li>
+</ul>
+<hr />
+<h2 id="account-security-best-practices">Account Security Best Practices<a class="headerlink" href="#account-security-best-practices" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Use Strong Passwords</strong>: Ensure passwords contain at least 8 characters with a mix of uppercase letters, lowercase letters, numbers, and special symbols.</li>
+<li><strong>Log Out on Shared Machines</strong>: Always use the sidebar <strong>Logout</strong> button when finishing work on shared workstations or lab environments.</li>
+<li><strong>Keep Contact Information Current</strong>: Verify your email address under <strong>Settings</strong> &gt; <strong>Profile</strong> so password reset and incident alert notifications reach you reliably.</li>
 </ul>
 
 

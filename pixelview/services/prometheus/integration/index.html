@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prometheus-integration-with-pixelview" class="md-skip">
+        <a href="#prometheus-alertmanager-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1235,22 +1205,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setups" class="md-nav__link">
+  <a href="#integration-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setups
+        Integration Overview
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setups">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-on-pixelview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration on PixelView
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration on PixelView">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#on-pixelview" class="md-nav__link">
+  <a href="#creating-the-prometheus-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        On PixelView
+        Creating the Prometheus Service
       
     </span>
   </a>
@@ -1258,10 +1239,121 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#on-prometheus" class="md-nav__link">
+  <a href="#copying-the-service-key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        On Prometheus
+        Copying the Service Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribing-to-alert-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscribing to Alert Notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-prometheus-alertmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Prometheus Alertmanager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Prometheus Alertmanager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alertmanager-configuration-file-alertmanageryml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alertmanager Configuration File (alertmanager.yml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reloading-alertmanager-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reloading Alertmanager Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-promql-alerting-rules-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production PromQL Alerting Rules Library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-field-mapping-to-pixelview-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Field Mapping to PixelView Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-webhook-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification &amp; Webhook Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification &amp; Webhook Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-delivery-with-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Delivery with cURL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification Checklist
       
     </span>
   </a>
@@ -2417,22 +2509,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setups" class="md-nav__link">
+  <a href="#integration-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setups
+        Integration Overview
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setups">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-on-pixelview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration on PixelView
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration on PixelView">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#on-pixelview" class="md-nav__link">
+  <a href="#creating-the-prometheus-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        On PixelView
+        Creating the Prometheus Service
       
     </span>
   </a>
@@ -2440,10 +2543,121 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#on-prometheus" class="md-nav__link">
+  <a href="#copying-the-service-key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        On Prometheus
+        Copying the Service Key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subscribing-to-alert-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subscribing to Alert Notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-prometheus-alertmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Prometheus Alertmanager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Prometheus Alertmanager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alertmanager-configuration-file-alertmanageryml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alertmanager Configuration File (alertmanager.yml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reloading-alertmanager-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reloading Alertmanager Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-promql-alerting-rules-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production PromQL Alerting Rules Library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-field-mapping-to-pixelview-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Field Mapping to PixelView Cases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-webhook-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification &amp; Webhook Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification &amp; Webhook Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testing-delivery-with-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Delivery with cURL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification Checklist
       
     </span>
   </a>
@@ -2564,77 +2778,225 @@
 
 
 
-<h1 id="prometheus-integration-with-pixelview">Prometheus integration with Pixelview<a class="headerlink" href="#prometheus-integration-with-pixelview" title="Permanent link">&para;</a></h1>
-<h2 id="setups">Setups<a class="headerlink" href="#setups" title="Permanent link">&para;</a></h2>
-<p>To enable alertmanger to send prometheus alerts to pixelview, ensure the following:</p>
-<h3 id="on-pixelview">On PixelView<a class="headerlink" href="#on-pixelview" title="Permanent link">&para;</a></h3>
-<h4 id="add-prometheus-service-in-pixelview">Add <code>Prometheus</code> service in pixelview<a class="headerlink" href="#add-prometheus-service-in-pixelview" title="Permanent link">&para;</a></h4>
+<h1 id="prometheus-alertmanager-integration">Prometheus Alertmanager Integration<a class="headerlink" href="#prometheus-alertmanager-integration" title="Permanent link">&para;</a></h1>
+<p>Prometheus and Alertmanager form the core metrics collection and threshold-alerting pipeline for cloud-native infrastructure. Integrating Prometheus Alertmanager with PixelView allows engineering teams to automatically route firing alerts directly into PixelView's incident management, escalation engine, and on-call notification channels.</p>
+<hr />
+<h2 id="integration-overview">Integration Overview<a class="headerlink" href="#integration-overview" title="Permanent link">&para;</a></h2>
+<p>The integration functions through authenticated HTTP webhook endpoints:
+* Prometheus evaluates alert rules against scraped time-series metrics.
+* When thresholds are breached, Alertmanager groups, deduplicates, and dispatches an alert payload to the PixelView webhook receiver.
+* PixelView authenticates the incoming payload using a unique <strong>Service Key</strong>, normalizes the alert labels, and creates an incident case.
+* If an escalation policy is bound to the service, notification trees and automated remediation workflows execute immediately.</p>
+<hr />
+<h2 id="configuration-on-pixelview">Configuration on PixelView<a class="headerlink" href="#configuration-on-pixelview" title="Permanent link">&para;</a></h2>
+<h3 id="creating-the-prometheus-service">Creating the Prometheus Service<a class="headerlink" href="#creating-the-prometheus-service" title="Permanent link">&para;</a></h3>
+<p>To register Prometheus as an alerting source:</p>
 <ul>
-<li>
-<p>Go to <code>Services</code> -&gt; <code>All Services</code></p>
-<p><a href="../images/prometheus1.jpg" class="glightbox">
-  <img src="../images/prometheus1.jpg">
+<li>In the primary navigation sidebar, navigate to <strong>Services</strong> &rarr; <strong>All Services</strong>:</li>
+</ul>
+<p><a href="../../../images/prometheus1.png" class="glightbox">
+  <img src="../../../images/prometheus1.png" alt="All Services View in PixelView">
 </a></p>
-</li>
-<li>
-<p>Click on <code>+</code> icon on top right to create a new service</p>
-<p><a href="../images/prometheus2.jpg" class="glightbox">
-  <img src="../images/prometheus2.jpg">
+<ul>
+<li>Click the orange <strong><code>+</code></strong> (Add Service) button on the top-right toolbar:</li>
+</ul>
+<p><a href="../../../images/prometheus2.png" class="glightbox">
+  <img src="../../../images/prometheus2.png" alt="Add Service Button in Table Toolbar">
 </a></p>
-</li>
-<li>
-<p>Give it a service name</p>
-</li>
-<li>Select Prometheus from the dropdown menu</li>
-<li>
-<p>Click <code>Create Template</code></p>
-<p><a href="../images/prometheus3.jpg" class="glightbox">
-  <img src="../images/prometheus3.jpg">
-</a></p>
+<ul>
+<li>In the <strong>Add New Service</strong> dialog:<ul>
+<li>Enter a descriptive <strong>Service Name</strong> (e.g., <code>k8s-prometheus-prod</code>, <code>infra-monitoring</code>).</li>
+<li>In the <strong>Integration Type</strong> dropdown, select <strong>Prometheus</strong>.</li>
+<li>Click <strong>CREATE TEMPLATE</strong>:</li>
+</ul>
 </li>
 </ul>
-<h4 id="copy-service-key">Copy service key<a class="headerlink" href="#copy-service-key" title="Permanent link">&para;</a></h4>
+<p><a href="../../../images/prometheus3.png" class="glightbox">
+  <img src="../../../images/prometheus3.png" alt="Creating Prometheus Service Template">
+</a></p>
+<h3 id="copying-the-service-key">Copying the Service Key<a class="headerlink" href="#copying-the-service-key" title="Permanent link">&para;</a></h3>
+<p>Each registered service is provisioned with a cryptographic unique identifier used to authenticate incoming webhooks:</p>
 <ul>
-<li>
-<p>Once the service is created, click <code>...</code> on the service row and click <code>edit</code></p>
-<p><a href="../images/prometheus4.jpg" class="glightbox">
-  <img src="../images/prometheus4.jpg">
-</a></p>
-</li>
-<li>
-<p>Copy the <code>Service Key</code>, and click <code>cancel</code></p>
-<p><a href="../images/prometheus5.jpg" class="glightbox">
-  <img src="../images/prometheus5.jpg">
-</a></p>
-</li>
+<li>In the <strong>All Services</strong> table, locate your newly created Prometheus service.</li>
+<li>Click the action menu (<strong><code>...</code></strong>) in the <strong>Actions</strong> column and select <strong>Edit</strong>:</li>
 </ul>
-<h4 id="subscribe-to-the-service">Subscribe to the service<a class="headerlink" href="#subscribe-to-the-service" title="Permanent link">&para;</a></h4>
+<p><a href="../../../images/prometheus4.png" class="glightbox">
+  <img src="../../../images/prometheus4.png" alt="Edit Service Context Action Menu">
+</a></p>
 <ul>
-<li>
-<p>click <code>...</code> on the service row and click <code>Subscribe</code></p>
-<p><a href="../images/prometheus6.jpg" class="glightbox">
-  <img src="../images/prometheus6.jpg">
-</a></p>
-</li>
+<li>In the <strong>Edit Service</strong> modal, locate the <strong>Service Key</strong> field and click the <strong>Copy</strong> icon to copy the key to your clipboard:</li>
 </ul>
-<h3 id="on-prometheus">On Prometheus<a class="headerlink" href="#on-prometheus" title="Permanent link">&para;</a></h3>
-<h4 id="change-the-receiver">Change the receiver<a class="headerlink" href="#change-the-receiver" title="Permanent link">&para;</a></h4>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">receiver</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;pixelview&#39;</span>
+<p><a href="../../../images/prometheus5.png" class="glightbox">
+  <img src="../../../images/prometheus5.png" alt="Copying Service Key from Edit Service Modal">
+</a></p>
+<ul>
+<li>Click <strong>Cancel</strong> to close the modal without modifying existing settings.</li>
+</ul>
+<h3 id="subscribing-to-alert-notifications">Subscribing to Alert Notifications<a class="headerlink" href="#subscribing-to-alert-notifications" title="Permanent link">&para;</a></h3>
+<p>To ensure you receive direct notifications when alerts trigger on this service:</p>
+<ul>
+<li>In the <strong>Actions</strong> column (<strong><code>...</code></strong>), click <strong>Subscribe</strong>:</li>
+</ul>
+<p><a href="../../../images/prometheus6.png" class="glightbox">
+  <img src="../../../images/prometheus6.png" alt="Subscribing to Prometheus Service Alerts">
+</a></p>
+<ul>
+<li>The subscription status badge updates to <strong>Subscribed</strong> (green).</li>
+</ul>
+<hr />
+<h2 id="configuring-prometheus-alertmanager">Configuring Prometheus Alertmanager<a class="headerlink" href="#configuring-prometheus-alertmanager" title="Permanent link">&para;</a></h2>
+<h3 id="alertmanager-configuration-file-alertmanageryml">Alertmanager Configuration File (<code>alertmanager.yml</code>)<a class="headerlink" href="#alertmanager-configuration-file-alertmanageryml" title="Permanent link">&para;</a></h3>
+<p>Add a dedicated webhook receiver to your Alertmanager configuration file (<code>/etc/alertmanager/alertmanager.yml</code> or Kubernetes <code>ConfigMap</code>):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">global</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">resolve_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">route</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">group_by</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;alertname&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;cluster&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;service&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;instance&#39;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">group_wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30s</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">group_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5m</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">repeat_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12h</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">receiver</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;pixelview-webhook&#39;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nt">receivers</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;pixelview-webhook&#39;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">webhook_configs</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;http://&lt;pixelview-host&gt;/webhook/prometheus?servicekey=&lt;service_key&gt;&#39;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="nt">send_resolved</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">http_config</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nt">follow_redirects</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
-<h4 id="add-the-receiver-config">Add the receiver config<a class="headerlink" href="#add-the-receiver-config" title="Permanent link">&para;</a></h4>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;pixelview&#39;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">webhook_configs</span><span class="p">:</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;http://[pixelview_url]/webhook/prometheus?servicekey=[service_key]&#39;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="nt">send_resolved</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<blockquote>
+<p>[!IMPORTANT]
+* Replace <code>&lt;pixelview-host&gt;</code> with the fully qualified domain name or IP address of your PixelView instance (e.g., <code>cloud.pixelvirt.com</code>).
+* Replace <code>&lt;service_key&gt;</code> with the exact unique UUID copied from the PixelView service edit dialog.
+* Enabling <code>send_resolved: true</code> ensures that when metrics return below thresholds, Alertmanager sends a resolution event that automatically marks the incident as resolved in PixelView.</p>
+</blockquote>
+<h3 id="reloading-alertmanager-configuration">Reloading Alertmanager Configuration<a class="headerlink" href="#reloading-alertmanager-configuration" title="Permanent link">&para;</a></h3>
+<p>Apply the updated configuration by sending an HTTP POST request to Alertmanager's reload endpoint:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:9093/-/reload
 </span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<p>Or restart the service daemon via systemd:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>alertmanager
+</span></code></pre></div>
+<hr />
+<h2 id="production-promql-alerting-rules-library">Production PromQL Alerting Rules Library<a class="headerlink" href="#production-promql-alerting-rules-library" title="Permanent link">&para;</a></h2>
+<p>To maximize operational visibility, configure standard production alerting rules in your Prometheus rule files (<code>rules.yml</code>):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Alert Name</th>
+<th style="text-align: left;">PromQL Expression</th>
+<th style="text-align: left;">Severity</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>HostHighCpuSaturation</code></strong></td>
+<td style="text-align: left;"><code>100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) &gt; 85</code></td>
+<td style="text-align: left;"><code>warning</code></td>
+<td style="text-align: left;">Sustained CPU utilization exceeds 85% for more than 5 minutes on the specified host.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>HostMemoryExhaustion</code></strong></td>
+<td style="text-align: left;"><code>(node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 &lt; 10</code></td>
+<td style="text-align: left;"><code>critical</code></td>
+<td style="text-align: left;">Available system memory drops below 10% of physical capacity.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>PredictiveDiskExhaustion</code></strong></td>
+<td style="text-align: left;"><code>predict_linear(node_filesystem_free_bytes{mountpoint="/"}[1h], 4 * 3600) &lt; 0</code></td>
+<td style="text-align: left;"><code>critical</code></td>
+<td style="text-align: left;">Root filesystem is projected to run out of storage space within the next 4 hours based on recent consumption trends.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>K8sPodCrashLooping</code></strong></td>
+<td style="text-align: left;"><code>rate(kube_pod_container_status_restarts_total[15m]) * 60 &gt; 2</code></td>
+<td style="text-align: left;"><code>warning</code></td>
+<td style="text-align: left;">Kubernetes container pod is restarting rapidly due to application crash loops.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>ServiceEndpointDown</code></strong></td>
+<td style="text-align: left;"><code>up == 0</code></td>
+<td style="text-align: left;"><code>critical</code></td>
+<td style="text-align: left;">Monitored Prometheus scrape target or exporter daemon is unreachable or down.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="alert-field-mapping-to-pixelview-cases">Alert Field Mapping to PixelView Cases<a class="headerlink" href="#alert-field-mapping-to-pixelview-cases" title="Permanent link">&para;</a></h2>
+<p>When Alertmanager delivers an alert payload to PixelView, incoming fields are mapped automatically into incident attributes:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Alertmanager Field</th>
+<th style="text-align: left;">PixelView Case Field</th>
+<th style="text-align: left;">Operational Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>labels.alertname</code></strong></td>
+<td style="text-align: left;"><strong>Case Title</strong></td>
+<td style="text-align: left;">Primary identification tag displayed in the open cases registry.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>labels.severity</code></strong></td>
+<td style="text-align: left;"><strong>Case Severity</strong></td>
+<td style="text-align: left;">Mapped directly to incident severity badges (<code>critical</code>, <code>warning</code>, <code>info</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>labels.instance</code></strong></td>
+<td style="text-align: left;"><strong>Affected Host</strong></td>
+<td style="text-align: left;">Links the incident directly to physical or virtual inventory hosts in PixelView.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>annotations.summary</code></strong></td>
+<td style="text-align: left;"><strong>Brief Summary</strong></td>
+<td style="text-align: left;">Quick incident description shown in list views and mobile notifications.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>annotations.description</code></strong></td>
+<td style="text-align: left;"><strong>Detailed Description</strong></td>
+<td style="text-align: left;">Full technical explanation, threshold values, and metric queries visible in the case detail view.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>status</code></strong> (<code>firing</code> / <code>resolved</code>)</td>
+<td style="text-align: left;"><strong>Case Status</strong></td>
+<td style="text-align: left;">Controls whether a case is marked <strong>Open</strong> or automatically transitioned to <strong>Resolved</strong>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="verification-webhook-testing">Verification &amp; Webhook Testing<a class="headerlink" href="#verification-webhook-testing" title="Permanent link">&para;</a></h2>
+<h3 id="testing-delivery-with-curl">Testing Delivery with cURL<a class="headerlink" href="#testing-delivery-with-curl" title="Permanent link">&para;</a></h3>
+<p>You can simulate a test Alertmanager alert dispatch using <code>curl</code> to verify network connectivity and Service Key authentication:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;http://&lt;pixelview-host&gt;/webhook/prometheus?servicekey=&lt;service_key&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;[</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s1">    {</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s1">      &quot;status&quot;: &quot;firing&quot;,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s1">      &quot;labels&quot;: {</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s1">        &quot;alertname&quot;: &quot;TestAlertConnectivity&quot;,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s1">        &quot;severity&quot;: &quot;warning&quot;,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s1">        &quot;instance&quot;: &quot;test-host-01&quot;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s1">      },</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="s1">      &quot;annotations&quot;: {</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s1">        &quot;summary&quot;: &quot;Manual webhook verification test&quot;,</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="s1">        &quot;description&quot;: &quot;Verifying delivery between Alertmanager and PixelView.&quot;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="s1">      },</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="s1">      &quot;startsAt&quot;: &quot;2026-09-10T16:00:00Z&quot;</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="s1">    }</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="s1">  ]&#39;</span>
+</span></code></pre></div>
+<h3 id="verification-checklist">Verification Checklist<a class="headerlink" href="#verification-checklist" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Replace [pixel_view] with the actual PixelView URL</li>
-<li>Replace [service_key] with the actual key that was copied earlier</li>
+<li><strong>Case Creation</strong>: Navigate to <strong>Cases</strong> &rarr; <strong>Open Cases</strong> to confirm the <code>TestAlertConnectivity</code> incident appears.</li>
+<li><strong>Notification Dispatch</strong>: If subscribed, verify you received a notification bell alert or outbound webhook forward.</li>
+<li><strong>Inspect Alertmanager Logs</strong>: If alerts fail to appear, inspect Alertmanager journal logs for delivery errors:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>alertmanager<span class="w"> </span>-f<span class="w"> </span>--grep<span class="o">=</span><span class="s2">&quot;pixelview&quot;</span>
+</span></code></pre></div></li>
 </ul>
-</div>
-<p>Once the Prometheus service is added successfully, you will start getting alerts in <code>Cases</code>.</p>
 
 
 

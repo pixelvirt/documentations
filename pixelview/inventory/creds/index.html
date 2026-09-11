@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1844,6 +1814,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#automation-patch-management-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automation &amp; Patch Management Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deleting-credentials" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2563,6 +2544,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#automation-patch-management-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automation &amp; Patch Management Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deleting-credentials" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2788,6 +2780,19 @@ At least one valid authentication secret (<strong>Password</strong> or <strong>P
 </li>
 <li><strong>Public Key</strong>: Displays the configured public key string for inspection and editing.</li>
 <li>Click <strong>UPDATE CREDENTIAL</strong> to save changes.</li>
+</ul>
+<hr />
+<h2 id="automation-patch-management-integration">Automation &amp; Patch Management Integration<a class="headerlink" href="#automation-patch-management-integration" title="Permanent link">&para;</a></h2>
+<p>Stored credential profiles provide the seamless authentication layer connecting PixelView execution runners to remote target hosts:</p>
+<ul>
+<li><strong>Automated Runner Execution</strong>: When an Ansible playbook or patching workflow executes against a target host, runner daemons retrieve the bound SSH keypair or password directly from the encrypted credential vault.</li>
+<li><strong>Non-Interactive Sudo Escalation</strong>: If the automation task requires administrative privileges, the credential profile supplies the necessary elevation secrets without requiring operator intervention.</li>
+<li><strong>Key Management Standards</strong>:<ul>
+<li><strong>Modern Linux Environments</strong>: Standardize on <code>ed25519</code> keypairs (<code>ssh-keygen -t ed25519</code>) for superior cryptographic performance, smaller key sizes, and enhanced security.</li>
+<li><strong>Legacy Host Compatibility</strong>: Standardize on RSA 4096-bit keypairs for older enterprise distributions that lack OpenSSH 6.5+ ed25519 support.</li>
+</ul>
+</li>
+<li><strong>Non-Disruptive Secret Rotation</strong>: Operators can rotate SSH keys or passwords on remote fleets and update the corresponding credential profile in PixelView without needing to re-create scheduled patch plans or automation workflows.</li>
 </ul>
 <hr />
 <h2 id="deleting-credentials">Deleting Credentials<a class="headerlink" href="#deleting-credentials" title="Permanent link">&para;</a></h2>

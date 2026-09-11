@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1077,6 +1047,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incident-aggregation-multi-dimensional-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Aggregation &amp; Multi-Dimensional Filtering
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2618,6 +2599,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#incident-aggregation-multi-dimensional-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Aggregation &amp; Multi-Dimensional Filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#table-actions-inline-quick-comments" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2922,10 +2914,10 @@
 <ul>
 <li><strong>Title</strong> <em>(Required)</em>: Enter a concise, descriptive title for the incident (e.g., <code>Database Cluster Failover</code>).</li>
 <li><strong>Severity</strong> <em>(Required)</em>: Select the operational severity tier:<ul>
-<li><strong><code>L</code></strong>: Low</li>
-<li><strong><code>M</code></strong>: Medium</li>
-<li><strong><code>H</code></strong>: High</li>
-<li><strong><code>C</code></strong>: Critical</li>
+<li><strong>Low</strong>: Minor operational anomaly or routine telemetry deviation.</li>
+<li><strong>Moderate</strong>: Partial degradation, single node redundancy loss, or threshold warning.</li>
+<li><strong>High</strong>: Major service disruption impacting multiple users.</li>
+<li><strong>Critical</strong>: Total service outage, catastrophic failure, or database unavailability.</li>
 </ul>
 </li>
 <li><strong>Tags</strong>: Add one or more taxonomy tags to help filter and correlate related incidents.</li>
@@ -2936,6 +2928,19 @@
 <ul>
 <li><strong>CANCEL</strong>: Abort case creation and close the modal.</li>
 <li><strong>CREATE</strong>: Persist the case and publish it to the Open Cases queue.</li>
+</ul>
+<hr />
+<h2 id="incident-aggregation-multi-dimensional-filtering">Incident Aggregation &amp; Multi-Dimensional Filtering<a class="headerlink" href="#incident-aggregation-multi-dimensional-filtering" title="Permanent link">&para;</a></h2>
+<p>During high-volume incident storms (such as network flapping or datacenter power events), operators can collapse hundreds of incoming alerts into coherent functional clusters:</p>
+<ul>
+<li><strong>Aggregation Modes</strong>: In the table controls, operators can aggregate cases dynamically by:<ul>
+<li><strong>Hostname</strong>: Consolidates all alerts firing against a specific server or hypervisor node into a single grouped expandable row.</li>
+<li><strong>Service Name</strong>: Groups all cases originating from a shared monitoring integration or application service tier (e.g., <code>Prometheus-Ingress</code>, <code>ha-monitoring</code>).</li>
+<li><strong>Status</strong>: Segregates active <code>triggered</code> alerts from currently <code>acknowledged</code> items under active investigation.</li>
+<li><strong>Severity</strong>: Clusters alerts by criticality level (<strong>Critical</strong>, <strong>High</strong>, <strong>Moderate</strong>, <strong>Low</strong>).</li>
+</ul>
+</li>
+<li><strong>Targeted Filtering</strong>: The filter modal allows scoping the queue by specific hostnames, services, peak severity, and custom metadata tags.</li>
 </ul>
 <hr />
 <h2 id="table-actions-inline-quick-comments">Table Actions &amp; Inline Quick Comments<a class="headerlink" href="#table-actions-inline-quick-comments" title="Permanent link">&para;</a></h2>

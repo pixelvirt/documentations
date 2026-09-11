@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1398,6 +1368,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalation-lifecycle-acknowledgement-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalation Lifecycle &amp; Acknowledgement Mechanics
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2551,6 +2532,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#escalation-lifecycle-acknowledgement-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalation Lifecycle &amp; Acknowledgement Mechanics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deleting-an-escalation-policy" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2753,17 +2745,16 @@
 <li><strong>Start Node</strong>: Green indicator representing the start of the escalation sequence when an unacknowledged incident triggers.</li>
 <li><strong>Escalation Steps</strong>:<ul>
 <li><strong>Assign To</strong>: Choose the target routing mechanism:<ul>
-<li><strong>Assign To Automation</strong>: Route the alert directly to an automated remediation bot (e.g., <code>AutomationBot</code>, auto-restart script, or diagnostic collector).</li>
-<li><strong>Assign To User</strong>: Route alert notifications to a specific engineer or team member.</li>
-<li><strong>Assign To OnCall Schedule</strong>: Route alert notifications to whoever is active on the scheduled on-call rotation.</li>
+<li><strong>Assign To Automation</strong>: Route the alert directly to an automated remediation bot (e.g., automated diagnostic collector, service restarter, or AI investigation bot).</li>
+<li><strong>Assign To User</strong>: Route alert notifications directly to a specific engineer or platform specialist.</li>
 </ul>
 </li>
-<li><strong>Target Entity Dropdown</strong>: Dynamically selects the specific bot, user account, or on-call schedule based on the assignment type.</li>
+<li><strong>Target Entity Dropdown</strong>: Dynamically filters and selects the specific bot or user account matching the assignment type.</li>
 <li><strong>Escalate Timeout</strong>: Set timeout threshold in minutes (<em>"Escalate to next level, if alert is still unacknowledged after [ X ] minutes"</em>). Default is 10 minutes.</li>
 <li><strong>Step Settings (Gear Icon)</strong>: Options to delete or rearrange individual escalation steps.</li>
 </ul>
 </li>
-<li><strong>Add Step (<code>+</code>)</strong>: Click the blue plus circle between nodes to append a subsequent escalation tier (e.g., escalate from Tier-1 Automation $\rightarrow$ On-Call Engineer $\rightarrow$ Team Lead).</li>
+<li><strong>Add Step (<code>+</code>)</strong>: Click the blue plus circle between nodes to append a subsequent escalation tier (e.g., escalate from Tier-1 Automation &rarr; Primary On-Call Engineer &rarr; Lead SRE).</li>
 <li><strong>Stop Node</strong>: Red indicator representing the termination of the escalation flow.</li>
 </ul>
 <h3 id="saving-changes">Saving Changes<a class="headerlink" href="#saving-changes" title="Permanent link">&para;</a></h3>
@@ -2771,6 +2762,17 @@
 <li><strong>UPDATE TEMPLATE</strong>: Persist the configured escalation pipeline to the backend.</li>
 <li><strong>CLEAR CHANGES</strong>: Revert unsaved modifications back to the last saved state.</li>
 <li><strong>CANCEL</strong>: Exit the flow builder back to the policies table.</li>
+</ul>
+<hr />
+<h2 id="escalation-lifecycle-acknowledgement-mechanics">Escalation Lifecycle &amp; Acknowledgement Mechanics<a class="headerlink" href="#escalation-lifecycle-acknowledgement-mechanics" title="Permanent link">&para;</a></h2>
+<p>Escalation policies ensure critical infrastructure incidents never go unaddressed:</p>
+<ul>
+<li><strong>Initial Trigger</strong>: An incoming alert arrives on a service bound to this escalation policy. PixelView creates an open case and immediately triggers Step 1 (Level 0).</li>
+<li><strong>Notification Dispatch</strong>: Notifications are dispatched to the assigned user or automation bot via configured alert channels (email, SMS, or outbound webhooks).</li>
+<li><strong>Countdown Timer</strong>: A countdown timer equal to the step's <code>Escalate Timeout</code> begins ticking.</li>
+<li><strong>Acknowledgment Termination</strong>: If an operator opens the incident in <strong>Cases</strong> and clicks <strong>Acknowledge</strong>, the escalation timer immediately terminates. No further escalation tiers are notified.</li>
+<li><strong>Automatic Tier Escalation</strong>: If the timeout elapses while the incident remains unacknowledged, PixelView automatically advances the incident to Step 2 (Level 1), dispatching high-priority alerts to the next tier in the sequence.</li>
+<li><strong>Stop Node Resolution</strong>: If all tiers execute without acknowledgement, the incident reaches the <strong>Stop Node</strong>, where it remains in high-visibility status in the open cases registry until manual intervention occurs.</li>
 </ul>
 <hr />
 <h2 id="deleting-an-escalation-policy">Deleting an Escalation Policy<a class="headerlink" href="#deleting-an-escalation-policy" title="Permanent link">&para;</a></h2>

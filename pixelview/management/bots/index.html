@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1680,6 +1650,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#outbound-bot-webhook-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outbound Bot Webhook Specification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outbound Bot Webhook Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Headers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-dispatch-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON Dispatch Payload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bot-response-lifecycle-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bot Response &amp; Lifecycle Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2483,6 +2503,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#outbound-bot-webhook-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outbound Bot Webhook Specification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outbound Bot Webhook Specification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request Headers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-dispatch-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON Dispatch Payload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bot-response-lifecycle-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bot Response &amp; Lifecycle Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2664,9 +2734,48 @@
 </ul>
 <hr />
 <h2 id="using-bots-in-escalation-policies">Using Bots in Escalation Policies<a class="headerlink" href="#using-bots-in-escalation-policies" title="Permanent link">&para;</a></h2>
-<p>Once registered, bots can be automatically assigned to alert escalation workflows:
-* In <strong>Escalations</strong> &gt; <strong>Policies</strong>, you can add an escalation level and choose <strong>Assign to Automations</strong>.
-* Select the desired bot from the dropdown. When an unresolved incident reaches this escalation tier, PixelView automatically dispatches the alert payload to the bot's configured endpoint.</p>
+<p>Once registered, bots can be automatically assigned to alert escalation workflows:</p>
+<ul>
+<li>In <strong>Escalations</strong> &rarr; <strong>Policies</strong>, operators configure escalation tiers with the <strong>Assign To Automation</strong> action.</li>
+<li>Select the desired bot from the dropdown. When an unresolved incident reaches this escalation tier, PixelView dispatches the alert payload directly to the bot's configured endpoint.</li>
+</ul>
+<hr />
+<h2 id="outbound-bot-webhook-specification">Outbound Bot Webhook Specification<a class="headerlink" href="#outbound-bot-webhook-specification" title="Permanent link">&para;</a></h2>
+<p>When an escalation tier or automation rule invokes a registered bot, PixelView sends an authenticated HTTP <code>POST</code> request to the configured <code>bot_url</code>:</p>
+<h3 id="request-headers">Request Headers<a class="headerlink" href="#request-headers" title="Permanent link">&para;</a></h3>
+<div class="language-http highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">POST</span> <span class="nn">/api/v1/remediate</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">Host</span><span class="o">:</span> <span class="l">bot.example.com</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;bot_auth_token&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="na">X-API-KEY</span><span class="o">:</span> <span class="l">&lt;api_key&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="na">User-Agent</span><span class="o">:</span> <span class="l">PixelView-AutomationBot/1.0</span>
+</span></code></pre></div>
+<h3 id="json-dispatch-payload">JSON Dispatch Payload<a class="headerlink" href="#json-dispatch-payload" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;event_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;evt-8c29b41a-3e77-4f9a-9e62-0b1a6299b1a5&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;bot_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Disk Cleanup Bot&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;bot_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;custom&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-09-10T14:30:00Z&quot;</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;case&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&quot;uuid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;case-94b1c20e-7d6a-4c28-98e2-f4728923a109&quot;</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;High Disk Space Utilization on database-prod-01&quot;</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;open&quot;</span><span class="p">,</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">&quot;target_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10.0.12.45&quot;</span><span class="p">,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">&quot;service_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Prometheus-Ingress&quot;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;production&quot;</span><span class="p">,</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="nt">&quot;mount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/var/lib/mysql&quot;</span><span class="p">,</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="nt">&quot;threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;95%&quot;</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="bot-response-lifecycle-handling">Bot Response &amp; Lifecycle Handling<a class="headerlink" href="#bot-response-lifecycle-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Expected HTTP Response</strong>: The receiving bot service must respond with HTTP <code>200 OK</code> or <code>202 Accepted</code> to acknowledge receipt.</li>
+<li><strong>Incident Auto-Resolution</strong>: Upon successfully completing remediation, the bot can call PixelView's REST API (<code>/api/v1/cases/:uuid</code>) with <code>status: "resolved"</code> and an appended timeline note, automatically halting subsequent escalation tiers.</li>
+</ul>
 
 
 

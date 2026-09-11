@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1708,6 +1678,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#workflow-composition-patterns-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Composition Patterns &amp; Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2595,6 +2576,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#workflow-composition-patterns-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow Composition Patterns &amp; Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2760,9 +2752,10 @@
 </a></p>
 <h3 id="details-breakdown">Details Breakdown<a class="headerlink" href="#details-breakdown" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Associated Playbooks</strong>: A numbered list of all Ansible playbooks executed in sequential order, along with their registered descriptions (e.g., <code>1. ha-playbook-info</code>).</li>
-<li><strong>Associated Scripts</strong>: A numbered list of all Python scripts executed within the workflow, or a note indicating <em>No scripts associated</em>.</li>
+<li><strong>Associated Playbooks</strong>: An ordered sequence of all Ansible playbooks executed in sequential pipeline progression, accompanied by their registered operational descriptions.</li>
+<li><strong>Associated Scripts</strong>: An ordered sequence of all Python scripts executed within the workflow, or a note indicating <em>No scripts associated</em>.</li>
 <li><strong>Description</strong>: Custom workflow notes and documentation explaining the pipeline's operational purpose.</li>
+<li><strong>Deep-Link URL Support</strong>: Workflows support direct contextual navigation via <code>/workflows?expand=&lt;uuid&gt;</code>. When referenced from <a href="../../patch-management/patchset/">Patch Management</a> or external case runbooks, PixelView navigates directly to the target page and automatically expands the workflow's detail panel.</li>
 </ul>
 <hr />
 <h2 id="creating-an-automation-workflow">Creating an Automation Workflow<a class="headerlink" href="#creating-an-automation-workflow" title="Permanent link">&para;</a></h2>
@@ -2822,6 +2815,15 @@
 <p>[!WARNING]
 Deleting a workflow removes its pipeline definition permanently. Any event-driven <a href="../rules/">Rules</a>, patchsets, or automated triggers linked to this workflow will no longer be able to execute.</p>
 </blockquote>
+<hr />
+<h2 id="workflow-composition-patterns-best-practices">Workflow Composition Patterns &amp; Best Practices<a class="headerlink" href="#workflow-composition-patterns-best-practices" title="Permanent link">&para;</a></h2>
+<p>Designing reliable multi-step automation pipelines requires structuring individual tasks into clean operational phases:</p>
+<ul>
+<li><strong>Triage &amp; Diagnostic First</strong>: Begin the workflow with a lightweight Python probe script (such as <code>db_health_check.py</code>) to gather node telemetry, verify reachability, and confirm fault symptoms before attempting invasive modifications.</li>
+<li><strong>Idempotent Remediation Execution</strong>: Leverage Ansible playbooks for system changes. Playbooks ensure changes are only made when necessary, preventing duplicate reconfigurations or accidental data corruption if rerun.</li>
+<li><strong>Post-Remediation Health Validation</strong>: Conclude the workflow with a verification step that queries application health endpoints, restarts background workers, and ensures full operational recovery.</li>
+<li><strong>Fail-Fast Safety Boundary</strong>: If any playbook or script step returns a non-zero exit code, PixelView halts the remaining execution sequence immediately. This prevents secondary deployment steps from executing against broken or partitioned hosts.</li>
+</ul>
 
 
 

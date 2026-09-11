@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -2124,10 +2094,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#user-header-banner" class="md-nav__link">
+  <a href="#profile-header-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        User Header Banner
+        Profile Header Summary
       
     </span>
   </a>
@@ -2162,15 +2132,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration-config" class="md-nav__link">
+  <a href="#global-configuration-config" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration (/config)
+        Global Configuration (/config)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration (/config)">
+    <nav class="md-nav" aria-label="Global Configuration (/config)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2235,10 +2205,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#license-details-fields" class="md-nav__link">
+  <a href="#license-entitlement-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
-        License Details &amp; Fields:
+        License Entitlement Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applying-or-updating-an-enterprise-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applying or Updating an Enterprise License
       
     </span>
   </a>
@@ -2255,17 +2236,6 @@
     <span class="md-ellipsis">
       
         Theme Mode (Dark / Light Mode)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conclusion
       
     </span>
   </a>
@@ -2513,10 +2483,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#user-header-banner" class="md-nav__link">
+  <a href="#profile-header-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        User Header Banner
+        Profile Header Summary
       
     </span>
   </a>
@@ -2551,15 +2521,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration-config" class="md-nav__link">
+  <a href="#global-configuration-config" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration (/config)
+        Global Configuration (/config)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration (/config)">
+    <nav class="md-nav" aria-label="Global Configuration (/config)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2624,10 +2594,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#license-details-fields" class="md-nav__link">
+  <a href="#license-entitlement-fields" class="md-nav__link">
     <span class="md-ellipsis">
       
-        License Details &amp; Fields:
+        License Entitlement Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applying-or-updating-an-enterprise-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applying or Updating an Enterprise License
       
     </span>
   </a>
@@ -2644,17 +2625,6 @@
     <span class="md-ellipsis">
       
         Theme Mode (Dark / Light Mode)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conclusion
       
     </span>
   </a>
@@ -2753,23 +2723,28 @@
 
 
 <h1 id="account-settings">Account Settings<a class="headerlink" href="#account-settings" title="Permanent link">&para;</a></h1>
-<p>The <strong>Settings</strong> section in PixelView allows users to manage their personal account details, configure system notification integrations, update security credentials, and manage license activations.</p>
-<p>The settings menu provides access to three sub-sections:
-* <strong>Profile (<code>/profile</code>)</strong>: Manage personal details, notification preferences, API keys, and update passwords.
-* <strong>Config (<code>/config</code>)</strong>: Configure external integrations (Email, SMS, OpenStack, Kubernetes, Vault, Jira).
-* <strong>License Key (<code>/license-key</code>)</strong>: Manage and activate enterprise license keys.</p>
+<p>The <strong>Settings</strong> section in PixelView provides comprehensive controls for updating personal operator credentials, configuring external communication gateways, registering multi-cloud endpoints, and managing enterprise license activations.</p>
+<p>The settings subsystem is partitioned into three functional areas:</p>
+<ul>
+<li><strong>Profile (<code>/profile</code>)</strong>: Manage personal account attributes, notification delivery preferences, programmatic API keys, and account passwords.</li>
+<li><strong>Config (<code>/config</code>)</strong>: Administrative management of outbound communication gateways (Email, SMS) and infrastructure cluster credentials (OpenStack <code>clouds.yaml</code>, Kubernetes <code>kubeconfig</code>).</li>
+<li><strong>License Key (<code>/license-key</code>)</strong>: Inspect enterprise license validity, customer entitlements, domain allocations, and application password security.</li>
+</ul>
 <hr />
 <h2 id="profile-management">Profile Management<a class="headerlink" href="#profile-management" title="Permanent link">&para;</a></h2>
-<p>The <strong>Profile</strong> page (<code>/profile</code>) provides a unified dashboard for updating your personal contact details, configuring alert notification preferences, managing your personal API key, and updating your login password.</p>
-<p>Navigate to <strong>Settings</strong> &gt; <strong>Profile</strong> from the left navigation sidebar:</p>
+<p>The <strong>Profile</strong> page (<code>/profile</code>) provides a unified dashboard for managing your individual user account information, alert notification channels, API access tokens, and authentication passwords.</p>
+<p>Navigate to <strong>Settings</strong> &gt; <strong>Profile</strong> in the primary navigation sidebar:</p>
 <p><a href="../../images/profile.png" class="glightbox">
   <img src="../../images/profile.png" alt="Account Settings Profile">
 </a></p>
-<h3 id="user-header-banner">User Header Banner<a class="headerlink" href="#user-header-banner" title="Permanent link">&para;</a></h3>
-<p>The top banner displays:
-* <strong>Avatar Initials</strong>: Generated from your First and Last Name (e.g., <code>AA</code> for Admin Awesome).
-* <strong>Full Name</strong>: Your registered display name.
-* <strong>Email</strong>: Registered user email address.</p>
+<h3 id="profile-header-summary">Profile Header Summary<a class="headerlink" href="#profile-header-summary" title="Permanent link">&para;</a></h3>
+<p>The top profile card displays current identity details:</p>
+<ul>
+<li><strong>Avatar Initials</strong>: Dynamically derived from the first letter of your first and last name (e.g., <code>AA</code> for Admin Awesome).</li>
+<li><strong>Full Name</strong>: Your registered display name.</li>
+<li><strong>Email Address</strong>: Registered email associated with your account.</li>
+<li><strong>Notification Chip</strong>: Active alert channel indicator (e.g., <code>Notifications: email+sms</code>).</li>
+</ul>
 <hr />
 <h3 id="personal-information">Personal Information<a class="headerlink" href="#personal-information" title="Permanent link">&para;</a></h3>
 <p>The <strong>Personal Information</strong> card allows you to update your profile details and communication preferences:</p>
@@ -2777,229 +2752,342 @@
 <thead>
 <tr>
 <th style="text-align: left;">Field</th>
+<th style="text-align: left;">Input Type</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>First Name</strong></td>
-<td style="text-align: left;">Your first name.</td>
+<td style="text-align: left;">Text</td>
+<td style="text-align: left;">Legal or preferred first name.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Last Name</strong></td>
-<td style="text-align: left;">Your last name.</td>
+<td style="text-align: left;">Text</td>
+<td style="text-align: left;">Legal or preferred last name.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Email</strong></td>
-<td style="text-align: left;">Registered email address used for platform authentication.</td>
+<td style="text-align: left;">Read-Only</td>
+<td style="text-align: left;">Registered account email address (used for system authentication).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Phone</strong></td>
-<td style="text-align: left;">Mobile number used for receiving SMS alert notifications.</td>
+<td style="text-align: left;">Text</td>
+<td style="text-align: left;">Mobile phone number used for SMS alert delivery.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Notification Option</strong></td>
-<td style="text-align: left;">Preferred notification channels: <br> • <code>Email</code> — Receive notifications only via email. <br> • <code>SMS</code> — Receive notifications only via SMS. <br> • <code>Email &amp; SMS</code> — Dual-channel delivery for urgent alerts.</td>
+<td style="text-align: left;">Select Menu</td>
+<td style="text-align: left;">Preferred channel for operational alerts: <br> * <code>email</code>: Deliver alerts exclusively via email. <br> * <code>sms</code>: Deliver alerts exclusively via SMS text messages. <br> * <code>email+sms</code>: Deliver alerts concurrently across both email and SMS for high-urgency notifications.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>API Key</strong></td>
-<td style="text-align: left;">Masked user API key for authenticating programmatic API requests to PixelView. <br> • <strong>Copy Icon</strong>: Copy key directly to clipboard. <br> • <strong>Regenerate Icon</strong>: Invalidate existing key and generate a new key.</td>
+<td style="text-align: left;">Masked Text</td>
+<td style="text-align: left;">Personal API token used to authenticate programmatic requests to the PixelView REST API. <br> * <strong>Copy Icon</strong>: Copies the API key directly to your clipboard. <br> * <strong>Regenerate Icon</strong>: Invalidates the active key and provisions a new token.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Actions:</strong>
-* <strong>Cancel</strong>: Revert any unsaved changes to profile fields.
-* <strong>Save Changes</strong>: Persist updated names, phone numbers, and notification options to the server.</p>
+<h4 id="regenerating-your-api-key">Regenerating Your API Key<a class="headerlink" href="#regenerating-your-api-key" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Click the <strong>Regenerate API Key</strong> icon adjacent to the API Key field.</li>
+<li>A browser confirmation dialog appears:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Regenerating your API key will invalidate the current key. Continue?
+</span></code></pre></div></li>
+<li>Confirming the action immediately invalidates the previous token and provisions a fresh key. Update any automation scripts, CI/CD pipelines, or external bots utilizing the previous token.</li>
+</ul>
+<h4 id="saving-personal-changes">Saving Personal Changes<a class="headerlink" href="#saving-personal-changes" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Click <strong>Save Changes</strong> to persist updated names, phone numbers, and notification preferences.</li>
+<li>Click <strong>Cancel</strong> to discard uncommitted edits and revert fields to cached values.</li>
+</ul>
 <hr />
 <h3 id="change-password">Change Password<a class="headerlink" href="#change-password" title="Permanent link">&para;</a></h3>
-<p>The <strong>Change Password</strong> card allows you to update your account password:</p>
+<p>The <strong>Change Password</strong> card enables secure credential rotation:</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Field</th>
+<th style="text-align: left;">Input Type</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>New Password</strong></td>
-<td style="text-align: left;">Enter your new account password. Use the <strong>Eye Icon</strong> to toggle password visibility.</td>
+<td style="text-align: left;"><strong>Old Password</strong></td>
+<td style="text-align: left;">Password</td>
+<td style="text-align: left;">Current account password required for identity verification. Includes a visibility toggle icon.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Confirm Password</strong></td>
-<td style="text-align: left;">Re-enter the new password to verify matching entries.</td>
+<td style="text-align: left;"><strong>New Password</strong></td>
+<td style="text-align: left;">Password</td>
+<td style="text-align: left;">Desired new password. Includes a visibility toggle icon.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Confirm New Password</strong></td>
+<td style="text-align: left;">Password</td>
+<td style="text-align: left;">Re-enter the new password to prevent typing mistakes.</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition tip">
-<p class="admonition-title">Password Requirements</p>
-<p>Passwords must be at least <strong>8 characters</strong> long and should include a combination of uppercase letters, lowercase letters, numbers, and symbols.</p>
+<p class="admonition-title">Password Complexity Guidelines</p>
+<p>For security, passwords must be at least <strong>8 characters</strong> long and should include a balanced combination of uppercase letters, lowercase letters, numbers, and symbols.</p>
 </div>
-<p><strong>Actions:</strong>
-* <strong>Clear</strong>: Reset both password input fields.
-* <strong>Update Password</strong>: Submit and apply the new account password.</p>
+<p><strong>Actions:</strong></p>
+<ul>
+<li>Click <strong>Update Password</strong> to validate inputs and apply the new credential.</li>
+<li>Click <strong>Clear</strong> to reset all password input fields.</li>
+</ul>
 <hr />
-<h2 id="configuration-config">Configuration (<code>/config</code>)<a class="headerlink" href="#configuration-config" title="Permanent link">&para;</a></h2>
-<p>The <strong>Config</strong> section (<code>/config</code>) allows administrators to configure global communication services, infrastructure connectors, and security credentials.</p>
-<p>Navigate to <strong>Settings</strong> &gt; <strong>Config</strong> from the left navigation sidebar. The top navigation bar provides tabs for:
-* <strong>EMAIL</strong>
-* <strong>SMS</strong>
-* <strong>OPENSTACK</strong>
-* <strong>KUBERNETES</strong></p>
+<h2 id="global-configuration-config">Global Configuration (<code>/config</code>)<a class="headerlink" href="#global-configuration-config" title="Permanent link">&para;</a></h2>
+<p>The <strong>Config</strong> view (<code>/config</code>) allows administrators to configure enterprise communication gateways, infrastructure connectors, and security credentials.</p>
+<p>Navigate to <strong>Settings</strong> &gt; <strong>Config</strong> in the primary navigation sidebar. The top navigation bar presents four configuration tabs:</p>
+<ul>
+<li><strong>EMAIL</strong> <em>(Admin Only)</em>: Outbound email delivery configuration.</li>
+<li><strong>SMS</strong> <em>(Admin Only)</em>: SMS provider settings for urgent paging.</li>
+<li><strong>OPENSTACK</strong>: Multi-cloud OpenStack credentials management.</li>
+<li><strong>KUBERNETES</strong>: Multi-cluster Kubernetes <code>kubeconfig</code> management.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Role-Based Configuration Visibility</p>
+<p>The <strong>EMAIL</strong> and <strong>SMS</strong> configuration tabs are exclusively accessible to users holding the <code>Admin</code> system role. Operators with the standard <code>User</code> role can view and manage <strong>OPENSTACK</strong> and <strong>KUBERNETES</strong> cluster credentials according to their permissions matrix.</p>
+</div>
 <hr />
 <h3 id="email-configuration">Email Configuration<a class="headerlink" href="#email-configuration" title="Permanent link">&para;</a></h3>
-<p>Configure the platform's outbound email delivery settings for alert dispatch and user invitations:</p>
+<p>Configure the platform's outbound email delivery settings used for incident notifications, approval notices, and user invitations:</p>
 <p><a href="../../images/config-email.png" class="glightbox">
   <img src="../../images/config-email.png" alt="Email Configuration">
 </a></p>
-<p><strong>Supported Email Providers:</strong></p>
+<p>Select your organization's email provider from the <strong>Email Provider</strong> dropdown:</p>
+<h4 id="smtp-configuration">SMTP Configuration<a class="headerlink" href="#smtp-configuration" title="Permanent link">&para;</a></h4>
 <ul>
-<li><strong>SMTP</strong>:</li>
 <li><strong>Email Provider</strong>: Select <code>smtp</code>.</li>
-<li><strong>SMTP Host</strong> <em>(Required)</em>: Hostname or IP address of the SMTP mail server (e.g., <code>smtp.gmail.com</code>, <code>mail.example.com</code>).</li>
-<li><strong>SMTP Port</strong> <em>(Required)</em>: Port number used for the SMTP connection (e.g., <code>587</code> for STARTTLS, <code>465</code> for SSL/TLS, <code>25</code>).</li>
-<li><strong>SMTP Username</strong> <em>(Required)</em>: Username or email address for server authentication.</li>
-<li>
-<p><strong>SMTP Password</strong>: Password or App Password for the SMTP server (toggle visibility using the <strong>Eye Icon</strong>).</p>
-</li>
-<li>
-<p><strong>Mailgun</strong>:</p>
-</li>
-<li><strong>Email Provider</strong>: Select <code>mailgun</code>.</li>
-<li><strong>Domain</strong> <em>(Required)</em>: The sending domain configured in your Mailgun account.</li>
-<li><strong>API Key</strong> <em>(Required)</em>: Mailgun API private key.</li>
+<li><strong>SMTP Host</strong> <em>(Required)</em>: Hostname or IP address of the SMTP mail relay (e.g., <code>smtp.gmail.com</code>, <code>mail.example.com</code>).</li>
+<li><strong>SMTP Port</strong> <em>(Required)</em>: Network port for the SMTP connection (e.g., <code>587</code> for STARTTLS, <code>465</code> for SSL/TLS, or <code>25</code>).</li>
+<li><strong>SMTP Username</strong> <em>(Required)</em>: Service account username or email used for SMTP authentication.</li>
+<li><strong>SMTP Password</strong>: Account or application password. Toggle visibility using the eye icon.</li>
+<li>Click <strong>Save</strong> to persist SMTP settings.</li>
 </ul>
-<p>Click <strong>SAVE</strong> to persist your email configuration.</p>
+<h4 id="mailgun-configuration">Mailgun Configuration<a class="headerlink" href="#mailgun-configuration" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Email Provider</strong>: Select <code>mailgun</code>.</li>
+<li><strong>Domain</strong> <em>(Required)</em>: Sending domain registered and verified in your Mailgun account.</li>
+<li><strong>API Key</strong> <em>(Required)</em>: Private API key from Mailgun with sending authorization.</li>
+<li>Click <strong>Save</strong> to persist Mailgun settings.</li>
+</ul>
 <hr />
 <h3 id="sms-configuration">SMS Configuration<a class="headerlink" href="#sms-configuration" title="Permanent link">&para;</a></h3>
-<p>Set up SMS notification providers to deliver urgent, high-priority incident alerts directly to team members' mobile phones:</p>
+<p>Configure SMS delivery providers to transmit high-severity incident notifications directly to operators' mobile devices:</p>
 <p><a href="../../images/config-sms.png" class="glightbox">
   <img src="../../images/config-sms.png" alt="SMS Configuration">
 </a></p>
-<p><strong>Supported SMS Providers:</strong></p>
+<p>Select your provider from the <strong>SMS Provider</strong> dropdown:</p>
+<h4 id="twilio-configuration">Twilio Configuration<a class="headerlink" href="#twilio-configuration" title="Permanent link">&para;</a></h4>
 <ul>
-<li><strong>Twilio</strong>:</li>
 <li><strong>SMS Provider</strong>: Select <code>twilio</code>.</li>
-<li><strong>Account SID</strong> <em>(Required)</em>: Your Twilio Account SID.</li>
-<li><strong>Auth Token</strong> <em>(Required)</em>: Your Twilio authentication token (toggle visibility with the <strong>Eye Icon</strong>).</li>
-<li>
-<p><strong>Phone Number</strong> <em>(Required)</em>: The active Twilio phone number used as the sender.</p>
-</li>
-<li>
-<p><strong>Custom</strong>:</p>
-</li>
-<li><strong>SMS Provider</strong>: Select <code>custom</code>.</li>
-<li><strong>URL</strong> <em>(Required)</em>: Custom SMS HTTP gateway endpoint URL.</li>
-<li><strong>Token</strong> <em>(Required)</em>: Authorization header token for the custom SMS service.</li>
+<li><strong>Account SID</strong> <em>(Required)</em>: Twilio account security identifier.</li>
+<li><strong>Auth Token</strong> <em>(Required)</em>: Twilio authentication token. Toggle visibility using the eye icon.</li>
+<li><strong>Phone Number</strong> <em>(Required)</em>: E.164 formatted sender phone number provisioned in Twilio (e.g., <code>+15551234567</code>).</li>
+<li>Click <strong>Save</strong> to apply Twilio parameters.</li>
 </ul>
-<p>Click <strong>SAVE</strong> to apply SMS configuration settings.</p>
+<h4 id="custom-http-sms-gateway">Custom HTTP SMS Gateway<a class="headerlink" href="#custom-http-sms-gateway" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>SMS Provider</strong>: Select <code>custom</code>.</li>
+<li><strong>URL</strong> <em>(Required)</em>: HTTP REST endpoint of your internal SMS messaging gateway.</li>
+<li><strong>Token</strong> <em>(Required)</em>: Authorization bearer token passed in the gateway request header.</li>
+<li>Click <strong>Save</strong> to apply custom SMS gateway parameters.</li>
+</ul>
 <hr />
 <h3 id="openstack-configuration">OpenStack Configuration<a class="headerlink" href="#openstack-configuration" title="Permanent link">&para;</a></h3>
-<p>The <strong>OpenStack</strong> tab manages multi-cloud OpenStack credentials and cluster endpoints via <code>clouds.yaml</code>.</p>
+<p>The <strong>OpenStack</strong> tab manages multi-cloud OpenStack credentials and connection endpoints via standard <code>clouds.yaml</code> specifications.</p>
 <p><a href="../../images/config-openstack.png" class="glightbox">
   <img src="../../images/config-openstack.png" alt="OpenStack Settings">
 </a></p>
-<p><strong>OpenStack Settings Table:</strong>
-* <strong>ID/Name</strong>: Configuration identifier name with a quick <strong>Copy ID</strong> button.
-* <strong>Username</strong>: OpenStack keystone authentication username.
-* <strong>Project</strong>: Default project/tenant name.
-* <strong>Region</strong>: OpenStack region name (e.g., <code>DFW3</code>, <code>RegionOne</code>).
-* <strong>User Domain</strong>: Keystone user domain name.
-* <strong>Actions</strong>: Context menu (<code>...</code>) to <strong>Delete</strong> existing OpenStack credentials.</p>
-<p><strong>Adding an OpenStack Configuration:</strong>
-* In the <strong>OpenStack</strong> tab, click the <strong><code>+</code></strong> (Add) button on the table toolbar:
+<h4 id="openstack-settings-table">OpenStack Settings Table<a class="headerlink" href="#openstack-settings-table" title="Permanent link">&para;</a></h4>
+<p>The table displays registered OpenStack clouds:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ID/Name</strong></td>
+<td style="text-align: left;">Configuration identifier with an integrated <strong>Copy ID</strong> button.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Username</strong></td>
+<td style="text-align: left;">Keystone authentication username.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Project</strong></td>
+<td style="text-align: left;">Default project/tenant name.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Region</strong></td>
+<td style="text-align: left;">OpenStack region identifier (e.g., <code>RegionOne</code>, <code>DFW3</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>User Domain</strong></td>
+<td style="text-align: left;">Keystone user domain name (default: <code>Default</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Actions</strong></td>
+<td style="text-align: left;">Context menu (<code>...</code>) providing options to delete cloud credentials.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="adding-an-openstack-cloud-configuration">Adding an OpenStack Cloud Configuration<a class="headerlink" href="#adding-an-openstack-cloud-configuration" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Click the <strong><code>+</code></strong> (Add) button on the table toolbar:
   <a href="../../images/config-openstack-add.png" class="glightbox">
     <img src="../../images/config-openstack-add.png" alt="Add OpenStack Button">
-  </a>
-* In the <strong>Add OpenStack Config</strong> dialog:
+  </a></li>
+<li>In the <strong>Add OpenStack Config</strong> modal dialog:
   <a href="../../images/config-openstack-modal.png" class="glightbox">
     <img src="../../images/config-openstack-modal.png" alt="Add OpenStack Modal">
-  </a>
-* Paste your standard <code>clouds.yaml</code> content into the code editor.
-  !!! tip "Autofill Example Template"
-      Press <strong><code>Tab</code></strong> inside the empty editor to automatically populate a sample <code>clouds.yaml</code> template with required syntax.
-* Click <strong>SAVE</strong> to test and persist the cloud connection.</p>
+  </a></li>
+<li>Paste your standard <code>clouds.yaml</code> configuration into the code editor.</li>
+</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">clouds</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">enterprise_cloud</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">auth</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">auth_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://openstack.example.com:5000/v3</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pixelview_svc&quot;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;StrongServiceAccountPassword&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="nt">project_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;infrastructure&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="nt">project_domain_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Default&quot;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="nt">user_domain_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Default&quot;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">region_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;RegionOne&quot;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;public&quot;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">identity_api_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span></code></pre></div>
+<ul>
+<li>Click <strong>Save</strong> to register the cloud connection.</li>
+</ul>
 <hr />
 <h3 id="kubernetes-configuration">Kubernetes Configuration<a class="headerlink" href="#kubernetes-configuration" title="Permanent link">&para;</a></h3>
-<p>The <strong>Kubernetes</strong> tab allows administrators to register cluster endpoints and credentials using standard <code>kubeconfig</code> specifications.</p>
+<p>The <strong>Kubernetes</strong> tab allows administrators to register cluster API endpoints and service credentials using standard <code>kubeconfig</code> specifications.</p>
 <p><a href="../../images/config-k8s.png" class="glightbox">
   <img src="../../images/config-k8s.png" alt="Kubernetes Settings">
 </a></p>
-<p><strong>Kubernetes Settings Table:</strong>
-* <strong>ID/Cluster Name</strong>: Unique cluster identifier name with a quick <strong>Copy ID</strong> button.
-* <strong>Name</strong>: Context name assigned to the cluster.
-* <strong>Server</strong>: Kubernetes API server endpoint URL (e.g., <code>https://10.0.0.1:6443</code>).
-* <strong>Actions</strong>: Context menu (<code>...</code>) to <strong>Delete</strong> the cluster configuration.</p>
-<p><strong>Adding a Kubernetes Configuration:</strong>
-* In the <strong>Kubernetes</strong> tab, click the <strong><code>+</code></strong> (Add) button on the table toolbar.
-* In the <strong>Add Kubernetes Config</strong> dialog:
+<h4 id="kubernetes-settings-table">Kubernetes Settings Table<a class="headerlink" href="#kubernetes-settings-table" title="Permanent link">&para;</a></h4>
+<p>The table displays all registered Kubernetes clusters:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>ID/Cluster Name</strong></td>
+<td style="text-align: left;">Unique cluster identifier with an integrated <strong>Copy ID</strong> button.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Name</strong></td>
+<td style="text-align: left;">Descriptive name assigned to the cluster configuration.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Server</strong></td>
+<td style="text-align: left;">Kubernetes API server URL (e.g., <code>https://k8s-api.example.com:6443</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Actions</strong></td>
+<td style="text-align: left;">Context menu (<code>...</code>) providing options to delete cluster credentials.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="adding-a-kubernetes-cluster-configuration">Adding a Kubernetes Cluster Configuration<a class="headerlink" href="#adding-a-kubernetes-cluster-configuration" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Click the <strong><code>+</code></strong> (Add) button on the table toolbar.</li>
+<li>In the <strong>Add Kubernetes Config</strong> dialog:
   <a href="../../images/config-k8s-modal.png" class="glightbox">
     <img src="../../images/config-k8s-modal.png" alt="Add Kubernetes Modal">
-  </a>
-* Fill in the cluster parameters:
-  * <strong>Name</strong> <em>(Required)</em>: A descriptive identifier name for this Kubernetes configuration.
-  * <strong>Kubernetes Config</strong>: Paste your cluster's <code>kubeconfig</code> YAML file into the code editor. Press <strong><code>Tab</code></strong> to autofill a sample template.
-* Click <strong>SAVE</strong> to register the cluster.</p>
+  </a></li>
+<li>Complete the cluster parameters:</li>
+<li><strong>Name</strong> <em>(Required)</em>: Enter a descriptive name to identify this cluster in the UI.</li>
+<li><strong>Kubernetes Config</strong> <em>(Required)</em>: Paste your complete <code>kubeconfig</code> YAML file into the code editor. Press <strong><code>Tab</code></strong> inside the empty editor to autofill a sample template.</li>
+<li>Click <strong>Save</strong> to validate and register the cluster.</li>
+</ul>
 <hr />
 <h2 id="license-management">License Management<a class="headerlink" href="#license-management" title="Permanent link">&para;</a></h2>
-<p>The <strong>License Key</strong> page (<code>/license-key</code>) allows administrators to manage and inspect enterprise license entitlements, customer registration metadata, and application password settings.</p>
-<p>Navigate to <strong>Settings</strong> &gt; <strong>License Key</strong> from the left navigation sidebar:</p>
+<p>The <strong>License Key</strong> view (<code>/license-key</code>) allows administrators to inspect enterprise entitlements, manage license keys, and maintain application password security.</p>
+<p>Navigate to <strong>Settings</strong> &gt; <strong>License Key</strong> in the primary navigation sidebar:</p>
 <p><a href="../../images/license.png" class="glightbox">
   <img src="../../images/license.png" alt="License Management">
 </a></p>
-<h3 id="license-details-fields">License Details &amp; Fields:<a class="headerlink" href="#license-details-fields" title="Permanent link">&para;</a></h3>
+<h3 id="license-entitlement-fields">License Entitlement Fields<a class="headerlink" href="#license-entitlement-fields" title="Permanent link">&para;</a></h3>
+<p>The license management interface displays current licensing attributes:</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Field</th>
+<th style="text-align: left;">Status</th>
 <th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: left;"><strong>Customer Name</strong></td>
-<td style="text-align: left;">The registered customer name or trial license identifier associated with this deployment.</td>
+<td style="text-align: left;">Read-Only</td>
+<td style="text-align: left;">Registered enterprise customer or account identifier.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Domain</strong></td>
-<td style="text-align: left;">Licensed organization domain (e.g., <code>pixelvirt.com</code>).</td>
+<td style="text-align: left;">Read-Only</td>
+<td style="text-align: left;">Licensed operational domain (e.g., <code>pixelvirt.com</code>).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Organization</strong></td>
+<td style="text-align: left;">Read-Only</td>
 <td style="text-align: left;">Registered company or organization name.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Expire in days</strong></td>
-<td style="text-align: left;">Number of remaining active days until license expiration.</td>
+<td style="text-align: left;"><strong>Expire In days</strong></td>
+<td style="text-align: left;">Read-Only</td>
+<td style="text-align: left;">Number of days remaining until license expiration.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>License Key</strong></td>
-<td style="text-align: left;">Current status of the license (e.g., <code>License is valid</code>). When activating for the first time, this field accepts the raw license key payload.</td>
+<td style="text-align: left;">Editable / Locked</td>
+<td style="text-align: left;">Multi-line text field for applying an enterprise license string. Once confirmed, displays <code>License is valid</code> and is locked against accidental modification.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Application Password</strong></td>
-<td style="text-align: left;">Masked password protecting license and configuration updates. Use the <strong>Eye Icon</strong> to toggle visibility.</td>
+<td style="text-align: left;">Password</td>
+<td style="text-align: left;">Master administrative password protecting license alterations and sensitive system configurations.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Confirm Application Password</strong></td>
+<td style="text-align: left;">Password</td>
+<td style="text-align: left;">Verification field displayed during initial system setup when no password exists yet.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Applying or Updating a License:</strong>
-* Enter or paste your <strong>License Key</strong> into the text area.
-* Enter the <strong>Application Password</strong>.
-* Click <strong>APPLY LICENSE</strong> to validate and activate your PixelView instance.</p>
+<h3 id="applying-or-updating-an-enterprise-license">Applying or Updating an Enterprise License<a class="headerlink" href="#applying-or-updating-an-enterprise-license" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Paste your enterprise license key into the <strong>License Key</strong> text area.</li>
+<li>Enter your <strong>Application Password</strong>.</li>
+<li>Click <strong>APPLY LICENSE</strong>.</li>
+<li>On initial system activation, upon validation, PixelView automatically transitions your session from setup mode to the main dashboard (<code>/openstack</code>).</li>
+</ul>
 <hr />
 <h2 id="theme-mode-dark-light-mode">Theme Mode (Dark / Light Mode)<a class="headerlink" href="#theme-mode-dark-light-mode" title="Permanent link">&para;</a></h2>
-<p>PixelView provides built-in theme support allowing users to switch between <strong>Dark Mode</strong> (default) and <strong>Light Mode</strong> at any time:</p>
+<p>PixelView provides native theme customization allowing operators to toggle between <strong>Dark Mode</strong> (default) and <strong>Light Mode</strong> according to working environment preferences:</p>
 <p><a href="../../images/theme-toggle.png" class="glightbox">
   <img src="../../images/theme-toggle.png" alt="Theme Mode Toggle">
 </a></p>
 <ul>
-<li>Click <strong>Light Mode</strong> (sun icon) in the bottom-left sidebar to switch to the light visual theme.</li>
-<li>When in Light Mode, the button dynamically updates to <strong>Dark Mode</strong> (moon icon) to switch back.</li>
-<li>Your theme preference is preserved across browser sessions.</li>
+<li>Click <strong>Light Mode</strong> (sun icon) at the base of the left navigation sidebar to switch to the light theme.</li>
+<li>Click <strong>Dark Mode</strong> (moon icon) to revert to the dark visual theme.</li>
+<li>Theme selections persist across browser sessions.</li>
 </ul>
-<hr />
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>The <strong>Settings</strong> module provides comprehensive controls over personal account details, communication channels, infrastructure connections, enterprise licenses, and visual preferences. Ensure critical credentials like API keys and Application Passwords are kept secure.</p>
 
 
 

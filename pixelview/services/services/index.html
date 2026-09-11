@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1302,6 +1272,45 @@
     <span class="md-ellipsis">
       
         Saving Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-ingestion-pipeline-webhook-payloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Ingestion Pipeline &amp; Webhook Payloads
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alert Ingestion Pipeline &amp; Webhook Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-webhook-payload-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic Webhook Payload Specification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingestion-troubleshooting-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ingestion Troubleshooting &amp; Common Issues
       
     </span>
   </a>
@@ -2685,6 +2694,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#alert-ingestion-pipeline-webhook-payloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Ingestion Pipeline &amp; Webhook Payloads
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alert Ingestion Pipeline &amp; Webhook Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generic-webhook-payload-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic Webhook Payload Specification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ingestion-troubleshooting-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ingestion Troubleshooting &amp; Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deleting-a-service" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2939,6 +2987,43 @@ The <strong>Service Key</strong> authenticates incoming alert webhooks sent by e
 <li><strong>Cancel</strong>: Close the modal and discard unsaved modifications.</li>
 <li><strong>Clear Changes</strong>: Revert form values back to their previously saved state.</li>
 <li><strong>UPDATE SERVICE</strong>: Persist the updated configuration to the backend.</li>
+</ul>
+<hr />
+<h2 id="alert-ingestion-pipeline-webhook-payloads">Alert Ingestion Pipeline &amp; Webhook Payloads<a class="headerlink" href="#alert-ingestion-pipeline-webhook-payloads" title="Permanent link">&para;</a></h2>
+<p>PixelView acts as an intelligent aggregation gateway between external monitoring agents and response teams. When an alert arrives on a registered service stream:</p>
+<ul>
+<li><strong>Authentication</strong>: PixelView validates the <code>servicekey</code> passed via query parameter (<code>?servicekey=&lt;key&gt;</code>) or request header against the registered service database.</li>
+<li><strong>Payload Normalization</strong>: The alert payload (Prometheus Alertmanager format, Zabbix alert structure, or Generic JSON) is normalized into a standardized PixelView incident model.</li>
+<li><strong>Incident Creation</strong>: An active case is created or correlated in the <strong>Cases</strong> module (<code>/cases</code>), updating severity, host associations, and description tags.</li>
+<li><strong>Outbound Webhook Forwarding</strong>: If outbound webhooks are configured on the service, PixelView immediately relays the alert payload to external destinations (such as chat relays or incident systems).</li>
+<li><strong>Escalation Trigger</strong>: If an escalation policy is bound to the service, the Tier 1 escalation timer begins immediately.</li>
+</ul>
+<h3 id="generic-webhook-payload-specification">Generic Webhook Payload Specification<a class="headerlink" href="#generic-webhook-payload-specification" title="Permanent link">&para;</a></h3>
+<p>For monitoring agents integrating via the <code>generic</code> service type, send HTTP POST requests with a JSON body formatted as follows:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;servicekey&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your-service-key-uuid&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;alerts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;firing&quot;</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="nt">&quot;alertname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HighMemoryUtilization&quot;</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="nt">&quot;instance&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.10.45&quot;</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="nt">&quot;severity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="nt">&quot;annotations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Memory consumption exceeded 90%&quot;</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Host 192.168.10.45 has only 850 MB of available memory remaining.&quot;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="nt">&quot;startsAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-09-10T16:45:00Z&quot;</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="ingestion-troubleshooting-common-issues">Ingestion Troubleshooting &amp; Common Issues<a class="headerlink" href="#ingestion-troubleshooting-common-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>HTTP 401 / Unauthorized</strong>: The provided <code>servicekey</code> does not match any registered service in PixelView, or the target service has been deleted.</li>
+<li><strong>Service Disabled</strong>: If the service status is toggled to <strong>Disabled</strong>, PixelView accepts the connection but drops incoming alerts without triggering cases or escalations.</li>
+<li><strong>Duplicate Alert Suppression</strong>: Subsequent firing alerts sharing identical alert names, instances, and fingerprints within the active case window are appended to the existing open case rather than spawning duplicate cases.</li>
 </ul>
 <hr />
 <h2 id="deleting-a-service">Deleting a Service<a class="headerlink" href="#deleting-a-service" title="Permanent link">&para;</a></h2>

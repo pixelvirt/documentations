@@ -799,8 +799,6 @@
       
         
       
-        
-      
     
     
     
@@ -894,34 +892,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -2941,6 +2911,10 @@
 </span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154"></a><span class="nt">volumes</span><span class="p">:</span>
 </span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155"></a><span class="w">  </span><span class="nt">data</span><span class="p">:</span>
 </span></code></pre></div></td></tr></table></div>
+<div class="admonition warning">
+<p class="admonition-title">Important: Service Authentication Key (<code>AUTH_KEY</code>)</p>
+<p>Make sure to change the default <code>AUTH_KEY</code> to a strong, secure secret before deploying. The <code>AUTH_KEY</code> must be identical across all PixelView backend services (<code>pixelview-backend</code>, <code>pixelview-escalation</code>, <code>pixelview-openstack</code>, <code>pixelview-kubernetes</code>, <code>pixelview-ansible-server</code>, <code>pixelview-patch-management</code>, etc.) to allow authenticated communication between all services.</p>
+</div>
 <h3 id="start-the-containers">Start the containers<a class="headerlink" href="#start-the-containers" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Info</p>

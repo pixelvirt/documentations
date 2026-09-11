@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1610,6 +1580,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#event-driven-triggers-webhook-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event-Driven Triggers &amp; Webhook Integration
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2573,6 +2554,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#event-driven-triggers-webhook-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event-Driven Triggers &amp; Webhook Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2785,6 +2777,26 @@ Trigger names must be unique across your environment and must not contain spaces
 <p>[!WARNING]
 Deleting a rule immediately ceases automated responses for its configured trigger. Any incoming alerts or bot events matching this trigger will no longer initiate remediation workflows.</p>
 </blockquote>
+<hr />
+<h2 id="event-driven-triggers-webhook-integration">Event-Driven Triggers &amp; Webhook Integration<a class="headerlink" href="#event-driven-triggers-webhook-integration" title="Permanent link">&para;</a></h2>
+<p>Automation rules provide the automated bridge between monitoring alerts and hands-free remediation:</p>
+<ul>
+<li><strong>Trigger Identification Standards</strong>:<ul>
+<li>Trigger keys must follow predictable, space-free naming patterns (such as <code>mariadb-down</code>, <code>disk-threshold-critical</code>, or <code>ssl-cert-expiring</code>).</li>
+<li>The trigger identifier acts as the lookup key matched against inbound event webhooks.</li>
+</ul>
+</li>
+<li><strong>Inbound Alert Matching</strong>:<ul>
+<li>When an external monitoring system (such as Prometheus Alertmanager or Zabbix) posts an alert payload to a PixelView Service endpoint (<code>?servicekey=&lt;key&gt;</code>), the ingestion engine extracts the event name.</li>
+<li>If the event name matches an active, enabled rule trigger, PixelView automatically instantiates an execution run for the bound workflow.</li>
+</ul>
+</li>
+<li><strong>Audit &amp; Execution Tracing</strong>:<ul>
+<li>Jobs triggered via automation rules appear in <a href="../executions/">Executions</a> with <code>Source: Automation</code>.</li>
+<li>If a rule is temporarily <strong>Disabled</strong>, incoming events are logged in case history but do not spawn automated executions, giving operators the flexibility to perform manual maintenance without automated interference.</li>
+</ul>
+</li>
+</ul>
 
 
 

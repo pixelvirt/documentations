@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -2759,13 +2729,13 @@
   <img src="../../images/json-bridge-editor-overview.png" alt="JSON Bridge MySQL Query Editor Overview">
 </a></p>
 <h3 id="console-layout-overview">Console Layout Overview<a class="headerlink" href="#console-layout-overview" title="Permanent link">&para;</a></h3>
-<p>The JSON Bridge workspace is arranged into three primary sections:</p>
-<ol>
+<p>The JSON Bridge workspace is arranged into four primary operational sections:</p>
+<ul>
 <li><strong>Top Controls &amp; SQL Editor</strong>: Schema selection, query naming, and a Monaco-powered SQL code editor.</li>
 <li><strong>Action Toolbar</strong>: Primary triggers to run, save, and clear queries.</li>
-<li><strong>Saved Queries Panel</strong>: A right-hand library for searching, loading, and managing reusable query templates.</li>
-<li><strong>Results Area</strong>: A dynamic table pane that renders query outputs with sorting, filtering, and pagination.</li>
-</ol>
+<li><strong>Saved Queries Panel</strong>: A right-hand library for searching, loading, sharing, and managing reusable query templates.</li>
+<li><strong>Results Area</strong>: A dynamic table pane that renders query outputs with sorting, filtering, CSV export, and pagination.</li>
+</ul>
 <hr />
 <h2 id="schema-query-configuration">Schema &amp; Query Configuration<a class="headerlink" href="#schema-query-configuration" title="Permanent link">&para;</a></h2>
 <p>Before executing a query, define your target database schema and optional query identifier:</p>
@@ -2775,7 +2745,7 @@
 <h3 id="configuration-fields">Configuration Fields<a class="headerlink" href="#configuration-fields" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Schema</strong> <em>(Dropdown)</em>: Dynamically lists all database schemas available on the connected database cluster (e.g., <code>pixelview</code>). Selecting a schema sets the database context for all subsequent queries.</li>
-<li><strong>Query Name</strong> <em>(Input)</em>: An optional name used to organize and identify the query (e.g., <code>stuck backups</code>, <code>show_database</code>, <code>active_cases</code>). A name is required when saving a query to your library.</li>
+<li><strong>Query Name</strong> <em>(Input)</em>: An optional name used to organize and identify the query (placeholder <code>e.g. stuck backups</code>). A descriptive name is required when saving a query to your library.</li>
 </ul>
 <hr />
 <h2 id="monaco-sql-code-editor">Monaco SQL Code Editor<a class="headerlink" href="#monaco-sql-code-editor" title="Permanent link">&para;</a></h2>
@@ -2816,9 +2786,10 @@
 </a></p>
 <h3 id="managing-saved-queries">Managing Saved Queries<a class="headerlink" href="#managing-saved-queries" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Search Filter (<code>Filter queries...</code>)</strong>: Perform instant real-time filtering across stored query names.</li>
-<li><strong>My Queries</strong>: Lists your saved queries with total item counts (e.g., <code>show_database</code>).</li>
+<li><strong>Search Filter (<code>Filter queries…</code>)</strong>: Perform instant real-time filtering across stored query names.</li>
+<li><strong>My Queries</strong>: Lists your saved queries with total item counts (e.g., <code>show_database</code>, <code>stuck backups</code>).</li>
 <li><strong>Load a Query</strong>: Click on any saved query name to populate the SQL editor immediately with the stored query text and automatically switch to its mapped database schema.</li>
+<li><strong>Share Query (Public vs Private)</strong>: Click the share icon on any query row to toggle between <strong>Private</strong> (visible only to you) and <strong>Public</strong> (shared across all team members for collaborative troubleshooting).</li>
 <li><strong>Delete a Query</strong>: Remove obsolete or outdated queries with a single click, protected by a safety confirmation dialog.</li>
 <li><strong>Refresh</strong>: Click the circular refresh icon in the panel header to re-synchronize the list with the server.</li>
 </ul>
@@ -2831,7 +2802,9 @@
 <h3 id="results-display-capabilities">Results Display Capabilities<a class="headerlink" href="#results-display-capabilities" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Interactive Data Grid (<code>ReactTable</code>)</strong>: Displays query outputs in a structured table layout with sortable column headers, pagination controls, and row density toggles.</li>
-<li><strong>Complex Column Support</strong>: Safely formats aggregated columns (such as <code>COUNT(*)</code>), joined table identifiers (<code>u.username</code>), and clearly distinguishes <code>NULL</code> database values in italicized text.</li>
+<li><strong>CSV Export (<code>Download CSV</code>)</strong>: Click the download icon in the table toolbar to export the active query dataset directly to a local <code>.csv</code> file.</li>
+<li><strong>Complex Column Support</strong>: Safely formats aggregated columns (such as <code>COUNT(*)</code>), joined table identifiers (<code>u.username</code>), and clearly distinguishes <code>NULL</code> database values in italicized dimmed text.</li>
+<li><strong>Execution Telemetry</strong>: Displays the total count of returned rows and exact query execution latency measured in milliseconds (<code>elapsedMs</code>).</li>
 <li><strong>Global Search &amp; Column Filtering</strong>: Filter query result rows directly within the browser without having to re-execute the SQL query.</li>
 <li><strong>Execution Diagnostics</strong>: If a query encounters a syntax error or runtime exception, the results area displays the diagnostic error message returned directly by the MySQL/MariaDB database engine.</li>
 </ul>

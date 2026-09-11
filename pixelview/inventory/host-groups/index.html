@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -1872,6 +1842,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#operational-targeting-in-patching-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Targeting in Patching &amp; Automation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deleting-host-groups" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2563,6 +2544,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#operational-targeting-in-patching-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Targeting in Patching &amp; Automation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deleting-host-groups" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2795,6 +2787,14 @@
 <li>In the <strong>Select Servers</strong> table, check or uncheck individual servers to add or remove them from the group.</li>
 <li>Use search, column filtering, or fullscreen expansion for managing large fleets of servers.</li>
 <li>Click <strong>UPDATE HOST GROUP</strong> to persist changes.</li>
+</ul>
+<hr />
+<h2 id="operational-targeting-in-patching-automation">Operational Targeting in Patching &amp; Automation<a class="headerlink" href="#operational-targeting-in-patching-automation" title="Permanent link">&para;</a></h2>
+<p>Host groups are the primary deployment targets for orchestration, compliance enforcement, and coordinated patching across PixelView:</p>
+<ul>
+<li><strong>Patch Management &amp; Canary Rollouts</strong>: In <strong>Planner Management</strong>, operators select host groups as the base scope for patch plans. PixelView allows partitioning groups into staggered execution batches (such as a 10% canary batch followed by two 45% batches) with failure intervention gates to safeguard high-availability services.</li>
+<li><strong>Automation Playbook Runs</strong>: Target operational Ansible playbooks (such as system upgrades, security agent rollouts, or configuration baselines) across entire host groups simultaneously with configurable concurrency parameters.</li>
+<li><strong>Hybrid Cloud Clustering</strong>: Combine bare-metal servers, on-premises virtualization hypervisors, and dynamic OpenStack cloud instances into unified functional tiers (e.g., <code>production-database-cluster</code>, <code>edge-ingress-proxies</code>).</li>
 </ul>
 <hr />
 <h2 id="deleting-host-groups">Deleting Host Groups<a class="headerlink" href="#deleting-host-groups" title="Permanent link">&para;</a></h2>

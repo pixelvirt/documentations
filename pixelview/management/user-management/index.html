@@ -656,8 +656,6 @@
       
         
       
-        
-      
     
     
     
@@ -751,34 +749,6 @@
     
   
     Kubernetes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../clouds/vmware/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VMware
   
 
     
@@ -2096,10 +2066,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overview-user-table" class="md-nav__link">
+  <a href="#overview-users-table" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview &amp; User Table
+        Overview &amp; Users Table
       
     </span>
   </a>
@@ -2179,10 +2149,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#managing-group-actions" class="md-nav__link">
+  <a href="#managing-group-membership-actions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managing Group Actions
+        Managing Group Membership &amp; Actions
       
     </span>
   </a>
@@ -2463,10 +2433,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overview-user-table" class="md-nav__link">
+  <a href="#overview-users-table" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview &amp; User Table
+        Overview &amp; Users Table
       
     </span>
   </a>
@@ -2546,10 +2516,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#managing-group-actions" class="md-nav__link">
+  <a href="#managing-group-membership-actions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Managing Group Actions
+        Managing Group Membership &amp; Actions
       
     </span>
   </a>
@@ -2656,13 +2626,13 @@
 <p>The <strong>Management</strong> section in PixelView provides administrative controls for managing team members, organizing access groups, and configuring granular, module-level permissions.</p>
 <hr />
 <h2 id="user-management">User Management<a class="headerlink" href="#user-management" title="Permanent link">&para;</a></h2>
-<p>The <strong>Users</strong> page (<code>/users</code>) provides a centralized view of all registered accounts, enabling administrators to invite team members, adjust roles, toggle account statuses, and configure access control permissions.</p>
-<h3 id="overview-user-table">Overview &amp; User Table<a class="headerlink" href="#overview-user-table" title="Permanent link">&para;</a></h3>
+<p>The <strong>Users</strong> view (<code>/users</code>) provides administrators with an overview of all registered accounts, enabling them to invite team members, adjust roles, toggle account statuses, and configure module-level access control permissions.</p>
+<h3 id="overview-users-table">Overview &amp; Users Table<a class="headerlink" href="#overview-users-table" title="Permanent link">&para;</a></h3>
 <p>Navigate to <strong>Management</strong> &gt; <strong>Users</strong> from the left navigation sidebar:</p>
 <p><a href="../../images/management-sidebar.png" class="glightbox">
   <img src="../../images/management-sidebar.png" alt="Management Navigation Sidebar">
 </a></p>
-<p>The users table provides real-time account information:</p>
+<p>The users table displays all registered accounts:</p>
 <table>
 <thead>
 <tr>
@@ -2677,11 +2647,11 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Email</strong></td>
-<td style="text-align: left;">Registered email address used for login and notifications.</td>
+<td style="text-align: left;">Registered email address used for login and alert notifications.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Status</strong></td>
-<td style="text-align: left;">Current account state: <br> • <code>Enabled</code> (Green badge) — Active access permitted. <br> • <code>Disabled</code> (Grey badge) — Account is deactivated.</td>
+<td style="text-align: left;">Current account state: <br> * <code>Enabled</code> (Green badge) &mdash; Active account permitted to log in. <br> * <code>Disabled</code> (Grey badge) &mdash; Account is deactivated; login access is immediately revoked.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Role</strong></td>
@@ -2689,36 +2659,37 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Actions</strong></td>
-<td style="text-align: left;">Action menu (<code>...</code>) to edit or manage user profile settings.</td>
+<td style="text-align: left;">Context menu (<code>...</code>) to edit or manage user profile settings.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Table Toolbar Controls:</strong>
-* <strong>Search / Global Filter</strong>: Quickly filter users across names, emails, and roles.
-* <strong>Toggle Column Filters</strong>: Apply column-specific filters.
-* <strong>Show/Hide Columns</strong>: Customize which columns are visible in the table.
-* <strong>Density Toggle</strong>: Switch between compact and spacious row layouts.
-* <strong>Refresh</strong>: Fetch the latest user records from the server.
-* <strong>Add User (<code>+</code>)</strong>: Open the user invitation modal.</p>
+<p><strong>Table Toolbar Controls:</strong></p>
+<ul>
+<li><strong>Search / Global Filter</strong>: Search across user names, email addresses, and roles.</li>
+<li><strong>Toggle Column Filters</strong>: Apply column-specific filters.</li>
+<li><strong>Show/Hide Columns</strong>: Customize which columns are visible in the table.</li>
+<li><strong>Density Toggle</strong>: Switch between compact and spacious row layouts.</li>
+<li><strong>Refresh</strong>: Fetch the latest user records from the server.</li>
+<li><strong>Add User (<code>+</code>)</strong>: Open the user invitation modal dialog.</li>
+</ul>
 <hr />
 <h3 id="inviting-a-new-user">Inviting a New User<a class="headerlink" href="#inviting-a-new-user" title="Permanent link">&para;</a></h3>
-<p>To add a new team member to PixelView:</p>
+<p>To onboard a new team member to PixelView:</p>
 <ul>
-<li>Click the <strong><code>+</code></strong> (Add User) icon located in the top-right corner of the table toolbar:
+<li>Click the <strong><code>+</code></strong> (Add User) icon located in the upper-right corner of the table toolbar:
   <a href="../../images/adduser.png" class="glightbox">
     <img src="../../images/adduser.png" alt="Add User Button">
   </a></li>
-<li>In the <strong>Invite User</strong> modal dialog:
+<li>In the <strong>Invite User</strong> modal dialog, complete the required fields:
   <a href="../../images/invite-user.png" class="glightbox">
     <img src="../../images/invite-user.png" alt="Invite User Dialog">
   </a></li>
-<li>Fill in the required fields:</li>
 <li><strong>First Name</strong> <em>(Required)</em>: The user's first name.</li>
 <li><strong>Last Name</strong> <em>(Required)</em>: The user's last name.</li>
 <li><strong>Email</strong> <em>(Required)</em>: A valid email address to receive account credentials.</li>
 <li><strong>Role</strong> <em>(Required)</em>: Select the system role from the dropdown:<ul>
-<li><strong>Admin</strong>: Full administrative access across the platform.</li>
-<li><strong>User</strong>: Standard user with access scoped by the permissions matrix.</li>
+<li><code>Admin</code>: Full administrative access across the platform, including managing other users, communication gateways, and licenses.</li>
+<li><code>User</code>: Standard user with access scoped by the permissions matrix.</li>
 </ul>
 </li>
 <li><strong>Permissions</strong>: Expand the permissions section to define module-level access (see <a href="#granular-permissions-matrix">Granular Permissions Matrix</a>).</li>
@@ -2728,21 +2699,21 @@
 <p class="admonition-title">Initial User Password</p>
 <p>Upon sending the invitation, an initial password is generated following the convention:<br />
 <code>FirstName#123</code> <em>(e.g., if First Name is "Duke", the default password is <code>Duke#123</code>)</em>.<br />
-Users should change their password upon their first login under <strong>Settings</strong> &gt; <strong>Profile</strong>.</p>
+Users should change their password upon their first login under <strong>Settings</strong> &gt; <strong>Profile</strong> &gt; <strong>Change Password</strong>.</p>
 </div>
 <hr />
 <h3 id="updating-an-existing-user">Updating an Existing User<a class="headerlink" href="#updating-an-existing-user" title="Permanent link">&para;</a></h3>
 <p>Administrators can modify account details, toggle access status, and update permission levels at any time:</p>
 <ul>
-<li>Locate the user in the table and click the <strong><code>...</code></strong> icon in the <strong>Actions</strong> column.</li>
+<li>In the Users table, click the <strong><code>...</code></strong> icon in the <strong>Actions</strong> column for the target user.</li>
 <li>Select <strong>Edit</strong> to open the <strong>Update User</strong> modal:
   <a href="../../images/update-user.png" class="glightbox">
-    <img src="../../images/update-user.png" alt="Update User">
+    <img src="../../images/update-user.png" alt="Update User Dialog">
   </a></li>
 <li>Modify the desired parameters:</li>
 <li><strong>First Name</strong> / <strong>Last Name</strong>: Update the user's name.</li>
 <li><strong>Role</strong>: Switch between <code>Admin</code> and <code>User</code>.</li>
-<li><strong>Status</strong>: Toggle between <code>Enabled</code> and <code>Disabled</code> to instantly grant or revoke access.</li>
+<li><strong>Status</strong>: Toggle between <code>Enabled</code> and <code>Disabled</code> to instantly grant or suspend access.</li>
 <li><strong>Permissions</strong>: Adjust individual read/write capabilities across platform modules.</li>
 <li>Click <strong>Update User</strong> to save the changes.</li>
 </ul>
@@ -2753,11 +2724,13 @@ Users should change their password upon their first login under <strong>Settings
   <img src="../../images/user-permissions.png" alt="Granular Permissions Matrix">
 </a></p>
 <p>Permissions can be configured when <strong>Inviting a User</strong> or when <strong>Updating a User</strong>.</p>
-<p><strong>Quick Bulk Actions:</strong>
-* <strong>Set all to: Disabled</strong>: Revokes access to all modules.
-* <strong>Set all to: Read Only</strong>: Grants view-only access across all modules.
-* <strong>Set all to: Read/Write</strong>: Grants full read, write, and execution capabilities.</p>
-<p><strong>Supported Modules &amp; Permission Levels:</strong></p>
+<h4 id="quick-bulk-actions">Quick Bulk Actions<a class="headerlink" href="#quick-bulk-actions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Set all to: Disabled</strong>: Revokes access to all modules.</li>
+<li><strong>Set all to: Read Only</strong>: Grants view-only access across all modules (default initial state).</li>
+<li><strong>Set all to: Read/Write</strong>: Grants full operational and editing capabilities across all modules.</li>
+</ul>
+<h4 id="supported-modules-capabilities">Supported Modules &amp; Capabilities<a class="headerlink" href="#supported-modules-capabilities" title="Permanent link">&para;</a></h4>
 <p>Each module can be independently set to <strong>Disabled</strong>, <strong>Read Only</strong>, or <strong>Read/Write</strong>:</p>
 <table>
 <thead>
@@ -2773,7 +2746,7 @@ Users should change their password upon their first login under <strong>Settings
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Kubernetes</strong></td>
-<td style="text-align: left;">Clusters, nodes, pods, deployments, services, namespaces, and ConfigMaps.</td>
+<td style="text-align: left;">Clusters, nodes, pods, workloads (Deployments, StatefulSets, DaemonSets, Jobs), and ConfigMaps.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Reporting</strong></td>
@@ -2823,7 +2796,7 @@ Users should change their password upon their first login under <strong>Settings
 </table>
 <hr />
 <h2 id="access-groups">Access Groups<a class="headerlink" href="#access-groups" title="Permanent link">&para;</a></h2>
-<p>The <strong>Groups</strong> page (<code>/groups</code>) allows administrators to organize team members into functional operational units (e.g., <code>admins</code>, <code>Approvers</code>, <code>L1 Reviewers</code>, <code>L2 Reviewers</code>) for collaborative incident management, alert assignments, and escalation routing.</p>
+<p>The <strong>Groups</strong> view (<code>/groups</code>) allows administrators to organize team members into functional operational units (e.g., <code>admins</code>, <code>Approvers</code>, <code>L1 Reviewers</code>, <code>L2 Reviewers</code>) for collaborative incident management, alert assignments, and escalation routing.</p>
 <h3 id="overview-groups-table">Overview &amp; Groups Table<a class="headerlink" href="#overview-groups-table" title="Permanent link">&para;</a></h3>
 <p>Navigate to <strong>Management</strong> &gt; <strong>Groups</strong> from the left navigation sidebar:</p>
 <p><a href="../../images/groups.png" class="glightbox">
@@ -2848,17 +2821,19 @@ Users should change their password upon their first login under <strong>Settings
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Actions</strong></td>
-<td style="text-align: left;">Action menu (<code>...</code>) providing options to <strong>View</strong> or <strong>Delete</strong> the group.</td>
+<td style="text-align: left;">Context menu (<code>...</code>) providing options to <strong>View</strong> or <strong>Delete</strong> the group.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Table Toolbar Controls:</strong>
-* <strong>Search / Global Filter</strong>: Search across group names.
-* <strong>Toggle Column Filters</strong>: Filter specific table columns.
-* <strong>Show/Hide Columns</strong>: Customize visible table headers.
-* <strong>Density Toggle</strong>: Adjust between compact and relaxed row height.
-* <strong>Refresh</strong>: Fetch the latest group records from the server.
-* <strong>Add Group (<code>+</code>)</strong>: Open the group creation dialog.</p>
+<p><strong>Table Toolbar Controls:</strong></p>
+<ul>
+<li><strong>Search / Global Filter</strong>: Search across group names.</li>
+<li><strong>Toggle Column Filters</strong>: Filter specific table columns.</li>
+<li><strong>Show/Hide Columns</strong>: Customize visible table headers.</li>
+<li><strong>Density Toggle</strong>: Adjust between compact and relaxed row height.</li>
+<li><strong>Refresh</strong>: Fetch the latest group records from the server.</li>
+<li><strong>Add Group (<code>+</code>)</strong>: Open the group creation dialog.</li>
+</ul>
 <hr />
 <h3 id="creating-a-new-group">Creating a New Group<a class="headerlink" href="#creating-a-new-group" title="Permanent link">&para;</a></h3>
 <p>To create a new access group:</p>
@@ -2871,26 +2846,37 @@ Users should change their password upon their first login under <strong>Settings
   <a href="../../images/add-groups.png" class="glightbox">
     <img src="../../images/add-groups.png" alt="Add Group Dialog">
   </a></li>
-<li>Fill in the group parameters:</li>
 <li><strong>Group Name</strong> <em>(Required)</em>: Enter a unique and descriptive name for the group (e.g., <code>admins</code>, <code>Approvers</code>).</li>
-<li><strong>Add Members</strong>: Open the dropdown to select one or multiple registered team members to add to the group.</li>
+<li><strong>Add Members</strong>: Select one or multiple registered team members to add to the group.</li>
 <li>Click <strong>Create</strong> to save the new group.</li>
 </ul>
 <hr />
-<h3 id="managing-group-actions">Managing Group Actions<a class="headerlink" href="#managing-group-actions" title="Permanent link">&para;</a></h3>
+<h3 id="managing-group-membership-actions">Managing Group Membership &amp; Actions<a class="headerlink" href="#managing-group-membership-actions" title="Permanent link">&para;</a></h3>
 <p>In the Groups table, click the <strong><code>...</code></strong> icon under the <strong>Actions</strong> column for any group:</p>
 <p><a href="../../images/group-actions.png" class="glightbox">
   <img src="../../images/group-actions.png" alt="Group Actions Menu">
 </a></p>
+<h4 id="view-edit-membership-eye-icon">View &amp; Edit Membership (Eye Icon)<a class="headerlink" href="#view-edit-membership-eye-icon" title="Permanent link">&para;</a></h4>
+<p>Clicking <strong>View</strong> opens the group management modal with two tabs:</p>
 <ul>
-<li><strong>View (Eye Icon)</strong>:<br />
-  Opens the group management modal where you can:</li>
-<li>Inspect the list of active members currently assigned to the group.</li>
-<li>Add additional users to the group.</li>
-<li>Remove members from the group.</li>
-<li><strong>Delete (Trash Icon)</strong>:<br />
-  Prompts a confirmation dialog (<code>Are you sure you want to delete group &lt;name&gt;?</code>). Confirming will permanently remove the group from the system.</li>
+<li><strong>Members Tab</strong>:</li>
+<li>Displays the list of current members assigned to the group, including user avatar and full name.</li>
+<li>Click <strong>Remove</strong> next to any member to detach them from the group.</li>
+<li>
+<p>If no members are assigned, shows <code>No members in this group</code>.</p>
+</li>
+<li>
+<p><strong>Other Users Tab</strong>:</p>
+</li>
+<li>Displays all registered platform users who are not currently part of the group.</li>
+<li>Click <strong>Add</strong> next to any user to immediately add them to the group.</li>
+<li>If all users are already assigned, shows <code>No users yet.</code></li>
 </ul>
+<h4 id="delete-group-trash-icon">Delete Group (Trash Icon)<a class="headerlink" href="#delete-group-trash-icon" title="Permanent link">&para;</a></h4>
+<p>Clicking <strong>Delete</strong> prompts a confirmation dialog:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Are you sure you want to delete group &lt;name&gt;?
+</span></code></pre></div>
+Confirming will permanently remove the group from the system. Individual user accounts are preserved.</p>
 
 
 
