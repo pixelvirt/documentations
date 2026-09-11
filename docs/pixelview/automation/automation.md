@@ -12,7 +12,7 @@ PixelView decouples orchestration definitions from physical code execution: play
 
 ## Core Automation Modules
 
-PixelView Automation is structured into six tightly integrated modules:
+PixelView Automation is structured into seven tightly integrated modules:
 
 * [**Executions**](executions.md): The real-time operations console. Dispatch manual or scheduled runs, stream live task-by-task execution logs over Server-Sent Events (SSE), inspect per-host results, and manage automated retries.
 * [**Playbooks**](playbooks.md): The Ansible playbook catalog. Reference infrastructure-as-code YAML definitions mounted directly into runner containers with full GitOps versioning support.
@@ -20,6 +20,7 @@ PixelView Automation is structured into six tightly integrated modules:
 * [**Workflows**](workflows.md): The visual pipeline builder. Compose sequential automation pipelines chaining multiple playbooks and scripts into unified execution workflows.
 * [**Rules**](rules.md): The event-driven trigger engine. Bind monitoring alerts, webhook notifications, and external triggers to automated workflows for hands-free incident self-healing.
 * [**Runners**](runners.md): The worker fleet dashboard. Monitor active execution daemons, queue allocations (`automation`, `admin-admin`), heartbeat health, and capacity across your worker infrastructure.
+* [**Automation Bots**](../management/bots.md): The automated webhook dispatcher. Integrate external StackStorm or custom remediation engines directly into multi-tier incident escalation policies.
 
 ---
 

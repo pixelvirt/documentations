@@ -26,8 +26,8 @@ PixelView decouples the automation platform from the physical files being execut
 
 * **No Code Stored in Database**: Neither Ansible playbooks nor Python scripts are stored directly in PixelView.
 * **Host Volume Mounting**: Automation files are maintained externally in a version-controlled Git repository (e.g., GitHub, GitLab) and cloned onto the runner host machine. When the runner container starts up, these directories are mounted into the container:
-    * `/opt/pixelvirt/playbooks` $\rightarrow$ `/playbooks`
-    * `/opt/pixelvirt/scripts` $\rightarrow$ `/scripts`
+    * `/opt/pixelvirt/playbooks` &rarr; `/playbooks`
+    * `/opt/pixelvirt/scripts` &rarr; `/scripts`
 * **Execution by Reference via Queues**: When a job is dispatched from PixelView, the platform sends a message containing the catalog reference (e.g., `install-kubectl.yaml` or `cleanup.py`) over the designated message queue (such as the `automation` queue highlighted above). The assigned runner locates the file directly within its local container mount and executes it.
 
 ### Example Runner Deployment Configuration
@@ -102,6 +102,21 @@ When an automation job is dispatched from [Executions](executions.md), [Playbook
 * **Active Job Assignment**: The runner consuming that queue picks up the execution, transitioning its status to active/busy.
 * **Direct Execution Inspection**: The **Execution ID** column displays the active run's UUID. Clicking this link navigates straight to `/executions/:executionId` where operators can view live Server-Sent Events (SSE) terminal output.
 * **Completion & Idle State**: Once all playbook tasks complete, the runner reports return codes, duration, and returns to `Idle` ready for subsequent tasks.
+
+---
+
+## Network Segmentation & Distributed Queue Topologies
+
+PixelView runners eliminate the need to open inbound SSH or management ports from the central PixelView platform into protected enterprise networks:
+
+* **Outbound-Only Worker Connectivity**: Runner daemons establish secure, outbound-only HTTPS and WebSocket connections to PixelView. They pull assigned execution tasks from their subscribed queues and stream telemetry outward, allowing deployment inside private VPCs, behind NAT gateways, or within air-gapped enclaves.
+* **Queue-Based Workload Partitioning**:
+    * **`automation`**: The default general-purpose queue for routine maintenance, diagnostics, and non-privileged operations.
+    * **`admin-admin`**: A restricted high-privilege queue dedicated to root-level platform provisioning, hypervisor management, and kernel upgrades.
+    * **Custom Enclave Queues** (e.g., `pci-dss-runners`, `dmz-edge-runners`): Isolate execution workers strictly to specific network subnets or regulatory compliance zones.
+* **Health Heartbeats & Automatic Failover**:
+    * Runners transmit a heartbeat every 30 seconds confirming resource availability and active daemon status.
+    * If a runner misses consecutive heartbeats, its status transitions from `Idle` or `Busy` to `Offline`, alerting operators to worker node degradation.
 
 ---
 

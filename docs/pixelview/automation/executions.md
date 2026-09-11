@@ -164,3 +164,20 @@ The **HOSTS** tab displays the targeted host inventory configuration:
 
 * **Target Nodes**: Array of all server IP addresses or hostnames targeted during the run (e.g., `["119.9.94.30"]`).
 * **Host Variables**: Connection variables, remote login user (`ansible_user: "root"`), and port definitions.
+
+---
+
+## Real-Time SSE Log Streaming & Retry Architecture
+
+The execution dashboard provides sub-second terminal observability backed by an enterprise Server-Sent Events (SSE) streaming engine:
+
+* **Live Streaming Protocol**: The frontend connects to the streaming endpoint via persistent HTTP SSE connections. As the runner daemon executes each Ansible task or Python command, output lines are published instantly without polling overhead.
+* **Automatic Stream Reconnection**: If a temporary network interruption occurs between the browser and PixelView, the client automatically attempts reconnection with a 5000ms backoff interval, preserving previously rendered terminal history.
+* **Play Recap Metrics**: Upon playbook conclusion, the runner emits a structured recap quantifying:
+    * **`ok`**: Tasks executed where the target node was already in the desired state.
+    * **`changed`**: Tasks where modifications were actively applied to the system.
+    * **`unreachable`**: Target nodes that could not be reached via SSH or network transport.
+    * **`failed`**: Tasks that returned non-zero exit codes.
+    * **`skipped`**: Tasks bypassed due to conditional `when` clauses.
+* **Retry Workflow**: When a run encounters node failures, operators trigger **Retry** from the context menu. PixelView duplicates the exact configuration, creates a linked audit run tagged `(retry N)`, and dispatches it immediately to the assigned worker queue.
+

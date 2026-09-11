@@ -3,12 +3,12 @@
 The **Kubernetes** module (`/kubernetes`) under **Clouds** provides centralized enterprise container orchestration, multi-cluster visibility, workload lifecycle management, and full-stack observability for Kubernetes environments within PixelView.
 
 PixelView integrates natively with Kubernetes APIs to deliver complete management across all core primitives:
-- **Workloads**: High-level and low-level container orchestration including Pods, Deployments, ReplicaSets, DaemonSets, StatefulSets, Batch Jobs, Scheduled CronJobs, and native KubeVirt Virtual Machines.
-- **Compute**: Node inventory, hardware utilization (CPU, memory, storage allocations), and control-plane controllers.
-- **Storage**: Dynamic Persistent Volume Claims (PVCs), cluster-wide Persistent Volumes (PVs), and storage class provisioners.
-- **Networking**: L4 Services (`ClusterIP`, `NodePort`, `LoadBalancer`), Endpoints, Ingress routing controllers, and next-generation Gateway API resources.
-- **Configuration & Governance**: Namespaces tenant isolation, ConfigMaps, sensitive Secrets, hard Resource Quotas, Horizontal Pod Autoscalers (HPA), and Pod Disruption Budgets (PDB).
-- **Observability & Topology**: Live cluster event stream, Custom Resource Definitions (CRDs), Helm/Hub package integrations, and dynamic visual Graph topology maps.
+* **Workloads**: High-level and low-level container orchestration including Pods, Deployments, ReplicaSets, DaemonSets, StatefulSets, Batch Jobs, Scheduled CronJobs, and native KubeVirt Virtual Machines.
+* **Compute**: Node inventory, hardware utilization (CPU, memory, storage allocations), and control-plane controllers.
+* **Storage**: Dynamic Persistent Volume Claims (PVCs), cluster-wide Persistent Volumes (PVs), and storage class provisioners.
+* **Networking**: L4 Services (`ClusterIP`, `NodePort`, `LoadBalancer`), Endpoints, Ingress routing controllers, and next-generation Gateway API resources.
+* **Configuration & Governance**: Namespaces tenant isolation, ConfigMaps, sensitive Secrets, hard Resource Quotas, Horizontal Pod Autoscalers (HPA), and Pod Disruption Budgets (PDB).
+* **Observability & Topology**: Live cluster event stream, Custom Resource Definitions (CRDs), Helm/Hub package integrations, and dynamic visual Graph topology maps.
 
 ---
 
@@ -1092,9 +1092,9 @@ Navigate to **Configuration** &rarr; **Pod Disruption Budgets** in the secondary
 
 ---
 
-## Cluster Events
+## Cluster Events Stream
 
-The **Events** stream (`/kubernetes/:clusterName/events`) records cluster state changes, scheduler actions, container lifecycle transitions, and warning errors across all namespaces in real time.
+The **Events** stream (`/kubernetes/:clusterName/events`) records cluster state changes, scheduler actions, container lifecycle transitions, and warning errors across all namespaces in real time. PixelView consumes Kubernetes event objects (`events.k8s.io/v1`) directly from the API server stream, caching and aggregating them to provide instant visibility into cluster health and automated incident correlation.
 
 ### Events Table Overview
 Navigate to **Events** in the secondary sidebar:
@@ -1105,12 +1105,17 @@ Navigate to **Events** in the secondary sidebar:
 
 | Column | Description |
 | :--- | :--- |
-| **Type** | Severity level badge: `Normal` (standard state transitions) or `Warning` (errors, crash loops, failed mounts). |
-| **Reason** | Machine-readable error code (e.g., `BackOff`, `Pulling`, `Created`, `FailedMount`, `NodeReady`). |
-| **Message** | Human-readable explanation detailing the event or root failure cause. |
-| **Object** | Target Kubernetes resource kind and name (e.g., `Pod/alpine`, `Volume/config`). |
-| **Namespace** | Scoped namespace where the event originated. |
-| **Timestamp** | Relative and absolute occurrence timestamp. |
+| **Type** | Severity level badge: `Normal` (routine state transitions such as scheduled pods, image pulls, and successful volume attachments) or `Warning` (actionable failures, crash loops, probe timeouts, failed scheduling). |
+| **Reason** | Machine-readable error or action code (e.g., `BackOff`, `Pulling`, `Created`, `FailedMount`, `NodeReady`, `Killing`, `FailedScheduling`). |
+| **Message** | Detailed human-readable explanation emitted by Kubelet, the scheduler, or controller managers detailing the root condition. |
+| **Object** | Target Kubernetes resource kind and name (e.g., `Pod/alpine-nginx`, `PersistentVolumeClaim/db-data`, `Node/worker-01`). Clicking the object opens its resource inspection drawer. |
+| **Namespace** | Scoped namespace where the event originated. Operators can filter across all namespaces or isolate individual tenant workloads. |
+| **Timestamp** | Relative and absolute occurrence timestamp with aggregation counter (`Count`) showing how many times an identical event fired within the deduplication window. |
+
+### Event Retention & Ingestion Mechanics
+* **etcd Retention Window**: Standard Kubernetes API servers retain events in etcd for 1 hour (`--event-ttl=1h0m0s`).
+* **PixelView Aggregated Stream**: PixelView maintains a persistent operational event history, preventing critical diagnostic records from being lost during prolonged cluster outages or rolling node replacements.
+* **Severity Filtering**: Operators can toggle the event stream filter between `All Events`, `Warnings Only`, or filter by specific error reasons such as `FailedScheduling` or `Unhealthy`.
 
 ---
 
@@ -1208,3 +1213,46 @@ Navigate to **Graph** in the secondary sidebar:
 | **`FailedMount` Warning** | Pod references a PersistentVolumeClaim, ConfigMap, or Secret that does not exist or has not yet bound. | Check [Events Stream](#cluster-events-stream) for exact missing volume reference. Verify target ConfigMap or Secret exists in the same namespace. |
 | **`OOMKilled` (Exit Code 137)** | Container memory consumption exceeded the hard `limits.memory` defined in the pod specification. | Review memory trend graphs. Increase container memory limit or profile application for memory leaks. |
 | **Node `NotReady`** | Node kubelet stopped responding, Docker/containerd runtime crashed, or host network disconnected. | Inspect node status under **Compute** &rarr; **Nodes**. Check kubelet systemd service logs and verify network connectivity between node and control plane. |
+
+### Diagnostic Workflow for CrashLoopBackOff
+When an application container repeatedly crashes after startup, follow this diagnostic runbook:
+* **Check Exit Codes**:
+    * `Exit Code 0`: The container finished its primary process successfully but had no foreground task keeping it alive (common in batch scripts or misconfigured web servers).
+    * `Exit Code 1`: General application error, such as an unhandled runtime exception or syntax fault.
+    * `Exit Code 137`: The container was terminated by SIGKILL (almost always an out-of-memory `OOMKilled` event).
+    * `Exit Code 143`: The container was gracefully terminated by SIGTERM (e.g., during pod eviction or deployment rollout).
+* **Inspect Previous Container Logs**:
+    * In the PixelView console, navigate to **Workloads** &rarr; **Pods** &rarr; select target Pod &rarr; click **Actions** &rarr; **View Logs**.
+    * Check the **Previous Instance** checkbox to inspect output generated immediately before the last crash.
+* **Review Environment Configuration**:
+    * Cross-reference referenced ConfigMaps and Secrets to ensure all required environment keys exist and are populated.
+
+### Diagnostic Workflow for OOMKilled Containers
+When a container exceeds its allocated memory ceiling:
+* **Examine Memory Consumption Trends**:
+    * Navigate to **Workloads** &rarr; **Pods** &rarr; select Pod &rarr; open the **Metrics** tab.
+    * Correlate memory spikes with specific application requests or traffic surges.
+* **Tune Memory Requests and Limits**:
+    * Edit the workload specification: increase `spec.containers[*].resources.limits.memory` by 25% to 50% to accommodate peak working sets.
+    * Ensure `requests.memory` matches the expected steady-state baseline to guarantee the pod is scheduled on nodes with sufficient headroom.
+* **Profile Memory Leaks**:
+    * If memory utilization increases monotonically over time without plateauing, initiate memory heap dump profiling in the application runtime.
+
+### Diagnostic Workflow for Storage Volume Mounting Failures
+When a pod remains stuck in `ContainerCreating` with `FailedMount` or `FailedAttachVolume`:
+* **Inspect PersistentVolumeClaim (PVC) Status**:
+    * Navigate to **Storage** &rarr; **Persistent Volume Claims**.
+    * Verify that the PVC status is `Bound`. If `Pending`, inspect whether the target StorageClass provisioner is active or if volume quotas are exceeded.
+* **Resolve Multi-Attach Conflicts (`ReadWriteOnce`)**:
+    * If a PVC is formatted with `ReadWriteOnce` access mode, it can only attach to a single worker node simultaneously.
+    * If the pod was rescheduled to a new node before the previous node released the volume attachment, wait for the volume detach timeout or drain the stale node.
+
+### Diagnostic Workflow for Gateway API and Ingress Routing
+When incoming traffic fails to reach backend pods:
+* **Verify Service Endpoints**:
+    * In **Networking** &rarr; **Services**, verify that the target Service has active healthy **Endpoints**. If Endpoints are `0`, verify that the Service `selector` labels exactly match the Pod labels.
+* **Inspect Route Status**:
+    * In **Networking** &rarr; **Gateway** &rarr; **HTTPRoutes**, inspect the `Accepted` and `Programmed` conditions.
+    * Ensure the route references a valid Gateway listener port and valid hostname match rules.
+* **Verify TLS Certificate Validity**:
+    * Inspect the referenced Secret in **Configuration** &rarr; **Secrets** to verify that the TLS certificate has not expired and covers the requested SNI hostname.

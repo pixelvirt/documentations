@@ -93,13 +93,12 @@ To open the flow builder for an existing policy:
 * **Start Node**: Green indicator representing the start of the escalation sequence when an unacknowledged incident triggers.
 * **Escalation Steps**:
     * **Assign To**: Choose the target routing mechanism:
-        * **Assign To Automation**: Route the alert directly to an automated remediation bot (e.g., `AutomationBot`, auto-restart script, or diagnostic collector).
-        * **Assign To User**: Route alert notifications to a specific engineer or team member.
-        * **Assign To OnCall Schedule**: Route alert notifications to whoever is active on the scheduled on-call rotation.
-    * **Target Entity Dropdown**: Dynamically selects the specific bot, user account, or on-call schedule based on the assignment type.
+        * **Assign To Automation**: Route the alert directly to an automated remediation bot (e.g., automated diagnostic collector, service restarter, or AI investigation bot).
+        * **Assign To User**: Route alert notifications directly to a specific engineer or platform specialist.
+    * **Target Entity Dropdown**: Dynamically filters and selects the specific bot or user account matching the assignment type.
     * **Escalate Timeout**: Set timeout threshold in minutes (*"Escalate to next level, if alert is still unacknowledged after [ X ] minutes"*). Default is 10 minutes.
     * **Step Settings (Gear Icon)**: Options to delete or rearrange individual escalation steps.
-* **Add Step (`+`)**: Click the blue plus circle between nodes to append a subsequent escalation tier (e.g., escalate from Tier-1 Automation $\rightarrow$ On-Call Engineer $\rightarrow$ Team Lead).
+* **Add Step (`+`)**: Click the blue plus circle between nodes to append a subsequent escalation tier (e.g., escalate from Tier-1 Automation &rarr; Primary On-Call Engineer &rarr; Lead SRE).
 * **Stop Node**: Red indicator representing the termination of the escalation flow.
 
 ### Saving Changes
@@ -107,6 +106,19 @@ To open the flow builder for an existing policy:
 * **UPDATE TEMPLATE**: Persist the configured escalation pipeline to the backend.
 * **CLEAR CHANGES**: Revert unsaved modifications back to the last saved state.
 * **CANCEL**: Exit the flow builder back to the policies table.
+
+---
+
+## Escalation Lifecycle & Acknowledgement Mechanics
+
+Escalation policies ensure critical infrastructure incidents never go unaddressed:
+
+* **Initial Trigger**: An incoming alert arrives on a service bound to this escalation policy. PixelView creates an open case and immediately triggers Step 1 (Level 0).
+* **Notification Dispatch**: Notifications are dispatched to the assigned user or automation bot via configured alert channels (email, SMS, or outbound webhooks).
+* **Countdown Timer**: A countdown timer equal to the step's `Escalate Timeout` begins ticking.
+* **Acknowledgment Termination**: If an operator opens the incident in **Cases** and clicks **Acknowledge**, the escalation timer immediately terminates. No further escalation tiers are notified.
+* **Automatic Tier Escalation**: If the timeout elapses while the incident remains unacknowledged, PixelView automatically advances the incident to Step 2 (Level 1), dispatching high-priority alerts to the next tier in the sequence.
+* **Stop Node Resolution**: If all tiers execute without acknowledgement, the incident reaches the **Stop Node**, where it remains in high-visibility status in the open cases registry until manual intervention occurs.
 
 ---
 

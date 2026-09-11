@@ -174,3 +174,75 @@ To update metadata or remove an obsolete script:
 
 > [!WARNING]
 > Deleting a script removes its reference from PixelView. Any scheduled workflows or automated jobs that invoke this script will fail to execute.
+
+---
+
+## Runtime Environment & Script Standards
+
+Custom Python scripts executed by PixelView runners operate under a standardized execution contract:
+
+* **Execution Runtime**: Runner worker containers provide a pre-configured Python 3.10+ environment bundled with core enterprise modules (including `requests`, `urllib3`, `psutil`, `boto3`, and standard JSON parsing libraries).
+* **CLI Parameter Passing**: When dispatching jobs in [Executions](executions.md), operators supply CLI arguments via `script_args`. These arguments are passed directly to `sys.argv[1:]` during runner invocation.
+* **Exit Code Contracts**:
+    * **`sys.exit(0)`**: Indicates successful execution. PixelView marks the task as `Completed` and proceeds to subsequent pipeline steps.
+    * **`sys.exit(1)` (or non-zero)**: Signals an operational error. PixelView marks the step as `Failed`, streams stdout/stderr to the console, and triggers the configured retry policy (`script_max_retries`).
+* **Stdout/Stderr Telemetry Capture**: All standard output and error messages printed to console streams are captured in real-time by the runner daemon and relayed to the execution dashboard via Server-Sent Events (SSE).
+
+### Production Script Template: Database Health & Query Latency Probe (`db_health_check.py`)
+
+The following diagnostic script tests database port connectivity, measures query roundtrip latency, and outputs structured status metrics:
+
+```python
+#!/usr/bin/env python3
+"""
+PixelView Automation Script: Database Health & Latency Probe
+Usage: python3 db_health_check.py --host <DB_HOST> --port <PORT> --timeout <SECONDS>
+"""
+
+import sys
+import time
+import socket
+import argparse
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="Probe database port connectivity and latency.")
+    parser.add_argument("--host", required=True, help="Database target IP or hostname")
+    parser.add_argument("--port", type=int, default=3306, help="Database target port (default: 3306)")
+    parser.add_argument("--timeout", type=float, default=5.0, help="Connection timeout in seconds")
+    return parser.parse_args()
+
+def probe_database(host, port, timeout):
+    print(f"[*] Probing database endpoint {host}:{port} (timeout: {timeout}s)...")
+    start_time = time.perf_counter()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(timeout)
+
+    try:
+        sock.connect((host, port))
+        latency_ms = (time.perf_counter() - start_time) * 1000
+        print(f"[OK] Connection established successfully in {latency_ms:.2f} ms")
+        return True, latency_ms
+    except socket.timeout:
+        print(f"[FAIL] Connection timed out after {timeout} seconds")
+        return False, None
+    except Exception as exc:
+        print(f"[FAIL] Connection error: {exc}")
+        return False, None
+    finally:
+        sock.close()
+
+def main():
+    args = parse_arguments()
+    success, latency = probe_database(args.host, args.port, args.timeout)
+
+    if success:
+        print(f"[SUCCESS] Database endpoint {args.host}:{args.port} is healthy.")
+        sys.exit(0)
+    else:
+        print(f"[ERROR] Database endpoint {args.host}:{args.port} failed health checks.")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+```
+

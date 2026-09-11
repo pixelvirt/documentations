@@ -110,6 +110,19 @@ To update an existing credential profile or rotate secrets:
 
 ---
 
+## Automation & Patch Management Integration
+
+Stored credential profiles provide the seamless authentication layer connecting PixelView execution runners to remote target hosts:
+
+* **Automated Runner Execution**: When an Ansible playbook or patching workflow executes against a target host, runner daemons retrieve the bound SSH keypair or password directly from the encrypted credential vault.
+* **Non-Interactive Sudo Escalation**: If the automation task requires administrative privileges, the credential profile supplies the necessary elevation secrets without requiring operator intervention.
+* **Key Management Standards**:
+    * **Modern Linux Environments**: Standardize on `ed25519` keypairs (`ssh-keygen -t ed25519`) for superior cryptographic performance, smaller key sizes, and enhanced security.
+    * **Legacy Host Compatibility**: Standardize on RSA 4096-bit keypairs for older enterprise distributions that lack OpenSSH 6.5+ ed25519 support.
+* **Non-Disruptive Secret Rotation**: Operators can rotate SSH keys or passwords on remote fleets and update the corresponding credential profile in PixelView without needing to re-create scheduled patch plans or automation workflows.
+
+---
+
 ## Deleting Credentials
 
 * In the **Actions** context menu (**`...`**), select **Delete Credential**.

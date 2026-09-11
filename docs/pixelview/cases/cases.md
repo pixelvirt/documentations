@@ -22,11 +22,24 @@ The Cases module is organized into three specialized operational consoles cateri
 
 ---
 
+## Incident Severity & SLA Matrix
+
+PixelView provides standardized operational severity classifications to align team response speed with business impact:
+
+| Severity Tier | UI Badge | Operational Definition | Target MTTA | Target MTTR | Automation & Escalation Behavior |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Critical** | Red (`critical`) | Catastrophic service outage, total datacenter failure, or critical database unavailability. | < 15 min | < 1 hour | Immediate dispatch to on-call engineers; automated remediation bots trigger at Level 0. |
+| **High** | Orange (`high`) | Redundancy loss, severe latency degradation, or partial service disruption impacting multiple users. | < 30 min | < 4 hours | Escalation policy countdown initiates; notification dispatched via primary chat/email webhooks. |
+| **Moderate** | Yellow (`moderate`) | Non-blocking service degradation, single node failure in HA cluster, or capacity threshold warnings. | < 2 hours | < 24 hours | Assigned to operational queue; standard escalation rules apply without emergency paging. |
+| **Low** | Blue (`low`) | Minor operational anomaly, non-urgent background task warning, or routine telemetry deviation. | < 8 hours | < 72 hours | Logged for routine review during shift handovers; no automated paging triggered. |
+
+---
+
 ## Incident Lifecycle Architecture
 
 Every incident in PixelView follows a structured four-stage lifecycle:
 
-* **Ingestion & Normalization**: Monitoring webhooks and API alerts are normalized into a unified incident schema containing target hostnames, impacted services, and calculated severity tiers (**CRITICAL**, **HIGH**, **MEDIUM**, **LOW**).
+* **Ingestion & Normalization**: Monitoring webhooks and API alerts are normalized into a unified incident schema containing target hostnames, impacted services, and calculated severity tiers (**Critical**, **High**, **Moderate**, **Low**).
 * **Triage & Ownership**: Operational teams assess the incident via [Open Cases](open-cases.md), assign designated responder teams (e.g., `admins`), or execute bulk triage actions (**Acknowledge**, **Unacknowledge**, **Resolve**).
 * **Investigation & Remediation**: Responders drill into the dedicated incident console (`/case/:id`) to review chronological investigation timelines, inspect raw monitoring telemetry, delegate structured sub-tasks, and collaborate via threaded chat.
 * **Closure & Retrospective**: Once resolved, cases transition to [Resolved Cases](resolved-cases.md) for post-mortem analysis and SLA compliance reporting, with the ability to reopen if flapping is detected.

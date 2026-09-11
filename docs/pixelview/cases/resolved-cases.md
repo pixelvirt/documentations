@@ -138,3 +138,14 @@ The **HISTORY** tab displays all historical alerts that have occurred on the sam
 </a>
 
 * **Similar cases on this host**: Shows past alerts for the current node (`119.9.94.19`), allowing reliability engineers to track recurring degradation, service flap frequencies, and verify whether a permanent fix has stabilized the host over time.
+
+---
+
+## Post-Incident Reviews (PIR) & Compliance Auditing
+
+The archive preserved within **Resolved Cases** forms the foundation for continuous service improvement and regulatory compliance:
+
+* **SLA & MTTR Auditing**: Track duration metrics from initial detection timestamp to final resolution, measuring team adherence to defined SLA commitments across critical, high, and moderate priority incidents.
+* **Chronic Flapping Detection**: Use the **HISTORY** tab to identify repeat failures on identical hosts, surfacing chronic hardware degradation, memory leaks, or recurring configuration regressions.
+* **Immutable Audit Retention**: All case metadata—including raw JSON webhook triggers, timestamped task assignments, collaborative operator comments, and automated bot dispatch logs—are immutably preserved for SOC 2, ISO 27001, and regulatory compliance reviews.
+

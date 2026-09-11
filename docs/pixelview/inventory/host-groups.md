@@ -116,6 +116,16 @@ To adjust member servers or modify group details:
 
 ---
 
+## Operational Targeting in Patching & Automation
+
+Host groups are the primary deployment targets for orchestration, compliance enforcement, and coordinated patching across PixelView:
+
+* **Patch Management & Canary Rollouts**: In **Planner Management**, operators select host groups as the base scope for patch plans. PixelView allows partitioning groups into staggered execution batches (such as a 10% canary batch followed by two 45% batches) with failure intervention gates to safeguard high-availability services.
+* **Automation Playbook Runs**: Target operational Ansible playbooks (such as system upgrades, security agent rollouts, or configuration baselines) across entire host groups simultaneously with configurable concurrency parameters.
+* **Hybrid Cloud Clustering**: Combine bare-metal servers, on-premises virtualization hypervisors, and dynamic OpenStack cloud instances into unified functional tiers (e.g., `production-database-cluster`, `edge-ingress-proxies`).
+
+---
+
 ## Deleting Host Groups
 
 * Click the **Delete** (Trash) icon on the Host Group Details page, or choose **Delete Host Group** from the table actions menu (`...`).

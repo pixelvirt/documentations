@@ -87,10 +87,10 @@ While most cases are ingested automatically via monitoring webhooks, operators c
 
 * **Title** *(Required)*: Enter a concise, descriptive title for the incident (e.g., `Database Cluster Failover`).
 * **Severity** *(Required)*: Select the operational severity tier:
-    * **`L`**: Low
-    * **`M`**: Medium
-    * **`H`**: High
-    * **`C`**: Critical
+    * **Low**: Minor operational anomaly or routine telemetry deviation.
+    * **Moderate**: Partial degradation, single node redundancy loss, or threshold warning.
+    * **High**: Major service disruption impacting multiple users.
+    * **Critical**: Total service outage, catastrophic failure, or database unavailability.
 * **Tags**: Add one or more taxonomy tags to help filter and correlate related incidents.
 * **Description**: Provide contextual investigation details, symptoms, impacted customer services, or initial diagnostic steps.
 * **Service**: Select the target monitoring service or environment from the dropdown (e.g., `ha-monitoring`).
@@ -99,6 +99,19 @@ While most cases are ingested automatically via monitoring webhooks, operators c
 
 * **CANCEL**: Abort case creation and close the modal.
 * **CREATE**: Persist the case and publish it to the Open Cases queue.
+
+---
+
+## Incident Aggregation & Multi-Dimensional Filtering
+
+During high-volume incident storms (such as network flapping or datacenter power events), operators can collapse hundreds of incoming alerts into coherent functional clusters:
+
+* **Aggregation Modes**: In the table controls, operators can aggregate cases dynamically by:
+    * **Hostname**: Consolidates all alerts firing against a specific server or hypervisor node into a single grouped expandable row.
+    * **Service Name**: Groups all cases originating from a shared monitoring integration or application service tier (e.g., `Prometheus-Ingress`, `ha-monitoring`).
+    * **Status**: Segregates active `triggered` alerts from currently `acknowledged` items under active investigation.
+    * **Severity**: Clusters alerts by criticality level (**Critical**, **High**, **Moderate**, **Low**).
+* **Targeted Filtering**: The filter modal allows scoping the queue by specific hostnames, services, peak severity, and custom metadata tags.
 
 ---
 
