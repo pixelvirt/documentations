@@ -1,123 +1,241 @@
 # Single Sign-On (SSO) Integration
 
-PixelView supports enterprise **Single Sign-On (SSO)** using industry-standard **OpenID Connect (OIDC)** and **OAuth 2.0** protocols. Integrating SSO allows team members to authenticate seamlessly using their existing corporate identity providers (IdP) such as **Keycloak**, **Okta**, **Microsoft Entra ID (Azure AD)**, and **Google Workspace**.
+PixelView supports enterprise **Single Sign-On (SSO)** using industry-standard **OpenID Connect (OIDC)** and **OAuth 2.0** protocols. By integrating with **Dex**—an enterprise-grade federated identity broker—PixelView enables organization members to authenticate seamlessly using their existing corporate identity providers (IdPs), including **Keycloak**, **Okta**, **Microsoft Entra ID (Azure AD)**, **Google Workspace**, **GitHub**, and corporate **LDAP / Active Directory**.
 
 ---
 
 ## Architecture & Authentication Flow
 
-PixelView leverages standard authorization code flow with PKCE:
+PixelView delegates federated authentication to Dex, ensuring secure, token-based authorization code flow with backend-level verification and session management:
 
 ```
-+----------------+            Click SSO Login           +-------------------+
-|                | -----------------------------------> |                   |
-|                |                                      |   PixelView Web   |
-|   End User     | <----------------------------------- |     Frontend      |
-|                |       Redirect to IdP Auth URL       +-------------------+
-+----------------+                                                |
-        |                                                         |
-        | Authenticate with IdP Credentials                       |
-        v                                                         |
-+-------------------+                                             |
-|  Identity Provider|                                             |
-| (Keycloak / Okta /|                                             |
-|   Microsoft / ...) |                                            |
-+-------------------+                                             |
-        |                                                         |
-        | Redirect with Auth Code to /sso-login-success           |
-        +-------------------------------------------------------->+
-                                                                  |
-                                                    Exchange Code for JWT Session
-                                                                  v
-                                                        +-------------------+
-                                                        | PixelView Backend |
-                                                        +-------------------+
++---------------+              1. Click SSO Login (POST /api/ssologin)             +-------------------+
+|               | ---------------------------------------------------------------> |                   |
+|               |                                                                  | PixelView Backend |
+|   End User    | <--------------------------------------------------------------- |  (API & Session)  |
+|   (Browser)   |                 2. HTTP 302 Redirect to IdP / Dex                +-------------------+
+|               |                                                                            ^
++---------------+                                                                            |
+        |                                                                                    |
+        | 3. Authenticate with Corporate Credentials & MFA                                   |
+        v                                                                                    |
++---------------+                                                                            |
+|  Identity     |                                                                            |
+|  Provider     |                                                                            |
+|  (Dex / IdP)  |                                                                            |
++---------------+                                                                            |
+        |                                                                                    |
+        | 4. Redirect with Auth Code (GET /api/auth/callback?code=...&state=...)             |
+        +------------------------------------------------------------------------------------+
+                                                |
+                                5. Backend validates code with Dex/IdP,
+                                   creates/syncs user in MongoDB, and
+                                   issues secure HttpOnly session cookie
+                                                |
+        +---------------------------------------+
+        |
+        | 6. HTTP 302 Redirect to /sso-login-success
+        v
++-------------------+                                                              +-------------------+
+|   PixelView Web   |                     7. GET /api/profile                      | PixelView Backend |
+|     Frontend      | -----------------------------------------------------------> |  (API & Session)  |
+| (/sso-login-succ) | <----------------------------------------------------------- |                   |
++-------------------+                   8. Session Validated                       +-------------------+
+        |
+        | 9. Redirect to Dashboard (/openstack)
+        v
++-------------------+
+| Active Session    |
++-------------------+
 ```
+
+### Key Flow Characteristics
+1. **Direct Backend Handshake**: Clicking **SSO Login** initiates an HTTP POST to `/api/ssologin`. The browser is redirected directly to Dex/IdP.
+2. **Secure Callback Endpoint**: The identity provider redirects back to the backend's dedicated callback endpoint (`/api/auth/callback`). Authorization codes and tokens are exchanged on the backend network, never exposed to client-side scripts.
+3. **Automated Session Handoff**: Once verified, the backend issues an authenticated HTTP session cookie and forwards the browser to `/sso-login-success`. The frontend confirms the session via `/api/profile` and routes the user directly to the primary operational dashboard.
 
 ---
 
 ## Prerequisites
 
-Before configuring SSO in PixelView, ensure you have:
-* Administrator access to your corporate Identity Provider (IdP).
-* A fully qualified domain name (FQDN) configured with HTTPS for your PixelView instance.
-* Your PixelView SSO Callback / Redirect URI:
-  ```
-  https://<your-pixelview-domain>/sso-login-success
+Before setting up SSO in PixelView, ensure you have:
+* A running **Dex** instance deployed and operated by your organization (acting as the federated identity broker to your upstream corporate IdPs).
+* Administrator privileges on your Identity Provider to register applications and configure redirect URIs.
+* A fully qualified domain name (FQDN) secured with HTTPS for your PixelView deployment (e.g., `https://cloud.pixelvirt.com`).
+* The mandatory PixelView OAuth Callback URL:
+  ```text
+  https://<your-pixelview-domain>/api/auth/callback
   ```
 
 ---
 
-## Identity Provider (IdP) Configuration
+## Dex Federated Identity Broker Setup
 
-### Register an OIDC Application / Client
-In your IdP administration console (e.g. Keycloak or Okta):
+PixelView is engineered to authenticate against Dex, which translates upstream identity credentials from any provider into standardized OIDC identity tokens.
 
-* Create a new **OpenID Connect (OIDC)** client.
-* Set the **Client Type** to `Confidential` (or `Web App`).
-* Set the **Valid Redirect URIs** (or Allowed Callback URLs) to:
-  ```
-  https://<your-pixelview-domain>/sso-login-success
-  ```
-* Set the **Allowed Web Origins** to your base domain:
-  ```
-  https://<your-pixelview-domain>
-  ```
-* Ensure the standard OIDC scopes are granted:
-  * `openid`
-  * `email`
-  * `profile`
-* Copy the generated **Client ID** and **Client Secret**.
+### Sample Dex Configuration (`dex.yaml`)
+
+Below is a representative Dex configuration illustrating how upstream identity providers map to PixelView:
+
+```yaml linenums="1"
+# The base URL where Dex is publicly accessible
+issuer: https://dex.yourdomain.com/dex
+
+# Storage backend for storing Dex state
+storage:
+  type: memory # or kubernetes / sqlite3 / mongo
+
+# Network binding
+web:
+  http: 0.0.0.0:5556
+
+# Registered OAuth2/OIDC clients
+staticClients:
+  - id: pixelview
+    redirectURIs:
+      - 'https://<your-pixelview-domain>/api/auth/callback'
+    name: 'PixelView Cloud Management'
+    secret: 'your-secure-dex-client-secret'
+
+# Upstream Identity Provider Connectors
+connectors:
+  # Example 1: Google Workspace / Gmail
+  - type: google
+    id: google
+    name: Google
+    config:
+      clientID: $GOOGLE_CLIENT_ID
+      clientSecret: $GOOGLE_CLIENT_SECRET
+      redirectURI: https://dex.yourdomain.com/dex/callback
+
+  # Example 2: Keycloak / Generic OIDC
+  - type: oidc
+    id: keycloak
+    name: Keycloak
+    config:
+      issuer: https://sso.yourdomain.com/realms/organization
+      clientID: $KEYCLOAK_CLIENT_ID
+      clientSecret: $KEYCLOAK_CLIENT_SECRET
+      redirectURI: https://dex.yourdomain.com/dex/callback
+      scopes:
+        - openid
+        - profile
+        - email
+
+  # Example 3: GitHub / GitHub Enterprise
+  - type: github
+    id: github
+    name: GitHub
+    config:
+      clientID: $GITHUB_CLIENT_ID
+      clientSecret: $GITHUB_CLIENT_SECRET
+      redirectURI: https://dex.yourdomain.com/dex/callback
+      orgs:
+        - name: your-organization
+
+  # Example 4: Microsoft Entra ID (Azure AD)
+  - type: microsoft
+    id: microsoft
+    name: Microsoft
+    config:
+      clientID: $MICROSOFT_CLIENT_ID
+      clientSecret: $MICROSOFT_CLIENT_SECRET
+      redirectURI: https://dex.yourdomain.com/dex/callback
+      tenant: $AZURE_TENANT_ID
+
+  # Example 5: LDAP / Microsoft Active Directory
+  - type: ldap
+    id: ldap
+    name: Active Directory
+    config:
+      host: ldap.yourdomain.com:636
+      insecureNoSSL: false
+      bindDN: "cn=admin,dc=example,dc=com"
+      bindPW: "admin_password"
+      userSearch:
+        baseDN: "ou=Users,dc=example,dc=com"
+        filter: "(objectClass=person)"
+        username: mail
+        idAttr: DN
+        emailAttr: mail
+        nameAttr: cn
+```
+
+> [!IMPORTANT]
+> * The `redirectURIs` registered under `staticClients` in Dex **must** point to PixelView's backend callback endpoint: `https://<your-pixelview-domain>/api/auth/callback`.
+> * Retain `id: pixelview` as the client identifier matching PixelView's internal OIDC client configuration.
 
 ---
 
 ## Configuring PixelView Backend
 
-Set the following environment variables in your PixelView backend deployment configuration (`.env` or Docker Compose):
+To link PixelView to your Dex or OIDC identity provider, update the environment variables for the `pixelview-backend` container in your deployment configuration (`docker-compose.yml` or `.env` file):
 
-```bash
-# Enable SSO Authentication
-SSO_ENABLED=true
-
-# OpenID Connect Configuration
-OIDC_ISSUER_URL=https://idp.yourdomain.com/realms/pixelvirt
-OIDC_CLIENT_ID=pixelview-client
-OIDC_CLIENT_SECRET=your_super_secret_client_key_here
-OIDC_REDIRECT_URI=https://pixelview.yourdomain.com/sso-login-success
-
-# Scopes (default: openid email profile)
-OIDC_SCOPES=openid email profile
+```yaml linenums="1"
+services:
+  pixelview-backend:
+    image: ghcr.io/pixelvirt/pixelview-backend:v0.0.1
+    container_name: pixelview-backend
+    restart: always
+    environment:
+      # Service Authentication Key
+      AUTH_KEY: 6c673f51-6045-47b0-8745-eef9d165a310
+      
+      # OpenID Connect / Dex Configuration
+      DEX_ISSUER_URL: https://dex.yourdomain.com/dex
+      DEX_REDIRECT_URI: https://<your-pixelview-domain>/api/auth/callback
+      
+      # Database and Domain Settings
+      MONGO_URI: mongodb://localhost:27017/pixelview
+      DOMAIN: yourdomain.com
+      SUBDOMAIN: cloud
+      ENVIRONMENT: production
 ```
 
-Restart the PixelView backend service to apply the new configuration:
+### Configuration Parameters
+
+| Environment Variable | Requirement | Description |
+| :--- | :--- | :--- |
+| `DEX_ISSUER_URL` | **Required** | The base issuer URL of the Dex instance hosted by your organization (must serve `/.well-known/openid-configuration`, e.g., `https://dex.yourdomain.com/dex`). |
+| `DEX_REDIRECT_URI` | **Required** | The fully qualified callback endpoint where the browser returns after authentication (`https://<your-pixelview-domain>/api/auth/callback`). |
+| `AUTH_KEY` | **Required** | Internal microservice communication authentication token. |
+| `DOMAIN` / `SUBDOMAIN` | Optional | Contextual domain definitions used for cookie scoping and multi-tenant URL generation. |
+
+Restart the backend container to apply the new configuration:
 ```bash
-docker compose restart backend
+docker compose restart pixelview-backend
 ```
 
 ---
 
 ## User Provisioning & Permissions
 
-When a user logs in via SSO for the first time:
-* **Automatic Account Creation**: PixelView automatically creates a user account using the `email`, `given_name` (First Name), and `family_name` (Last Name) claims received from the identity provider.
-* **Default Role Assignment**: New SSO users are assigned the default `User` role with initial scoped permissions.
-* **Role Elevation**: Administrators can upgrade roles to `Admin` or customize the [Granular Permissions Matrix](../management/user-management.md#granular-permissions-matrix) at any time from the **Management > Users** page.
+PixelView implements Just-In-Time (JIT) user provisioning for SSO logins:
+
+* **Automatic Account Creation**: When an authenticated user signs in via SSO for the first time, PixelView automatically provisions a new account record in the database using the verified `email` and identity claims.
+* **Default Role Assignment**: Newly provisioned SSO accounts are initially granted the standard `User` role with scoped baseline access.
+* **Access Elevation & Governance**: System administrators can elevate any SSO user to `Admin` or grant fine-grained module privileges (OpenStack, Kubernetes, Inventory, Patch Management, Automation) via the [Granular Permissions Matrix](../management/user-management.md#granular-permissions-matrix) located in **Management** &rarr; **Users**.
 
 ---
 
 ## End-User Login Experience
 
-* Navigate to the PixelView login page (`/login`).
-* Click the **Single Sign-On (SSO)** button under the login form.
-* Complete authentication on your organization's identity portal.
-* You will be automatically redirected to `/sso-login-success` and then into your PixelView dashboard.
+Once SSO is configured, users authenticate using their standard corporate workflow:
+
+1. Open your browser and navigate to the PixelView login portal (`/login`).
+2. Locate the **Continue with SSO** section beneath the primary login form and click **SSO Login**.
+3. You will be redirected to your corporate identity provider portal (or Dex connector selector).
+4. Enter your corporate credentials and complete any mandatory Multi-Factor Authentication (MFA) challenges.
+5. Upon successful authentication, your browser is redirected back through `/api/auth/callback` and `/sso-login-success`, landing directly on your active operational dashboard.
 
 ---
 
 ## Troubleshooting
 
-| Issue / Error | Potential Cause | Solution |
+| Symptom / Error | Probable Cause | Recommended Resolution |
 | :--- | :--- | :--- |
-| `Invalid redirect URI` | The Redirect URI in the IdP does not exactly match `https://<domain>/sso-login-success`. | Check trailing slashes and ensure protocol is `https://`. |
-| `Token verification failed` | Issuer URL mismatch or clock skew between servers. | Ensure server system clocks are synchronized via NTP and `OIDC_ISSUER_URL` matches the IdP's `iss` claim. |
-| `Missing email claim` | The IdP client is not releasing user email attributes. | Add the `email` scope to your client mapper in the IdP console. |
+| **`Invalid redirect_uri` on IdP** | The redirect URI in Dex or IdP does not match `https://<domain>/api/auth/callback`. | Ensure the callback URL in your client configuration matches `https://<your-domain>/api/auth/callback` with exact spelling, port, and `https://` protocol. |
+| **User lands on `/sso-login-success` but remains unauthenticated** | The session cookie was rejected by the browser due to protocol or domain mismatch. | Ensure your reverse proxy (e.g. Nginx) passes `X-Forwarded-Proto: https` and `X-Forwarded-For` headers to `pixelview-backend`. |
+| **`Token verification failed`** | Clock skew between the PixelView host and Dex server. | Synchronize system clocks on both servers using NTP (`chrony` or `systemd-timesyncd`). |
+| **Missing user email attribute** | Upstream Identity Provider is not releasing the `email` scope to Dex. | Verify that the `email` and `profile` scopes are enabled in the upstream IdP client configuration. |
+| **Dex Issuer Discovery Error** | PixelView backend cannot reach `DEX_ISSUER_URL/.well-known/openid-configuration`. | Test connectivity from inside the `pixelview-backend` container: <br> `docker exec -it pixelview-backend curl -k https://dex.yourdomain.com/dex/.well-known/openid-configuration`. |
