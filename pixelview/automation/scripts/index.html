@@ -3029,11 +3029,9 @@
 <h3 id="configuration-fields">Configuration Fields<a class="headerlink" href="#configuration-fields" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Name</strong> <em>(Required)</em>: A unique, descriptive title identifying the script (e.g., <code>cleanup-temp-files</code>, <code>random</code>).</li>
-<li><strong>Filepath</strong> <em>(Required)</em>: The filename of the Python script inside the runner's <code>scripts/</code> directory. <blockquote>
-<p>[!TIP]
-Enter only the base file name (e.g., <code>cleanup</code>). PixelView automatically provides the <code>scripts/</code> prefix and appends <code>.py</code> automatically.</p>
-</blockquote>
-</li>
+<li><strong>Filepath</strong> <em>(Required)</em>: The filename of the Python script inside the runner's <code>scripts/</code> directory.
+    !!! tip
+        Enter only the base file name (e.g., <code>cleanup</code>). PixelView automatically provides the <code>scripts/</code> prefix and appends <code>.py</code> automatically.</li>
 <li><strong>Description</strong> <em>(Optional)</em>: Explanatory notes documenting the script arguments, expected behavior, or environment requirements.</li>
 </ul>
 <h3 id="dialog-actions">Dialog Actions<a class="headerlink" href="#dialog-actions" title="Permanent link">&para;</a></h3>
@@ -3069,10 +3067,10 @@ Enter only the base file name (e.g., <code>cleanup</code>). PixelView automatica
 </span></code></pre></div></li>
 <li>Click <strong>OK</strong> to confirm. The script record will be permanently deleted from the inventory.</li>
 </ul>
-<blockquote>
-<p>[!WARNING]
-Deleting a script removes its reference from PixelView. Any scheduled workflows or automated jobs that invoke this script will fail to execute.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deleting a script removes its reference from PixelView. Any scheduled workflows or automated jobs that invoke this script will fail to execute.</p>
+</div>
 <hr />
 <h2 id="runtime-environment-script-standards">Runtime Environment &amp; Script Standards<a class="headerlink" href="#runtime-environment-script-standards" title="Permanent link">&para;</a></h2>
 <p>Custom Python scripts executed by PixelView runners operate under a standardized execution contract:</p>

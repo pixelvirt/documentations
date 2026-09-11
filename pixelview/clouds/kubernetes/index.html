@@ -3800,10 +3800,10 @@
 <li><strong>Kubernetes Config</strong> <em>(Required)</em>: Paste the complete, standard <code>kubeconfig</code> YAML file containing the cluster API server endpoint, Certificate Authority (<code>certificate-authority-data</code>), and authentication credentials (such as client certificates, bearer tokens, or service account authentication tokens). Press <strong><code>Tab</code></strong> to autofill a sample template.</li>
 <li>Click <strong>SAVE</strong> to validate and register the cluster. Once added, the cluster immediately appears in the <strong>K8s</strong> module under <strong>Clouds</strong>.</li>
 </ul>
-<blockquote>
-<p>[!TIP]
-In-cluster workload credentials, image registry pull keys, TLS certificates, and service account tokens are managed within the cluster under <a href="#secrets">Secrets</a>.</p>
-</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In-cluster workload credentials, image registry pull keys, TLS certificates, and service account tokens are managed within the cluster under <a href="#secrets">Secrets</a>.</p>
+</div>
 <hr />
 <h3 id="declarative-resource-creation-engine-toolbar-actions">Declarative Resource Creation Engine &amp; Toolbar Actions<a class="headerlink" href="#declarative-resource-creation-engine-toolbar-actions" title="Permanent link">&para;</a></h3>
 <p>PixelView provides a unified, declarative resource creation workflow across all Kubernetes inventory tables (Deployments, Pods, StatefulSets, DaemonSets, Jobs, CronJobs, Services, Ingresses, PVCs, Namespaces, ConfigMaps, Secrets, ResourceQuotas, HPAs, and PDBs).</p>

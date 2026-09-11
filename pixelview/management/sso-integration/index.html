@@ -2882,11 +2882,13 @@
 </span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80"></a><span class="w">        </span><span class="nt">emailAttr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mail</span>
 </span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81"></a><span class="w">        </span><span class="nt">nameAttr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cn</span>
 </span></code></pre></div></td></tr></table></div>
-<blockquote>
-<p>[!IMPORTANT]
-* The <code>redirectURIs</code> registered under <code>staticClients</code> in Dex <strong>must</strong> point to PixelView's backend callback endpoint: <code>https://&lt;your-pixelview-domain&gt;/api/auth/callback</code>.
-* Retain <code>id: pixelview</code> as the client identifier matching PixelView's internal OIDC client configuration.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<ul>
+<li>The <code>redirectURIs</code> registered under <code>staticClients</code> in Dex <strong>must</strong> point to PixelView's backend callback endpoint: <code>https://&lt;your-pixelview-domain&gt;/api/auth/callback</code>.</li>
+<li>Retain <code>id: pixelview</code> as the client identifier matching PixelView's internal OIDC client configuration.</li>
+</ul>
+</div>
 <hr />
 <h2 id="configuring-pixelview-backend">Configuring PixelView Backend<a class="headerlink" href="#configuring-pixelview-backend" title="Permanent link">&para;</a></h2>
 <p>To link PixelView to your Dex or OIDC identity provider, update the environment variables for the <code>pixelview-backend</code> container in your deployment configuration (<code>docker-compose.yml</code> or <code>.env</code> file):</p>

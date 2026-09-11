@@ -2932,10 +2932,10 @@
 <li><strong>Edit</strong> (Pencil icon): Open the <strong>Edit Service</strong> configuration modal to update service parameters, copy the Service Key, configure outbound webhooks, or bind escalation policies.</li>
 <li><strong>Delete</strong> (Trash icon): Permanently remove the service stream after confirmation.</li>
 </ul>
-<blockquote>
-<p>[!NOTE]
-Operators with standard user permissions can toggle <strong>Subscribe / Unsubscribe</strong>. Administrative privileges are required to <strong>Edit</strong> or <strong>Delete</strong> configured services.</p>
-</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Operators with standard user permissions can toggle <strong>Subscribe / Unsubscribe</strong>. Administrative privileges are required to <strong>Edit</strong> or <strong>Delete</strong> configured services.</p>
+</div>
 <hr />
 <h2 id="editing-configuring-a-service">Editing &amp; Configuring a Service<a class="headerlink" href="#editing-configuring-a-service" title="Permanent link">&para;</a></h2>
 <p>To inspect service keys, modify status, configure outbound webhooks, or attach escalation policies:</p>
@@ -2955,12 +2955,12 @@ Operators with standard user permissions can toggle <strong>Subscribe / Unsubscr
 </ul>
 </li>
 </ul>
-<blockquote>
-<p>[!TIP]
-The <strong>Service Key</strong> authenticates incoming alert webhooks sent by external monitoring systems. For example, Prometheus Alertmanager routes alerts to:
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <strong>Service Key</strong> authenticates incoming alert webhooks sent by external monitoring systems. For example, Prometheus Alertmanager routes alerts to:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>http://&lt;pixelview-host&gt;/webhook/prometheus?servicekey=&lt;service_key&gt;
 </span></code></pre></div></p>
-</blockquote>
+</div>
 <ul>
 <li><strong>Status</strong>: Toggle between <strong>Enabled</strong> and <strong>Disabled</strong>. When disabled, incoming alerts on this stream are ignored.</li>
 </ul>
@@ -3031,10 +3031,10 @@ The <strong>Service Key</strong> authenticates incoming alert webhooks sent by e
 <li>From the <strong>Actions</strong> context menu (<code>...</code>), select <strong>Delete</strong>.</li>
 <li>Confirm the prompt (<code>Are you sure you want to delete [service name]?</code>).</li>
 </ul>
-<blockquote>
-<p>[!WARNING]
-Deleting an alerting service invalidates its <strong>Service Key</strong>. External monitoring systems sending alerts with this key will receive authentication errors, and incoming alert routing for this stream will permanently stop.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deleting an alerting service invalidates its <strong>Service Key</strong>. External monitoring systems sending alerts with this key will receive authentication errors, and incoming alert routing for this stream will permanently stop.</p>
+</div>
 
 
 

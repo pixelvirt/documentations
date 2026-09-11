@@ -3078,10 +3078,10 @@
 <p>To update playbooks across your runners whenever changes are merged into your GitHub repository, pull the latest revisions on the host:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>/opt/pixelvirt/playbooks<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
 </span></code></pre></div>
-<blockquote>
-<p>[!TIP]
-You can automate this synchronization by setting up a GitHub Actions workflow that executes <code>git pull</code> over SSH on runner nodes, or by configuring a periodic cron job on the runner host.</p>
-</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can automate this synchronization by setting up a GitHub Actions workflow that executes <code>git pull</code> over SSH on runner nodes, or by configuring a periodic cron job on the runner host.</p>
+</div>
 <hr />
 <h2 id="navigating-to-playbooks">Navigating to Playbooks<a class="headerlink" href="#navigating-to-playbooks" title="Permanent link">&para;</a></h2>
 <p>To view and manage your registered playbooks:</p>
@@ -3190,10 +3190,10 @@ You can automate this synchronization by setting up a GitHub Actions workflow th
 </span></code></pre></div></li>
 <li>Click <strong>OK</strong> to confirm. The playbook reference will be removed from the catalog.</li>
 </ul>
-<blockquote>
-<p>[!WARNING]
-Deleting a playbook removes its registration from PixelView. Workflows or automated execution jobs that depend on this playbook reference will fail if invoked.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deleting a playbook removes its registration from PixelView. Workflows or automated execution jobs that depend on this playbook reference will fail if invoked.</p>
+</div>
 <hr />
 <h2 id="inspecting-playbook-details">Inspecting Playbook Details<a class="headerlink" href="#inspecting-playbook-details" title="Permanent link">&para;</a></h2>
 <p>To inspect the full metadata of a playbook:</p>

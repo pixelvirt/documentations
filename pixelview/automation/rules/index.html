@@ -2728,11 +2728,9 @@
 <ul>
 <li><strong>Name</strong> <em>(Required)</em>: Enter a distinctive name for the automation rule (e.g., <code>MariaBD-rules</code>).</li>
 <li><strong>Description</strong> <em>(Optional)</em>: Provide an operational summary explaining what event this rule responds to and its target remediation path.</li>
-<li><strong>Trigger</strong> <em>(Required)</em>: The event identifier that triggers this rule. <blockquote>
-<p>[!IMPORTANT]
-Trigger names must be unique across your environment and must not contain spaces (e.g., use snake_case or kebab-case like <code>mariadb-down</code> or <code>service_failure</code>).</p>
-</blockquote>
-</li>
+<li><strong>Trigger</strong> <em>(Required)</em>: The event identifier that triggers this rule.
+    !!! warning "Important"
+        Trigger names must be unique across your environment and must not contain spaces (e.g., use snake_case or kebab-case like <code>mariadb-down</code> or <code>service_failure</code>).</li>
 <li><strong>Select Workflow</strong> <em>(Required)</em>: Select the target automated workflow from the dropdown that should execute when the trigger occurs.</li>
 <li><strong>Enabled</strong> <em>(Toggle)</em>: Toggle the switch to activate or deactivate the rule upon creation (default: active).</li>
 </ul>
@@ -2773,10 +2771,10 @@ Trigger names must be unique across your environment and must not contain spaces
 </span></code></pre></div></li>
 <li>Click <strong>OK</strong> to permanently remove the rule.</li>
 </ul>
-<blockquote>
-<p>[!WARNING]
-Deleting a rule immediately ceases automated responses for its configured trigger. Any incoming alerts or bot events matching this trigger will no longer initiate remediation workflows.</p>
-</blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Deleting a rule immediately ceases automated responses for its configured trigger. Any incoming alerts or bot events matching this trigger will no longer initiate remediation workflows.</p>
+</div>
 <hr />
 <h2 id="event-driven-triggers-webhook-integration">Event-Driven Triggers &amp; Webhook Integration<a class="headerlink" href="#event-driven-triggers-webhook-integration" title="Permanent link">&para;</a></h2>
 <p>Automation rules provide the automated bridge between monitoring alerts and hands-free remediation:</p>
