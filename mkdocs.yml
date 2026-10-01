@@ -99,6 +99,11 @@ nav:
       - Planner Management: pixelview/patch-management/planner.md
       - Packages: pixelview/patch-management/packages.md
     - JSON Bridge: pixelview/json-bridge/json-bridge.md
+    - Migration Manager:
+      - Overview: pixelview/migration-manager/overview.md
+      - Compute Migrations: pixelview/migration-manager/compute.md
+      - Block Storage (CBS): pixelview/migration-manager/cbs.md
+      - Cinder (CBS) Setup & Troubleshooting: pixelview/migration-manager/cbs-backend-setup.md
     - Management and Settings:
       - User Management: pixelview/management/user-management.md
       - Settings: pixelview/settings/settings.md
