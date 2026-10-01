@@ -1,0 +1,4305 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/migration-manager/cbs-backend-setup/">
+      
+      
+        <link rel="prev" href="../cbs/">
+      
+      
+        <link rel="next" href="../../management/user-management/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Cinder (CBS) Setup & Troubleshooting - PixelVirt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/empty.css">
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/glightbox.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cinder-cbs-setup-troubleshooting-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="PixelVirt" class="md-header__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PixelVirt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cinder (CBS) Setup & Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="PixelVirt" class="md-nav__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    PixelVirt
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PixelView Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PixelView
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/install-on-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install on Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/install-ha/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HA Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clouds
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clouds
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/openstack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenStack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cases Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/open-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/my-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/resolved-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolved Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services/Monitoring
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services/Monitoring
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../services/prometheus/integration/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Integration
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Escalation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escalation/policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalation Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/executions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/playbooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/runners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/bots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Bots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inventory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/creds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/host-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch Management
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Patch Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/patch-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch Management Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/patchset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patchset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/planner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../json-bridge/json-bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Bridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Manager
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Migration Manager
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compute Migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cbs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Storage (CBS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cinder (CBS) Setup & Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cinder (CBS) Setup & Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-storage-pool-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture &amp; Storage Pool Addressing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture &amp; Storage Pool Addressing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-cluster-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Cluster Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-node-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Node Provisioning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage Node Provisioning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-storage-volume-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Storage &amp; Volume Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-lvm-volume-group-cinder-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing LVM Volume Group (cinder-volumes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-cinder-volume-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Cinder Volume Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-firewall-port-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network &amp; Firewall Port Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifying-the-backend-in-openstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verifying the Backend in OpenStack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hypervisor-libvirt-tuning-for-live-volume-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hypervisor &amp; Libvirt Tuning for Live Volume Migrations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hypervisor &amp; Libvirt Tuning for Live Volume Migrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-root-cause-why-live-in-use-volume-swaps-fail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Root Cause: Why Live In-Use Volume Swaps Fail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permanent-resolution-remember_owner-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permanent Resolution: remember_owner = 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-migration-mechanics-in-use-vs-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume Migration Mechanics: In-Use vs. Available
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volume Migration Mechanics: In-Use vs. Available">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unattached-available-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unattached (Available) Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attached-in-use-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attached (In-Use) Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retype-vs-direct-migration-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retype vs. Direct Migration Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retype vs. Direct Migration Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#different-volume-types-retype-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Different Volume Types: Retype Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matching-volume-types-direct-migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matching Volume Types: Direct Migrate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-in-pixelview-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering in PixelView Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registering in PixelView Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-storage-devices-cbs-pools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Storage Devices (CBS Pools)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-compute-servers-hypervisors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Compute Servers (Hypervisors)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors-you-might-face-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errors You Might Face &amp; Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Errors You Might Face &amp; Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volume-migration-rejected-or-timed-out-nova-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume Migration Rejected or Timed Out (Nova Authentication)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libvirt-dac-locking-error-on-hypervisors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Libvirt DAC Locking Error on Hypervisors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-up-stuck-volume-states-orphaned-temporary-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cleaning Up Stuck Volume States &amp; Orphaned Temporary Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-migration-fails-with-no-valid-backend-capabilitiesfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Migration Fails with No Valid Backend (CapabilitiesFilter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iscsi-connection-refused-or-timeout-tcp-port-3260" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iSCSI Connection Refused or Timeout (TCP Port 3260)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cinder-volume-backend-shows-state-down-in-service-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cinder Volume Backend Shows State Down in Service List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-runner-database-connection-refused-errno-111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Runner Database Connection Refused ([Errno 111])
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-json-bridge-database-identifier-not-found-http-404-500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MySQL JSON Bridge Database Identifier Not Found (HTTP 404 / 500)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-device-vs-server-name-lookup-failures-hostnotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Device vs. Server Name Lookup Failures (HostNotFoundError)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac-permission-denied-http-403-on-read-only-or-revoked-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC Permission Denied (HTTP 403) on Read-Only or Revoked Accounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stale-in-memory-permissions-cache-role-changes-not-taking-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stale In-Memory Permissions Cache (Role Changes Not Taking Effect)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-80-caching_sha2_password-authentication-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MySQL 8.0 caching_sha2_password Authentication Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute-live-migration-pre-check-failures-capacity-or-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute Live Migration Pre-Check Failures (Capacity or Ports)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-region-onboarding-configuration-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Region Onboarding &amp; Configuration Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Region Onboarding &amp; Configuration Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openstack-api-credentials-cloudsyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenStack API Credentials (clouds.yaml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-json-bridge-acceleration-confd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MySQL JSON Bridge Acceleration (conf.d/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-the-region-and-nodes-in-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering the Region and Nodes in Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Settings
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Management and Settings
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/sso-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSO Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../api/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView API
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-storage-pool-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture &amp; Storage Pool Addressing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture &amp; Storage Pool Addressing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-cluster-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Cluster Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-node-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Node Provisioning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage Node Provisioning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installing-storage-volume-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Storage &amp; Volume Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-lvm-volume-group-cinder-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing LVM Volume Group (cinder-volumes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-cinder-volume-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Cinder Volume Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-firewall-port-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network &amp; Firewall Port Requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifying-the-backend-in-openstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verifying the Backend in OpenStack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hypervisor-libvirt-tuning-for-live-volume-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hypervisor &amp; Libvirt Tuning for Live Volume Migrations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hypervisor &amp; Libvirt Tuning for Live Volume Migrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-root-cause-why-live-in-use-volume-swaps-fail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Root Cause: Why Live In-Use Volume Swaps Fail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permanent-resolution-remember_owner-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permanent Resolution: remember_owner = 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-migration-mechanics-in-use-vs-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume Migration Mechanics: In-Use vs. Available
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volume Migration Mechanics: In-Use vs. Available">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unattached-available-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unattached (Available) Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attached-in-use-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attached (In-Use) Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retype-vs-direct-migration-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retype vs. Direct Migration Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retype vs. Direct Migration Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#different-volume-types-retype-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Different Volume Types: Retype Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matching-volume-types-direct-migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matching Volume Types: Direct Migrate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registering-in-pixelview-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering in PixelView Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registering in PixelView Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#register-storage-devices-cbs-pools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Storage Devices (CBS Pools)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-compute-servers-hypervisors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Compute Servers (Hypervisors)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors-you-might-face-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errors You Might Face &amp; Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Errors You Might Face &amp; Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volume-migration-rejected-or-timed-out-nova-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume Migration Rejected or Timed Out (Nova Authentication)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libvirt-dac-locking-error-on-hypervisors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Libvirt DAC Locking Error on Hypervisors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleaning-up-stuck-volume-states-orphaned-temporary-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cleaning Up Stuck Volume States &amp; Orphaned Temporary Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-migration-fails-with-no-valid-backend-capabilitiesfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Migration Fails with No Valid Backend (CapabilitiesFilter)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iscsi-connection-refused-or-timeout-tcp-port-3260" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iSCSI Connection Refused or Timeout (TCP Port 3260)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cinder-volume-backend-shows-state-down-in-service-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cinder Volume Backend Shows State Down in Service List
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-runner-database-connection-refused-errno-111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Runner Database Connection Refused ([Errno 111])
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-json-bridge-database-identifier-not-found-http-404-500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MySQL JSON Bridge Database Identifier Not Found (HTTP 404 / 500)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-device-vs-server-name-lookup-failures-hostnotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Device vs. Server Name Lookup Failures (HostNotFoundError)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac-permission-denied-http-403-on-read-only-or-revoked-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBAC Permission Denied (HTTP 403) on Read-Only or Revoked Accounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stale-in-memory-permissions-cache-role-changes-not-taking-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stale In-Memory Permissions Cache (Role Changes Not Taking Effect)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-80-caching_sha2_password-authentication-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MySQL 8.0 caching_sha2_password Authentication Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compute-live-migration-pre-check-failures-capacity-or-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute Live Migration Pre-Check Failures (Capacity or Ports)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-region-onboarding-configuration-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Region Onboarding &amp; Configuration Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Region Onboarding &amp; Configuration Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openstack-api-credentials-cloudsyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenStack API Credentials (clouds.yaml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-json-bridge-acceleration-confd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MySQL JSON Bridge Acceleration (conf.d/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registering-the-region-and-nodes-in-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registering the Region and Nodes in Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../introduction/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    PixelView Documentation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../overview/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Migration Manager
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="cinder-cbs-setup-troubleshooting-guide">Cinder (CBS) Setup &amp; Troubleshooting Guide<a class="headerlink" href="#cinder-cbs-setup-troubleshooting-guide" title="Permanent link">&para;</a></h1>
+<p>This guide details how to:</p>
+<ul>
+<li>Provision and configure OpenStack Cinder storage backend pools on additional storage nodes.</li>
+<li>Configure compute hypervisors (Libvirt/QEMU) for seamless online/live Cloud Block Storage (CBS) volume migrations.</li>
+<li>Register storage pools in PixelView Inventory and execute cross-backend migrations via Migration Manager.</li>
+<li>Troubleshoot stuck volumes, authentication timeouts, Libvirt locking conflicts, and network issues.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Environment Placeholders</p>
+<p>The hostnames (e.g., <code>controller-01</code>, <code>storage-node-01</code>), IP addresses (e.g., <code>10.0.0.x</code>), passwords, and storage pool names used throughout this guide are illustrative examples. Always replace them with the actual values corresponding to your cloud environment.</p>
+</div>
+<hr />
+<h2 id="architecture-storage-pool-addressing">Architecture &amp; Storage Pool Addressing<a class="headerlink" href="#architecture-storage-pool-addressing" title="Permanent link">&para;</a></h2>
+<p>In OpenStack Cinder, storage pools are addressed using the canonical format:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;hostname&gt;@&lt;backend_name&gt;#&lt;pool_name&gt;
+</span></code></pre></div>
+<h3 id="example-cluster-architecture">Example Cluster Architecture<a class="headerlink" href="#example-cluster-architecture" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Host Role</th>
+<th style="text-align: left;">Hostname (Example)</th>
+<th style="text-align: left;">Network IP (Example)</th>
+<th style="text-align: left;">Target Cinder Storage Pool</th>
+<th style="text-align: left;">Volume Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Controller Node</strong></td>
+<td style="text-align: left;"><code>controller-01</code></td>
+<td style="text-align: left;"><code>10.0.0.10</code></td>
+<td style="text-align: left;"><code>controller-01@lvmdriver-1#lvmdriver-1</code><br><code>controller-01@lvmdriver-2#lvmdriver-2</code></td>
+<td style="text-align: left;"><code>lvmdriver-1</code><br><code>lvmdriver-2</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Compute Hypervisor 1 + Storage Node</strong></td>
+<td style="text-align: left;"><code>compute-01</code></td>
+<td style="text-align: left;"><code>10.0.0.21</code></td>
+<td style="text-align: left;"><code>compute-01@lvmdriver-1#lvmdriver-1</code></td>
+<td style="text-align: left;"><code>lvmdriver-1</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Compute Hypervisor 2 + Storage Node</strong></td>
+<td style="text-align: left;"><code>compute-02</code></td>
+<td style="text-align: left;"><code>10.0.0.22</code></td>
+<td style="text-align: left;"><code>compute-02@lvmdriver-1#lvmdriver-1</code></td>
+<td style="text-align: left;"><code>lvmdriver-1</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Storage Protocol</strong>: iSCSI via Linux Target (<code>lioadm</code>) on TCP port <code>3260</code>.</li>
+</ul>
+<hr />
+<h2 id="storage-node-provisioning">Storage Node Provisioning<a class="headerlink" href="#storage-node-provisioning" title="Permanent link">&para;</a></h2>
+<p>Log into your target storage node via SSH:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>&lt;USERNAME&gt;@&lt;STORAGE_NODE_IP&gt;
+</span></code></pre></div>
+<h3 id="installing-storage-volume-services">Installing Storage &amp; Volume Services<a class="headerlink" href="#installing-storage-volume-services" title="Permanent link">&para;</a></h3>
+<p>Install the required LVM and Cinder packages:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>lvm2<span class="w"> </span>cinder-volume<span class="w"> </span>targetcli-fb<span class="w"> </span>thin-provisioning-tools
+</span></code></pre></div>
+<hr />
+<h3 id="preparing-lvm-volume-group-cinder-volumes">Preparing LVM Volume Group (<code>cinder-volumes</code>)<a class="headerlink" href="#preparing-lvm-volume-group-cinder-volumes" title="Permanent link">&para;</a></h3>
+<h4 id="dedicated-secondary-disk-production">Dedicated Secondary Disk (Production)<a class="headerlink" href="#dedicated-secondary-disk-production" title="Permanent link">&para;</a></h4>
+<p>If a dedicated physical or virtual disk (e.g., <code>/dev/sdb</code>) is attached to the server:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>pvcreate<span class="w"> </span>/dev/sdb
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>vgcreate<span class="w"> </span>cinder-volumes<span class="w"> </span>/dev/sdb
+</span></code></pre></div>
+<h4 id="loopback-backing-file-development-testing">Loopback Backing File (Development / Testing)<a class="headerlink" href="#loopback-backing-file-development-testing" title="Permanent link">&para;</a></h4>
+<p>For test or proof-of-concept environments without a secondary drive:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/lib/cinder
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>fallocate<span class="w"> </span>-l<span class="w"> </span>50G<span class="w"> </span>/var/lib/cinder/cinder-volumes-backing.img
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>losetup<span class="w"> </span>-f<span class="w"> </span>/var/lib/cinder/cinder-volumes-backing.img
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">LOOP_DEV</span><span class="o">=</span><span class="k">$(</span>sudo<span class="w"> </span>losetup<span class="w"> </span>-j<span class="w"> </span>/var/lib/cinder/cinder-volumes-backing.img<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f1<span class="k">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>sudo<span class="w"> </span>pvcreate<span class="w"> </span><span class="nv">$LOOP_DEV</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>sudo<span class="w"> </span>vgcreate<span class="w"> </span>cinder-volumes<span class="w"> </span><span class="nv">$LOOP_DEV</span>
+</span></code></pre></div>
+<p>Verify that the volume group exists and has available capacity:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>vgs
+</span></code></pre></div>
+<hr />
+<h3 id="configuring-cinder-volume-service">Configuring Cinder Volume Service<a class="headerlink" href="#configuring-cinder-volume-service" title="Permanent link">&para;</a></h3>
+<p>Edit <code>/etc/cinder/cinder.conf</code> on the storage node:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/cinder/cinder.conf
+</span></code></pre></div>
+<p>Add or update the following sections, replacing the placeholder variables with your cluster's actual values:</p>
+<div class="language-ini highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[DEFAULT]</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="na">my_ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;STORAGE_NODE_IP&gt;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="na">rootwrap_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/etc/cinder/rootwrap.conf</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="na">api_paste_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/etc/cinder/api-paste.ini</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="na">auth_strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">keystone</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="na">state_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/lib/cinder</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="na">lock_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/lock/cinder</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="na">volumes_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/lib/cinder/volumes</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="na">enabled_backends</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;BACKEND_NAME&gt;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="na">glance_api_servers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://&lt;CONTROLLER_IP&gt;:9292</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="na">transport_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">rabbit://&lt;RABBIT_USER&gt;:&lt;RABBIT_PASSWORD&gt;@&lt;CONTROLLER_IP&gt;:5672/</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="k">[database]</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="na">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mysql+pymysql://&lt;DB_USER&gt;:&lt;DB_PASSWORD&gt;@&lt;CONTROLLER_IP&gt;/cinder?charset=utf8</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="k">[&lt;BACKEND_NAME&gt;]</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="na">target_ip_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;STORAGE_NODE_IP&gt;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="na">volume_backend_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;BACKEND_NAME&gt;</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="na">volume_driver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">cinder.volume.drivers.lvm.LVMVolumeDriver</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="na">volume_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">cinder-volumes</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="na">target_protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">iscsi</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="na">target_helper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">lioadm</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="na">volume_clear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">zero</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="na">volume_clear_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">50</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="k">[oslo_concurrency]</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="na">lock_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/var/lib/cinder/tmp</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="c1"># MANDATORY FOR IN-USE (LIVE) VOLUME MIGRATIONS:</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="c1"># Cinder volume nodes must authenticate to Nova to coordinate live disk swaps.</span>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="c1"># Without [nova], live migrations will fail with &quot;Expecting to find domain in project (HTTP 400)&quot;.</span>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="k">[nova]</span>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="na">region_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;REGION_NAME&gt;</span>
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="na">project_domain_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Default</span>
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="na">project_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">service</span>
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="na">user_domain_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Default</span>
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;NOVA_SERVICE_PASSWORD&gt;</span>
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">nova</span>
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="na">auth_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://&lt;CONTROLLER_IP&gt;/identity</span>
+</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="na">interface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">public</span>
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="na">auth_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">password</span>
+</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a>
+</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="k">[service_user]</span>
+</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="na">project_domain_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Default</span>
+</span><span id="__span-7-45"><a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="na">project_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">service</span>
+</span><span id="__span-7-46"><a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a><span class="na">user_domain_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Default</span>
+</span><span id="__span-7-47"><a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a><span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;CINDER_SERVICE_PASSWORD&gt;</span>
+</span><span id="__span-7-48"><a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">cinder</span>
+</span><span id="__span-7-49"><a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a><span class="na">auth_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://&lt;CONTROLLER_IP&gt;/identity</span>
+</span><span id="__span-7-50"><a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a><span class="na">interface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">public</span>
+</span><span id="__span-7-51"><a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a><span class="na">auth_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">password</span>
+</span><span id="__span-7-52"><a id="__codelineno-7-52" name="__codelineno-7-52" href="#__codelineno-7-52"></a><span class="na">send_service_user_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+</span></code></pre></div>
+<p>Enable and restart the Cinder volume service:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>cinder-volume
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>cinder-volume
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>cinder-volume
+</span></code></pre></div>
+<hr />
+<h3 id="network-firewall-port-requirements">Network &amp; Firewall Port Requirements<a class="headerlink" href="#network-firewall-port-requirements" title="Permanent link">&para;</a></h3>
+<p>Ensure the following ports are accessible across your cluster nodes:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Direction</th>
+<th style="text-align: left;">Port / Protocol</th>
+<th style="text-align: left;">Service</th>
+<th style="text-align: left;">Required For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Compute &rarr; Storage</strong></td>
+<td style="text-align: left;"><code>3260/tcp</code></td>
+<td style="text-align: left;">iSCSI (<code>lioadm</code>)</td>
+<td style="text-align: left;">Hypervisors attaching disks for VMs &amp; live volume swaps</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Storage &rarr; Controller</strong></td>
+<td style="text-align: left;"><code>5672/tcp</code></td>
+<td style="text-align: left;">RabbitMQ</td>
+<td style="text-align: left;">RPC messaging between Cinder services</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Storage &rarr; Controller</strong></td>
+<td style="text-align: left;"><code>3306/tcp</code></td>
+<td style="text-align: left;">MySQL / MariaDB</td>
+<td style="text-align: left;">Cinder database state synchronization</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Storage &rarr; Controller</strong></td>
+<td style="text-align: left;"><code>80/tcp</code> / <code>5000/tcp</code></td>
+<td style="text-align: left;">Keystone &amp; Nova API</td>
+<td style="text-align: left;">Authenticating &amp; requesting live attachment swap</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Storage &rarr; Controller</strong></td>
+<td style="text-align: left;"><code>9292/tcp</code></td>
+<td style="text-align: left;">Glance Image API</td>
+<td style="text-align: left;">Image-to-volume operations</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="verifying-the-backend-in-openstack">Verifying the Backend in OpenStack<a class="headerlink" href="#verifying-the-backend-in-openstack" title="Permanent link">&para;</a></h3>
+<p>On your OpenStack controller or management workstation, verify that the newly provisioned backend is active and healthy:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">source</span><span class="w"> </span>&lt;PATH_TO_ADMIN_OPENRC&gt;
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Verify the cinder-volume service is active and UP:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>openstack<span class="w"> </span>volume<span class="w"> </span>service<span class="w"> </span>list
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># Verify storage pools, thin provisioning, and capacity:</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>cinder<span class="w"> </span>get-pools<span class="w"> </span>--detail
+</span></code></pre></div>
+<hr />
+<h2 id="hypervisor-libvirt-tuning-for-live-volume-migrations">Hypervisor &amp; Libvirt Tuning for Live Volume Migrations<a class="headerlink" href="#hypervisor-libvirt-tuning-for-live-volume-migrations" title="Permanent link">&para;</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Mandatory Configuration for Compute Hypervisors</p>
+<p>Compute nodes <strong>must</strong> configure Libvirt to disable owner remembering (<code>remember_owner = 0</code>) to allow reliable live disk swaps on active virtual machines.</p>
+</div>
+<h3 id="the-root-cause-why-live-in-use-volume-swaps-fail">The Root Cause: Why Live In-Use Volume Swaps Fail<a class="headerlink" href="#the-root-cause-why-live-in-use-volume-swaps-fail" title="Permanent link">&para;</a></h3>
+<p>When migrating an <strong><code>in-use</code></strong> volume attached to a running instance across different backend hosts, OpenStack orchestrates a live volume swap:</p>
+<ul>
+<li>Nova attaches the destination volume via iSCSI (assigned e.g. <code>/dev/sda</code> or <code>/dev/sdb</code> by Linux SCSI subsystem).</li>
+<li>Nova instructs Libvirt to perform a live block copy / rebase (<code>virDomainBlockCopy</code>).</li>
+<li>Once mirrored, the VM pivots to the new storage backend, and the old iSCSI session is detached.</li>
+</ul>
+<p><strong>The Bug</strong>:
+When the old SCSI disk is disconnected, the Linux kernel immediately destroys the device node (e.g. <code>/dev/sda</code>). Libvirt's DAC (Discretionary Access Control) driver attempts to restore permissions to <code>/dev/sda</code>, fails with <code>Unable to restore security label on /dev/sda</code>, and leaves an orphaned lock in its tracking table.</p>
+<p>The next time a volume is swapped and the kernel reuses <code>/dev/sda</code>, Libvirt crashes the migration with:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>libvirt.libvirtError: Requested operation is not valid: Setting different DAC user or group on /dev/sdX which is already in use
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>nova.exception.VolumeRebaseFailed: Volume rebase failed
+</span></code></pre></div>
+<hr />
+<h3 id="permanent-resolution-remember_owner-0">Permanent Resolution: <code>remember_owner = 0</code><a class="headerlink" href="#permanent-resolution-remember_owner-0" title="Permanent link">&para;</a></h3>
+<p>On all compute hypervisors, edit <code>/etc/libvirt/qemu.conf</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/#remember_owner = 1/remember_owner = 0/&#39;</span><span class="w"> </span>/etc/libvirt/qemu.conf
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>libvirtd
+</span></code></pre></div>
+<p>Verify that the setting is applied:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>grep<span class="w"> </span>remember_owner<span class="w"> </span>/etc/libvirt/qemu.conf
+</span></code></pre></div>
+<h4 id="why-remember_owner-0-is-safe">Why <code>remember_owner = 0</code> is Safe:<a class="headerlink" href="#why-remember_owner-0-is-safe" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong><code>dynamic_ownership = 1</code> remains enabled</strong>: Libvirt continues automatically granting <code>libvirt-qemu</code> permissions to access VM disks and volumes.</li>
+<li><strong>Orphaned device locks are eliminated</strong>: Libvirt will not try to write or restore extended attributes to ephemeral device nodes in <code>/dev/</code>.</li>
+<li><strong>Zero impact on VM operations</strong>: Existing running VMs and future instances operate normally without permission conflicts.</li>
+</ul>
+<hr />
+<h2 id="volume-migration-mechanics-in-use-vs-available">Volume Migration Mechanics: In-Use vs. Available<a class="headerlink" href="#volume-migration-mechanics-in-use-vs-available" title="Permanent link">&para;</a></h2>
+<p>Understanding how Cinder handles volume migrations determines how operations should be planned:</p>
+<h3 id="unattached-available-volumes">Unattached (Available) Volumes<a class="headerlink" href="#unattached-available-volumes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Mechanism</strong>: Cinder performs a direct block-to-block copy between storage backends (via host dd / iSCSI attach on storage nodes).</li>
+<li><strong>Hypervisors</strong>: Nova compute and Libvirt are <strong>not</strong> involved.</li>
+<li><strong>Reliability</strong>: Fast, atomic, and zero risk of hypervisor lock contention.</li>
+</ul>
+<h3 id="attached-in-use-volumes">Attached (In-Use) Volumes<a class="headerlink" href="#attached-in-use-volumes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Mechanism</strong>: Requires <strong>Nova-assisted live volume swap</strong>. Cinder creates a temporary volume on the target backend, Nova attaches it to the running hypervisor, QEMU performs an active block-mirror while the guest continues reading/writing, pivots the virtual disk device, and detaches the original backend.</li>
+<li><strong>Requirements</strong>:</li>
+<li>Compute node must have <code>remember_owner = 0</code> in <code>/etc/libvirt/qemu.conf</code>.</li>
+<li>Target storage backend port <code>3260</code> must be accessible from the compute node.</li>
+<li><strong>Offline Alternative</strong>: If a hypervisor cannot support live block mirroring, stop the VM (<code>openstack server stop &lt;vm&gt;</code>), run the migration cleanly as <code>available</code>, and restart the VM.</li>
+</ul>
+<hr />
+<h2 id="retype-vs-direct-migration-behavior">Retype vs. Direct Migration Behavior<a class="headerlink" href="#retype-vs-direct-migration-behavior" title="Permanent link">&para;</a></h2>
+<p>OpenStack Cinder handles cross-backend migrations differently depending on whether the storage volume types match:</p>
+<h3 id="different-volume-types-retype-required">Different Volume Types: Retype Required<a class="headerlink" href="#different-volume-types-retype-required" title="Permanent link">&para;</a></h3>
+<p>When migrating from one volume type to another (e.g., <code>ssd-tier</code> to <code>hdd-tier</code>):</p>
+<ul>
+<li>A direct host migration is rejected by Cinder's <code>CapabilitiesFilter</code>.</li>
+<li>Migration <strong>must</strong> be initiated via Cinder Retype:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cinder<span class="w"> </span>retype<span class="w"> </span>--migration-policy<span class="w"> </span>on-demand<span class="w"> </span>&lt;volume-id&gt;<span class="w"> </span>&lt;target-volume-type&gt;
+</span></code></pre></div></li>
+<li><strong>Chained Migrations</strong>: If the destination storage pool has multiple hosts under the same volume type, PixelView Migration Manager automatically chains:</li>
+<li>Retype to convert the volume type.</li>
+<li>Direct Migrate to relocate the volume to the specific target host pool.</li>
+</ul>
+<h3 id="matching-volume-types-direct-migrate">Matching Volume Types: Direct Migrate<a class="headerlink" href="#matching-volume-types-direct-migrate" title="Permanent link">&para;</a></h3>
+<p>When migrating between hosts within the same volume type:</p>
+<ul>
+<li>Cinder directly executes host migration:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cinder<span class="w"> </span>migrate<span class="w"> </span>--force-host-copy<span class="w"> </span>True<span class="w"> </span>&lt;volume-id&gt;<span class="w"> </span>&lt;target-pool-identifier&gt;
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h2 id="registering-in-pixelview-inventory">Registering in PixelView Inventory<a class="headerlink" href="#registering-in-pixelview-inventory" title="Permanent link">&para;</a></h2>
+<p>Once backends and hypervisors are enabled in OpenStack, register them in PixelView so that Migration Manager can discover them as valid sources and evacuation targets. For comprehensive details on managing catalogue assets, see the <a href="../../inventory/inventory/">Cloud Inventory &amp; Catalogue Guide</a>.</p>
+<h3 id="register-storage-devices-cbs-pools">Register Storage Devices (CBS Pools)<a class="headerlink" href="#register-storage-devices-cbs-pools" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Open the <strong>PixelView UI</strong>.</li>
+<li>Navigate to <strong>Inventory -&gt; Catalogue -&gt; [Cloud] -&gt; [Region] -&gt; [Cell] -&gt; STORAGE DEVICES</strong>.</li>
+<li>Click the orange <strong><code>+</code> (Add a new storage device)</strong> button:</li>
+</ul>
+<p><a href="../../images/inventory-add-storage-modal.png" class="glightbox">
+  <img src="../../images/inventory-add-storage-modal.png" alt="Add a New Storage Device Dialog">
+</a></p>
+<ul>
+<li>Fill in the dialog:</li>
+<li><strong>Name</strong>: Enter your Cinder pool identifier: <code>&lt;hostname&gt;@&lt;backend_name&gt;#&lt;pool_name&gt;</code> (e.g., <code>compute-02@lvmdriver-1#lvmdriver-1</code>).</li>
+<li><strong>Storage Device</strong>: <code>storageType</code></li>
+<li><strong>Active</strong>: Toggle <strong>ON</strong> (Green)</li>
+<li>Click <strong>ADD STORAGE DEVICE</strong>.</li>
+</ul>
+<h3 id="register-compute-servers-hypervisors">Register Compute Servers (Hypervisors)<a class="headerlink" href="#register-compute-servers-hypervisors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>In the same cell/zone, switch to the <strong>SERVER</strong> tab.</li>
+<li>Click the orange <strong><code>+</code> (Add a new server)</strong> button:</li>
+</ul>
+<p><a href="../../images/inventory-add-server-modal.png" class="glightbox">
+  <img src="../../images/inventory-add-server-modal.png" alt="Add a New Server Dialog">
+</a></p>
+<ul>
+<li>Fill in the dialog:</li>
+<li><strong>Name</strong>: Enter the server hostname <em>(must match the OpenStack hypervisor hostname exactly)</em>.</li>
+<li><strong>IP Address</strong>: Enter the server's management IP address.</li>
+<li><strong>Device Type</strong>: <code>Bare Metal Server</code></li>
+<li><strong>Operating System</strong>: <code>Linux</code></li>
+<li>Click <strong>ADD SERVER</strong>.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Full Inventory Documentation</p>
+<p>For advanced asset management, cloud credentials, host groups, and zone topology configuration, refer to the <a href="../../inventory/inventory/">Cloud Inventory &amp; Catalogue Documentation</a>.</p>
+</div>
+<hr />
+<h2 id="errors-you-might-face-troubleshooting">Errors You Might Face &amp; Troubleshooting<a class="headerlink" href="#errors-you-might-face-troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="volume-migration-rejected-or-timed-out-nova-authentication">Volume Migration Rejected or Timed Out (Nova Authentication)<a class="headerlink" href="#volume-migration-rejected-or-timed-out-nova-authentication" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Runner Message</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Volume migration rejected or failed by Cinder (status=in-use, migration_status=none, still on host &lt;SOURCE_POOL&gt; after 120s)
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:
+  In <code>/var/log/cinder/cinder-volume.log</code> on the source storage node:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Failed to copy volume &lt;volume-id&gt; to &lt;temp-id&gt;: keystoneauth1.exceptions.http.BadRequest: Expecting to find domain in project. (HTTP 400)
+</span></code></pre></div>
+  When performing an <strong>in-use</strong> volume migration, Cinder must coordinate with Nova to perform a live disk swap on the hypervisor. If <code>/etc/cinder/cinder.conf</code> on the storage node lacks the <code>[nova]</code> and <code>[service_user]</code> sections, Cinder fails to authenticate with Nova, aborts the migration, and destroys the temporary target volume.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Add the <code>[nova]</code> and <code>[service_user]</code> credentials to <code>/etc/cinder/cinder.conf</code> on the storage node.</li>
+<li>Restart Cinder volume:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>cinder-volume
+</span></code></pre></div></li>
+<li>Reset the migration status on the controller:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">source</span><span class="w"> </span>&lt;PATH_TO_ADMIN_OPENRC&gt;
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>cinder<span class="w"> </span>reset-state<span class="w"> </span>--reset-migration-status<span class="w"> </span>&lt;volume-uuid&gt;
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="libvirt-dac-locking-error-on-hypervisors">Libvirt DAC Locking Error on Hypervisors<a class="headerlink" href="#libvirt-dac-locking-error-on-hypervisors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Nova Compute Log</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>libvirt.libvirtError: Requested operation is not valid: Setting different DAC user or group on /dev/sdX which is already in use
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>nova.exception.VolumeRebaseFailed: Volume rebase failed
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:
+  Libvirt remembers the original DAC owner (<code>remember_owner = 1</code>) on dynamic SCSI device paths (<code>/dev/sd*</code>). When an old iSCSI disk is detached, the device node is removed from the kernel; when a new volume is attached and recycled into the same <code>/dev/sd*</code> name, Libvirt's cached metadata triggers a locking conflict.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Set <code>remember_owner = 0</code> in <code>/etc/libvirt/qemu.conf</code> on all compute hypervisors:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/#remember_owner = 1/remember_owner = 0/&#39;</span><span class="w"> </span>/etc/libvirt/qemu.conf
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>libvirtd
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="cleaning-up-stuck-volume-states-orphaned-temporary-volumes">Cleaning Up Stuck Volume States &amp; Orphaned Temporary Volumes<a class="headerlink" href="#cleaning-up-stuck-volume-states-orphaned-temporary-volumes" title="Permanent link">&para;</a></h3>
+<p>If a migration is abruptly interrupted, canceled, or fails prior to Cinder's cleanup routine, the volume may remain locked in <code>maintenance</code>, <code>retyping</code>, or <code>migrating</code>, and a temporary volume may linger.</p>
+<h4 id="identifying-orphaned-temporary-volumes">Identifying Orphaned Temporary Volumes<a class="headerlink" href="#identifying-orphaned-temporary-volumes" title="Permanent link">&para;</a></h4>
+<p>During live migration, Cinder creates a temporary volume with <code>migration_status = target:&lt;orig-id&gt;</code>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">source</span><span class="w"> </span>&lt;PATH_TO_ADMIN_OPENRC&gt;
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>openstack<span class="w"> </span>volume<span class="w"> </span>list<span class="w"> </span>--all-projects<span class="w"> </span>--long<span class="w"> </span>-c<span class="w"> </span>ID<span class="w"> </span>-c<span class="w"> </span>Status<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;Migration Status&quot;</span>
+</span></code></pre></div></p>
+<h4 id="deleting-orphaned-temporary-target">Deleting Orphaned Temporary Target<a class="headerlink" href="#deleting-orphaned-temporary-target" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cinder<span class="w"> </span>reset-state<span class="w"> </span>--state<span class="w"> </span>error<span class="w"> </span>&lt;temp-volume-id&gt;
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>openstack<span class="w"> </span>volume<span class="w"> </span>delete<span class="w"> </span>&lt;temp-volume-id&gt;
+</span></code></pre></div>
+<h4 id="resetting-the-original-volume-state">Resetting the Original Volume State<a class="headerlink" href="#resetting-the-original-volume-state" title="Permanent link">&para;</a></h4>
+<p>To return the original volume to a healthy, usable status:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># If the volume is attached to an active VM:</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>cinder<span class="w"> </span>reset-state<span class="w"> </span>--state<span class="w"> </span><span class="k">in</span>-use<span class="w"> </span>--reset-migration-status<span class="w"> </span>&lt;volume-id&gt;
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># If the volume is detached:</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>cinder<span class="w"> </span>reset-state<span class="w"> </span>--state<span class="w"> </span>available<span class="w"> </span>--reset-migration-status<span class="w"> </span>&lt;volume-id&gt;
+</span></code></pre></div></p>
+<hr />
+<h3 id="direct-migration-fails-with-no-valid-backend-capabilitiesfilter">Direct Migration Fails with No Valid Backend (CapabilitiesFilter)<a class="headerlink" href="#direct-migration-fails-with-no-valid-backend-capabilitiesfilter" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Error Message</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>cinder.exception.NoValidBackend: No valid backend was found: CapabilitiesFilter failed
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Volume migration failed: Volume type mismatch between source and destination.
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:
+  When attempting a direct host migration (<code>cinder migrate</code>) between backends associated with different volume types, Cinder's <code>CapabilitiesFilter</code> enforces type affinity and rejects the request.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Use <strong>Retype</strong> instead of direct migrate:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>cinder<span class="w"> </span>retype<span class="w"> </span>--migration-policy<span class="w"> </span>on-demand<span class="w"> </span>&lt;volume-id&gt;<span class="w"> </span>&lt;target-volume-type&gt;
+</span></code></pre></div></li>
+<li>In PixelView Migration Manager, this is handled automatically through the CBS migration pipeline.</li>
+</ul>
+<hr />
+<h3 id="iscsi-connection-refused-or-timeout-tcp-port-3260">iSCSI Connection Refused or Timeout (TCP Port 3260)<a class="headerlink" href="#iscsi-connection-refused-or-timeout-tcp-port-3260" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Error Message</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>os_brick.initiator.connectors.iscsi: iscsiadm: cannot make connection to &lt;STORAGE_NODE_IP&gt;:3260: Connection refused (or Connection timed out)
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>nova.exception.VolumeRebaseFailed: Volume rebase failed
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:
+  The compute hypervisor cannot establish an iSCSI session with the target storage node on TCP port 3260 due to firewall rules or an inactive target service.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Check if port 3260 is listening on the storage node:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sudo<span class="w"> </span>ss<span class="w"> </span>-tulpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">3260</span>
+</span></code></pre></div></li>
+<li>Verify the Linux Target service:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>target
+</span></code></pre></div></li>
+<li>Allow iSCSI traffic through the firewall:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">3260</span>/tcp
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="cinder-volume-backend-shows-state-down-in-service-list">Cinder Volume Backend Shows State Down in Service List<a class="headerlink" href="#cinder-volume-backend-shows-state-down-in-service-list" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>$ openstack volume service list
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>| cinder-volume | &lt;STORAGE_NODE&gt;@&lt;BACKEND&gt; | nova | enabled | down |
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:
+  The storage node cannot send periodic heartbeats to the Cinder database or RabbitMQ message broker on the controller.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Verify network reachability from the storage node to the controller:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>nc<span class="w"> </span>-zv<span class="w"> </span>&lt;CONTROLLER_IP&gt;<span class="w"> </span><span class="m">5672</span><span class="w">   </span><span class="c1"># RabbitMQ</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>nc<span class="w"> </span>-zv<span class="w"> </span>&lt;CONTROLLER_IP&gt;<span class="w"> </span><span class="m">3306</span><span class="w">   </span><span class="c1"># MySQL</span>
+</span></code></pre></div></li>
+<li>Check the storage logs:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">50</span><span class="w"> </span>/var/log/cinder/cinder-volume.log
+</span></code></pre></div></li>
+<li>Confirm credentials and IP addresses in <code>/etc/cinder/cinder.conf</code> and restart the service:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>cinder-volume
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="migration-runner-database-connection-refused-errno-111">Migration Runner Database Connection Refused ([Errno 111])<a class="headerlink" href="#migration-runner-database-connection-refused-errno-111" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Error Message</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>pymysql.err.OperationalError: (2003, &quot;Can&#39;t connect to MySQL server on &#39;127.0.0.1&#39; ([Errno 111] Connection refused)&quot;)
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>[ERROR] Database initialization failed. Retrying in 5 seconds...
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:</p>
+</li>
+<li><strong>Port Mismatch &amp; Docker Host Networking</strong>: On the PixelView production appliance, all services run in <code>network_mode: host</code> connecting to MySQL on standard port <code>3306</code> with password <code>json_bridge</code>. In local developer environments (<code>os-migration/docker-compose.yaml</code>), MySQL runs on an internal Docker bridge and maps to host port <code>3307</code> with password <code>root</code>.</li>
+<li>
+<p>If the migration runner daemon runs on host networking and attempts to connect to <code>127.0.0.1:3306</code>, it is refused because MySQL is listening on port <code>3307</code>.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>For local development environments: Set <code>MIGRATION_DB_CONN_STR="mysql+pymysql://root:root@127.0.0.1:3307/migrations"</code> in <code>migration-runner-rax/docker-compose.yaml</code>.</li>
+<li>For production / appliance environments: Ensure <code>MIGRATION_DB_CONN_STR="mysql+pymysql://root:json_bridge@127.0.0.1:3306/migrations"</code> and verify MySQL is active:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>nc<span class="w"> </span>-zv<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span><span class="m">3306</span>
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="mysql-json-bridge-database-identifier-not-found-http-404-500">MySQL JSON Bridge Database Identifier Not Found (HTTP 404 / 500)<a class="headerlink" href="#mysql-json-bridge-database-identifier-not-found-http-404-500" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Error Message</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>JSONBridgeError: HTTP 404 Not Found: Could not find database connection configuration for identifier: &lt;region&gt;.*.nova
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>JSONBridgeError: HTTP 404 Not Found: Could not find database connection configuration for identifier: cbs.&lt;region&gt;.cinder.*
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:</p>
+</li>
+<li>Migration Manager uses <code>mysql-json-bridge</code> for fast direct querying of instance and volume metadata. The bridge dynamically matches database configurations from YAML files in its <code>conf.d/</code> directory based on the requested identifier string.</li>
+<li>
+<p>If an onboarding region has no corresponding YAML file, or if the port is misconfigured (the bridge runs on port <code>5000</code> internally and maps to <code>5001</code> on the host), queries return 404.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Verify <code>JSON_BRIDGE_URL</code>: <code>http://127.0.0.1:5001</code> (host network) or <code>http://mysql-json-bridge:5000</code> (Docker internal bridge).</li>
+<li>Add universal wildcard database configurations in <code>mysql-json-bridge/conf.d/</code>:<ul>
+<li><code>conf.d/global-nova.yaml</code>: <code>identifier: '*.global.nova'</code> (database: <code>nova_cell1</code>)</li>
+<li><code>conf.d/global-cinder.yaml</code>: <code>identifier: '*.cinder.*'</code> (database: <code>cinder</code>)</li>
+</ul>
+</li>
+<li>Restart the bridge service:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>docker<span class="w"> </span>restart<span class="w"> </span>mysql-json-bridge
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="storage-device-vs-server-name-lookup-failures-hostnotfounderror">Storage Device vs. Server Name Lookup Failures (HostNotFoundError)<a class="headerlink" href="#storage-device-vs-server-name-lookup-failures-hostnotfounderror" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Error Message</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>HostNotFoundError: Storage device or compute host not found in inventory: openstack-01@lvmdriver-1#lvmdriver-1
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:</p>
+</li>
+<li>PixelView Inventory differentiates between <strong>Storage Devices</strong> and <strong>Compute Servers</strong>:<ul>
+<li><strong>Storage Devices</strong> must be registered with their canonical Cinder pool string: <code>&lt;hostname&gt;@&lt;backend_name&gt;#&lt;pool_name&gt;</code> (e.g., <code>openstack-01@lvmdriver-1#lvmdriver-1</code>).</li>
+<li><strong>Compute Servers</strong> must be registered with the bare physical hostname: <code>&lt;hostname&gt;</code> (e.g., <code>openstack-01</code>).</li>
+</ul>
+</li>
+<li>
+<p>If a storage pool is registered under the server tab or a server is registered with the <code>@backend</code> suffix, the inventory lookup fails during migration group creation.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Check <strong>Inventory -&gt; Catalogue -&gt; [Cloud] -&gt; [Region] -&gt; [Cell]</strong>:<ul>
+<li>Under <strong>STORAGE DEVICES</strong>: Verify the device name matches <code>openstack volume list --all-projects -c Host</code>.</li>
+<li>Under <strong>SERVER</strong>: Verify the server name matches <code>openstack hypervisor list -c "Hypervisor Hostname"</code>.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="rbac-permission-denied-http-403-on-read-only-or-revoked-accounts">RBAC Permission Denied (HTTP 403) on Read-Only or Revoked Accounts<a class="headerlink" href="#rbac-permission-denied-http-403-on-read-only-or-revoked-accounts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / User Alert</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>HTTP 403 Forbidden: &quot;Your account has Read-Only access. Write permission is required to perform this action. Please contact your administrator.&quot;
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>HTTP 403 Forbidden: &quot;Migration manager access is currently disabled for your account. Please contact your administrator to request access.&quot;
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:</p>
+</li>
+<li>Migration Manager enforces Role-Based Access Control (RBAC):<ul>
+<li>Read endpoints (<code>GET</code>, <code>HEAD</code>) allow <code>read_only</code> and <code>read_write</code>.</li>
+<li>Mutating endpoints (<code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code>) require <code>read_write</code>.</li>
+</ul>
+</li>
+<li>
+<p>Users with <code>read_only</code> permissions can inspect migration groups, workload tables, and streaming logs, but cannot create migrations, delay instances, resume workloads, or cancel migrations.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>An administrator must open <strong>PixelView -&gt; Management -&gt; Users</strong>, select the account, and change the <strong>Migration Manager</strong> (or umbrella <strong>OpenStack</strong>) permission from <code>Read-Only</code> to <code>Read/Write</code>.</li>
+</ul>
+<hr />
+<h3 id="stale-in-memory-permissions-cache-role-changes-not-taking-effect">Stale In-Memory Permissions Cache (Role Changes Not Taking Effect)<a class="headerlink" href="#stale-in-memory-permissions-cache-role-changes-not-taking-effect" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Symptom</strong>:</li>
+<li>
+<p>A user's role or permissions were updated in PixelView IAM, but Migration Manager continues denying or granting access based on the previous permissions.</p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:</p>
+</li>
+<li>
+<p>To minimize latency and avoid flooding the central PixelView auth API, user permissions are cached in-memory using SHA-256 key hashes with a 5-minute (300-second) TTL.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Wait 5 minutes for the cache entry to expire automatically, or</li>
+<li>Trigger immediate cache invalidation via the internal webhook:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://&lt;MIGRATION_API_HOST&gt;:8000/internal/cache/invalidate<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-Auth-Key: &lt;AUTH_KEY&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;api_key&quot;: &quot;&lt;USER_API_KEY&gt;&quot;}&#39;</span>
+</span></code></pre></div></li>
+<li>Or invalidate all cached sessions simultaneously:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://&lt;MIGRATION_API_HOST&gt;:8000/internal/cache/invalidate<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-Auth-Key: &lt;AUTH_KEY&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;all&quot;: true}&#39;</span>
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="mysql-80-caching_sha2_password-authentication-error">MySQL 8.0 caching_sha2_password Authentication Error<a class="headerlink" href="#mysql-80-caching_sha2_password-authentication-error" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Error Message</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>pymysql.err.OperationalError: (2059, &quot;Authentication plugin &#39;caching_sha2_password&#39; cannot be loaded&quot;)
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:</p>
+</li>
+<li>
+<p>MySQL 8.0 defaults to <code>caching_sha2_password</code>. Certain Python database drivers and older client libraries require <code>mysql_native_password</code>.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>In <code>docker-compose.yaml</code>, configure MySQL to use native password authentication:
+    <div class="language-yaml highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nt">migration-mysql</span><span class="p">:</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:8.0</span>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--default-authentication-plugin=mysql_native_password</span>
+</span></code></pre></div></li>
+<li>Or update existing database users in MySQL:
+    <div class="language-sql highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">mysql_native_password</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&lt;PASSWORD&gt;&#39;</span><span class="p">;</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="compute-live-migration-pre-check-failures-capacity-or-ports">Compute Live Migration Pre-Check Failures (Capacity or Ports)<a class="headerlink" href="#compute-live-migration-pre-check-failures-capacity-or-ports" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symptom / Instance Log Message</strong>:
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>MigrationPreCheckError: Insufficient CPU or memory on target host &lt;DESTINATION_HOST&gt;
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>nova.exception.PortBindingFailed: Binding failed for port &lt;PORT_UUID&gt;
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Root Cause</strong>:</p>
+</li>
+<li>
+<p>Prior to transferring VM state, OpenStack Nova verifies that the destination compute hypervisor has sufficient unreserved CPU and RAM, and checks that all virtual network interfaces (Neutron ports) can bind to the destination host's physical network bridges.</p>
+</li>
+<li>
+<p><strong>Resolution</strong>:</p>
+</li>
+<li>Verify destination hypervisor capacity:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nb">source</span><span class="w"> </span>&lt;PATH_TO_ADMIN_OPENRC&gt;
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>openstack<span class="w"> </span>hypervisor<span class="w"> </span>show<span class="w"> </span>&lt;DESTINATION_HOST&gt;
+</span></code></pre></div></li>
+<li>Confirm that Open vSwitch or Linux Bridge agents are healthy on the destination host:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>openstack<span class="w"> </span>network<span class="w"> </span>agent<span class="w"> </span>list<span class="w"> </span>--host<span class="w"> </span>&lt;DESTINATION_HOST&gt;
+</span></code></pre></div></li>
+</ul>
+<hr />
+<h2 id="multi-region-onboarding-configuration-guide">Multi-Region Onboarding &amp; Configuration Guide<a class="headerlink" href="#multi-region-onboarding-configuration-guide" title="Permanent link">&para;</a></h2>
+<p>When onboarding an on-premise OpenStack environment or adding a new region, two integration configurations must be provided on the Pixelvirt appliance:</p>
+<h3 id="openstack-api-credentials-cloudsyaml">OpenStack API Credentials (<code>clouds.yaml</code>)<a class="headerlink" href="#openstack-api-credentials-cloudsyaml" title="Permanent link">&para;</a></h3>
+<p>Provides Keystone authentication for Nova, Cinder, Glance, and Neutron APIs.</p>
+<ul>
+<li><strong>In PixelView UI</strong>: Navigate to <strong>Settings -&gt; OpenStack</strong> (or <strong>Configs -&gt; Clouds</strong>), click <strong>Add</strong>, and provide:</li>
+<li><strong>Region Name</strong>: <code>&lt;YOUR_REGION&gt;</code></li>
+<li><strong>Auth URL</strong>: <code>http://&lt;KEYSTONE_HOST&gt;/identity/v3</code></li>
+<li><strong>Username / Password</strong>: OpenStack admin credentials</li>
+<li><strong>Project Name / Domain</strong>: <code>admin</code> / <code>Default</code></li>
+<li><strong>Or via File</strong>: Add to <code>/etc/openstack/clouds.yaml</code>:
+  <div class="language-yaml highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="nt">clouds</span><span class="p">:</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="w">  </span><span class="nt">&lt;YOUR_REGION&gt;</span><span class="p">:</span>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="w">    </span><span class="nt">auth</span><span class="p">:</span>
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="w">      </span><span class="nt">auth_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;KEYSTONE_HOST&gt;/identity/v3</span>
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;ADMIN_USER&gt;</span>
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;ADMIN_PASSWORD&gt;</span>
+</span><span id="__span-48-7"><a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a><span class="w">      </span><span class="nt">project_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+</span><span id="__span-48-8"><a id="__codelineno-48-8" name="__codelineno-48-8" href="#__codelineno-48-8"></a><span class="w">      </span><span class="nt">user_domain_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Default</span>
+</span><span id="__span-48-9"><a id="__codelineno-48-9" name="__codelineno-48-9" href="#__codelineno-48-9"></a><span class="w">      </span><span class="nt">project_domain_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Default</span>
+</span><span id="__span-48-10"><a id="__codelineno-48-10" name="__codelineno-48-10" href="#__codelineno-48-10"></a><span class="w">    </span><span class="nt">region_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;YOUR_REGION&gt;</span>
+</span><span id="__span-48-11"><a id="__codelineno-48-11" name="__codelineno-48-11" href="#__codelineno-48-11"></a><span class="w">    </span><span class="nt">identity_api_version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span></code></pre></div></li>
+</ul>
+<h3 id="mysql-json-bridge-acceleration-confd">MySQL JSON Bridge Acceleration (<code>conf.d/</code>)<a class="headerlink" href="#mysql-json-bridge-acceleration-confd" title="Permanent link">&para;</a></h3>
+<p>Migration Manager queries OpenStack's MySQL databases directly for high-speed indexing of instances, cell topologies, and volumes.</p>
+<p>For each distinct region / database host, create two configuration files in <code>mysql-json-bridge/conf.d/</code>:</p>
+<ul>
+<li><strong>Compute Database File (<code>conf.d/&lt;region&gt;-nova.yaml</code>)</strong>:
+  <div class="language-yaml highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nn">---</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;YOUR_REGION&gt;.*.nova&#39;</span>
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;mysql&#39;</span>
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;DB_USER&gt;&#39;</span>
+</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;DB_PASSWORD&gt;&#39;</span>
+</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;nova_cell1&#39;</span>
+</span><span id="__span-49-7"><a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;DB_HOST&gt;&#39;</span>
+</span><span id="__span-49-8"><a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;True&#39;</span>
+</span></code></pre></div></li>
+<li><strong>Storage Database File (<code>conf.d/&lt;region&gt;-cinder.yaml</code>)</strong>:
+  <div class="language-yaml highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="nn">---</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;cbs.&lt;YOUR_REGION&gt;.cinder.*&#39;</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;mysql&#39;</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;DB_USER&gt;&#39;</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;DB_PASSWORD&gt;&#39;</span>
+</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;cinder&#39;</span>
+</span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&lt;DB_HOST&gt;&#39;</span>
+</span><span id="__span-50-8"><a id="__codelineno-50-8" name="__codelineno-50-8" href="#__codelineno-50-8"></a><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;True&#39;</span>
+</span></code></pre></div></li>
+<li>Restart the bridge container to load the new databases:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>docker<span class="w"> </span>restart<span class="w"> </span>mysql-json-bridge
+</span></code></pre></div></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Single-Cluster Wildcard Optimization</p>
+<p>If all regions in an environment share the same database server, you can replace individual per-region files with universal wildcards:</p>
+<ul>
+<li>Compute: <code>identifier: '*.global.nova'</code> (matches any region for <code>nova_cell1</code>)</li>
+<li>Storage: <code>identifier: '*.cinder.*'</code> (matches any region for <code>cinder</code>)</li>
+</ul>
+<p>This allows users to add arbitrary region names in PixelView without creating new YAML files.</p>
+</div>
+<h3 id="registering-the-region-and-nodes-in-inventory">Registering the Region and Nodes in Inventory<a class="headerlink" href="#registering-the-region-and-nodes-in-inventory" title="Permanent link">&para;</a></h3>
+<p>Once credentials are in place:</p>
+<ul>
+<li>Open <strong>PixelView -&gt; Inventory -&gt; Catalogue -&gt; [Cloud]</strong>.</li>
+<li>Click <strong><code>+</code> (Add Region)</strong>: Enter your Region name (e.g., <code>&lt;YOUR_REGION&gt;</code>).</li>
+<li>Click into the region and click <strong><code>+</code> (Add Zone)</strong>: Enter your cell name (e.g., <code>cell1</code>).</li>
+<li>Register your nodes:</li>
+<li>Under <strong>STORAGE DEVICES</strong>: Click <code>+</code> and enter your pool name: <code>&lt;hostname&gt;@&lt;backend_name&gt;#&lt;pool_name&gt;</code>.</li>
+<li>Under <strong>SERVER</strong>: Click <code>+</code> and enter the hypervisor hostname and management IP.</li>
+<li>Open <strong>Migration Manager</strong> to execute migrations across hosts and storage pools!</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../cbs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Block Storage (CBS)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Block Storage (CBS)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../management/user-management/" class="md-footer__link md-footer__link--next" aria-label="Next: User Management">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                User Management
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "header.autohide", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.prune", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/glightbox.min.js"></script>
+      
+        <script src="../../../assets/javascripts/lightbox.js"></script>
+      
+    
+  </body>
+</html>

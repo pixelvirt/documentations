@@ -1,0 +1,3364 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/migration-manager/cbs/">
+      
+      
+        <link rel="prev" href="../compute/">
+      
+      
+        <link rel="next" href="../cbs-backend-setup/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Block Storage (CBS) - PixelVirt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/empty.css">
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/glightbox.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#block-storage-cbs-migrations-evacuating-storage-devices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="PixelVirt" class="md-header__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PixelVirt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Block Storage (CBS)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="PixelVirt" class="md-nav__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    PixelVirt
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PixelView Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PixelView
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/install-on-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install on Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/install-ha/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HA Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clouds
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clouds
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/openstack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenStack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cases Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/open-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/my-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/resolved-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolved Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services/Monitoring
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services/Monitoring
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../services/prometheus/integration/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Integration
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Escalation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escalation/policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalation Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/executions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/playbooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/runners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/bots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Bots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inventory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/creds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/host-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch Management
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Patch Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/patch-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch Management Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/patchset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patchset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/planner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../json-bridge/json-bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Bridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Manager
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Migration Manager
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compute Migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Storage (CBS)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Storage (CBS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-storage-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Storage Device?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evacuating-a-storage-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evacuating a Storage Device
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evacuating a Storage Device">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#product-type-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Type Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-device-migration-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Device Migration Type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-destination-storage-pools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source &amp; Destination Storage Pools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-options-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Options &amp; Scheduling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review &amp; Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-storage-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking Storage Migrations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tracking Storage Migrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opening-the-storage-group-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opening the Storage Group Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-volume-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Volume Progress
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Volume Progress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-progress-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Progress Messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-action-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume Action Controls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postponing-delaying-a-volume-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postponing (Delaying) a Volume Migration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Postponing (Delaying) a Volume Migration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delayed-volume-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delayed Volume State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resuming-a-volume-immediately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resuming a Volume Immediately
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-live-volume-execution-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Live Volume Execution Logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-detailed-steps-for-a-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking Detailed Steps for a Volume
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checking Detailed Steps for a Volume">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-steps-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Steps Mean
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancelling-storage-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancelling Storage Migrations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Troubleshooting &amp; Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-storage-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Storage Guides
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cbs-backend-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cinder (CBS) Setup & Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Settings
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Management and Settings
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/sso-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSO Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../api/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView API
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-storage-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a Storage Device?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evacuating-a-storage-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evacuating a Storage Device
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evacuating a Storage Device">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#product-type-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Type Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-device-migration-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Device Migration Type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-destination-storage-pools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source &amp; Destination Storage Pools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-options-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Options &amp; Scheduling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review &amp; Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-storage-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking Storage Migrations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tracking Storage Migrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opening-the-storage-group-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opening the Storage Group Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-volume-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Volume Progress
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Volume Progress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-progress-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Progress Messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-action-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume Action Controls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postponing-delaying-a-volume-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postponing (Delaying) a Volume Migration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Postponing (Delaying) a Volume Migration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delayed-volume-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delayed Volume State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resuming-a-volume-immediately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resuming a Volume Immediately
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-live-volume-execution-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Live Volume Execution Logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-detailed-steps-for-a-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking Detailed Steps for a Volume
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checking Detailed Steps for a Volume">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-steps-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Steps Mean
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancelling-storage-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancelling Storage Migrations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Troubleshooting &amp; Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-storage-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Storage Guides
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../introduction/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    PixelView Documentation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../overview/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Migration Manager
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="block-storage-cbs-migrations-evacuating-storage-devices">Block Storage (CBS) Migrations: Evacuating Storage Devices<a class="headerlink" href="#block-storage-cbs-migrations-evacuating-storage-devices" title="Permanent link">&para;</a></h1>
+<p>The <strong>Cloud Block Storage (CBS) Migration</strong> feature in Migration Manager allows you to migrate persistent block storage volumes from one storage device or pool to another.</p>
+<p>Whether you are retiring older storage hardware, upgrading disk arrays, or balancing I/O capacity across your infrastructure, this tool automates volume validation, non-disruptive data replication, and backend retyping directly from the PixelView console.</p>
+<hr />
+<h2 id="what-is-a-storage-device">What is a Storage Device?<a class="headerlink" href="#what-is-a-storage-device" title="Permanent link">&para;</a></h2>
+<p>In PixelView, a <strong>Storage Device</strong> represents a registered storage backend pool (such as an LVM volume group or Ceph pool) hosted on a storage node, following the canonical format:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;hostname&gt;@&lt;backend_name&gt;#&lt;pool_name&gt;
+</span></code></pre></div>
+<p>For example:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>storage-01@lvmdriver-1#lvmdriver-1
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>storage-02@lvmdriver-1#lvmdriver-1
+</span></code></pre></div>
+<em>(In the interface screenshots throughout this guide, <code>openstack-01@lvmdriver-1#lvmdriver-1</code> is used as an example storage device).</em></p>
+<p>All registered storage devices are cataloged in your PixelView inventory under <strong>Inventory -&gt; Catalogue -&gt; STORAGE DEVICES</strong>.</p>
+<hr />
+<h2 id="evacuating-a-storage-device">Evacuating a Storage Device<a class="headerlink" href="#evacuating-a-storage-device" title="Permanent link">&para;</a></h2>
+<p>To evacuate a storage device and migrate all its volumes to a destination pool:</p>
+<ul>
+<li>In the <strong>Migration Manager</strong> toolbar, click the orange <strong><code>+</code></strong> (Create Migration) button.</li>
+<li>The <strong>Create Migration</strong> dialog will open.</li>
+</ul>
+<h3 id="product-type-selection">Product Type Selection<a class="headerlink" href="#product-type-selection" title="Permanent link">&para;</a></h3>
+<p>Click the <strong>CBS</strong> tile (Block storage devices and volumes):</p>
+<p><a href="../../images/migration-cbs-product-select.png" class="glightbox">
+  <img src="../../images/migration-cbs-product-select.png" alt="Select CBS Product Type">
+</a></p>
+<ul>
+<li>Click <strong>NEXT</strong>.</li>
+</ul>
+<hr />
+<h3 id="storage-device-migration-type">Storage Device Migration Type<a class="headerlink" href="#storage-device-migration-type" title="Permanent link">&para;</a></h3>
+<p>Choose the migration scope:</p>
+<p><a href="../../images/migration-cbs-type-select.png" class="glightbox">
+  <img src="../../images/migration-cbs-type-select.png" alt="Select STORAGE DEVICE Migration Type">
+</a></p>
+<ul>
+<li><strong>STORAGE DEVICE</strong>: Evacuates all persistent block volumes currently stored on the selected device.</li>
+<li>Click <strong>NEXT</strong>.</li>
+</ul>
+<hr />
+<h3 id="source-destination-storage-pools">Source &amp; Destination Storage Pools<a class="headerlink" href="#source-destination-storage-pools" title="Permanent link">&para;</a></h3>
+<p>Select the cloud region, cell, and storage pools:</p>
+<p><a href="../../images/migration-cbs-selection-filled.png" class="glightbox">
+  <img src="../../images/migration-cbs-selection-filled.png" alt="CBS Selection Step with Storage Device and Destination">
+</a></p>
+<ul>
+<li><strong>Region</strong>: Select the cloud region (e.g., <code>RegionOne</code>).</li>
+<li><strong>Cell</strong>: Select the cell (e.g., <code>cell1</code>).</li>
+<li><strong>Storage Device</strong>: Select the source storage backend you want to evacuate (e.g., <code>openstack-01@lvmdriver-1#lvmdriver-1</code>). PixelView will discover all volumes residing on this backend.</li>
+<li><strong>Destination</strong>: Select the target storage device where you want the volumes to be moved (e.g., <code>openstack-02@lvmdriver-1#lvmdriver-1</code>).</li>
+<li>Click <strong>NEXT</strong>.</li>
+</ul>
+<hr />
+<h3 id="migration-options-scheduling">Migration Options &amp; Scheduling<a class="headerlink" href="#migration-options-scheduling" title="Permanent link">&para;</a></h3>
+<p>Set your migration policies and timing:</p>
+<p><a href="../../images/migration-cbs-options.png" class="glightbox">
+  <img src="../../images/migration-cbs-options.png" alt="CBS Migration Options Step">
+</a></p>
+<ul>
+<li><strong>Migration Class</strong>: Select <code>Live Migrate</code> to allow non-disruptive volume retyping and replication.</li>
+<li><strong>Start Time</strong>:</li>
+<li><strong>Now</strong>: Starts the storage evacuation immediately.</li>
+<li><strong>Scheduled (UTC)</strong>: Schedules the evacuation for a designated maintenance window.</li>
+<li><strong>Migration Comments</strong>: Add any operational notes or tracking IDs.</li>
+<li><strong>HSD Related</strong>: Check this box if the task is related to hardware maintenance.</li>
+<li>Click <strong>NEXT</strong>.</li>
+</ul>
+<hr />
+<h3 id="review-create">Review &amp; Create<a class="headerlink" href="#review-create" title="Permanent link">&para;</a></h3>
+<p>Review your selected source and destination storage devices on the summary screen, then click <strong>CREATE MIGRATION</strong>.</p>
+<hr />
+<h2 id="tracking-storage-migrations">Tracking Storage Migrations<a class="headerlink" href="#tracking-storage-migrations" title="Permanent link">&para;</a></h2>
+<p>Once created, the migration appears in the Migration Manager dashboard:</p>
+<p><a href="../../images/migration-groups-cbs-running.png" class="glightbox">
+  <img src="../../images/migration-groups-cbs-running.png" alt="Migration Groups Table with CBS Group Running">
+</a></p>
+<h3 id="opening-the-storage-group-details">Opening the Storage Group Details<a class="headerlink" href="#opening-the-storage-group-details" title="Permanent link">&para;</a></h3>
+<p>Click on the migration group row to view all volumes being evacuated:</p>
+<p><a href="../../images/migration-cbs-group-detail-new.png" class="glightbox">
+  <img src="../../images/migration-cbs-group-detail-new.png" alt="CBS Group Detail View with Volumes Listed">
+</a></p>
+<hr />
+<h2 id="monitoring-volume-progress">Monitoring Volume Progress<a class="headerlink" href="#monitoring-volume-progress" title="Permanent link">&para;</a></h2>
+<p>As the system processes the volumes, the table updates in real time:</p>
+<p><a href="../../images/migration-cbs-volumes-progress.png" class="glightbox">
+  <img src="../../images/migration-cbs-volumes-progress.png" alt="CBS Volumes Table Showing Active Migration and Completed Retypes">
+</a></p>
+<h3 id="understanding-progress-messages">Understanding Progress Messages<a class="headerlink" href="#understanding-progress-messages" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>Volume validated (status=available, size=3GB)</code></strong>: The system verified that the volume is healthy and that the destination storage pool has sufficient free capacity.</li>
+<li><strong><code>Waiting for active migrations to fall below group concurrency limit</code></strong>: The volume is queued and will begin as soon as active migrations finish. This safeguard prevents overloading your storage network.</li>
+<li><strong><code>Volume migration completed successfully. New host: openstack-02@...</code></strong>: The volume data has been completely replicated to the destination storage pool and is active.</li>
+<li><strong>Active Delay Timestamp</strong> (e.g. <code>10/1/2026, 10:16:48 AM</code>): The volume has been postponed to migrate at a later time.</li>
+</ul>
+<hr />
+<h2 id="volume-action-controls">Volume Action Controls<a class="headerlink" href="#volume-action-controls" title="Permanent link">&para;</a></h2>
+<p>Each row in the volumes table provides a context action menu (<strong><code>...</code></strong>) for operational controls:</p>
+<p><a href="../../images/migration-cbs-action-logs.png" class="glightbox">
+  <img src="../../images/migration-cbs-action-logs.png" alt="CBS Volume Action Menu Highlighting Logs">
+</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Delay</strong></td>
+<td style="text-align: left;">Postpone migration of this specific volume to a later time without pausing other volumes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Logs</strong></td>
+<td style="text-align: left;">Stream live execution logs to monitor storage driver operations and replication progress.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Steps</strong></td>
+<td style="text-align: left;">Inspect the step-by-step verification checklist for the volume.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cancel</strong></td>
+<td style="text-align: left;">Cancel migration for this specific volume.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="postponing-delaying-a-volume-migration">Postponing (Delaying) a Volume Migration<a class="headerlink" href="#postponing-delaying-a-volume-migration" title="Permanent link">&para;</a></h2>
+<p>If a particular volume should not be moved immediately (for example, if high I/O batch processing is currently occurring):</p>
+<ul>
+<li>Click the <strong>Actions (<code>...</code>)</strong> menu on the volume row and select <strong>Delay</strong>.</li>
+<li>Enter a relative time offset (<code>+30m</code>, <code>+2h</code>, <code>+1d</code>) or an exact UTC date and time (<code>YYYY-MM-DD HH:MM:SS</code>).</li>
+<li>Click <strong>DELAY</strong>.</li>
+</ul>
+<h3 id="delayed-volume-state">Delayed Volume State<a class="headerlink" href="#delayed-volume-state" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The <strong>Delay Until</strong> column displays the active scheduled timestamp (e.g., <code>10/1/2026, 10:16:48 AM</code>).</li>
+<li>The system skips the volume and continues processing remaining volumes on the storage device.</li>
+<li>Once the scheduled time arrives, the volume is automatically processed.</li>
+</ul>
+<h3 id="resuming-a-volume-immediately">Resuming a Volume Immediately<a class="headerlink" href="#resuming-a-volume-immediately" title="Permanent link">&para;</a></h3>
+<ul>
+<li>To run a delayed volume right away, click <strong>Actions (<code>...</code>)</strong> &rarr; <strong>Delay</strong>, then click <strong>RESUME NOW</strong>.</li>
+</ul>
+<hr />
+<h2 id="viewing-live-volume-execution-logs">Viewing Live Volume Execution Logs<a class="headerlink" href="#viewing-live-volume-execution-logs" title="Permanent link">&para;</a></h2>
+<p>PixelView provides real-time streaming logs for block storage operations:</p>
+<ul>
+<li>Click the <strong>Actions (<code>...</code>)</strong> menu on the volume row and select <strong>Logs</strong> (as shown highlighted above).</li>
+<li>The <strong>Instance Migration Logs</strong> dialog opens, displaying live telemetry:</li>
+<li>Volume attachment status checks.</li>
+<li>Backend storage driver communications.</li>
+<li>Asynchronous block replication progress.</li>
+<li>Destination pool verification.</li>
+</ul>
+<hr />
+<h2 id="checking-detailed-steps-for-a-volume">Checking Detailed Steps for a Volume<a class="headerlink" href="#checking-detailed-steps-for-a-volume" title="Permanent link">&para;</a></h2>
+<p>To view the execution checklist for any specific volume:</p>
+<ul>
+<li>Click the <strong>Actions (<code>...</code>)</strong> menu on the volume row.</li>
+<li>Select <strong>Steps</strong>.</li>
+<li>The <strong>Migration Steps</strong> window opens:</li>
+</ul>
+<p><a href="../../images/migration-cbs-steps-dialog.png" class="glightbox">
+  <img src="../../images/migration-cbs-steps-dialog.png" alt="CBS Migration Steps Modal">
+</a></p>
+<h3 id="what-the-steps-mean">What the Steps Mean<a class="headerlink" href="#what-the-steps-mean" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Check Metadata</strong>: Confirms the volume is in a valid state (<code>available</code> or <code>in-use</code>), checks disk size, and verifies that the destination storage pool is online and has space.</li>
+<li><strong>Volume Migrate</strong>: Safely copies volume data to the new storage backend pool, updates volume location attributes, and verifies data integrity.</li>
+</ul>
+<hr />
+<h2 id="cancelling-storage-migrations">Cancelling Storage Migrations<a class="headerlink" href="#cancelling-storage-migrations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Cancel a Single Volume</strong>: Click <strong>Actions (<code>...</code>)</strong> on any pending volume row and select <strong>Cancel</strong>.</li>
+<li><strong>Cancel the Entire Group</strong>: Click the red <strong>CANCEL GROUP</strong> button in the header toolbar of the group details page. Unstarted volumes are halted immediately, while in-flight volume copies finish safely.</li>
+</ul>
+<hr />
+<h2 id="storage-troubleshooting-tips">Storage Troubleshooting &amp; Tips<a class="headerlink" href="#storage-troubleshooting-tips" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Why is a volume waiting for concurrency limit?</strong>: PixelView limits concurrent volume migrations to protect storage array I/O and network bandwidth. Queued volumes begin automatically as active copies conclude.</li>
+<li><strong>What if volume migration takes a long time?</strong>: Large volumes (hundreds of gigabytes or terabytes) require time for initial block replication. You can click <strong>Logs</strong> to check live transfer status.</li>
+<li><strong>What if a volume fails pre-checks?</strong>: Check the <strong>Logs</strong> dialog to see the error message. Common causes include insufficient free space in the target storage pool or an offline storage driver.</li>
+</ul>
+<hr />
+<h2 id="related-storage-guides">Related Storage Guides<a class="headerlink" href="#related-storage-guides" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../cbs-backend-setup/"><strong>Cinder (CBS) Setup &amp; Troubleshooting Guide</strong></a> — Step-by-step guide for provisioning Cinder backends, tuning Libvirt <code>remember_owner = 0</code> for live disk swaps, cleaning up stuck volume locks, and multi-region database setup.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../compute/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Compute Migrations">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Compute Migrations
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cbs-backend-setup/" class="md-footer__link md-footer__link--next" aria-label="Next: Cinder (CBS) Setup &amp; Troubleshooting">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Cinder (CBS) Setup & Troubleshooting
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "header.autohide", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.prune", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/glightbox.min.js"></script>
+      
+        <script src="../../../assets/javascripts/lightbox.js"></script>
+      
+    
+  </body>
+</html>

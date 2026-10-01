@@ -1,0 +1,3425 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.pixelvirt.com/pixelview/migration-manager/compute/">
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../cbs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Compute Migrations - PixelVirt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/empty.css">
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/glightbox.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#compute-migrations-evacuating-hypervisors" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="PixelVirt" class="md-header__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PixelVirt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Compute Migrations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../introduction/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView Documentation
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PixelView API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Blog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="PixelVirt" class="md-nav__button md-logo" aria-label="PixelVirt" data-md-component="logo">
+      
+  <img src="../../../assets/images/logo.png" alt="logo">
+
+    </a>
+    PixelVirt
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PixelView Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PixelView
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/install-on-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install on Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/install-ha/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HA Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clouds
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clouds
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/openstack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenStack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clouds/reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Reporting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cases Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/open-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/my-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    My Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cases/resolved-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resolved Cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services/Monitoring
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services/Monitoring
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../services/prometheus/integration/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Integration
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Escalation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../escalation/policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalation Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Automation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/executions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/playbooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/runners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automation/workflows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/bots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automation Bots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Inventory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/creds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inventory/host-groups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Groups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch Management
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Patch Management
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/patch-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patch Management Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/patchset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patchset Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/planner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planner Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patch-management/packages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../json-bridge/json-bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Bridge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration Manager
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Migration Manager
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compute Migrations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compute Migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evacuating-a-compute-hypervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evacuating a Compute Hypervisor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evacuating a Compute Hypervisor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#product-type-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Type Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-type-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Type Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-destination-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source &amp; Destination Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-options-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Options &amp; Scheduling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-summary-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Summary &amp; Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-migration-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking Migration Progress
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tracking Migration Progress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opening-the-group-detail-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opening the Group Detail View
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-instances-in-the-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Instances in the Group
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Instances in the Group">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table Columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-action-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance Action Controls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postponing-delaying-an-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postponing (Delaying) an Instance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Postponing (Delaying) an Instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delayed-instance-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delayed Instance Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resuming-a-delayed-instance-immediately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resuming a Delayed Instance Immediately
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-live-instance-execution-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Live Instance Execution Logs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing Live Instance Execution Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-logs-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Logs Show
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-step-by-step-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking Step-by-Step Progress
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checking Step-by-Step Progress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-steps-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Steps Mean
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancelling-compute-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancelling Compute Migrations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compute-troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute Troubleshooting &amp; Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cbs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Block Storage (CBS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cbs-backend-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cinder (CBS) Setup & Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_12" id="__nav_2_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Management and Settings
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Management and Settings
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/user-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../management/sso-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSO Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../api/api/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PixelView API
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#evacuating-a-compute-hypervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evacuating a Compute Hypervisor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evacuating a Compute Hypervisor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#product-type-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Type Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-type-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Type Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-destination-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source &amp; Destination Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-options-scheduling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Options &amp; Scheduling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-summary-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Summary &amp; Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-migration-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tracking Migration Progress
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tracking Migration Progress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opening-the-group-detail-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opening the Group Detail View
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-instances-in-the-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Instances in the Group
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Instances in the Group">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table Columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-action-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance Action Controls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postponing-delaying-an-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postponing (Delaying) an Instance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Postponing (Delaying) an Instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delayed-instance-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delayed Instance Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resuming-a-delayed-instance-immediately" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resuming a Delayed Instance Immediately
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-live-instance-execution-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viewing Live Instance Execution Logs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing Live Instance Execution Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-logs-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Logs Show
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-step-by-step-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking Step-by-Step Progress
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checking Step-by-Step Progress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-the-steps-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Steps Mean
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancelling-compute-migrations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancelling Compute Migrations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compute-troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute Troubleshooting &amp; Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../introduction/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    PixelView Documentation
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../overview/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Migration Manager
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="compute-migrations-evacuating-hypervisors">Compute Migrations: Evacuating Hypervisors<a class="headerlink" href="#compute-migrations-evacuating-hypervisors" title="Permanent link">&para;</a></h1>
+<p>The <strong>Compute Migration</strong> feature in Migration Manager lets you evacuate all virtual machine instances running on a compute hypervisor and safely move them to another host with minimal or zero downtime.</p>
+<p>This guide walks you through scheduling a host evacuation, choosing migration settings, monitoring instances as they move, postponing workloads, viewing live execution logs, and verifying step completion.</p>
+<hr />
+<h2 id="evacuating-a-compute-hypervisor">Evacuating a Compute Hypervisor<a class="headerlink" href="#evacuating-a-compute-hypervisor" title="Permanent link">&para;</a></h2>
+<p>To evacuate a compute host:</p>
+<ul>
+<li>In the upper-right toolbar of the <strong>Migration Manager</strong> page, click the orange <strong><code>+</code></strong> (Create Migration) button.</li>
+<li>The <strong>Create Migration</strong> dialog will open.</li>
+</ul>
+<h3 id="product-type-selection">Product Type Selection<a class="headerlink" href="#product-type-selection" title="Permanent link">&para;</a></h3>
+<p>In the dialog, click <strong>COMPUTE</strong> to manage hypervisors and virtual machine instances:</p>
+<p><a href="../../images/migration-create-product-type.png" class="glightbox">
+  <img src="../../images/migration-create-product-type.png" alt="Select COMPUTE Product Type">
+</a></p>
+<ul>
+<li>Click <strong>NEXT</strong>.</li>
+</ul>
+<hr />
+<h3 id="migration-type-selection">Migration Type Selection<a class="headerlink" href="#migration-type-selection" title="Permanent link">&para;</a></h3>
+<p>Choose the scope of your migration:</p>
+<p><a href="../../images/migration-compute-type.png" class="glightbox">
+  <img src="../../images/migration-compute-type.png" alt="Select EVACUATE HYPERVISOR(S) Migration Type">
+</a></p>
+<ul>
+<li><strong>EVACUATE HYPERVISOR(S)</strong>: Select this option to evacuate all instances currently residing on the source host.</li>
+<li>Click <strong>NEXT</strong>.</li>
+</ul>
+<hr />
+<h3 id="source-destination-selection">Source &amp; Destination Selection<a class="headerlink" href="#source-destination-selection" title="Permanent link">&para;</a></h3>
+<p>Select the location and the physical servers involved in the migration:</p>
+<p><a href="../../images/migration-compute-selection.png" class="glightbox">
+  <img src="../../images/migration-compute-selection.png" alt="Select Region, Cell, Source Host, and Destination Host">
+</a></p>
+<ul>
+<li><strong>Region</strong>: Select your cloud region (e.g., <code>RegionOne</code> in the screenshot, or your target region).</li>
+<li><strong>Cell</strong>: Select the compute cell (e.g., <code>cell1</code> in the screenshot, or your cell name).</li>
+<li><strong>Host</strong>: Select the source hypervisor you need to evacuate (e.g., <code>openstack-02</code> in the screenshot, or your source server). PixelView automatically queries the host and finds all virtual machines running on it.</li>
+<li><strong>Destination</strong>: Select the target hypervisor where you want the instances to land (e.g., <code>openstack-03</code> in the screenshot, or your destination server).</li>
+<li>Click <strong>NEXT</strong>.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Only Healthy Hosts are Listed</p>
+<p>The Host and Destination dropdowns automatically list active, reachable compute nodes discovered from your cloud environment.</p>
+</div>
+<hr />
+<h3 id="migration-options-scheduling">Migration Options &amp; Scheduling<a class="headerlink" href="#migration-options-scheduling" title="Permanent link">&para;</a></h3>
+<p>Choose how the virtual machines should be migrated and when execution should start:</p>
+<p><a href="../../images/migration-compute-options-classes.png" class="glightbox">
+  <img src="../../images/migration-compute-options-classes.png" alt="Migration Class Dropdown Options">
+</a></p>
+<h4 id="choosing-the-right-migration-class">Choosing the Right Migration Class<a class="headerlink" href="#choosing-the-right-migration-class" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Migration Class</th>
+<th style="text-align: left;">How It Works</th>
+<th style="text-align: left;">Recommended For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>Live Migrate</code></strong></td>
+<td style="text-align: left;">The virtual machine continues running while its memory, CPU state, and network connections are transferred to the destination host. <strong>Zero downtime.</strong></td>
+<td style="text-align: left;">Production applications, customer-facing services, and databases that cannot be powered off.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>Opportunistic Live Migrate</code></strong></td>
+<td style="text-align: left;">Attempts a live migration first. If a specific VM cannot be live-migrated (e.g. due to hardware constraints), the system intelligently adapts.</td>
+<td style="text-align: left;">Routine fleet maintenance where you want maximum uptime without getting blocked by non-live-capable VMs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>Standard Migrate</code></strong></td>
+<td style="text-align: left;">A cold migration. The instance is powered off, its disk and state are moved to the target host, and it is powered back on.</td>
+<td style="text-align: left;">Test/development VMs, stopped instances, or instances that do not require continuous uptime.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>Live then Standard (DC Migration)</code></strong></td>
+<td style="text-align: left;">Attempts live migration first; if it encounters incompatibility between different server architectures or networks, it automatically falls back to cold migration.</td>
+<td style="text-align: left;">Moving workloads across different server generations or separate network pods.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="scheduling-additional-details">Scheduling &amp; Additional Details<a class="headerlink" href="#scheduling-additional-details" title="Permanent link">&para;</a></h4>
+<p><a href="../../images/migration-compute-options-filled.png" class="glightbox">
+  <img src="../../images/migration-compute-options-filled.png" alt="Filled Options Step with Schedule and Comments">
+</a></p>
+<ul>
+<li><strong>Start Time</strong>:</li>
+<li><strong>Now</strong>: Starts the evacuation immediately.</li>
+<li><strong>Scheduled (UTC)</strong>: Pick a specific date and time to run the evacuation during a planned maintenance window.</li>
+<li><strong>Migration Comments</strong>: Add optional notes (e.g., <code>Scheduled CPU upgrade - Ticket #1042</code>).</li>
+<li><strong>HSD Related</strong>: Check this box if the evacuation is related to a Hardware Support Delivery (HSD) maintenance event.</li>
+<li>Click <strong>NEXT</strong>.</li>
+</ul>
+<hr />
+<h3 id="review-summary-create">Review Summary &amp; Create<a class="headerlink" href="#review-summary-create" title="Permanent link">&para;</a></h3>
+<p>Check your configuration on the summary screen:</p>
+<p><a href="../../images/migration-compute-summary.png" class="glightbox">
+  <img src="../../images/migration-compute-summary.png" alt="Migration Summary and Confirmation Screen">
+</a></p>
+<ul>
+<li>Confirm the <strong>Source Host</strong>, <strong>Destination Host</strong>, <strong>Migration Class</strong>, and <strong>Start Time</strong>.</li>
+<li>Click <strong>CREATE MIGRATION</strong>.</li>
+</ul>
+<hr />
+<h2 id="tracking-migration-progress">Tracking Migration Progress<a class="headerlink" href="#tracking-migration-progress" title="Permanent link">&para;</a></h2>
+<p>After creating the migration, your new group appears in the Migration Manager table with status <strong><code>New</code></strong>:</p>
+<p><a href="../../images/migration-compute-group-created.png" class="glightbox">
+  <img src="../../images/migration-compute-group-created.png" alt="Newly Created Compute Group in Main Table">
+</a></p>
+<h3 id="opening-the-group-detail-view">Opening the Group Detail View<a class="headerlink" href="#opening-the-group-detail-view" title="Permanent link">&para;</a></h3>
+<p>Click on the migration group row to open its detailed tracking page:</p>
+<p><a href="../../images/migration-compute-group-detail.png" class="glightbox">
+  <img src="../../images/migration-compute-group-detail.png" alt="Compute Migration Group Detail View">
+</a></p>
+<h4 id="header-information">Header Information<a class="headerlink" href="#header-information" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Name</strong>: The host being evacuated (<code>openstack-03</code>).</li>
+<li><strong>Start Date</strong>: When the migration started.</li>
+<li><strong>Status Badge</strong>: Shows whether the group is <code>New</code>, <code>Running</code>, or <code>Complete</code>.</li>
+<li><strong>CANCEL GROUP Button</strong>: Allows you to stop all remaining unmigrated instances if needed.</li>
+</ul>
+<hr />
+<h2 id="monitoring-instances-in-the-group">Monitoring Instances in the Group<a class="headerlink" href="#monitoring-instances-in-the-group" title="Permanent link">&para;</a></h2>
+<p>The <strong>Instance Migrations</strong> table lists every virtual machine found on the source host:</p>
+<p><a href="../../images/migration-compute-live-progress.png" class="glightbox">
+  <img src="../../images/migration-compute-live-progress.png" alt="Instance Migrations Table Showing Live Migration Progress">
+</a></p>
+<h3 id="table-columns">Table Columns<a class="headerlink" href="#table-columns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Instance ID</strong>: The unique identifier of the virtual machine (with a button to copy it).</li>
+<li><strong>DDI</strong>: The customer or tenant account identifier.</li>
+<li><strong>Destination</strong>: The target host where the VM is moving (<code>openstack-02</code>).</li>
+<li><strong>Current Step</strong>: What the system is currently doing (e.g., <code>Pending</code>, <code>Live Migrate</code>).</li>
+<li><strong>Delay Until</strong>: Displays a timestamp if this VM was postponed to run later.</li>
+<li><strong>Status</strong>:</li>
+<li><code>New</code>: Waiting to be processed.</li>
+<li><code>Running</code>: Currently performing validation or data transfer.</li>
+<li><code>Complete</code>: Successfully running on the new host.</li>
+<li><code>Failed</code>: Encountered an issue.</li>
+<li><strong>Notes</strong>: Operational messages explaining current progress (e.g., <code>Live migration completed successfully. New host: openstack-02</code>).</li>
+<li><strong>Actions (<code>...</code>)</strong>: Menu to delay, view logs, view steps, or cancel this instance.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Automatic Concurrency Protection</p>
+<p>To protect server network performance, PixelView processes a set number of instances at a time. Other instances will show <code>Waiting for active migrations to fall below group concurrency limit</code> and will automatically begin as earlier ones finish.</p>
+</div>
+<hr />
+<h2 id="instance-action-controls">Instance Action Controls<a class="headerlink" href="#instance-action-controls" title="Permanent link">&para;</a></h2>
+<p>Each instance row features a context action menu (<strong><code>...</code></strong>) providing real-time operational controls:</p>
+<p><a href="../../images/migration-instance-action-menu.png" class="glightbox">
+  <img src="../../images/migration-instance-action-menu.png" alt="Compute Instance Action Menu">
+</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Delay</strong></td>
+<td style="text-align: left;">Postpone migration of this specific instance to accommodate a customer maintenance window or active batch job.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Logs</strong></td>
+<td style="text-align: left;">Stream live execution logs to monitor progress or troubleshoot issues.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Steps</strong></td>
+<td style="text-align: left;">Inspect the step-by-step verification checklist.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cancel</strong></td>
+<td style="text-align: left;">Cancel migration for this specific virtual machine without interrupting the rest of the group.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="postponing-delaying-an-instance">Postponing (Delaying) an Instance<a class="headerlink" href="#postponing-delaying-an-instance" title="Permanent link">&para;</a></h2>
+<p>If a specific virtual machine cannot be moved immediately:</p>
+<ul>
+<li>In the instances table, click the <strong>Actions (<code>...</code>)</strong> menu on the target row and select <strong>Delay</strong>.</li>
+<li>The <strong>Delay Migration</strong> dialog opens:</li>
+</ul>
+<p><a href="../../images/migration-instance-delay-dialog.png" class="glightbox">
+  <img src="../../images/migration-instance-delay-dialog.png" alt="Delay Migration Dialog">
+</a></p>
+<ul>
+<li>In the <strong>Delay Until *</strong> field, specify when you want the migration to run. You can enter:</li>
+<li><strong>Relative time offsets</strong>:<ul>
+<li><code>+30m</code> (delays by 30 minutes)</li>
+<li><code>+2h</code> (delays by 2 hours)</li>
+<li><code>+1d</code> (delays by 1 day)</li>
+</ul>
+</li>
+<li><strong>Exact UTC date and time</strong>: <code>YYYY-MM-DD HH:MM:SS</code> (e.g., <code>2026-10-01 16:00:00</code>).</li>
+<li>Click <strong>DELAY</strong>.</li>
+</ul>
+<h3 id="delayed-instance-status">Delayed Instance Status<a class="headerlink" href="#delayed-instance-status" title="Permanent link">&para;</a></h3>
+<p>The <strong>Delay Until</strong> column in the table updates with the scheduled timestamp:</p>
+<p><a href="../../images/migration-instance-delayed-status.png" class="glightbox">
+  <img src="../../images/migration-instance-delayed-status.png" alt="Compute Instance Table Showing Delay Until Timestamp">
+</a></p>
+<ul>
+<li>The system skips this VM and continues migrating other instances on the host.</li>
+<li>When the scheduled time arrives, the instance automatically begins migrating.</li>
+</ul>
+<h3 id="resuming-a-delayed-instance-immediately">Resuming a Delayed Instance Immediately<a class="headerlink" href="#resuming-a-delayed-instance-immediately" title="Permanent link">&para;</a></h3>
+<p>If maintenance finishes early or you want to migrate a delayed VM right away:</p>
+<ul>
+<li>Click the <strong>Actions (<code>...</code>)</strong> menu on the delayed instance row and select <strong>Delay</strong>.</li>
+<li>Click the <strong>RESUME NOW</strong> button.</li>
+<li>The delay is removed immediately, and the instance is queued for migration.</li>
+</ul>
+<hr />
+<h2 id="viewing-live-instance-execution-logs">Viewing Live Instance Execution Logs<a class="headerlink" href="#viewing-live-instance-execution-logs" title="Permanent link">&para;</a></h2>
+<p>PixelView streams real-time execution logs directly to your browser, allowing you to monitor progress and diagnose issues without logging into backend servers:</p>
+<ul>
+<li>Click the <strong>Actions (<code>...</code>)</strong> menu on the instance row and select <strong>Logs</strong>.</li>
+<li>The <strong>Instance Migration Logs</strong> dialog opens:</li>
+</ul>
+<p><a href="../../images/migration-instance-logs-dialog.png" class="glightbox">
+  <img src="../../images/migration-instance-logs-dialog.png" alt="Compute Instance Migration Logs Dialog">
+</a></p>
+<h3 id="what-the-logs-show">What the Logs Show<a class="headerlink" href="#what-the-logs-show" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Live Telemetry</strong>: Real-time notifications of pre-checks, memory copy iterations, and hypervisor handoffs.</li>
+<li><strong>Timestamps</strong>: Exact time each action was dispatched and verified.</li>
+<li><strong>Diagnostic Messages</strong>: Detailed error payloads if an instance encounters pre-flight issues, making it easy to identify missing network bindings or capacity limits.</li>
+</ul>
+<hr />
+<h2 id="checking-step-by-step-progress">Checking Step-by-Step Progress<a class="headerlink" href="#checking-step-by-step-progress" title="Permanent link">&para;</a></h2>
+<p>To verify the completion checklist for an instance:</p>
+<ul>
+<li>Click the <strong>Actions (<code>...</code>)</strong> menu on the instance row and select <strong>Steps</strong>.</li>
+<li>The <strong>Migration Steps</strong> window opens:</li>
+</ul>
+<p><a href="../../images/migration-compute-steps-dialog.png" class="glightbox">
+  <img src="../../images/migration-compute-steps-dialog.png" alt="Migration Steps Modal for Compute Live Migration">
+</a></p>
+<h3 id="what-the-steps-mean">What the Steps Mean<a class="headerlink" href="#what-the-steps-mean" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Check Metadata</strong>: Confirms the VM power state, verifies that the destination hypervisor has adequate unreserved CPU and RAM, and checks network port compatibility.</li>
+<li><strong>Live Migrate</strong>: Transfers active memory and CPU registers to the target host, completes cutover, and confirms the instance is running on the new hypervisor.</li>
+</ul>
+<hr />
+<h2 id="cancelling-compute-migrations">Cancelling Compute Migrations<a class="headerlink" href="#cancelling-compute-migrations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Cancel a Single Instance</strong>: Click the <strong>Actions (<code>...</code>)</strong> menu on any pending or delayed instance row and select <strong>Cancel</strong>. The instance status updates to <code>Cancelled</code> while other instances continue.</li>
+<li><strong>Cancel the Entire Group</strong>: Click the red <strong>CANCEL GROUP</strong> button in the header toolbar of the group details page. All unstarted instances are stopped immediately. In-flight instances conclude their active data transfer safely to protect data integrity.</li>
+</ul>
+<hr />
+<h2 id="compute-troubleshooting-tips">Compute Troubleshooting &amp; Tips<a class="headerlink" href="#compute-troubleshooting-tips" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Why is an instance waiting for concurrency limit?</strong>: PixelView limits concurrent migrations per host (default: 5 concurrent instances) to protect network bandwidth and CPU stability. Queued instances begin automatically as active ones complete.</li>
+<li><strong>What if an instance fails pre-checks?</strong>: Open the <strong>Logs</strong> dialog on the failed row. Common reasons include insufficient memory on the destination host or a missing VLAN/network binding.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cbs/" class="md-footer__link md-footer__link--next" aria-label="Next: Block Storage (CBS)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Block Storage (CBS)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "header.autohide", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.prune", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/glightbox.min.js"></script>
+      
+        <script src="../../../assets/javascripts/lightbox.js"></script>
+      
+    
+  </body>
+</html>
